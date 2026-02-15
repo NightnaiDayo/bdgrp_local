@@ -10,7 +10,7 @@ export function decrypt(buf: Buffer): Buffer {
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return decrypted;
 }
-const path = "G:\\maybe bandori ps\\responses\\suite\\master"
+const path = "G:\\maybe bandori ps\\responses\\user\\index_req"
 const file = fs.readFileSync(path)
 
 fs.writeFileSync(`${path}_decrypted`, decrypt(file))
