@@ -5,12 +5,12 @@ import fs from "fs";
 export function decrypt(buf: Buffer): Buffer {
     const decipher = crypto.createDecipheriv('aes-128-cbc', Keys.Key, Keys.IV);
 
-    decipher.setAutoPadding(false);
+    decipher.setAutoPadding(true);
     let decrypted = decipher.update(buf);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return decrypted;
 }
-const path = "/Users/duck/Documents/response.bin"
-const file = fs.readFileSync(path)
-
-fs.writeFileSync(`${path}_decrypted`, decrypt(file))
+// const path = "/Users/duck/Desktop/bandori_files/testresponse.bin"
+// const file = fs.readFileSync(path)
+//
+// fs.writeFileSync(`${path}_decrypted`, decrypt(file))
