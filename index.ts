@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import morgan from "morgan";
+import mongoose from 'mongoose';
 
 const app = express();
 const PORT = 8482;
@@ -49,6 +50,13 @@ function loadRoutes(dir: string, basePath = "/api") {
 }
 
 loadRoutes(root);
+
+mongoose.connect('mongodb://localhost:27017/bandori_ps')
+.then(() => {
+    console.log('Connected to the database.')
+}).catch((err) => {
+    console.log(err)
+})
 
 app.listen(PORT, () => {
     console.log(`Running on ${PORT}`)

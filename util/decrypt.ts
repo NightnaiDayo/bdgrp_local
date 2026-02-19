@@ -10,7 +10,3 @@ export function decrypt(buf: Buffer): Buffer {
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return decrypted;
 }
-// const path = "/Users/duck/Desktop/bandori_files/testresponse.bin"
-// const file = fs.readFileSync(path)
-//
-// fs.writeFileSync(`${path}_decrypted`, decrypt(file))
