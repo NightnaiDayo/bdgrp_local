@@ -2,28 +2,57 @@ import { Router } from "express";
 import { decrypt } from "../../../../util/decrypt";
 import { encrypt } from "../../../../util/encrypt";
 import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
+import { UserRegistrationModel } from "../../../model/userRegistration";
+import { UserGamedataModel } from "../../../model/userGamedata";
 
 const router = Router({ mergeParams: true })
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
     const encReq = req.body;
     const buffer = decrypt(encReq);
     const decoded = SuiteUserGetResponse.decode(buffer);
+    //@ts-ignore
+    const userid = req.params.userid
+    
+    const userRegistration = await UserRegistrationModel.findOne({ userId: BigInt(userid) });
+    const userGamedata = await UserGamedataModel.findOne({ userId: BigInt(userid) });
+
+    const userCharacterMap: Record<number, any> = {};
+    const userSituationMap:Record<number, any> = {};
+    
+    for(let i = 1; i <=40; i++) {
+        userCharacterMap[i] = {
+            userId: userid,
+            characterId: i,
+            costumeId: i >= 36 ? (1786 + (i - 36)) : (1607 + i)
+        }
+    }
+    userCharacterMap[601] = {
+        userId: userid,
+        characterId: 601,
+        costumeId: 1643
+    }
 
     const data: SuiteUserGetResponse = {
         user: {
-            userRegistration: {
-
-            },
-            userGamedata: {
-
-            }
+            userRegistration: userRegistration.toObject(),
+            userGamedata: userGamedata.toObject()
         },
-        userCharacterMap: {
-
-        },
+        userCharacterMap: userCharacterMap,
         userSituationMap: {
-
+            userId
+            situationId
+            level
+            exp
+            createdAt
+            addExp
+            trainingStatus
+            duplicateCount
+            illust
+            skillExp
+            skillLevel
+            userAppendParameter
+            limitBreakRank
         },
         userMainStoryList: {
 
