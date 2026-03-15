@@ -1,19 +1,5 @@
 import mongoose from "mongoose";
 
-const penalty = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.BigInt, required: true, unique: true },
-    badCount: { type: Number, default: 0 },
-    billingPenaltyDate: { type: mongoose.Schema.Types.BigInt, default: 0n },
-    penaltyDate: { type: mongoose.Schema.Types.BigInt, default: 0n },
-    badDate: { type: mongoose.Schema.Types.BigInt, default: 0n }
-}, { _id: false });
-
-const recallResult = new mongoose.Schema({
-    beforePaidStar: { type: Number, default: 0 },
-    afterPaidStar: { type: Number, default: 0 },
-    isCannotRecalledAllPaidStar: { type: Boolean, default: false }
-}, { _id: false });
-
 const Schema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.BigInt, required: true, unique: true },
     rank: { type: Number, default: 1 },

@@ -4,6 +4,7 @@ import { encrypt } from "../../../../util/encrypt";
 import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
 import { UserRegistrationModel } from "../../../model/userRegistration";
 import { UserGamedataModel } from "../../../model/userGamedata";
+import config from "../../../../config.json";
 
 const router = Router({ mergeParams: true })
 
@@ -32,6 +33,9 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: 1643
     }
+    for(let i = 0; i < config.situations.length; i++) {
+        userSituationMap[i] = {}
+    }
 
     const data: SuiteUserGetResponse = {
         user: {
@@ -39,21 +43,7 @@ router.get('/', async(req, res) => {
             userGamedata: userGamedata.toObject()
         },
         userCharacterMap: userCharacterMap,
-        userSituationMap: {
-            userId
-            situationId
-            level
-            exp
-            createdAt
-            addExp
-            trainingStatus
-            duplicateCount
-            illust
-            skillExp
-            skillLevel
-            userAppendParameter
-            limitBreakRank
-        },
+        userSituationMap: userSituationMap,
         userMainStoryList: {
 
         },
