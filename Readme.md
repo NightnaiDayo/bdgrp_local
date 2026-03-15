@@ -1,2 +1,2 @@
 # Nothing.
-private server for a girl rhythm game TW ver
+What is this? A privat eserver for a girl rhythm game (TW version)?
