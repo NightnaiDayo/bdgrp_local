@@ -4,9 +4,66 @@ import { encrypt } from "../../../../util/encrypt";
 import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
 import { UserRegistrationModel } from "../../../model/userRegistration";
 import { UserGamedataModel } from "../../../model/userGamedata";
-import config from "../../../../config.json";
+import cards from "../../../../cards.json";
+import { UserSituationModel } from "../../../../model/userSituation";
 
 const router = Router({ mergeParams: true })
+
+function cardLevel(rarity: Number) {
+    switch(rarity) {
+        case 1:
+            return 20;
+        case 2:
+            return 30;
+        case 3:
+            return 50;
+        case 4:
+        case 5:
+            return 60;
+
+    }
+}
+
+const card = {
+    level(rarity: Number) {
+        switch (rarity) {
+            case 1:
+                return 20;
+            case 2:
+                return 30;
+            case 3:
+                return 50;
+            case 4:
+            case 5:
+                return 60;
+
+        }
+    },
+    trainingStatus(rarity: Number) {
+        switch (rarity) {
+            case 1:
+            case 2:
+                return "not_doing";
+            case 3:
+            case 4:
+            case 5:
+                return "done";
+
+        }
+    },
+    illust(rarity: Number) {
+        switch (rarity) {
+            case 1:
+            case 2:
+                return "normal";
+            case 3:
+            case 4:
+            case 5:
+                return "after_training";
+
+        }
+    }
+}
 
 router.get('/', async(req, res) => {
     const encReq = req.body;
@@ -17,6 +74,7 @@ router.get('/', async(req, res) => {
     
     const userRegistration = await UserRegistrationModel.findOne({ userId: BigInt(userid) });
     const userGamedata = await UserGamedataModel.findOne({ userId: BigInt(userid) });
+    const userSituation = await UserSituationModel.findOne({ userId: BigInt(userid) });
 
     const userCharacterMap: Record<number, any> = {};
     const userSituationMap:Record<number, any> = {};
@@ -33,8 +91,23 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: 1643
     }
-    for(let i = 0; i < config.situations.length; i++) {
-        userSituationMap[i] = {}
+    for(const [index, card] of cards.situations.entries()) {
+        const situationId = Number(card.situationId);
+
+        userSituationMap[situationId] = {
+            userId: userid,
+            situationId,
+            level: ,
+            exp: 0,
+            createdAt: ,
+            addExp: 0,
+            trainingStatus: ,
+            duplicateCount: ,
+            illust: ,
+            skillExp: ,
+            skillLevel: ,
+            limitBreakRank: ,
+        }
     }
 
     const data: SuiteUserGetResponse = {
