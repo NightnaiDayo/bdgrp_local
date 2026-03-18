@@ -9,23 +9,8 @@ import { UserSituationModel } from "../../../../model/userSituation";
 
 const router = Router({ mergeParams: true })
 
-function cardLevel(rarity: Number) {
-    switch(rarity) {
-        case 1:
-            return 20;
-        case 2:
-            return 30;
-        case 3:
-            return 50;
-        case 4:
-        case 5:
-            return 60;
-
-    }
-}
-
-const card = {
-    level(rarity: Number) {
+const cardFun = {
+    level(rarity: number) {
         switch (rarity) {
             case 1:
                 return 20;
@@ -39,7 +24,7 @@ const card = {
 
         }
     },
-    trainingStatus(rarity: Number) {
+    trainingStatus(rarity: number) {
         switch (rarity) {
             case 1:
             case 2:
@@ -51,7 +36,7 @@ const card = {
 
         }
     },
-    illust(rarity: Number) {
+    illust(rarity: number) {
         switch (rarity) {
             case 1:
             case 2:
@@ -91,32 +76,58 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: 1643
     }
-    for(const [index, card] of cards.situations.entries()) {
-        const situationId = Number(card.situationId);
+    if(!userSituation) {
+        for(const [index, card] of cards.situations.entries()) {
+            const situationId = Number(card.situationId);
 
-        userSituationMap[situationId] = {
-            userId: userid,
-            situationId,
-            level: ,
-            exp: 0,
-            createdAt: ,
-            addExp: 0,
-            trainingStatus: ,
-            duplicateCount: ,
-            illust: ,
-            skillExp: ,
-            skillLevel: ,
-            limitBreakRank: ,
+            userSituationMap[situationId] = {
+                userId: userid,
+                situationId,
+                level: cardFun.level(card.rarity),
+                exp: 0,
+                createdAt: Date.now(),
+                addExp: 0,
+                trainingStatus: cardFun.trainingStatus(card.rarity),
+                duplicateCount: 0,
+                illust: cardFun.illust(card.rarity),
+                skillExp: 0,
+                skillLevel: 5,
+                limitBreakRank: 0,
+            }
+        }
+    } else {
+        for(const sit of userSituation.situations) {
+            userSituationMap[sit.situationId] = {
+                userId: userid,
+                situationId: sit.situationId,
+                level: sit.level,
+                exp: sit.exp,
+                createdAt: sit.createdAt,
+                addExp: sit.addExp,
+                trainingStatus: sit.trainingStatus,
+                duplicateCount: sit.duplicateCount,
+                illust: sit.illust,
+                skillExp: sit.skillExp,
+                skillLevel: sit.skillLevel,
+                limitBreakRank: sit.limitBreakRank,
+                userAppendParameter: sit.userAppendParameter, // 如果有就帶入
+            }
         }
     }
 
-    const data: SuiteUserGetResponse = {
+    const data = {
         user: {
             userRegistration: userRegistration.toObject(),
             userGamedata: userGamedata.toObject()
         },
-        userCharacterMap: userCharacterMap,
-        userSituationMap: userSituationMap,
+        userCharacterMap: {
+            entries: Object.fromEntries(
+                Object.entries(userCharacterMap).map(([k, v]) => [String(k), v])
+            )
+        },
+        userSituationMap: {
+            entries: userSituationMap
+        },
         userMainStoryList: {
 
         },
