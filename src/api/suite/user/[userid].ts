@@ -2,8 +2,8 @@ import { Router } from "express";
 import { decrypt } from "../../../../util/decrypt";
 import { encrypt } from "../../../../util/encrypt";
 import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
-import { UserRegistrationModel } from "../../../model/userRegistration";
-import { UserGamedataModel } from "../../../model/userGamedata";
+import { UserRegistrationModel } from "../../../../model/userRegistration";
+import { UserGamedataModel } from "../../../../model/userGamedata";
 import cards from "../../../../cards.json";
 import { UserSituationModel } from "../../../../model/userSituation";
 
@@ -63,6 +63,8 @@ router.get('/', async(req, res) => {
 
     const userCharacterMap: Record<number, any> = {};
     const userSituationMap:Record<number, any> = {};
+    const userBandRankMap: Record<number, any> = {};
+    const userMusicInventoryList = []
     
     for(let i = 1; i <=40; i++) {
         userCharacterMap[i] = {
@@ -114,6 +116,8 @@ router.get('/', async(req, res) => {
             }
         }
     }
+
+
 
     const data = {
         user: {
@@ -297,9 +301,9 @@ router.get('/', async(req, res) => {
             friendMap: {
 
             },
-            friendLimit: ,
-            approvalLimit: ,
-            applicationLimit:
+            friendLimit: 50,
+            approvalLimit: 50,
+            applicationLimit: 50
         },
         userNotHaveViewExchangesMiracleTicketIdList: {
 
@@ -515,9 +519,6 @@ router.get('/', async(req, res) => {
 
         },
         userPurchaseStarList: undefined,
-        userInviteMissionListMap: {
-
-        },
         userInviteMissionListMap: {
 
         },
