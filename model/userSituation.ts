@@ -18,7 +18,7 @@ const userSituationSchema = new mongoose.Schema({
     situationId: { type: Number, required: true },
     level: { type: Number, default: 1 },
     exp: { type: Number, default: 0 },
-    createdAt: { type: mongoose.Schema.Types.BigInt, default: Date.now },
+    createdAt: { type: mongoose.Schema.Types.BigInt, required: true },
     addExp: { type: Number, default: 0 },
     trainingStatus: { type: String, default: "not_doing" },
     duplicateCount: { type: Number, default: 0 },

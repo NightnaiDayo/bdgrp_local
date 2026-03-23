@@ -5,7 +5,9 @@ import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
 import { UserRegistrationModel } from "../../../../model/userRegistration";
 import { UserGamedataModel } from "../../../../model/userGamedata";
 import cards from "../../../../cards.json";
+import songs from "../../../../songs.json";
 import { UserSituationModel } from "../../../../model/userSituation";
+import { UserMusicInventoryModel } from "../../../../model/userMusicInventory"
 
 const router = Router({ mergeParams: true })
 
@@ -51,70 +53,79 @@ const cardFun = {
 }
 
 router.get('/', async(req, res) => {
-    const encReq = req.body;
-    const buffer = decrypt(encReq);
-    const decoded = SuiteUserGetResponse.decode(buffer);
     //@ts-ignore
     const userid = req.params.userid
-    
-    const userRegistration = await UserRegistrationModel.findOne({ userId: BigInt(userid) });
-    const userGamedata = await UserGamedataModel.findOne({ userId: BigInt(userid) });
-    const userSituation = await UserSituationModel.findOne({ userId: BigInt(userid) });
+    let param = { userId: BigInt(userid) }
 
-    const userCharacterMap: Record<number, any> = {};
-    const userSituationMap:Record<number, any> = {};
+    const [userRegistration, userGamedata, userSituation, userMusicInventory] = await Promise.all([
+        UserRegistrationModel.findOne(param),
+        UserGamedataModel.findOne(param),
+        UserSituationModel.findOne(param),
+        UserMusicInventoryModel.findOne(param)
+    ]);
+    if (!userRegistration) return res.status(404).send();
+
+    const userCharacterMap: Record<string, any> = {};
+    let userSituations = [];
     const userBandRankMap: Record<number, any> = {};
-    const userMusicInventoryList = []
+    let userMusicInventoryList = [];
     
     for(let i = 1; i <=40; i++) {
-        userCharacterMap[i] = {
+        userCharacterMap[String(i)] = {
             userId: userid,
             characterId: i,
             costumeId: i >= 36 ? (1786 + (i - 36)) : (1607 + i)
         }
     }
-    userCharacterMap[601] = {
+    userCharacterMap["601"] = {
         userId: userid,
         characterId: 601,
         costumeId: 1643
     }
     if(!userSituation) {
-        for(const [index, card] of cards.situations.entries()) {
-            const situationId = Number(card.situationId);
-
-            userSituationMap[situationId] = {
+        userSituations = cards.situations.map(card => {
+            const situationId = Number(card.situationId)
+            return {
                 userId: userid,
                 situationId,
                 level: cardFun.level(card.rarity),
                 exp: 0,
-                createdAt: Date.now(),
+                createdAt: BigInt(Date.now()),
                 addExp: 0,
                 trainingStatus: cardFun.trainingStatus(card.rarity),
                 duplicateCount: 0,
                 illust: cardFun.illust(card.rarity),
                 skillExp: 0,
                 skillLevel: 5,
-                limitBreakRank: 0,
+                limitBreakRank: 0
             }
-        }
+        })
+
+        await new UserSituationModel({
+            userId: userid,
+            situations: userSituations
+        }).save();
+
     } else {
-        for(const sit of userSituation.situations) {
-            userSituationMap[sit.situationId] = {
-                userId: userid,
-                situationId: sit.situationId,
-                level: sit.level,
-                exp: sit.exp,
-                createdAt: sit.createdAt,
-                addExp: sit.addExp,
-                trainingStatus: sit.trainingStatus,
-                duplicateCount: sit.duplicateCount,
-                illust: sit.illust,
-                skillExp: sit.skillExp,
-                skillLevel: sit.skillLevel,
-                limitBreakRank: sit.limitBreakRank,
-                userAppendParameter: sit.userAppendParameter, // 如果有就帶入
-            }
-        }
+        userSituations = userSituation.situations
+    }
+
+    if (!userMusicInventory) {
+        userMusicInventoryList = songs.songs.map(song => ({
+            userId: userid,
+            musicId: song.musicId,
+            seq: 1,
+            hasMv: Array.isArray(song.musicVideos) && song.musicVideos.length > 0,
+            createdAt: BigInt(Date.now())
+        }))
+
+        await new UserMusicInventoryModel({
+            userId: userid,
+            musics: userMusicInventoryList
+        }).save();
+
+    } else {
+        userMusicInventoryList = userMusicInventory.musics
     }
 
 
@@ -125,12 +136,12 @@ router.get('/', async(req, res) => {
             userGamedata: userGamedata.toObject()
         },
         userCharacterMap: {
-            entries: Object.fromEntries(
-                Object.entries(userCharacterMap).map(([k, v]) => [String(k), v])
-            )
+            entries: userCharacterMap
         },
         userSituationMap: {
-            entries: userSituationMap
+            entries: Object.fromEntries(
+                userSituations.map(sit => [sit.situationId, sit])
+            )
         },
         userMainStoryList: {
 
@@ -169,7 +180,7 @@ router.get('/', async(req, res) => {
 
         },
         userMusicInventoryList: {
-
+            entries: userMusicInventoryList
         },
         userCostumeMap: {
 
@@ -561,8 +572,9 @@ router.get('/', async(req, res) => {
 
     }
 
-    const encoded = Buffer.from(SuiteUserGetResponse.encode(data).finish());
-    const encBuffer = encrypt(encoded);
+    const message = SuiteUserGetResponse.fromJSON(data);
+    const buffer = Buffer.from(SuiteUserGetResponse.encode(message).finish());
+    const encBuffer = encrypt(buffer);
 
     res.send(encBuffer);
 })
