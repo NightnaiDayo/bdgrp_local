@@ -64,6 +64,7 @@ router.get("/", async (req, res) => {
 
 
     const encoded = Buffer.from(UserGetResponse.encode(data).finish());
+    console.log(data)
     const encBuffer = encrypt(encoded);
 
     res.send(encBuffer);

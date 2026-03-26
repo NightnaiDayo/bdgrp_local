@@ -27,7 +27,7 @@ const userSituationSchema = new mongoose.Schema({
     skillLevel: { type: Number, default: 1 },
     userAppendParameter: { type: userAppendParameterSchema, default: null },
     limitBreakRank: { type: Number, default: 0 },
-});
+}, { _id: false });
 
 const Schema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.BigInt, required: true, unique: true },

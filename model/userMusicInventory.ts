@@ -8,7 +8,7 @@ const musicSchema = new mongoose.Schema({
     isFavorite: { type: Boolean, default: false },
     favoriteMap: {},
     createdAt: { type: mongoose.Schema.Types.BigInt, required: true }
-})
+}, { _id: false })
 
 const Schema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.BigInt, required: true, unique: true },

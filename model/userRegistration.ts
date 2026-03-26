@@ -1,20 +1,5 @@
 import mongoose from "mongoose";
 
-export interface IUserRegistration extends mongoose.Document {
-    userId: bigint;
-    hash: string;
-    userName: string;
-    clientVersion?: string;
-    platform?: string;
-    deviceModel?: string;
-    operatingSystem?: string;
-    birthMonth: string;
-    tutorialStatus: string;
-    introduction: string;
-    unknownString: string;
-    tutorialEndedAt: bigint;
-}
-
 const Schema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.BigInt, required: true, unique: true },
     hash: { type: String, required: true },
@@ -30,4 +15,4 @@ const Schema = new mongoose.Schema({
     tutorialEndedAt: { type: mongoose.Schema.Types.BigInt, default: 0n },
 });
 
-export const UserRegistrationModel = mongoose.model<IUserRegistration>('UserRegistration', Schema);
+export const UserRegistrationModel = mongoose.model('UserRegistration', Schema);
