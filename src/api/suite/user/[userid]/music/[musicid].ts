@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { SuiteUserMusic } from "../../../../../../proto/generated/allmsgs";
+import { SuiteUserMusic } from "@proto";
 
 const router = Router({ mergeParams: true })
 

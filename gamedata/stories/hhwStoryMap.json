@@ -1,0 +1,1939 @@
+{
+  "41": {
+    "bandStoryId": 41,
+    "bandId": 3,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "尋找有趣的事!",
+    "synopsis": "尋找『有趣的事』的心，遇到了想處理掉鼓的花音～～",
+    "scenarioId": "band3-001",
+    "releasePlayerRank": 1,
+    "releaseConditions": "樂團等級 1以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceId": 41,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 45,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 49,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 53,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 57,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "41",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory41",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "42": {
+    "bandStoryId": 42,
+    "bandId": 3,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "新的打工",
+    "synopsis": "被心用強勢的態度抓為夥伴的花音。另一方面，美咲正準備進行新的打工……？",
+    "scenarioId": "band3-002",
+    "releasePlayerRank": 2,
+    "releaseConditions": "樂團等級 2以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 35,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "42",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory42",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "43": {
+    "bandStoryId": 43,
+    "bandId": 3,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "妳彈過吉他嗎？",
+    "synopsis": "心和花音為了尋找能擔任被稱為『樂團之花』的吉他手人選而在街上不斷尋覓，這時他們遇見的是……？",
+    "scenarioId": "band3-003",
+    "releasePlayerRank": 3,
+    "releaseConditions": "樂團等級 3以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "43",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory43",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "44": {
+    "bandStoryId": 44,
+    "bandId": 3,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "與大熊相遇",
+    "synopsis": "因為打工而負責扮演商店街吉祥物米歇爾的美咲，就這樣被心纏上，然後就……？",
+    "scenarioId": "band3-004",
+    "releasePlayerRank": 4,
+    "releaseConditions": "樂團等級 4以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "44",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory44",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "45": {
+    "bandStoryId": 45,
+    "bandId": 3,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "終於湊齊團員了！",
+    "synopsis": "心終於湊齊了樂團的所有團員。而美咲卻千方百計試著想脫離樂團～～？",
+    "scenarioId": "band3-005",
+    "releasePlayerRank": 5,
+    "releaseConditions": "樂團等級 5以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "45",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory45",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "46": {
+    "bandStoryId": 46,
+    "bandId": 3,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "想把笑容散播到全世界！",
+    "synopsis": "團員們在『作戰會議』中聽著心講述他的目標，回過神來時美咲已經……",
+    "scenarioId": "band3-006",
+    "releasePlayerRank": 6,
+    "releaseConditions": "樂團等級 6以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "46",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory46",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "47": {
+    "bandStoryId": 47,
+    "bandId": 3,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "這個口號怎麼樣呢？",
+    "synopsis": "五人煩惱著組樂團該做什麼事才好，最後終於拿起樂器，並開始決定樂團的口號～～",
+    "scenarioId": "band3-007",
+    "releasePlayerRank": 7,
+    "releaseConditions": "樂團等級 7以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "47",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory47",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "48": {
+    "bandStoryId": 48,
+    "bandId": 3,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "米歇爾來了喔！",
+    "synopsis": "團員們對第一次進錄音室練習都充滿了鬥志，就在這樣的情況下，決定了第一次演唱會的表演行程～～",
+    "scenarioId": "band3-008",
+    "releasePlayerRank": 8,
+    "releaseConditions": "樂團等級 8以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "48",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory48",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "49": {
+    "bandStoryId": 49,
+    "bandId": 3,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "Hello, Happy World!",
+    "synopsis": "當大家在各自練習後的第一次合奏中努力想抓住手感時，心也向大家宣布了樂團的名稱～～",
+    "scenarioId": "band3-009",
+    "releasePlayerRank": 9,
+    "releaseConditions": "樂團等級 9以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "49",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory49",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "50": {
+    "bandStoryId": 50,
+    "bandId": 3,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "就像魔法一樣！！",
+    "synopsis": "大家第一次在音樂展演空間舉辦演唱會，在看過樂迷們享受音樂的樣子後，他們的感想是……？",
+    "scenarioId": "band3-010",
+    "releasePlayerRank": 10,
+    "releaseConditions": "樂團等級 10以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "50",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory50",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "51": {
+    "bandStoryId": 51,
+    "bandId": 3,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "多辦幾場演唱會吧！！",
+    "synopsis": "所以團員們都希望能多辦幾場演唱會，因此都非常積極的尋找場地，可是卻……",
+    "scenarioId": "band3-011",
+    "releasePlayerRank": 11,
+    "releaseConditions": "樂團等級 11以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "51",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory51",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "52": {
+    "bandStoryId": 52,
+    "bandId": 3,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "得讓她恢復笑容才行！",
+    "synopsis": "育美告訴大家有位少女因為受傷而不再露出笑容的事，心在聽到這個消息以後……",
+    "scenarioId": "band3-012",
+    "releasePlayerRank": 12,
+    "releaseConditions": "樂團等級 12以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "52",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory52",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "53": {
+    "bandStoryId": 53,
+    "bandId": 3,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "毅、毅力……！",
+    "synopsis": "Hello，HappyWorld!在醫院的大廳舉辦演唱會，努力想讓小明露出笑容，可是……",
+    "scenarioId": "band3-013",
+    "releasePlayerRank": 13,
+    "releaseConditions": "樂團等級 13以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "53",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory53",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "54": {
+    "bandStoryId": 54,
+    "bandId": 3,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "為什麼要勉強令別人笑起來？",
+    "synopsis": "小明在看過演唱會以後依然沒有露出笑容，在看到他這樣的反應以後，心所採取的行動是……？",
+    "scenarioId": "band3-014",
+    "releasePlayerRank": 14,
+    "releaseConditions": "樂團等級 14以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "54",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory54",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "55": {
+    "bandStoryId": 55,
+    "bandId": 3,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "小明喜歡的東西",
+    "synopsis": "為了讓小明露出笑容，所以大家便想出要找出小明真正喜歡的東西的策略，可是卻……？",
+    "scenarioId": "band3-015",
+    "releasePlayerRank": 15,
+    "releaseConditions": "樂團等級 15以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "55",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory55",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "56": {
+    "bandStoryId": 56,
+    "bandId": 3,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "冒牌英雄",
+    "synopsis": "大家為了問出小明真正喜歡的東西而再次前往醫院，可是……",
+    "scenarioId": "band3-016",
+    "releasePlayerRank": 16,
+    "releaseConditions": "樂團等級 16以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "56",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory56",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "57": {
+    "bandStoryId": 57,
+    "bandId": 3,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "毫無根據的自信",
+    "synopsis": "扮成英雄的策略最後以失敗收場，但大家卻發現了小明真正需要的東西～～",
+    "scenarioId": "band3-017",
+    "releasePlayerRank": 17,
+    "releaseConditions": "樂團等級 17以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "57",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory57",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "58": {
+    "bandStoryId": 58,
+    "bandId": 3,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "具有魔力的一句話",
+    "synopsis": "大家決定為小明創作新曲並舉辦演唱會，小明的反應究竟會是……？",
+    "scenarioId": "band3-018",
+    "releasePlayerRank": 18,
+    "releaseConditions": "樂團等級 18以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 36,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "58",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory58",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "59": {
+    "bandStoryId": 59,
+    "bandId": 3,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "『什麼事都辦得到』",
+    "synopsis": "演唱會結束後，小明終於理解什麼事情對自己來說才是最重要的，於是他便寄了一封信給樂團的團員們～～",
+    "scenarioId": "band3-019",
+    "releasePlayerRank": 19,
+    "releaseConditions": "樂團等級 19以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "59",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "voiceAssetBundleName": "bandstory59",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "60": {
+    "bandStoryId": 60,
+    "bandId": 3,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "世界上的每一個人都是英雄",
+    "synopsis": "Hello，HappyWorld!將目標改成『為世界帶來笑容』，而美咲的心境也出現了變化～～",
+    "scenarioId": "band3-020",
+    "releasePlayerRank": 20,
+    "releaseConditions": "樂團等級 20以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "60",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 3,
+    "appealText": "在閱讀樂團劇情第１章之後，\n可以在第２章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory60",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "268": {
+    "bandStoryId": 268,
+    "bandId": 3,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "尋找有趣的事!",
+    "synopsis": "尋找『有趣的事』的心，遇到了想處理掉鼓的花音～～",
+    "scenarioId": "band3-001",
+    "releaseConditions": "樂團等級1以上開放",
+    "publishedAt": "1506841200000",
+    "coverImage": "41",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory41",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "269": {
+    "bandStoryId": 269,
+    "bandId": 3,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "新的打工",
+    "synopsis": "被心用強勢的態度抓為夥伴的花音。另一方面，美咲正準備進行新的打工……？",
+    "scenarioId": "band3-002",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "42",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory42",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "270": {
+    "bandStoryId": 270,
+    "bandId": 3,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "妳彈過吉他嗎？",
+    "synopsis": "心和花音為了尋找能擔任被稱為『樂團之花』的吉他手人選而在街上不斷尋覓，這時他們遇見的是……？",
+    "scenarioId": "band3-003",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "43",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory43",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "271": {
+    "bandStoryId": 271,
+    "bandId": 3,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "與大熊相遇",
+    "synopsis": "因為打工而負責扮演商店街吉祥物米歇爾的美咲，就這樣被心纏上，然後就……？",
+    "scenarioId": "band3-004",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "44",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory44",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "272": {
+    "bandStoryId": 272,
+    "bandId": 3,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "終於湊齊團員了！",
+    "synopsis": "心終於湊齊了樂團的所有團員。而美咲卻千方百計試著想脫離樂團～～？",
+    "scenarioId": "band3-005",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "45",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory45",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "273": {
+    "bandStoryId": 273,
+    "bandId": 3,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "想把笑容散播到全世界！",
+    "synopsis": "團員們在『作戰會議』中聽著心講述他的目標，回過神來時美咲已經……",
+    "scenarioId": "band3-006",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "46",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory46",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "274": {
+    "bandStoryId": 274,
+    "bandId": 3,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "這個口號怎麼樣呢？",
+    "synopsis": "五人煩惱著組樂團該做什麼事才好，最後終於拿起樂器，並開始決定樂團的口號～～",
+    "scenarioId": "band3-007",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "47",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory47",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "275": {
+    "bandStoryId": 275,
+    "bandId": 3,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "米歇爾來了喔！",
+    "synopsis": "團員們對第一次進錄音室練習都充滿了鬥志，就在這樣的情況下，決定了第一次演唱會的表演行程～～",
+    "scenarioId": "band3-008",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "48",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory48",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "276": {
+    "bandStoryId": 276,
+    "bandId": 3,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "Hello, Happy World!",
+    "synopsis": "當大家在各自練習後的第一次合奏中努力想抓住手感時，心也向大家宣布了樂團的名稱～～",
+    "scenarioId": "band3-009",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "49",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory49",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "277": {
+    "bandStoryId": 277,
+    "bandId": 3,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "就像魔法一樣！！",
+    "synopsis": "大家第一次在音樂展演空間舉辦演唱會，在看過樂迷們享受音樂的樣子後，他們的感想是……？",
+    "scenarioId": "band3-010",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "50",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory50",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "278": {
+    "bandStoryId": 278,
+    "bandId": 3,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "多辦幾場演唱會吧！！",
+    "synopsis": "所以團員們都希望能多辦幾場演唱會，因此都非常積極的尋找場地，可是卻……",
+    "scenarioId": "band3-011",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "51",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory51",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "279": {
+    "bandStoryId": 279,
+    "bandId": 3,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "得讓她恢復笑容才行！",
+    "synopsis": "育美告訴大家有位少女因為受傷而不再露出笑容的事，心在聽到這個消息以後……",
+    "scenarioId": "band3-012",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "52",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory52",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "280": {
+    "bandStoryId": 280,
+    "bandId": 3,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "毅、毅力……！",
+    "synopsis": "Hello，HappyWorld!在醫院的大廳舉辦演唱會，努力想讓小明露出笑容，可是……",
+    "scenarioId": "band3-013",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "53",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory53",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "281": {
+    "bandStoryId": 281,
+    "bandId": 3,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "為什麼要勉強令別人笑起來？",
+    "synopsis": "小明在看過演唱會以後依然沒有露出笑容，在看到他這樣的反應以後，心所採取的行動是……？",
+    "scenarioId": "band3-014",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "54",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory54",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "282": {
+    "bandStoryId": 282,
+    "bandId": 3,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "小明喜歡的東西",
+    "synopsis": "為了讓小明露出笑容，所以大家便想出要找出小明真正喜歡的東西的策略，可是卻……？",
+    "scenarioId": "band3-015",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "55",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory55",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "283": {
+    "bandStoryId": 283,
+    "bandId": 3,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "冒牌英雄",
+    "synopsis": "大家為了問出小明真正喜歡的東西而再次前往醫院，可是……",
+    "scenarioId": "band3-016",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "56",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory56",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "284": {
+    "bandStoryId": 284,
+    "bandId": 3,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "毫無根據的自信",
+    "synopsis": "扮成英雄的策略最後以失敗收場，但大家卻發現了小明真正需要的東西～～",
+    "scenarioId": "band3-017",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "57",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory57",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "285": {
+    "bandStoryId": 285,
+    "bandId": 3,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "具有魔力的一句話",
+    "synopsis": "大家決定為小明創作新曲並舉辦演唱會，小明的反應究竟會是……？",
+    "scenarioId": "band3-018",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "58",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory58",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "286": {
+    "bandStoryId": 286,
+    "bandId": 3,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "『什麼事都辦得到』",
+    "synopsis": "演唱會結束後，小明終於理解什麼事情對自己來說才是最重要的，於是他便寄了一封信給樂團的團員們～～",
+    "scenarioId": "band3-019",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "59",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "voiceAssetBundleName": "bandstory59",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "287": {
+    "bandStoryId": 287,
+    "bandId": 3,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "世界上的每一個人都是英雄",
+    "synopsis": "Hello，HappyWorld!將目標改成『為世界帶來笑容』，而美咲的心境也出現了變化～～",
+    "scenarioId": "band3-020",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "60",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 15,
+    "appealText": "在閱讀樂團劇情第１章之後，\n可以在第２章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory60",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "288": {
+    "bandStoryId": 288,
+    "bandId": 3,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "花咲川微笑遊樂園",
+    "synopsis": "前往遊樂園的HelloHappy團員。\n內心充滿期待可以成為非常快樂的一天……",
+    "scenarioId": "band3-021",
+    "releaseConditions": "只要觀看樂團劇情第１章「第２０話」即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "288",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory288",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "289": {
+    "bandStoryId": 289,
+    "bandId": 3,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "讓遊樂園充滿笑容！",
+    "synopsis": "在淒涼的遊樂園也玩得心滿意足的團員。\n見此狀，有人向HelloHappy團搭話。",
+    "scenarioId": "band3-022",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "289",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory289",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "290": {
+    "bandStoryId": 290,
+    "bandId": 3,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "HelloHappy作戰會議",
+    "synopsis": "HelloHappy團員討論遊樂園微笑作戰。\n他們可以對遊樂園做的事情……",
+    "scenarioId": "band3-023",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "290",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory290",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "291": {
+    "bandStoryId": 291,
+    "bandId": 3,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "美咲與米歇爾",
+    "synopsis": "HelloHappy團員到街上努力宣傳。\n他們的聲音是否可以傳達給街上的人們呢？",
+    "scenarioId": "band3-024",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "291",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory291",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "292": {
+    "bandStoryId": 292,
+    "bandId": 3,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "就交給３笨蛋吧",
+    "synopsis": "育美們非常擔心看似忙碌的美咲。\n為了美咲，他們想到了一件事情。",
+    "scenarioId": "band3-025",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "292",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory292",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "293": {
+    "bandStoryId": 293,
+    "bandId": 3,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "內心有著疙瘩",
+    "synopsis": "因為大家的功勞，工作量減輕很多的美咲。\n這雖然是好事……",
+    "scenarioId": "band3-026",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "293",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory293",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "294": {
+    "bandStoryId": 294,
+    "bandId": 3,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "我，真的有需要在嗎？",
+    "synopsis": "任誰都喜歡且被需要的米歇爾。\n相較之下自己卻……，不停煩惱的美咲。",
+    "scenarioId": "band3-027",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "294",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory294",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "295": {
+    "bandStoryId": 295,
+    "bandId": 3,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "做了多餘的事情",
+    "synopsis": "美咲變得非常沒有精神。\n看到這樣的美咲，育美們也非常地擔心……",
+    "scenarioId": "band3-028",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "295",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory295",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "296": {
+    "bandStoryId": 296,
+    "bandId": 3,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "虛幻與一點點敏銳度",
+    "synopsis": "自己待在HelloHappy的意義到底是什麼呢？\n此時有一個人物來到獨自思考的美咲身旁～～",
+    "scenarioId": "band3-029",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "296",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory296",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "297": {
+    "bandStoryId": 297,
+    "bandId": 3,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "煩惱到底是什麼感覺？",
+    "synopsis": "美咲非常猶豫到底要不要去HelloHappy集會。\n心雖然向美咲搭話……",
+    "scenarioId": "band3-030",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "297",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory297",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "298": {
+    "bandStoryId": 298,
+    "bandId": 3,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "產生笑容的地方",
+    "synopsis": "再一次，心來到煩惱的美咲身邊。\n為了美咲可以做的事情～～",
+    "scenarioId": "band3-031",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "298",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory298",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "299": {
+    "bandStoryId": 299,
+    "bandId": 3,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "最棒又最強的六人",
+    "synopsis": "再次集合的HelloHappy團員。\n與美咲一起進行遊樂園的修繕。",
+    "scenarioId": "band3-032",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "299",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory299",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "300": {
+    "bandStoryId": 300,
+    "bandId": 3,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "快樂是要與他人一起創造",
+    "synopsis": "遊行live中要發表的新歌完成！\n靈光一閃想到了可以讓遊樂園更加活絡的作戰。",
+    "scenarioId": "band3-033",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "300",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory300",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "301": {
+    "bandStoryId": 301,
+    "bandId": 3,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "歡迎光臨，微笑遊樂園！",
+    "synopsis": "HelloHappy遊樂場活動當天。\n到底會不會有顧客來呢～～？",
+    "scenarioId": "band3-034",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "301",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "voiceAssetBundleName": "bandstory301",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "302": {
+    "bandStoryId": 302,
+    "bandId": 3,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "讓世界充滿笑容！",
+    "synopsis": "HelloHappy是六人HelloHappy！\n華麗的遊行點綴夜晚的遊樂園～～！",
+    "scenarioId": "band3-035",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 150,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "302",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 16,
+    "releaseBandStoryId": 60,
+    "appealText": "在閱讀樂團劇情第２章之後，\n可以在第３章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory302",
+    "seasonType": "season_1",
+    "backgroundImageId": 44
+  },
+  "378": {
+    "bandStoryId": 378,
+    "bandId": 3,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "Happy的通知",
+    "synopsis": "HelloHappy團員受到心的召集。\n好像有什麼重大的消息要發表……？",
+    "scenarioId": "band3-036",
+    "releaseConditions": "只要觀看樂團劇情第２章「第１５話」即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "378",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory378",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "379": {
+    "bandStoryId": 379,
+    "bandId": 3,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "和想像中不同！",
+    "synopsis": "眼前展開的是一片未知的街景和天際。\n這裡，究竟是何處呢……",
+    "scenarioId": "band3-037",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "379",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory379",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "380": {
+    "bandStoryId": 380,
+    "bandId": 3,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "哈匹奈爾之夜",
+    "synopsis": "點點繁星在夜空中閃爍，異國之夜。\n人們的話題是紀念建國千年的慶典－－",
+    "scenarioId": "band3-038",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "380",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory380",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "381": {
+    "bandStoryId": 381,
+    "bandId": 3,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "意料外的相會",
+    "synopsis": "花音在城堡中迷路了。\n此時伸出援手的是……？",
+    "scenarioId": "band3-039",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "381",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory381",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "382": {
+    "bandStoryId": 382,
+    "bandId": 3,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "妮可莉娜",
+    "synopsis": "沒有任何人見過妮可莉娜的笑容－－\n聽說了傳聞的心等人會採取什麼行動……？",
+    "scenarioId": "band3-040",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "382",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory382",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "383": {
+    "bandStoryId": 383,
+    "bandId": 3,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "公主殿下與好朋友",
+    "synopsis": "來尋找能讓妮可莉娜露出笑容的事物吧！\n心一行人帶著公主殿下往大街上跑去。",
+    "scenarioId": "band3-041",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "383",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory383",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "384": {
+    "bandStoryId": 384,
+    "bandId": 3,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "不會寂寞哦",
+    "synopsis": "妮可莉娜非常開心能和HelloHappy相遇。\n然而，總有一天也必須道別……",
+    "scenarioId": "band3-042",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "384",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory384",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "385": {
+    "bandStoryId": 385,
+    "bandId": 3,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "搞不懂！",
+    "synopsis": "即使和大家分開了也不寂寞。\n聽了心說的話，美咲等人無法抑止內心動搖……",
+    "scenarioId": "band3-043",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "385",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory385",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "386": {
+    "bandStoryId": 386,
+    "bandId": 3,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "想法一致",
+    "synopsis": "和心相遇後度過的每一天－－\n細數每天發生的種種，內心的答案只有一個。",
+    "scenarioId": "band3-044",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "386",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory386",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "387": {
+    "bandStoryId": 387,
+    "bandId": 3,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "笑顏逐開",
+    "synopsis": "為了對心傳達自己的心情，\n美咲等人準備前往妮可莉娜的房間……",
+    "scenarioId": "band3-045",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "387",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory387",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "388": {
+    "bandStoryId": 388,
+    "bandId": 3,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "前往公主殿下所在之處",
+    "synopsis": "衛兵們擋住了往妮可莉娜房門的去路。\n美咲等人是否能成功抵達心的身邊呢－－！",
+    "scenarioId": "band3-046",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "388",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory388",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "389": {
+    "bandStoryId": 389,
+    "bandId": 3,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "心的「特別」",
+    "synopsis": "美咲等人朝著心的所在處前進。\n要對心訴說自己真切的心意－－",
+    "scenarioId": "band3-047",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "389",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory389",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "390": {
+    "bandStoryId": 390,
+    "bandId": 3,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "世界是相連的",
+    "synopsis": "公主殿下忘記了要怎麼歡笑。\nHelloHappy能為他做到的事是－－",
+    "scenarioId": "band3-048",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "390",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory390",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "391": {
+    "bandStoryId": 391,
+    "bandId": 3,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "千年祭",
+    "synopsis": "哈匹奈爾千年祭在充滿流星的夜裡開幕。\n流星奔流的夜空下，HelloHappy想到的是？",
+    "scenarioId": "band3-049",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "391",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "voiceAssetBundleName": "bandstory391",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  },
+  "392": {
+    "bandStoryId": 392,
+    "bandId": 3,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "流星降落之夜",
+    "synopsis": "慶典的夜裡HelloHappy的舞台閃亮登場！\n世界會一點點地逐漸延續下去－－！",
+    "scenarioId": "band3-050",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1626764400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 313,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "392",
+    "backgroundImage": "4",
+    "bandStoryChapterId": 21,
+    "releaseBandStoryId": 302,
+    "appealText": "在閱讀完樂團劇情第３章之後，\n可以在活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory392",
+    "seasonType": "season_2",
+    "backgroundImageId": 44
+  }
+}

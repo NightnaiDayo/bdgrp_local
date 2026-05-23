@@ -1,0 +1,1106 @@
+{
+  "303": {
+    "bandStoryId": 303,
+    "bandId": 21,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "月森女子學園",
+    "synopsis": "真白進入了名校．月森女子學園就讀，\n卻無法適應貴族學校的氛圍與環境……",
+    "scenarioId": "band6-001",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceId": 902,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 903,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 904,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 905,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 906,
+        "resourceType": "situation",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "303",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory303",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "304": {
+    "bandStoryId": 304,
+    "bandId": 21,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "世界在發光",
+    "synopsis": "接受筑紫邀請前往觀賞現場演出，\n嶄新的世界在真白眼前展開。",
+    "scenarioId": "band6-002",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 255,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "304",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory304",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "305": {
+    "bandStoryId": 305,
+    "bandId": 21,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "招募成員",
+    "synopsis": "在演唱現場深受演出感動的真白，\n為了組成自己的樂團開始招募成員。",
+    "scenarioId": "band6-003",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "305",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory305",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "306": {
+    "bandStoryId": 306,
+    "bandId": 21,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "第四人",
+    "synopsis": "真白等人興致勃勃地討論著樂團，\n遠方有一雙眼睛正悄悄地盯著他們……",
+    "scenarioId": "band6-004",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "306",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory306",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "307": {
+    "bandStoryId": 307,
+    "bandId": 21,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "最初的目標",
+    "synopsis": "新樂團誕生之後得設定新的目標，\n真白等人的樂團邁出的第一步是……",
+    "scenarioId": "band6-005",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "307",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory307",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "308": {
+    "bandStoryId": 308,
+    "bandId": 21,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "音樂即是協調",
+    "synopsis": "真白等人每天都潛心於樂團練習，\n此時神秘人物出現在他們的眼前。",
+    "scenarioId": "band6-006",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "308",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory308",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "309": {
+    "bandStoryId": 309,
+    "bandId": 21,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "我們的樂曲",
+    "synopsis": "要練習的話不如就自己寫歌吧，\n被透子的提議啟發開始創作的真白……",
+    "scenarioId": "band6-007",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "309",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory309",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "310": {
+    "bandStoryId": 310,
+    "bandId": 21,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "真白的世界",
+    "synopsis": "第一次嘗試作詞的真白絞盡腦汁，\n真白的內心活動將以何種樣態呈現？",
+    "scenarioId": "band6-008",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "310",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory310",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "311": {
+    "bandStoryId": 311,
+    "bandId": 21,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "下一個階段",
+    "synopsis": "總地來說樂團活動姑且還算順利，\n因此，透子提出了「某項提議」……",
+    "scenarioId": "band6-009",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "311",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory311",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "312": {
+    "bandStoryId": 312,
+    "bandId": 21,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "初次LIVE",
+    "synopsis": "樂團組成後的第一次現場演出終於來臨，\n做足萬全準備，真白等人自信地站上舞台。",
+    "scenarioId": "band6-010",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "312",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory312",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "313": {
+    "bandStoryId": 313,
+    "bandId": 21,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "豪大雨的天空",
+    "synopsis": "現場演出並沒有如同想像一樣順利，\n受到嚴重打擊漸漸消沉的真白選擇……",
+    "scenarioId": "band6-011",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "313",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory313",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "314": {
+    "bandStoryId": 314,
+    "bandId": 21,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "一無所有",
+    "synopsis": "「早知道就不要組什麼樂隊了！」\n站在信心全失的真白等人眼前的是……",
+    "scenarioId": "band6-012",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "314",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory314",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "315": {
+    "bandStoryId": 315,
+    "bandId": 21,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "七深的秘密",
+    "synopsis": "真白退出，氣氛掉到谷底的樂團，\n決定要再做些什麼的七深起身……",
+    "scenarioId": "band6-013",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "315",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory315",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "316": {
+    "bandStoryId": 316,
+    "bandId": 21,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "當時的心情",
+    "synopsis": "鬱悶的真白到現在還在鑽牛角尖，\n來到他身旁的透子將採取什麼行動？",
+    "scenarioId": "band6-014",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "316",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory316",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "317": {
+    "bandStoryId": 317,
+    "bandId": 21,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "再次，一起",
+    "synopsis": "面對靜待著真白回歸的筑紫等人，\n半途而廢逃走的真白將如何回應？",
+    "scenarioId": "band6-015",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "317",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory317",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "318": {
+    "bandStoryId": 318,
+    "bandId": 21,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "在現實與感情之間",
+    "synopsis": "真白回歸，四人再次團聚，樂團復活。\n看著他們四人，瑠唯現在的想法是……",
+    "scenarioId": "band6-016",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "318",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory318",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "319": {
+    "bandStoryId": 319,
+    "bandId": 21,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "Girls Band Party",
+    "synopsis": "第二次的Girls Band Party，\n在香澄等人的演出前，真白等人……",
+    "scenarioId": "band6-017",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "319",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory319",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "320": {
+    "bandStoryId": 320,
+    "bandId": 21,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "音樂工坊",
+    "synopsis": "真白等人所在的是新的團練地點，\n離音樂祭越來越近，情緒也越來越高漲！",
+    "scenarioId": "band6-018",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "320",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory320",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "321": {
+    "bandStoryId": 321,
+    "bandId": 21,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "Morfonica",
+    "synopsis": "音樂祭前夕，練習充足準備萬全，\n此時卻仍有件重要的事尚未解決……",
+    "scenarioId": "band6-019",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "321",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "voiceAssetBundleName": "bandstory321",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "322": {
+    "bandStoryId": 322,
+    "bandId": 21,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "你的光芒照耀漫漫長路",
+    "synopsis": "月森女子學園音樂祭，正式開始。\n真白等人心無旁鶩地走上最終舞台……！",
+    "scenarioId": "band6-020",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1600380000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 256,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "322",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 17,
+    "appealText": "在閱讀樂團劇情第１章之後，\n可以在第２章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory322",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "423": {
+    "bandStoryId": 423,
+    "bandId": 21,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "小小的光輝",
+    "synopsis": "Monica終於迎來在CiRCLE的第三次演出。\nMonica看似漸漸習慣了LIVE，然而……",
+    "scenarioId": "band6-021",
+    "releaseConditions": "只要觀看樂團劇情第１章「第２０話」即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "423",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory423",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "424": {
+    "bandStoryId": 424,
+    "bandId": 21,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "詞藻的集合",
+    "synopsis": "月森女校園內正在進行某項活動的準備。\n每年例行的傳統活動到底是……？",
+    "scenarioId": "band6-022",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "424",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory424",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "425": {
+    "bandStoryId": 425,
+    "bandId": 21,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "真白的挑戰",
+    "synopsis": "每班都要推派代表參加詞藻的集合。\n在推派代表的班會課上，真白……",
+    "scenarioId": "band6-023",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "425",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory425",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "426": {
+    "bandStoryId": 426,
+    "bandId": 21,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "火光四射的兩人",
+    "synopsis": "才剛到工坊透子和瑠唯就起了爭執。\n和氣頭上的透子相比，瑠唯一派鎮靜……",
+    "scenarioId": "band6-024",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "426",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory426",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "427": {
+    "bandStoryId": 427,
+    "bandId": 21,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "藍天樂團競賽",
+    "synopsis": "某天，透子帶來了超大的新聞！\n有一場限定高中生參加的LIVE活動。",
+    "scenarioId": "band6-025",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "427",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory427",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "428": {
+    "bandStoryId": 428,
+    "bandId": 21,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "陰翳的藍天",
+    "synopsis": "透子等人要和瑠唯討論活動的事。\n卻從瑠唯那邊收到出乎意料的回應－－",
+    "scenarioId": "band6-026",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "428",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory428",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "429": {
+    "bandStoryId": 429,
+    "bandId": 21,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "以感情為優先的前方",
+    "synopsis": "Monica的團員們無法接受瑠唯的說法，\n質問了瑠唯為什麼會做出那種決定……",
+    "scenarioId": "band6-027",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "429",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory429",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "430": {
+    "bandStoryId": 430,
+    "bandId": 21,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "自鳴得意與自我滿足",
+    "synopsis": "從那天起Monica就被陰暗的氣氛包圍。\n在當時，真白的內心非常受傷……",
+    "scenarioId": "band6-028",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "430",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory430",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "431": {
+    "bandStoryId": 431,
+    "bandId": 21,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "要是能像你一樣",
+    "synopsis": "真白從透子等人身旁逃離。\n在他逃跑後遇到了意料之外的人物。",
+    "scenarioId": "band6-029",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "431",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory431",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "432": {
+    "bandStoryId": 432,
+    "bandId": 21,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "那一天的１票",
+    "synopsis": "真白和筑紫在傍晚的河堤邊對峙。\n對著受傷的真白，筑紫開口說－－",
+    "scenarioId": "band6-030",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "432",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory432",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "433": {
+    "bandStoryId": 433,
+    "bandId": 21,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "這也一定是青春",
+    "synopsis": "七深和透子碰巧遇到了瑠唯。\n瑠唯告訴兩人，已經沒什麼好說的……",
+    "scenarioId": "band6-031",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "433",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory433",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "434": {
+    "bandStoryId": 434,
+    "bandId": 21,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "真白發光的地方",
+    "synopsis": "真白對自己逃跑一事道了歉。\n大家和這樣的真白說出了某個願望－－",
+    "scenarioId": "band6-032",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "434",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory434",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "435": {
+    "bandStoryId": 435,
+    "bandId": 21,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "潛藏於內心深處的心意",
+    "synopsis": "為了向瑠唯道歉，真白造訪學生會。\n真白在瑠唯說出的話語中感受到的是……",
+    "scenarioId": "band6-033",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "435",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory435",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "436": {
+    "bandStoryId": 436,
+    "bandId": 21,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "Monica的第五人",
+    "synopsis": "Monica正為了LIVE活動認真練習。\n此時出現在他們面前的是……",
+    "scenarioId": "band6-034",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "436",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "voiceAssetBundleName": "bandstory436",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  },
+  "437": {
+    "bandStoryId": 437,
+    "bandId": 21,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "為了成為理想的自己",
+    "synopsis": "Monica的演出，在藍天之下開幕了。\n從舞台看見的景色會讓他們有什麼想法呢－－",
+    "scenarioId": "band6-035",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1646636400000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 365,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "437",
+    "backgroundImage": "7",
+    "bandStoryChapterId": 24,
+    "releaseBandStoryId": 322,
+    "appealText": "在閱讀完樂團劇情第２章之後，\n可以在活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory437",
+    "seasonType": "season_2",
+    "backgroundImageId": 473
+  }
+}

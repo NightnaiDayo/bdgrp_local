@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { ServerSystem } from "../../../proto/generated/allmsgs"
-import { encrypt } from "../../../util/encrypt"
+import { ServerSystem } from "@proto"
+import { encrypt } from "@util/encrypt"
 
 const router = Router()
 
 router.get('/', (req, res) => {
     const data = {
-        serverDate: Date.now(),
+        serverDate: String(Date.now()),
         timeZoneRawOffset: 28800000
     }
 

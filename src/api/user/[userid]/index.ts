@@ -1,64 +1,59 @@
 import { Router } from "express";
-import { UserGetResponse } from "../../../../proto/generated/allmsgs";
-import { UserRegistrationModel } from "../../../../model/userRegistration";
-import { UserGamedataModel } from "../../../../model/userGamedata";
-import { encrypt } from "../../../../util/encrypt";
+import { UserGetResponse } from "@proto";
+import { db, saveDb } from "@db"
+import { encrypt } from "@util/encrypt";
 
 const router = Router({ mergeParams: true })
 
 router.get("/", async (req, res) => {
     // @ts-ignore
-    const userId = BigInt(req.params.userid)
+    const userId = req.params.userid;
 
-    const userRegistration = await UserRegistrationModel.findOne({ userId });
-    const userGamedata = (await UserGamedataModel.findOne({ userId }))!;
+    const user = db.Users.find((u: any) => u.userId === userId);
 
-    if(!userRegistration) return res.status(404).send('')
-
-    if(!userGamedata) {}
+    if(!user) return res.status(404).send('')
     
     const data: UserGetResponse = {
         userRegistration: {
-            userId: String(userRegistration.userId),
-            hash: userRegistration.hash,
-            userName: userRegistration.userName,
-            clientVersion: userRegistration.clientVersion ?? '',
-            platform: userRegistration.platform ?? '',
-            deviceModel: userRegistration.deviceModel ?? '',
-            operatingSystem: userRegistration.operatingSystem ?? '',
-            birthMonth: userRegistration.birthMonth,
-            tutorialStatus: userRegistration.tutorialStatus,
-            introduction: userRegistration.introduction,
-            unknownString: userRegistration.unknownString,
-            tutorialEndedAt: String(userRegistration.tutorialEndedAt)
+            userId: String(user.userId),
+            hash: user.hash,
+            userName: user.userName,
+            clientVersion: user.clientVersion ?? '',
+            platform: user.platform ?? '',
+            deviceModel: user.deviceModel ?? '',
+            operatingSystem: user.operatingSystem ?? '',
+            birthMonth: user.birthMonth,
+            tutorialStatus: user.tutorialStatus,
+            introduction: user.introduction,
+            tutorialEndedAt: String(user.tutorialEndedAt)
         },
         userGamedata: {
-            userId: String(userGamedata.userId),
-            rank: userGamedata.rank,
-            exp: userGamedata.exp,
-            coin: String(userGamedata.coin),
-            mainDeck: userGamedata.mainDeck,
-            paidStar: userGamedata.paidStar,
-            freeStar: userGamedata.freeStar,
-            seal: userGamedata.seal,
-            degree: userGamedata.degree,
-            publishTotalDeckPowerFlg: userGamedata.publishTotalDeckPowerFlg,
-            publishBandRankFlg: userGamedata.publishBandRankFlg,
-            publishMusicClearedFlg: userGamedata.publishMusicClearedFlg,
-            publishMusicFullComboFlg: userGamedata.publishMusicFullComboFlg,
-            publishHighScoreRatingFlg: userGamedata.publishHighScoreRatingFlg,
-            pooledExp: String(userGamedata.pooledExp),
-            totalExp: String(userGamedata.totalExp),
-            nextExp: userGamedata.nextExp,
-            publishUpdatedAtFlg: userGamedata.publishUpdatedAtFlg,
+            userId: String(user.userId),
+            rank: user.rank,
+            exp: user.exp,
+            coin: String(user.coin),
+            mainDeck: user.mainDeck,
+            paidStar: user.paidStar,
+            freeStar: user.freeStar,
+            seal: user.seal,
+            degree: user.degree,
+            publishTotalDeckPowerFlg: user.publishTotalDeckPowerFlg,
+            publishBandRankFlg: user.publishBandRankFlg,
+            publishMusicClearedFlg: user.publishMusicClearedFlg,
+            publishMusicFullComboFlg: user.publishMusicFullComboFlg,
+            publishHighScoreRatingFlg: user.publishHighScoreRatingFlg,
+            pooledExp: String(user.pooledExp),
+            totalExp: String(user.totalExp),
+            nextExp: user.nextExp,
+            publishUpdatedAtFlg: user.publishUpdatedAtFlg,
             userPaidStarRecallResponse: undefined,
-            startDashLoginBonusReceiveFlg: userGamedata.startDashLoginBonusReceiveFlg,
-            publishMusicAllPerfectFlg: userGamedata.publishMusicAllPerfectFlg,
-            publishDeckRankFlg: userGamedata.publishDeckRankFlg,
-            publishStageAchievementConditionsFlg: userGamedata.publishStageAchievementConditionsFlg,
-            publishStageFriendRankingFlg: userGamedata.publishStageFriendRankingFlg,
-            publishCharacterRankFlg: userGamedata.publishCharacterRankFlg,
-            loginDays: userGamedata.loginDays
+            startDashLoginBonusReceiveFlg: user.startDashLoginBonusReceiveFlg,
+            publishMusicAllPerfectFlg: user.publishMusicAllPerfectFlg,
+            publishDeckRankFlg: user.publishDeckRankFlg,
+            publishStageAchievementConditionsFlg: user.publishStageAchievementConditionsFlg,
+            publishStageFriendRankingFlg: user.publishStageFriendRankingFlg,
+            publishCharacterRankFlg: user.publishCharacterRankFlg,
+            loginDays: user.loginDays
         }
     }
 

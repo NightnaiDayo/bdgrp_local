@@ -1,13 +1,9 @@
 import { Router } from "express";
-import { decrypt } from "../../../../util/decrypt";
-import { encrypt } from "../../../../util/encrypt";
-import { SuiteUserGetResponse } from "../../../../proto/generated/allmsgs"
-import { UserRegistrationModel } from "../../../../model/userRegistration";
-import { UserGamedataModel } from "../../../../model/userGamedata";
-import cards from "../../../../cards.json";
-import songs from "../../../../songs.json";
-import { UserSituationModel } from "../../../../model/userSituation";
-import { UserMusicInventoryModel } from "../../../../model/userMusicInventory"
+import { encrypt } from "@util/encrypt";
+import { db, saveDb } from "@db";
+import { SuiteUserGetResponse } from "@proto"
+import cards from "../../../../gamedata/cards.json";
+import songs from "../../../../gamedata/songs.json";
 
 const router = Router({ mergeParams: true })
 
@@ -55,15 +51,10 @@ const cardFun = {
 router.get('/', async(req, res) => {
     //@ts-ignore
     const userid = req.params.userid
-    let param = { userId: BigInt(userid) }
 
-    const [userRegistration, userGamedata, userSituation, userMusicInventory] = await Promise.all([
-        UserRegistrationModel.findOne(param),
-        UserGamedataModel.findOne(param),
-        UserSituationModel.findOne(param),
-        UserMusicInventoryModel.findOne(param)
-    ]);
-    if (!userRegistration) return res.status(404).send();
+    const user = db.Users.find((u: any) => u.userId == userid);
+
+    if (!user) return res.status(404).send();
 
     const userCharacterMap: Record<string, any> = {};
     let userSituations = [];
@@ -82,15 +73,13 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: 1643
     }
-    if(!userSituation) {
-        userSituations = cards.situations.map(card => {
-            const situationId = Number(card.situationId)
-            return {
+    if(!user.situations) {
+        userSituations = cards.situations.map(card => ({
                 userId: userid,
-                situationId,
+                situationId: Number(card.situationId),
                 level: cardFun.level(card.rarity),
                 exp: 0,
-                createdAt: BigInt(Date.now()),
+                createdAt: String(Date.now()),
                 addExp: 0,
                 trainingStatus: cardFun.trainingStatus(card.rarity),
                 duplicateCount: 0,
@@ -98,49 +87,83 @@ router.get('/', async(req, res) => {
                 skillExp: 0,
                 skillLevel: 5,
                 limitBreakRank: 0
-            }
-        })
+        }))
 
-        await new UserSituationModel({
-            userId: userid,
-            situations: userSituations
-        }).save();
+        user.situations = userSituations
+
+        saveDb();
 
     } else {
-        userSituations = userSituation.situations
+        userSituations = user.situations
     }
 
-    if (!userMusicInventory) {
+    if (!user.musics) {
         userMusicInventoryList = songs.songs.map(song => ({
             userId: userid,
             musicId: song.musicId,
             seq: 1,
             hasMv: Array.isArray(song.musicVideos) && song.musicVideos.length > 0,
-            createdAt: BigInt(Date.now())
+            createdAt: String(Date.now())
         }))
 
-        await new UserMusicInventoryModel({
-            userId: userid,
-            musics: userMusicInventoryList
-        }).save();
+        user.musics = userMusicInventoryList
+
+        saveDb();
 
     } else {
-        userMusicInventoryList = userMusicInventory.musics
+        userMusicInventoryList = user.musics
     }
-
-
 
     const data = {
         user: {
-            userRegistration: userRegistration.toObject(),
-            userGamedata: userGamedata.toObject()
+            userRegistration: {
+                userId: String(user.userId),
+                hash: user.hash,
+                userName: user.userName,
+                clientVersion: user.clientVersion ?? '',
+                platform: user.platform ?? '',
+                deviceModel: user.deviceModel ?? '',
+                operatingSystem: user.operatingSystem ?? '',
+                birthMonth: user.birthMonth,
+                tutorialStatus: user.tutorialStatus,
+                introduction: user.introduction,
+                tutorialEndedAt: String(user.tutorialEndedAt)
+            },
+            userGamedata: {
+                userId: String(user.userId),
+                rank: user.rank,
+                exp: user.exp,
+                coin: String(user.coin),
+                mainDeck: user.mainDeck,
+                paidStar: user.paidStar,
+                freeStar: user.freeStar,
+                seal: user.seal,
+                degree: user.degree,
+                publishTotalDeckPowerFlg: user.publishTotalDeckPowerFlg,
+                publishBandRankFlg: user.publishBandRankFlg,
+                publishMusicClearedFlg: user.publishMusicClearedFlg,
+                publishMusicFullComboFlg: user.publishMusicFullComboFlg,
+                publishHighScoreRatingFlg: user.publishHighScoreRatingFlg,
+                pooledExp: String(user.pooledExp),
+                totalExp: String(user.totalExp),
+                nextExp: user.nextExp,
+                publishUpdatedAtFlg: user.publishUpdatedAtFlg,
+                userPaidStarRecallResponse: undefined,
+                startDashLoginBonusReceiveFlg: user.startDashLoginBonusReceiveFlg,
+                publishMusicAllPerfectFlg: user.publishMusicAllPerfectFlg,
+                publishDeckRankFlg: user.publishDeckRankFlg,
+                publishStageAchievementConditionsFlg: user.publishStageAchievementConditionsFlg,
+                publishStageFriendRankingFlg: user.publishStageFriendRankingFlg,
+                publishCharacterRankFlg: user.publishCharacterRankFlg,
+                loginDays: user.loginDays
+            }
         },
         userCharacterMap: {
             entries: userCharacterMap
         },
         userSituationMap: {
             entries: Object.fromEntries(
-                userSituations.map(sit => [sit.situationId, sit])
+                userSituations.map((sit: any) => [sit.situationId, sit])
             )
         },
         userMainStoryList: {
@@ -209,9 +232,7 @@ router.get('/', async(req, res) => {
         userAreaStatusMap: {
 
         },
-        userLoginBonusMap: {
-
-        },
+        userLoginBonusMap: null,
         userHomeBannerList: {
 
         },
@@ -228,15 +249,9 @@ router.get('/', async(req, res) => {
         userEventExchangesList: {
 
         },
-        userEventItemList: {
-
-        },
-        userPurchaseMap: {
-
-        },
-        userMissionMap: {
-
-        },
+        userEventItemList: null,
+        userPurchaseMap: null,
+        userMissionMap: null,
         userGenericStoryMap: {
 
         },

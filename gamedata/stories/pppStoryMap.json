@@ -1,0 +1,2731 @@
+{
+  "1": {
+    "bandStoryId": 1,
+    "bandId": 1,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "5人聚集起來，就是Popipa",
+    "synopsis": "下課後忘記要進行補考的香澄。與正在等待著香澄的有咲、里美、沙綾、多惠!?",
+    "scenarioId": "band1-001",
+    "releasePlayerRank": 1,
+    "releaseConditions": "樂團等級 1以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "1",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory1",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "2": {
+    "bandStoryId": 2,
+    "bandId": 1,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "必須要5人才能進行的演奏",
+    "synopsis": "在有咲家倉庫練習的Popipa5人。熱烈的在討論要想要進行怎樣的演奏～～？",
+    "scenarioId": "band1-002",
+    "releasePlayerRank": 2,
+    "releaseConditions": "樂團等級 2以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "2",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory2",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "3": {
+    "bandStoryId": 3,
+    "bandId": 1,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "商店街的祭典",
+    "synopsis": "在樂團練習時剛好聊到商店街的祭典，香澄似乎想到了什麼好主意～～？",
+    "scenarioId": "band1-003",
+    "releasePlayerRank": 3,
+    "releaseConditions": "樂團等級 3以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "3",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory3",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "4": {
+    "bandStoryId": 4,
+    "bandId": 1,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "我想知道理由！",
+    "synopsis": "五人因為聽說祭典停辦而大受打擊，香澄雖然去造訪了某位人物（？），可是卻……？",
+    "scenarioId": "band1-004",
+    "releasePlayerRank": 4,
+    "releaseConditions": "樂團等級 4以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "4",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory4",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "5": {
+    "bandStoryId": 5,
+    "bandId": 1,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "夢幻的Poppin'Party Candy",
+    "synopsis": "五人從巴那裡得知祭典之所以停辦是因為預算問題，香澄因為太過悲傷，竟然就……？",
+    "scenarioId": "band1-005",
+    "releasePlayerRank": 5,
+    "releaseConditions": "樂團等級 5以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "5",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory5",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "6": {
+    "bandStoryId": 6,
+    "bandId": 1,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "讓祭典復活吧！",
+    "synopsis": "樂團的五名團員都非常希望能讓祭典復活，於是便開始討論有沒有什麼可行的辦法。",
+    "scenarioId": "band1-006",
+    "releasePlayerRank": 6,
+    "releaseConditions": "樂團等級 6以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "6",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory6",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "7": {
+    "bandStoryId": 7,
+    "bandId": 1,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "一旦決定就無法阻攔",
+    "synopsis": "五人前往商會事務所想詢問是否有能讓祭典照常舉辦的方法，卻在那遇到了某位人物～～！？",
+    "scenarioId": "band1-007",
+    "releasePlayerRank": 7,
+    "releaseConditions": "樂團等級 7以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "7",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory7",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "8": {
+    "bandStoryId": 8,
+    "bandId": 1,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "典型的敵對人物",
+    "synopsis": "五人被單方面告知祭典不可能復活，完全無計可施，但依然無法放棄的香澄卻……！？",
+    "scenarioId": "band1-008",
+    "releasePlayerRank": 8,
+    "releaseConditions": "樂團等級 8以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "8",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory8",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "9": {
+    "bandStoryId": 9,
+    "bandId": 1,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "真想消除這份焦躁感！",
+    "synopsis": "五人一面吃著可樂餅一面展開了作戰會議。他們能夠想出什麼好方法嗎～～？",
+    "scenarioId": "band1-009",
+    "releasePlayerRank": 9,
+    "releaseConditions": "樂團等級 9以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "9",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory9",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "10": {
+    "bandStoryId": 10,
+    "bandId": 1,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "絕對不能失去的東西",
+    "synopsis": "五人約在教室碰面，香澄隨口哼著小星星時，突然注意到一個重點。",
+    "scenarioId": "band1-010",
+    "releasePlayerRank": 10,
+    "releaseConditions": "樂團等級 10以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "10",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory10",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "11": {
+    "bandStoryId": 11,
+    "bandId": 1,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "我們做得到的事",
+    "synopsis": "香澄為了讓大家體驗歡樂的氣氛，竟然想在商店街當眾進行表演～～！？",
+    "scenarioId": "band1-011",
+    "releasePlayerRank": 11,
+    "releaseConditions": "樂團等級 11以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "11",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory11",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "12": {
+    "bandStoryId": 12,
+    "bandId": 1,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "我想在祭典中表演！",
+    "synopsis": "五人請求商店街的團員們重新舉辦祭典，並讓他們在祭典中演奏，他們的請求終於有成果了嗎！？",
+    "scenarioId": "band1-012",
+    "releasePlayerRank": 12,
+    "releaseConditions": "樂團等級 12以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "12",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory12",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "13": {
+    "bandStoryId": 13,
+    "bandId": 1,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "來寫首主題曲吧！",
+    "synopsis": "商店街的團員們終於被他們五人的熱情打動而決定重啟祭典，而且還委託他們創作祭典的主題歌！",
+    "scenarioId": "band1-013",
+    "releasePlayerRank": 13,
+    "releaseConditions": "樂團等級 13以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "13",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory13",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "14": {
+    "bandStoryId": 14,
+    "bandId": 1,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "有咲，拜託啦！",
+    "synopsis": "雖然大家想要專心作曲和練習，但卻苦於找不到合適的場地。眾人經過討論後得到的答案是！？",
+    "scenarioId": "band1-014",
+    "releasePlayerRank": 14,
+    "releaseConditions": "樂團等級 14以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "14",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory14",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "15": {
+    "bandStoryId": 15,
+    "bandId": 1,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "連結眾人心靈的歌曲！",
+    "synopsis": "大家到了有咲家的倉庫以後，就開始討論這次的曲子該用什麼當主題。香澄會決定用什麼當主題呢？",
+    "scenarioId": "band1-015",
+    "releasePlayerRank": 15,
+    "releaseConditions": "樂團等級 15以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "15",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory15",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "16": {
+    "bandStoryId": 16,
+    "bandId": 1,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "由我們五個人做出最棒的曲子吧！",
+    "synopsis": "晚上大家到有咲的房間過夜，在一面聯絡感情，一面作曲的過程中，大家竟然～～？",
+    "scenarioId": "band1-016",
+    "releasePlayerRank": 16,
+    "releaseConditions": "樂團等級 16以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "16",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory16",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "17": {
+    "bandStoryId": 17,
+    "bandId": 1,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "說服一次不行、就說服兩次！",
+    "synopsis": "大家向區公所職員表示想在祭典禮表演，沒想到職員竟然～～？",
+    "scenarioId": "band1-017",
+    "releasePlayerRank": 17,
+    "releaseConditions": "樂團等級 17以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "17",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory17",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "18": {
+    "bandStoryId": 18,
+    "bandId": 1,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "投訴",
+    "synopsis": "祭典終於正式開始，大家愉快的在市集裡逛著。這時突然傳來演唱會必須終止的通告……！？",
+    "scenarioId": "band1-018",
+    "releasePlayerRank": 18,
+    "releaseConditions": "樂團等級 18以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "18",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory18",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "19": {
+    "bandStoryId": 19,
+    "bandId": 1,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "米歇爾的邀請",
+    "synopsis": "在商店街團員和現場觀眾的聲援下，區公所職員的態度終於出現了轉變……！？",
+    "scenarioId": "band1-019",
+    "releasePlayerRank": 19,
+    "releaseConditions": "樂團等級 19以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 40,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "19",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "voiceAssetBundleName": "bandstory19",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "20": {
+    "bandStoryId": 20,
+    "bandId": 1,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "Poppin'Party Candy的羈絆",
+    "synopsis": "演唱會終於順利落幕，大家愉快的享受著祭典的氣氛。這時終於可以如願以償的製作Popipa糖果，不過……",
+    "scenarioId": "band1-020",
+    "releasePlayerRank": 20,
+    "releaseConditions": "樂團等級 20以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "20",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 1,
+    "appealText": "在閱讀樂團劇情第１章之後，\n可以在第２章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory20",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "101": {
+    "bandStoryId": 101,
+    "bandId": 1,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "尋找星之鼓動",
+    "synopsis": "尋覓著有如幼年時期傾聽的『星之鼓動』\n那般閃亮心動的香澄……",
+    "scenarioId": "remakestory-01",
+    "releaseConditions": "樂團等級1以上開放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "101",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory101",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "102": {
+    "bandStoryId": 102,
+    "bandId": 1,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "找到星星了！",
+    "synopsis": "追尋著星星貼紙的香澄\n來到了當鋪『流星堂』～～？",
+    "scenarioId": "remakestory-02",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "102",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory102",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "103": {
+    "bandStoryId": 103,
+    "bandId": 1,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "一起來組樂團吧！",
+    "synopsis": "忘不了LIVE亢奮感的香澄向有咲提議來組樂團～～？",
+    "scenarioId": "remakestory-03",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "103",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory103",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "104": {
+    "bandStoryId": 104,
+    "bandId": 1,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "星繫命運",
+    "synopsis": "在RandomStar上感受到命運的香澄\n前去有咲身邊……",
+    "scenarioId": "remakestory-04",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "104",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory104",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "105": {
+    "bandStoryId": 105,
+    "bandId": 1,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "有咲的請求",
+    "synopsis": "收拾完倉庫，香澄有機會\n得以窺見RandomStar！？",
+    "scenarioId": "remakestory-05",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "105",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory105",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "106": {
+    "bandStoryId": 106,
+    "bandId": 1,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "里美的心情",
+    "synopsis": "「果然辦不到」香澄被里美如此拒絕了樂團邀請～～！？",
+    "scenarioId": "remakestory-06",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "106",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory106",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "107": {
+    "bandStoryId": 107,
+    "bandId": 1,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "第一次的舞台表演",
+    "synopsis": "香澄等人前往觀看GliGre的LIVE。\n然而GliGre遲遲未在舞台上現身～～！？",
+    "scenarioId": "remakestory-07",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "107",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory107",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "108": {
+    "bandStoryId": 108,
+    "bandId": 1,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "香澄是變態！？",
+    "synopsis": "在教室裡展示RandomStar的香澄\n竟卻被多惠說是「變態」～～？",
+    "scenarioId": "remakestory-08",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "108",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory108",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "109": {
+    "bandStoryId": 109,
+    "bandId": 1,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "想彈就彈",
+    "synopsis": "香澄遲遲無法做完課題而留校。\n和多惠的距離也逐漸拉近……",
+    "scenarioId": "remakestory-09",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "109",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory109",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "110": {
+    "bandStoryId": 110,
+    "bandId": 1,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "違反契約！",
+    "synopsis": "香澄在意起態度有些許古怪的的有咲。\n前往造訪市谷家，但有咲卻……",
+    "scenarioId": "remakestory-10",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "110",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory110",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "111": {
+    "bandStoryId": 111,
+    "bandId": 1,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "多惠心動作戰會議",
+    "synopsis": "為了通過試鏡，\n香澄開辦了『多惠心動作戰會議』……？",
+    "scenarioId": "remakestory-11",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 115,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "111",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory111",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "112": {
+    "bandStoryId": 112,
+    "bandId": 1,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "倉庫LIVE當天！",
+    "synopsis": "香澄等人為了倉庫LIVE而努力練習，\n邀請多惠一起參加演奏～～？",
+    "scenarioId": "remakestory-12",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "112",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory112",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "113": {
+    "bandStoryId": 113,
+    "bandId": 1,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "無名的我們",
+    "synopsis": "文化祭LIVE接近，香澄等人思考著樂團名稱……",
+    "scenarioId": "remakestory-13",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "113",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory113",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "114": {
+    "bandStoryId": 114,
+    "bandId": 1,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "沙～綾也一起！",
+    "synopsis": "文化祭準備中，\n香澄在沙綾家過夜～～？",
+    "scenarioId": "remakestory-14",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "114",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory114",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "115": {
+    "bandStoryId": 115,
+    "bandId": 1,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "沙綾的過去",
+    "synopsis": "沙綾想起過去隸屬的樂團，\n『CHiSPA』的種種～～",
+    "scenarioId": "remakestory-15",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "115",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory115",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "116": {
+    "bandStoryId": 116,
+    "bandId": 1,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "才沒有討厭！",
+    "synopsis": "來到樂器行的香澄、多惠、里美、有咲\n從某人口中得知出乎意料之外的事情～～",
+    "scenarioId": "remakestory-16",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "116",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory116",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "117": {
+    "bandStoryId": 117,
+    "bandId": 1,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "文化祭當天！",
+    "synopsis": "終於來到文化祭當天。\n沙綾收到了來自香澄的信～～？",
+    "scenarioId": "remakestory-17",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "117",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory117",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "118": {
+    "bandStoryId": 118,
+    "bandId": 1,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "５人Poppin’Party",
+    "synopsis": "人在醫院的沙綾發現\n香澄的電話留言……",
+    "scenarioId": "remakestory-18",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "118",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory118",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "119": {
+    "bandStoryId": 119,
+    "bandId": 1,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "Popipa的協助",
+    "synopsis": "Popipa成員們聚集在倉庫裡。\n然後接到一通來自SPACE的電話！？",
+    "scenarioId": "remakestory-19",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "119",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory119",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "120": {
+    "bandStoryId": 120,
+    "bandId": 1,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "初次試鏡",
+    "synopsis": "LIVE結束後，香澄們看見\n反省中的Roselia的身影……？",
+    "scenarioId": "remakestory-20",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "120",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory120",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "121": {
+    "bandStoryId": 121,
+    "bandId": 1,
+    "seq": 21,
+    "caption": "第２１話",
+    "title": "什麼都看不見？",
+    "synopsis": "得知SPACE關門消息後\n大受打擊的Popipa成員們～～？",
+    "scenarioId": "remakestory-21",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "121",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory121",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "122": {
+    "bandStoryId": 122,
+    "bandId": 1,
+    "seq": 22,
+    "caption": "第２２話",
+    "title": "我唱不出來！",
+    "synopsis": "「你是最不行的」被如此指出的香澄拼命地繼續練習～～！？",
+    "scenarioId": "remakestory-22",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "122",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory122",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "123": {
+    "bandStoryId": 123,
+    "bandId": 1,
+    "seq": 23,
+    "caption": "第２３話",
+    "title": "香澄的『沒問題』",
+    "synopsis": "一邊擔心著無法出聲的香澄，\nPopipa成員們仍繼續練習……",
+    "scenarioId": "remakestory-23",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "123",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory123",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "124": {
+    "bandStoryId": 124,
+    "bandId": 1,
+    "seq": 24,
+    "caption": "第２４話",
+    "title": "不是一個人",
+    "synopsis": "因香澄康復而欣喜的Popipa成員們。\n立刻重啟練習的時候～～！？",
+    "scenarioId": "remakestory-24",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "124",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory124",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "125": {
+    "bandStoryId": 125,
+    "bandId": 1,
+    "seq": 25,
+    "caption": "第２５話",
+    "title": "５人過夜！",
+    "synopsis": "香澄重新振作起來努力練習。\n試鏡前一天，Popipa聚集起來……",
+    "scenarioId": "remakestory-25",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "125",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory125",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "126": {
+    "bandStoryId": 126,
+    "bandId": 1,
+    "seq": 26,
+    "caption": "第２６話",
+    "title": "閃亮心動",
+    "synopsis": "Popipa成員們在花園家過夜。\n卻清醒得很，怎麼樣也睡不著……",
+    "scenarioId": "remakestory-26",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "126",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "voiceAssetBundleName": "bandstory126",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "127": {
+    "bandStoryId": 127,
+    "bandId": 1,
+    "seq": 27,
+    "caption": "第２７話",
+    "title": "我們的起點",
+    "synopsis": "SPACELIVE當天。\n團結一心的Popipa站上舞台～～！",
+    "scenarioId": "remakestory-27",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "127",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 6,
+    "appealText": "在閱讀樂團劇情第０章之後，\n可以在第１章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory127",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "128": {
+    "bandStoryId": 128,
+    "bandId": 1,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "有咲的提案",
+    "synopsis": "有咲午休被叫去職員室。\n班導當場所告知的事情是～～",
+    "scenarioId": "band1-021",
+    "releaseConditions": "只要觀看樂團劇情第１章「第２０話」即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "128",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory128",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "129": {
+    "bandStoryId": 129,
+    "bandId": 1,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "LIVE延期？",
+    "synopsis": "有咲提議考試最後一天辦LIVE。\n然而大家果然有些不安……？",
+    "scenarioId": "band1-022",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "129",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory129",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "130": {
+    "bandStoryId": 130,
+    "bandId": 1,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "零落之物",
+    "synopsis": "香澄們煩惱著LIVE新歌創作。\n和一個人晚來的有咲商量之後～～？",
+    "scenarioId": "band1-023",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "130",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory130",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "131": {
+    "bandStoryId": 131,
+    "bandId": 1,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "我太糟糕了",
+    "synopsis": "有咲想著要為昨天的事情道歉。\n然而里美卻請假沒來學校～～？",
+    "scenarioId": "band1-024",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "131",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory131",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "132": {
+    "bandStoryId": 132,
+    "bandId": 1,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "空轉的練習",
+    "synopsis": "雖然有發現有咲不太對勁，\n但里美以外的四人仍開始練習……？",
+    "scenarioId": "band1-025",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "132",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory132",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "133": {
+    "bandStoryId": 133,
+    "bandId": 1,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "從那雙手……",
+    "synopsis": "以最糟的形式結束練習回家路上。\n香澄思考著多惠所說的意思～～",
+    "scenarioId": "band1-026",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "133",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory133",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "134": {
+    "bandStoryId": 134,
+    "bandId": 1,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "找回來！",
+    "synopsis": "要讓Popipa再次合而為一。\n為此香澄所導出的答案是～～？",
+    "scenarioId": "band1-027",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "134",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory134",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "135": {
+    "bandStoryId": 135,
+    "bandId": 1,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "各自",
+    "synopsis": "對誰都沒辦法說出口，獨自一人的有咲。\n卻在CiRCLE目擊到多惠的身影～～？",
+    "scenarioId": "band1-028",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "135",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory135",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "136": {
+    "bandStoryId": 136,
+    "bandId": 1,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "該怎麼辦才好？",
+    "synopsis": "香澄和沙綾拜訪里美家。\n對於兩人所說的話，里美～～？",
+    "scenarioId": "band1-029",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "136",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory136",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "137": {
+    "bandStoryId": 137,
+    "bandId": 1,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "只能這麼做了！",
+    "synopsis": "香澄們接著拜訪有咲家。\n香澄和有咲互相傾訴彼此的想法～～",
+    "scenarioId": "band1-030",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "137",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory137",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "138": {
+    "bandStoryId": 138,
+    "bandId": 1,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "理所當然最了不起",
+    "synopsis": "我別待在Popipa或許比較好～～\n香澄強烈否定有咲的話語。",
+    "scenarioId": "band1-031",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "138",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory138",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "139": {
+    "bandStoryId": 139,
+    "bandId": 1,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "有咲，秘密準備",
+    "synopsis": "香橙告訴有咲來學校上學一事。\n然而有咲似乎在中午之前都無法見面。",
+    "scenarioId": "band1-032",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "139",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory139",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "140": {
+    "bandStoryId": 140,
+    "bandId": 1,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "多惠的請求",
+    "synopsis": "Popipa終於再次合而為一。\n香澄等人最後去向多惠道歉……？",
+    "scenarioId": "band1-033",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "140",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory140",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "141": {
+    "bandStoryId": 141,
+    "bandId": 1,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "倉庫LIVE再現",
+    "synopsis": "Popipa再次集合。久違的倉庫LIVE，\n為了『倉庫LIVE』進行準備～～",
+    "scenarioId": "band1-034",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "141",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "voiceAssetBundleName": "bandstory141",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "142": {
+    "bandStoryId": 142,
+    "bandId": 1,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "最喜歡！",
+    "synopsis": "終於迎來倉庫LIVE前夕，Popipa成員們圍成一圈。\n信念合而為一～～",
+    "scenarioId": "band1-035",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 122,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "142",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 7,
+    "releaseBandStoryId": 20,
+    "appealText": "在閱讀樂團劇情第２章之後，\n可以在第３章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory142",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "143": {
+    "bandStoryId": 143,
+    "bandId": 1,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "5人聚集起來，就是Popipa",
+    "synopsis": "下課後忘記要進行補考的香澄。與正在等待著香澄的有咲、里美、沙綾、多惠!?",
+    "scenarioId": "band1-001",
+    "releaseConditions": "樂團等級1以上開放",
+    "publishedAt": "1506841200000",
+    "coverImage": "1",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory1",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "144": {
+    "bandStoryId": 144,
+    "bandId": 1,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "必須要5人才能進行的演奏",
+    "synopsis": "在有咲家倉庫練習的Popipa5人。熱烈的在討論要想要進行怎樣的演奏～～？",
+    "scenarioId": "band1-002",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "2",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory2",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "145": {
+    "bandStoryId": 145,
+    "bandId": 1,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "商店街的祭典",
+    "synopsis": "在樂團練習時剛好聊到商店街的祭典，香澄似乎想到了什麼好主意～～？",
+    "scenarioId": "band1-003",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "3",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory3",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "146": {
+    "bandStoryId": 146,
+    "bandId": 1,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "我想知道理由！",
+    "synopsis": "五人因為聽說祭典停辦而大受打擊，香澄雖然去造訪了某位人物（？），可是卻……？",
+    "scenarioId": "band1-004",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "4",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory4",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "147": {
+    "bandStoryId": 147,
+    "bandId": 1,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "夢幻的Poppin'Party Candy",
+    "synopsis": "五人從巴那裡得知祭典之所以停辦是因為預算問題，香澄因為太過悲傷，竟然就……？",
+    "scenarioId": "band1-005",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "5",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory5",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "148": {
+    "bandStoryId": 148,
+    "bandId": 1,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "讓祭典復活吧！",
+    "synopsis": "樂團的五名團員都非常希望能讓祭典復活，於是便開始討論有沒有什麼可行的辦法。",
+    "scenarioId": "band1-006",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "6",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory6",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "149": {
+    "bandStoryId": 149,
+    "bandId": 1,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "一旦決定就無法阻攔",
+    "synopsis": "五人前往商會事務所想詢問是否有能讓祭典照常舉辦的方法，卻在那遇到了某位人物～～！？",
+    "scenarioId": "band1-007",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "7",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory7",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "150": {
+    "bandStoryId": 150,
+    "bandId": 1,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "典型的敵對人物",
+    "synopsis": "五人被單方面告知祭典不可能復活，完全無計可施，但依然無法放棄的香澄卻……！？",
+    "scenarioId": "band1-008",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "8",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory8",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "151": {
+    "bandStoryId": 151,
+    "bandId": 1,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "真想消除這份焦躁感！",
+    "synopsis": "五人一面吃著可樂餅一面展開了作戰會議。他們能夠想出什麼好方法嗎～～？",
+    "scenarioId": "band1-009",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "9",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory9",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "152": {
+    "bandStoryId": 152,
+    "bandId": 1,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "絕對不能失去的東西",
+    "synopsis": "五人約在教室碰面，香澄隨口哼著小星星時，突然注意到一個重點。",
+    "scenarioId": "band1-010",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "10",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory10",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "153": {
+    "bandStoryId": 153,
+    "bandId": 1,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "我們做得到的事",
+    "synopsis": "香澄為了讓大家體驗歡樂的氣氛，竟然想在商店街當眾進行表演～～！？",
+    "scenarioId": "band1-011",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "11",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory11",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "154": {
+    "bandStoryId": 154,
+    "bandId": 1,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "我想在祭典中表演！",
+    "synopsis": "五人請求商店街的團員們重新舉辦祭典，並讓他們在祭典中演奏，他們的請求終於有成果了嗎！？",
+    "scenarioId": "band1-012",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "12",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory12",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "155": {
+    "bandStoryId": 155,
+    "bandId": 1,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "來寫首主題曲吧！",
+    "synopsis": "商店街的團員們終於被他們五人的熱情打動而決定重啟祭典，而且還委託他們創作祭典的主題歌！",
+    "scenarioId": "band1-013",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "13",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory13",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "156": {
+    "bandStoryId": 156,
+    "bandId": 1,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "有咲，拜託啦！",
+    "synopsis": "雖然大家想要專心作曲和練習，但卻苦於找不到合適的場地。眾人經過討論後得到的答案是！？",
+    "scenarioId": "band1-014",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "14",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory14",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "157": {
+    "bandStoryId": 157,
+    "bandId": 1,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "連結眾人心靈的歌曲！",
+    "synopsis": "大家到了有咲家的倉庫以後，就開始討論這次的曲子該用什麼當主題。香澄會決定用什麼當主題呢？",
+    "scenarioId": "band1-015",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "15",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory15",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "158": {
+    "bandStoryId": 158,
+    "bandId": 1,
+    "seq": 16,
+    "caption": "第１６話",
+    "title": "由我們五個人做出最棒的曲子吧！",
+    "synopsis": "晚上大家到有咲的房間過夜，在一面聯絡感情，一面作曲的過程中，大家竟然～～？",
+    "scenarioId": "band1-016",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "16",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory16",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "159": {
+    "bandStoryId": 159,
+    "bandId": 1,
+    "seq": 17,
+    "caption": "第１７話",
+    "title": "說服一次不行、就說服兩次！",
+    "synopsis": "大家向區公所職員表示想在祭典禮表演，沒想到職員竟然～～？",
+    "scenarioId": "band1-017",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "17",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory17",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "160": {
+    "bandStoryId": 160,
+    "bandId": 1,
+    "seq": 18,
+    "caption": "第１８話",
+    "title": "投訴",
+    "synopsis": "祭典終於正式開始，大家愉快的在市集裡逛著。這時突然傳來演唱會必須終止的通告……！？",
+    "scenarioId": "band1-018",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "18",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory18",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "161": {
+    "bandStoryId": 161,
+    "bandId": 1,
+    "seq": 19,
+    "caption": "第１９話",
+    "title": "米歇爾的邀請",
+    "synopsis": "在商店街團員和現場觀眾的聲援下，區公所職員的態度終於出現了轉變……！？",
+    "scenarioId": "band1-019",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "19",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "voiceAssetBundleName": "bandstory19",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "162": {
+    "bandStoryId": 162,
+    "bandId": 1,
+    "seq": 20,
+    "caption": "第２０話",
+    "title": "Poppin'Party Candy的羈絆",
+    "synopsis": "演唱會終於順利落幕，大家愉快的享受著祭典的氣氛。這時終於可以如願以償的製作Popipa糖果，不過……",
+    "scenarioId": "band1-020",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1506841200000",
+    "coverImage": "20",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 8,
+    "appealText": "在閱讀樂團劇情第１章之後，\n可以在第２章的樂團劇情\n或是活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory20",
+    "seasonType": "season_1",
+    "backgroundImageId": 5
+  },
+  "393": {
+    "bandStoryId": 393,
+    "bandId": 1,
+    "seq": 1,
+    "caption": "第１話",
+    "title": "LIVE熱情上升中",
+    "synopsis": "討論著前幾天的LIVE的香澄等人。\n對自己的LIVE也充滿熱情。",
+    "scenarioId": "band1-036",
+    "releaseConditions": "只要觀看樂團劇情第２章「第１５話」即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "393",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory393",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "394": {
+    "bandStoryId": 394,
+    "bandId": 1,
+    "seq": 2,
+    "caption": "第２話",
+    "title": "Friend like",
+    "synopsis": "香澄等人預約不到CiRCLE場地。\n麻里奈給他們了某個提議。",
+    "scenarioId": "band1-037",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "394",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory394",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "395": {
+    "bandStoryId": 395,
+    "bandId": 1,
+    "seq": 3,
+    "caption": "第３話",
+    "title": "好奇心，翻騰",
+    "synopsis": "麻里奈參加了Fes的會議。\n得知此事的香澄和多惠……",
+    "scenarioId": "band1-038",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "395",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory395",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "396": {
+    "bandStoryId": 396,
+    "bandId": 1,
+    "seq": 4,
+    "caption": "第４話",
+    "title": "超越距離",
+    "synopsis": "Popipa參加了Fes的會議。\n香澄在會議上提出的提案是。",
+    "scenarioId": "band1-039",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "396",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory396",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "397": {
+    "bandStoryId": 397,
+    "bandId": 1,
+    "seq": 5,
+    "caption": "第５話",
+    "title": "LIFE",
+    "synopsis": "香澄當面和老闆說了想做LIVE直播。\n老闆的回應是……",
+    "scenarioId": "band1-040",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "397",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory397",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "398": {
+    "bandStoryId": 398,
+    "bandId": 1,
+    "seq": 6,
+    "caption": "第６話",
+    "title": "尋找「答案」",
+    "synopsis": "香澄等人思考著老闆說的話。\n他們五個，注意到了某件事。",
+    "scenarioId": "band1-041",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "398",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory398",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "399": {
+    "bandStoryId": 399,
+    "bandId": 1,
+    "seq": 7,
+    "caption": "第７話",
+    "title": "首先，要嘗試看看。",
+    "synopsis": "里美向正在國外的百合說了當前的情況。\n從百合的話裡，里美有了想法。",
+    "scenarioId": "band1-042",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "399",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory399",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "400": {
+    "bandStoryId": 400,
+    "bandId": 1,
+    "seq": 8,
+    "caption": "第８話",
+    "title": "再次，甄選",
+    "synopsis": "事態演變成要讓老闆看LIVE直播。\n對於他們的演奏，老闆的答案是。",
+    "scenarioId": "band1-043",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "400",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory400",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "401": {
+    "bandStoryId": 401,
+    "bandId": 1,
+    "seq": 9,
+    "caption": "第９話",
+    "title": "不管幾次都要試！",
+    "synopsis": "目標是呈現出讓老闆感動的演奏的五人。\n然而，老闆的答案沒有改變。",
+    "scenarioId": "band1-044",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "401",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory401",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "402": {
+    "bandStoryId": 402,
+    "bandId": 1,
+    "seq": 10,
+    "caption": "第１０話",
+    "title": "我們在此的理由",
+    "synopsis": "和老闆約定好的１個禮拜過去了。\n對於老闆的答案，香澄等人……",
+    "scenarioId": "band1-045",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "402",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory402",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "403": {
+    "bandStoryId": 403,
+    "bandId": 1,
+    "seq": 11,
+    "caption": "第１１話",
+    "title": "「相繫的LIVE」",
+    "synopsis": "香澄等人得到了「最後」一次嘗試的機會。\n為了把握住機會，五個人進行了討論。",
+    "scenarioId": "band1-046",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "403",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory403",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "404": {
+    "bandStoryId": 404,
+    "bandId": 1,
+    "seq": 12,
+    "caption": "第１２話",
+    "title": "Last chance",
+    "synopsis": "實踐最後機會的當天到來。\n香澄等人一邊感受著音樂的力量，進行了演奏。",
+    "scenarioId": "band1-047",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "404",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory404",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "405": {
+    "bandStoryId": 405,
+    "bandId": 1,
+    "seq": 13,
+    "caption": "第１３話",
+    "title": "LINK ☆RING",
+    "synopsis": "Rockin'STAR Fes前一天。\n香澄等人，親身走了整個會場一次。",
+    "scenarioId": "band1-048",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "405",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory405",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "406": {
+    "bandStoryId": 406,
+    "bandId": 1,
+    "seq": 14,
+    "caption": "第１４話",
+    "title": "傳給在遠方的你",
+    "synopsis": "Rockin'STAR Fes當天。\n環視了整個會場，老闆心滿意足地說－",
+    "scenarioId": "band1-049",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "406",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "voiceAssetBundleName": "bandstory406",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  },
+  "407": {
+    "bandStoryId": 407,
+    "bandId": 1,
+    "seq": 15,
+    "caption": "第１５話",
+    "title": "LIVE",
+    "synopsis": "就快輪到香澄等人上場了。\n無論是近處，或是遠方，香澄等人都要將心念送抵。",
+    "scenarioId": "band1-050",
+    "releaseConditions": "閱讀先前劇情即可解放",
+    "publishedAt": "1631862000000",
+    "rewards": [
+      {
+        "resourceType": "star",
+        "quantity": 50,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 13,
+        "resourceType": "item",
+        "quantity": 1,
+        "lbBonus": 1
+      },
+      {
+        "resourceId": 326,
+        "resourceType": "music",
+        "quantity": 1,
+        "lbBonus": 1
+      }
+    ],
+    "coverImage": "407",
+    "backgroundImage": "2",
+    "bandStoryChapterId": 22,
+    "releaseBandStoryId": 142,
+    "appealText": "在閱讀完樂團劇情第３章之後，\n可以在活動劇情中看到團員們的活躍唷。",
+    "voiceAssetBundleName": "bandstory407",
+    "seasonType": "season_2",
+    "backgroundImageId": 5
+  }
+}

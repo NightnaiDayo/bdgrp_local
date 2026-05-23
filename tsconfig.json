@@ -41,6 +41,11 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@db": ["./db.ts"],
+      "@util/*": ["./util/*"],
+      "@proto": ["./proto/generated/allmsgs.ts"]
+    }
   }
 }
