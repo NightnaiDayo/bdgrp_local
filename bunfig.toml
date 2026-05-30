@@ -3,3 +3,4 @@
 "@db" = "./db.ts"
 "@util/*" = "./util/*"
 "@proto" = "./proto/generated/allmsgs.ts"
+"@gamedata/*" = "./gamedata/*"

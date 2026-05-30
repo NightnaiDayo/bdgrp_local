@@ -2,8 +2,10 @@ import { Router } from "express";
 import { encrypt } from "@util/encrypt";
 import { db, saveDb } from "@db";
 import { SuiteUserGetResponse } from "@proto"
-import cards from "../../../../gamedata/cards.json";
-import songs from "../../../../gamedata/songs.json";
+import cards from "@gamedata/cards.json";
+import songs from "@gamedata/songs.json"
+import costumes from "@gamedata/costumes.json"
+import * as stories from "@gamedata/stories"
 
 const router = Router({ mergeParams: true })
 
@@ -57,9 +59,7 @@ router.get('/', async(req, res) => {
     if (!user) return res.status(404).send();
 
     const userCharacterMap: Record<string, any> = {};
-    let userSituations = [];
-    const userBandRankMap: Record<number, any> = {};
-    let userMusicInventoryList = [];
+    let userSituations;
     
     for(let i = 1; i <=40; i++) {
         userCharacterMap[String(i)] = {
@@ -95,23 +95,6 @@ router.get('/', async(req, res) => {
 
     } else {
         userSituations = user.situations
-    }
-
-    if (!user.musics) {
-        userMusicInventoryList = songs.songs.map(song => ({
-            userId: userid,
-            musicId: song.musicId,
-            seq: 1,
-            hasMv: Array.isArray(song.musicVideos) && song.musicVideos.length > 0,
-            createdAt: String(Date.now())
-        }))
-
-        user.musics = userMusicInventoryList
-
-        saveDb();
-
-    } else {
-        userMusicInventoryList = user.musics
     }
 
     const data = {
@@ -167,7 +150,11 @@ router.get('/', async(req, res) => {
             )
         },
         userMainStoryList: {
-
+            entries: Object.values(stories.main).map((story: any) => ({
+                userId: userid,
+                storyId: story.mainStoryId,
+                status: "already_read"
+            }))
         },
         userPracticeTicketList: {
 
@@ -179,19 +166,49 @@ router.get('/', async(req, res) => {
 
         },
         userPoppinPartyStoryList: {
-
+            entries: Object.values(stories.ppp).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userAfterglowStoryList: {
-
+            entries: Object.values(stories.afterglow).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userPastelPalettesStoryList: {
-
+            entries: Object.values(stories.paspal).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userHelloHappyWorldStoryList: {
-
+            entries: Object.values(stories.hhw).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userRoseliaStoryList: {
-
+            entries: Object.values(stories.roselia).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userItemList: {
 
@@ -203,10 +220,27 @@ router.get('/', async(req, res) => {
 
         },
         userMusicInventoryList: {
-            entries: userMusicInventoryList
+            entries: songs.songs.map(song => ({
+                userId: userid,
+                musicId: song.musicId,
+                seq: 1,
+                hasMv: Array.isArray(song.musicVideos) && song.musicVideos.length > 0,
+                createdAt: String(Date.now())
+            }))
         },
         userCostumeMap: {
-
+            entries: Object.fromEntries(
+                Object.entries(costumes).flatMap(([charId, costumeIds]: [string, any]) =>
+                    costumeIds.map((costumeId: number) => [
+                        String(costumeId),
+                        {
+                            userId: userid,
+                            costumeId,
+                            characterId: Number(charId)
+                        }
+                    ])
+                )
+            )
         },
         userAfterLiveTalkListMap: {
 
@@ -404,13 +438,25 @@ router.get('/', async(req, res) => {
 
         },
         userMorfonicaStoryList: {
-
+            entries: Object.values(stories.morfonica).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userMatchingBonusList: {
 
         },
         userRaiseASuilenStoryList: {
-
+            entries: Object.values(stories.ras).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userCollaboOriginalMusicScoreMap: {
 
@@ -431,7 +477,11 @@ router.get('/', async(req, res) => {
 
         },
         userDigestStoryList: {
-
+            entries: Object.values(stories.digest).map((story: any) => ({
+                userId: userid,
+                digestStoryId: story.digestStoryId,
+                status: "already_read",
+            }))
         },
         userLiveBoostUseBonusLimitList: {
 
@@ -561,7 +611,13 @@ router.get('/', async(req, res) => {
 
         },
         userMyGoStoryList: {
-
+            entries: Object.values(stories.mygo).map((story: any) => ({
+                userId: userid,
+                bandStoryId: story.bandStoryId,
+                bandId: story.bandId,
+                status: "already_read",
+                seq: story.seq
+            }))
         },
         userTerms: {
 

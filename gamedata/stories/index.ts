@@ -1,0 +1,10 @@
+export { default as afterglow } from "./afterglow.json";
+export { default as hhw } from "./hhw.json";
+export { default as main } from "./main.json";
+export { default as morfonica } from "./morfonica.json";
+export { default as mygo } from "./mygo.json";
+export { default as paspal } from "./paspal.json";
+export { default as ppp } from "./ppp.json";
+export { default as ras } from "./ras.json";
+export { default as roselia } from "./roselia.json";
+export { default as digest } from "./digest.json"
