@@ -7,4 +7,5 @@ export { default as paspal } from "./paspal.json";
 export { default as ppp } from "./ppp.json";
 export { default as ras } from "./ras.json";
 export { default as roselia } from "./roselia.json";
-export { default as digest } from "./digest.json"
+export { default as digest } from "./digest.json";
+export { default as generic } from "./generic.json";

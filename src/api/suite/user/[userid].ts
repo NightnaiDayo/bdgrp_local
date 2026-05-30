@@ -5,6 +5,8 @@ import { SuiteUserGetResponse } from "@proto"
 import cards from "@gamedata/cards.json";
 import songs from "@gamedata/songs.json"
 import costumes from "@gamedata/costumes.json"
+import degrees from "@gamedata/degrees.json"
+import stamps from "@gamedata/stamps.json"
 import * as stories from "@gamedata/stories"
 
 const router = Router({ mergeParams: true })
@@ -156,12 +158,8 @@ router.get('/', async(req, res) => {
                 status: "already_read"
             }))
         },
-        userPracticeTicketList: {
-
-        },
-        userBondsList: {
-
-        },
+        userPracticeTicketList: undefined,
+        userBondsList: undefined,
         userBandRankMap: {
 
         },
@@ -210,15 +208,11 @@ router.get('/', async(req, res) => {
                 seq: story.seq
             }))
         },
-        userItemList: {
-
-        },
+        userItemList: undefined,
         userCommonsLive2dMap: {
 
         },
-        userEpisodeMap: {
-
-        },
+        userEpisodeMap: undefined,
         userMusicInventoryList: {
             entries: songs.songs.map(song => ({
                 userId: userid,
@@ -257,24 +251,30 @@ router.get('/', async(req, res) => {
         userExchangesList: {
 
         },
-        userGachaTicketList: {
-
-        },
-        userGachaStatusMap: {
-
-        },
+        userGachaTicketList: undefined,
+        userGachaStatusMap: undefined,
         userAreaStatusMap: {
 
         },
-        userLoginBonusMap: null,
+        userLoginBonusMap: undefined,
         userHomeBannerList: {
 
         },
         userStampMap: {
-
+            entries: Object.fromEntries(
+                stamps.stamps.map((stampId: number) => [
+                    String(stampId),
+                    { userId: userid, stampId, seq: 1, isUnlockVoice: false }
+                ])
+            )
         },
         userDegreeMap: {
-
+            entries: Object.fromEntries(
+                degrees.degrees.map((degreeId: number) => [
+                    String(degreeId),
+                    { userId: userid, degreeId }
+                ])
+            )
         },
         userBadPenalty: undefined,
         userCharacterProfileLive2dMap: {
@@ -283,36 +283,35 @@ router.get('/', async(req, res) => {
         userEventExchangesList: {
 
         },
-        userEventItemList: null,
-        userPurchaseMap: null,
-        userMissionMap: null,
+        userEventItemList: undefined,
+        userPurchaseMap: undefined,
+        userMissionMap: undefined,
         userGenericStoryMap: {
-
+            entries: Object.fromEntries(
+                Object.values(stories.generic).map((story: any) => [
+                    String(story.genericStoryId),
+                    {
+                        userId: userid,
+                        genericStoryId: story.genericStoryId,
+                        status: "already_read"
+                    }
+                ])
+            )
         },
-        userLiveBoostRecoveryItemList: {
-
-        },
+        userLiveBoostRecoveryItemList: undefined,
         userHighScoreMusicRatingMap: {
 
         },
         userSeason: {
-
+            seasonId: 37
         },
-        userQualifyTournamentMusicScoreMap: {
-
-        },
-        userEventStoryMemorialMap: {
-
-        },
+        userQualifyTournamentMusicScoreMap: undefined,
+        userEventStoryMemorialMap: undefined,
         userReleasedBondsIdList: {
 
         },
-        userMiracleTicketMap: {
-
-        },
-        userMiracleTicketExchangesMap: {
-
-        },
+        userMiracleTicketMap: undefined,
+        userMiracleTicketExchangesMap: undefined,
         userMultiDisconnectionBadPenalty: undefined,
         userSpecialLotteryDrawResultMap: {
 
@@ -323,67 +322,49 @@ router.get('/', async(req, res) => {
         userMusicAchievementMap: {
 
         },
-        userBirthdayStoryMap: {
-
-        },
+        userBirthdayStoryMap: undefined,
         userGenericAnimationMap: {
 
         },
         userMusicShopMap: {
-
+            entries: Object.fromEntries(
+                songs.songs.map((song: any, i: number) => [
+                    String(i + 1),
+                    {
+                        userId: userid,
+                        musicShopId: i + 1,
+                        shopId: 7,
+                        shopCategory: "common",
+                        musicId: Number(song.musicId),
+                        status: "purchase",
+                        seq: i + 1,
+                        isInitialDistribution: false
+                    }
+                ])
+            )
         },
-        userTitleList: {
-
-        },
+        userTitleList: undefined,
         userPurchaseVoidBadPenaltyStandard: undefined,
-        userSelectNewYearCardMap: {
-
-        },
-        userGachaCountCeilingMap: {
-
-        },
-        userBackstageTalkSetReadHistoryMap: {
-
-        },
-        userNewMusicIntroductionMap: {
-
-        },
-        userNewSituationIntroductionMap: {
-
-        },
+        userSelectNewYearCardMap: undefined,
+        userGachaCountCeilingMap: undefined,
+        userBackstageTalkSetReadHistoryMap: undefined,
+        userNewMusicIntroductionMap: undefined,
+        userNewSituationIntroductionMap: undefined,
         userFriendRelationDetail: {
-            applicationMap: {
-
-            },
-            approvalMap: {
-
-            },
-            friendMap: {
-
-            },
+            applicationMap: undefined,
+            approvalMap: undefined,
+            friendMap: undefined,
             friendLimit: 50,
             approvalLimit: 50,
             applicationLimit: 50
         },
-        userNotHaveViewExchangesMiracleTicketIdList: {
-
-        },
-        userProfileSituation: {
-
-        },
-        userProfileDegreeMap: {
-
-        },
-        userDecoFrameInventoryMap: {
-
-        },
-        userDecoPinsInventoryMap: {
-
-        },
-        userDecoEffectInventoryMap: {
-
-        },
-        userDecoEquipment: {
+        userNotHaveViewExchangesMiracleTicketIdList: undefined,
+        userProfileSituation: undefined,
+        userProfileDegreeMap: undefined,
+        userDecoFrameInventoryMap: undefined,
+        userDecoPinsInventoryMap: undefined,
+        userDecoEffectInventoryMap: undefined,
+        userDecoEquipment: undefined/*{
             userDecoCharacterSituation: {
 
             },
@@ -408,35 +389,34 @@ router.get('/', async(req, res) => {
             userDecoEffect: {
 
             }
-        },
+        }*/,
         userMusicVideoListMap: {
-
+            userMusicVideoInventoryListMap: {
+                entries: Object.fromEntries(
+                    songs.songs
+                        .filter((song: any) => Array.isArray(song.musicVideos) && song.musicVideos.length > 0)
+                        .map((song: any, i: number) => [
+                            String(song.musicId),
+                            {
+                                entries: [{
+                                    userId: userid,
+                                    musicId: Number(song.musicId),
+                                    seq: 1
+                                }]
+                            }
+                        ])
+                )
+            }
         },
-        userPurchaseMenuLastVisitMap: {
-
-        },
-        userSkinLaneMap: {
-
-        },
-        currentUserEventMusicScoresMap: {
-
-        },
-        currentUserEventMusicAchievementsMap: {
-
-        },
-        currentUserEventBoxGachaMap: {
-
-        },
-        userMonthlyPurchaseMap: {
-
-        },
+        userPurchaseMenuLastVisitMap: undefined,
+        userSkinLaneMap: undefined,
+        currentUserEventMusicScoresMap: undefined,
+        currentUserEventMusicAchievementsMap: undefined,
+        currentUserEventBoxGachaMap: undefined,
+        userMonthlyPurchaseMap: undefined,
         userSubscriptionList: undefined,
-        userCommentBannerList: {
-
-        },
-        userEventBoxGachaSpinSettings: {
-
-        },
+        userCommentBannerList: undefined,
+        userEventBoxGachaSpinSettings: undefined,
         userMorfonicaStoryList: {
             entries: Object.values(stories.morfonica).map((story: any) => ({
                 userId: userid,
@@ -446,9 +426,7 @@ router.get('/', async(req, res) => {
                 seq: story.seq
             }))
         },
-        userMatchingBonusList: {
-
-        },
+        userMatchingBonusList: undefined,
         userRaiseASuilenStoryList: {
             entries: Object.values(stories.ras).map((story: any) => ({
                 userId: userid,
@@ -458,24 +436,16 @@ router.get('/', async(req, res) => {
                 seq: story.seq
             }))
         },
-        userCollaboOriginalMusicScoreMap: {
-
-        },
+        userCollaboOriginalMusicScoreMap: undefined,
         userDailyLive: {
-
+            lastClearedAt: undefined,
+            liveStartedAt: undefined,
+            getDailyLiveRewardId: 6
         },
-        userDailyLiveTotalRewardHistory: {
-
-        },
-        userComebackStatus: {
-
-        },
-        userGraphicalInformationList: {
-
-        },
-        userMultiLiveCountRewardList: {
-
-        },
+        userDailyLiveTotalRewardHistory: undefined,
+        userComebackStatus: undefined,
+        userGraphicalInformationList: undefined,
+        userMultiLiveCountRewardList: undefined,
         userDigestStoryList: {
             entries: Object.values(stories.digest).map((story: any) => ({
                 userId: userid,
@@ -483,63 +453,34 @@ router.get('/', async(req, res) => {
                 status: "already_read",
             }))
         },
-        userLiveBoostUseBonusLimitList: {
-
-        },
-        userReceivablePresentLocationList: {
-
-        },
-        userPanelMissionList: {
-
-        },
-        userBirthdayIntroductionMap: {
-
-        },
-        userFestivalTeamMap: {
-
-        },
-        userLimitedItemList: {
-
-        },
+        userLiveBoostUseBonusLimitList: undefined,
+        userReceivablePresentLocationList: undefined,
+        userPanelMissionList: undefined,
+        userBirthdayIntroductionMap: undefined,
+        userFestivalTeamMap: undefined,
+        userLimitedItemList: undefined,
         userDeckList: {
 
         },
-        userAddMusicDifficultyIntroductionList: {
-
-        },
-        userGalleryList: {
-
-        },
-        userBandDeckRatingMap: {
-
-        },
-        updatedBandDeckRankList: {
-
-        },
-        userStageChallengeStageNoMap: {
-
-        },
-        userStageChallengeMap: {
-
-        },
-        userStageChallengeScoreMap: {
-
-        },
+        userAddMusicDifficultyIntroductionList: undefined,
+        userGalleryList: undefined,
+        userBandDeckRatingMap: undefined,
+        updatedBandDeckRankList: undefined,
+        userStageChallengeStageNoMap: undefined,
+        userStageChallengeMap: undefined,
+        userStageChallengeScoreMap: undefined,
         userStarSeal: {
 
         },
         userLiveBoostUseFull: {
-
+            dailyUseFullCount: 114,
+            resetTime: 0
         },
         userAutoLive: {
-
+            resetTime: 0
         },
-        userMonthlyMission: {
-
-        },
-        userMonthlyMissionRewardList: {
-
-        },
+        userMonthlyMission: undefined,
+        userMonthlyMissionRewardList: undefined,
         userCharacterRankMap: {
 
         },
