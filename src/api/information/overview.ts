@@ -7,12 +7,12 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     let buffer;
-
     try {
-        const resp = await axios.get('https://v940-bd.mobimon.com.tw/api/suite/master', {
+        const resp = await axios.get('https://v940-bd.mobimon.com.tw/api/information/overview', {
             responseType: 'arraybuffer',
             headers: {
                 'User-Agent': req.get("User-Agent") as string,
+                'X-Unity-Version': req.get("X-Unity-Version") as string,
                 'Content-Type': req.get("Content-Type") as string,
                 'Accept': req.get("Accept") as string,
                 'Accept-Encoding': req.get("Accept-Encoding") as string,
@@ -21,12 +21,12 @@ router.get('/', async (req, res) => {
         });
 
         buffer = resp.data;
-        fs.writeFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`, Buffer.from(buffer));
+        fs.writeFileSync(`${path.join(process.cwd(), "resp", "overview.binpb")}`, Buffer.from(resp.data));
     } catch(e) {
-        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)
+        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", "overview.binpb")}`);
     }
 
-    res.send(buffer)
+    res.send(buffer);
 })
 
 export default router;

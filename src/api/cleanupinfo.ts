@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     let buffer;
 
     try {
-        const resp = await axios.get('https://v900-bd.mobimon.com.tw/api/cleanupinfo', {
+        const resp = await axios.get('https://v940-bd.mobimon.com.tw/api/cleanupinfo', {
             responseType: 'arraybuffer',
             headers: {
                 'User-Agent': req.get("User-Agent") as string,

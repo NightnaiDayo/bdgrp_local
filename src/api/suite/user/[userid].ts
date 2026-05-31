@@ -7,50 +7,11 @@ import songs from "@gamedata/songs.json"
 import costumes from "@gamedata/costumes.json"
 import degrees from "@gamedata/degrees.json"
 import stamps from "@gamedata/stamps.json"
+import costumes3d from "@gamedata/costume3dDress.json"
+import costumes3dHairstyle from "@gamedata/costume3dHairstyle.json"
 import * as stories from "@gamedata/stories"
 
 const router = Router({ mergeParams: true })
-
-const cardFun = {
-    level(rarity: number) {
-        switch (rarity) {
-            case 1:
-                return 20;
-            case 2:
-                return 30;
-            case 3:
-                return 50;
-            case 4:
-            case 5:
-                return 60;
-
-        }
-    },
-    trainingStatus(rarity: number) {
-        switch (rarity) {
-            case 1:
-            case 2:
-                return "not_doing";
-            case 3:
-            case 4:
-            case 5:
-                return "done";
-
-        }
-    },
-    illust(rarity: number) {
-        switch (rarity) {
-            case 1:
-            case 2:
-                return "normal";
-            case 3:
-            case 4:
-            case 5:
-                return "after_training";
-
-        }
-    }
-}
 
 router.get('/', async(req, res) => {
     //@ts-ignore
@@ -79,13 +40,13 @@ router.get('/', async(req, res) => {
         userSituations = cards.situations.map(card => ({
                 userId: userid,
                 situationId: Number(card.situationId),
-                level: cardFun.level(card.rarity),
+                level: (card.rarity >= 3 ? card.levelLimit + 10 : card.levelLimit),
                 exp: 0,
                 createdAt: String(Date.now()),
                 addExp: 0,
-                trainingStatus: cardFun.trainingStatus(card.rarity),
+                trainingStatus: (card.rarity >= 3 ? "done" : "not_doing"),
                 duplicateCount: 0,
-                illust: cardFun.illust(card.rarity),
+                illust: (card.rarity >= 3 ? "after_training" : "normal"),
                 skillExp: 0,
                 skillLevel: 5,
                 limitBreakRank: 0
@@ -224,16 +185,13 @@ router.get('/', async(req, res) => {
         },
         userCostumeMap: {
             entries: Object.fromEntries(
-                Object.entries(costumes).flatMap(([charId, costumeIds]: [string, any]) =>
-                    costumeIds.map((costumeId: number) => [
-                        String(costumeId),
-                        {
-                            userId: userid,
-                            costumeId,
-                            characterId: Number(charId)
-                        }
-                    ])
-                )
+                costumes.costumes.map((costumeId: number) => [
+                    String(costumeId),
+                    {
+                        userId: userid,
+                        costumeId
+                    }
+                ])
             )
         },
         userAfterLiveTalkListMap: {
@@ -313,15 +271,11 @@ router.get('/', async(req, res) => {
         userMiracleTicketMap: undefined,
         userMiracleTicketExchangesMap: undefined,
         userMultiDisconnectionBadPenalty: undefined,
-        userSpecialLotteryDrawResultMap: {
-
-        },
+        userSpecialLotteryDrawResultMap: undefined,
         userMusicScoreMap: {
 
         },
-        userMusicAchievementMap: {
-
-        },
+        userMusicAchievementMap: undefined,
         userBirthdayStoryMap: undefined,
         userGenericAnimationMap: {
 
@@ -460,7 +414,18 @@ router.get('/', async(req, res) => {
         userFestivalTeamMap: undefined,
         userLimitedItemList: undefined,
         userDeckList: {
-
+            entries: [
+                {
+                    deckId: 1,
+                    deckName: "樂團1",
+                    leader: 947,
+                    member1: 1765,
+                    member2: 1730,
+                    member3: 2193,
+                    member4: 2018,
+                    deckType: "normal"
+                }
+            ]
         },
         userAddMusicDifficultyIntroductionList: undefined,
         userGalleryList: undefined,
@@ -491,14 +456,28 @@ router.get('/', async(req, res) => {
 
         },
         userCostume3dDressInventoryMap: {
-
+            entries: Object.fromEntries(
+                costumes3d.costume3dDress.map((costumeId: number) => [
+                    String(costumeId),
+                    {
+                        costume3dDressId: costumeId,
+                        status: "obtained"
+                    }
+                ])
+            )
         },
         userCostume3dHairstyleInventoryMap: {
-
+            entries: Object.fromEntries(
+                costumes3dHairstyle.costume3dHairstyle.map((costumeId: number) => [
+                    String(costumeId),
+                    {
+                        costume3dHairstyleId: costumeId,
+                        status: "obtained"
+                    }
+                ])
+            )
         },
-        userWearingCostume3dMap: {
-
-        },
+        userWearingCostume3dMap: undefined,
         userMusicClearInfoMap: {
 
         },
@@ -508,12 +487,8 @@ router.get('/', async(req, res) => {
         userCharacterSituationCountMap: {
 
         },
-        userDecoCharacterBackgroundInventoryMap: {
-
-        },
-        userDecoCharacter3dMotionInventoryListMap: {
-
-        },
+        userDecoCharacterBackgroundInventoryMap: undefined,
+        userDecoCharacter3dMotionInventoryListMap: undefined,
         userMusicVideo3dCustomDeckMap: {
 
         },
@@ -542,15 +517,9 @@ router.get('/', async(req, res) => {
         userGachaBonusMap: {
 
         },
-        userStampVoiceMap: {
-
-        },
-        userEventRankedCountAppeal: {
-
-        },
-        userEventMusicRankedCountAppeal: {
-
-        },
+        userStampVoiceMap: undefined,
+        userEventRankedCountAppeal: undefined,
+        userEventMusicRankedCountAppeal: undefined,
         userMyGoStoryList: {
             entries: Object.values(stories.mygo).map((story: any) => ({
                 userId: userid,
@@ -561,23 +530,15 @@ router.get('/', async(req, res) => {
             }))
         },
         userTerms: {
-
+            userId: userid
         },
-        userCharacterMissionBonusMap: {
-
-        },
-        userPhotoStudioMap: {
-
-        },
-        userGachaSelfPickupSituationList: {
-
-        },
+        userCharacterMissionBonusMap: undefined,
+        userPhotoStudioMap: undefined,
+        userGachaSelfPickupSituationList: undefined,
         userPhotoBackInventoryMap: {
 
         },
-        userLimitedSkinInventoryMap: {
-
-        },
+        userLimitedSkinInventoryMap: undefined,
         userMusicClearCountDetailMap: {
 
         }

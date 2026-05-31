@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
 
         const encReq = req.body;
         const buffer = decrypt(encReq);
-        console.log(buffer)
         const decoded = UserPostRequest.decode(buffer);
 
         const hash = crypto.randomUUID();
@@ -67,14 +66,12 @@ router.post('/', async (req, res) => {
             platform: newUser.platform ?? '',
             deviceModel: newUser.deviceModel ?? '',
             operatingSystem: newUser.operatingSystem ?? '',
-            birthMonth: newUser.birthMonth,
             tutorialStatus: newUser.tutorialStatus,
             introduction: newUser.introduction,
             unknownString: newUser.unknownString,
-            tutorialEndedAt: String(newUser.tutorialEndedAt)
         }
 
-        const encoded = Buffer.from(UserRegistration.encode(data).finish());
+        const encoded = Buffer.from(UserRegistration.encode(UserRegistration.fromJSON(data)).finish());
         const encBuffer = encrypt(encoded);
 
         res.send(encBuffer);
