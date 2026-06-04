@@ -26,6 +26,12 @@ router.get('/', async (req, res) => {
         buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)
     }
 
+    res.set({
+        'content-length': Buffer.byteLength(buffer),
+        'content-type': 'application/octet-stream',
+        'x-encoding': 'bzip2'
+    });
+
     res.send(buffer)
 })
 

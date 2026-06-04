@@ -23,10 +23,10 @@ router.post('/', async (req, res) => {
             deviceModel: decoded.deviceModel,
             operatingSystem: decoded.operatingSystem,
             birthMonth: "199001",
-            tutorialStatus: "start",
+            tutorialStatus: "end",
             introduction: "你好！",
             unknownString: "standard",
-            tutorialEndedAt: 0
+            tutorialEndedAt: Date.now()
         }
 
         const newGamedata = {
@@ -69,6 +69,7 @@ router.post('/', async (req, res) => {
             tutorialStatus: newUser.tutorialStatus,
             introduction: newUser.introduction,
             unknownString: newUser.unknownString,
+            tutorialEndedAt: String(newUser.tutorialEndedAt)
         }
 
         const encoded = Buffer.from(UserRegistration.encode(UserRegistration.fromJSON(data)).finish());

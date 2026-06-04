@@ -9,6 +9,7 @@ router.put('/', async (req, res) => {
     const buffer = decrypt(encReq);
     const decoded = UserPutRequest.decode(buffer);
 
+    //@ts-ignore
     const userId = Number(req.params.userid);
     const user = db.Users.find((u: any) => u.userId === userId);
 

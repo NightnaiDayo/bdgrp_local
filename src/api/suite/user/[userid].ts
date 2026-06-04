@@ -9,6 +9,10 @@ import degrees from "@gamedata/degrees.json"
 import stamps from "@gamedata/stamps.json"
 import costumes3d from "@gamedata/costume3dDress.json"
 import costumes3dHairstyle from "@gamedata/costume3dHairstyle.json"
+import areas from "@gamedata/areas.json"
+import genericAnimations from "@gamedata/genericAnimations.json"
+import commonsLive2d from "@gamedata/commonsLive2d.json"
+import characterProfileL2d from "@gamedata/characterProfileL2d.json"
 import * as stories from "@gamedata/stories"
 
 const router = Router({ mergeParams: true })
@@ -60,6 +64,18 @@ router.get('/', async(req, res) => {
         userSituations = user.situations
     }
 
+    const deckMembers = [17,21,22,23,25]
+    const aggregated: Record<string, number[]> = {};
+
+    for (const [category, charMap] of Object.entries(commonsLive2d)) {
+        for (const [charId, ids] of Object.entries(charMap)) {
+            if (deckMembers.includes(Number(charId))) {
+                if (!aggregated[category]) aggregated[category] = [];
+                aggregated[category].push(...ids);  // 這裡的展開是安全的，ids 是陣列
+            }
+        }
+    }
+
     const data = {
         user: {
             userRegistration: {
@@ -73,7 +89,7 @@ router.get('/', async(req, res) => {
                 birthMonth: user.birthMonth,
                 tutorialStatus: user.tutorialStatus,
                 introduction: user.introduction,
-                tutorialEndedAt: String(user.tutorialEndedAt)
+                tutorialEndedAt: user.tutorialEndedAt
             },
             userGamedata: {
                 userId: String(user.userId),
@@ -121,9 +137,7 @@ router.get('/', async(req, res) => {
         },
         userPracticeTicketList: undefined,
         userBondsList: undefined,
-        userBandRankMap: {
-
-        },
+        userBandRankMap: undefined,
         userPoppinPartyStoryList: {
             entries: Object.values(stories.ppp).map((story: any) => ({
                 userId: userid,
@@ -171,7 +185,18 @@ router.get('/', async(req, res) => {
         },
         userItemList: undefined,
         userCommonsLive2dMap: {
-
+            entries: Object.fromEntries(
+                Object.entries(aggregated).map(([category, idArray]) => [
+                    category,
+                    {
+                        // @ts-ignore
+                        entries: idArray.map(live2dId => ({
+                            live2dId,
+                            live2dCategory: category
+                        }))
+                    }
+                ])
+            )
         },
         userEpisodeMap: undefined,
         userMusicInventoryList: {
@@ -194,30 +219,36 @@ router.get('/', async(req, res) => {
                 ])
             )
         },
-        userAfterLiveTalkListMap: {
-
-        },
-        userAreaItemMap: {
-
-        },
-        userResourceCount: {
-
-        },
+        userAfterLiveTalkListMap: undefined,
+        userAreaItemMap: undefined,
+        userResourceCount: undefined,
         userLiveBoost: {
-
+            userId: userid,
+            liveBoost: 114,
+            serverDate: Date.now(),
+            liveBoostBonusType: "default"
         },
         userExchangesList: {
-
+            entries: [
+                {
+                    userId: 8374399,
+                    exchangesId: 1563,
+                    resetAt: 1779155725000
+                }
+            ]
         },
         userGachaTicketList: undefined,
         userGachaStatusMap: undefined,
         userAreaStatusMap: {
-
+            entries: Object.fromEntries(
+                areas.areas.map((areaId: number) => [
+                    String(areaId),
+                    { userId: userid, areaId }
+                ])
+            )
         },
         userLoginBonusMap: undefined,
-        userHomeBannerList: {
-
-        },
+        userHomeBannerList: undefined,
         userStampMap: {
             entries: Object.fromEntries(
                 stamps.stamps.map((stampId: number) => [
@@ -236,11 +267,14 @@ router.get('/', async(req, res) => {
         },
         userBadPenalty: undefined,
         userCharacterProfileLive2dMap: {
-
+            entries: Object.fromEntries(
+                Object.entries(characterProfileL2d).map(([charId, live2dIds]) => [
+                    charId,
+                    live2dIds.map(live2dId => ({ characterId: Number(charId), live2dId }))
+                ])
+            )
         },
-        userEventExchangesList: {
-
-        },
+        userEventExchangesList: {},
         userEventItemList: undefined,
         userPurchaseMap: undefined,
         userMissionMap: undefined,
@@ -257,34 +291,39 @@ router.get('/', async(req, res) => {
             )
         },
         userLiveBoostRecoveryItemList: undefined,
-        userHighScoreMusicRatingMap: {
-
-        },
+        userHighScoreMusicRating: undefined,
+        userHighScoreMusicRatingMap: undefined,
         userSeason: {
             seasonId: 37
         },
         userQualifyTournamentMusicScoreMap: undefined,
         userEventStoryMemorialMap: undefined,
-        userReleasedBondsIdList: {
-
-        },
+        userReleasedBondsIdList: undefined,
         userMiracleTicketMap: undefined,
-        userMiracleTicketExchangesMap: undefined,
+        userMiracleTicketExchangesMap: {
+            entries: []
+        },
         userMultiDisconnectionBadPenalty: undefined,
         userSpecialLotteryDrawResultMap: undefined,
-        userMusicScoreMap: {
-
-        },
+        userMusicScoreMap: undefined,
         userMusicAchievementMap: undefined,
         userBirthdayStoryMap: undefined,
         userGenericAnimationMap: {
-
+            entries: Object.fromEntries(
+                genericAnimations.genericAnimations.map((genericAnimationId: any) => [
+                    String(genericAnimationId),
+                    {
+                        userId: userid,
+                        genericAnimationId,
+                        status: "already_read"
+                    }
+                ])
+            )
         },
         userMusicShopMap: {
-            entries: Object.fromEntries(
-                songs.songs.map((song: any, i: number) => [
-                    String(i + 1),
-                    {
+            entries: {
+                "7": {
+                    entries: songs.songs.map((song: any, i: number) => ({
                         userId: userid,
                         musicShopId: i + 1,
                         shopId: 7,
@@ -293,9 +332,9 @@ router.get('/', async(req, res) => {
                         status: "purchase",
                         seq: i + 1,
                         isInitialDistribution: false
-                    }
-                ])
-            )
+                    }))
+                }
+            }
         },
         userTitleList: undefined,
         userPurchaseVoidBadPenaltyStandard: undefined,
@@ -312,7 +351,7 @@ router.get('/', async(req, res) => {
             approvalLimit: 50,
             applicationLimit: 50
         },
-        userNotHaveViewExchangesMiracleTicketIdList: undefined,
+        userNotHaveViewExchangesMiracleTicketIdList: {},
         userProfileSituation: undefined,
         userProfileDegreeMap: undefined,
         userDecoFrameInventoryMap: undefined,
@@ -392,8 +431,8 @@ router.get('/', async(req, res) => {
         },
         userCollaboOriginalMusicScoreMap: undefined,
         userDailyLive: {
-            lastClearedAt: undefined,
-            liveStartedAt: undefined,
+            lastClearedAt: 0,
+            liveStartedAt: 0,
             getDailyLiveRewardId: 6
         },
         userDailyLiveTotalRewardHistory: undefined,
@@ -413,6 +452,7 @@ router.get('/', async(req, res) => {
         userBirthdayIntroductionMap: undefined,
         userFestivalTeamMap: undefined,
         userLimitedItemList: undefined,
+        userLimitedExchangesList: {},
         userDeckList: {
             entries: [
                 {
@@ -435,7 +475,7 @@ router.get('/', async(req, res) => {
         userStageChallengeMap: undefined,
         userStageChallengeScoreMap: undefined,
         userStarSeal: {
-
+            amount: user.seal
         },
         userLiveBoostUseFull: {
             dailyUseFullCount: 114,
@@ -446,15 +486,9 @@ router.get('/', async(req, res) => {
         },
         userMonthlyMission: undefined,
         userMonthlyMissionRewardList: undefined,
-        userCharacterRankMap: {
-
-        },
-        userCharacterPotentialLevelMap: {
-
-        },
-        userMusicVideo3dListMap: {
-
-        },
+        userCharacterRankMap: undefined,
+        userCharacterPotentialLevelMap: undefined,
+        userMusicVideo3dListMap: undefined,
         userCostume3dDressInventoryMap: {
             entries: Object.fromEntries(
                 costumes3d.costume3dDress.map((costumeId: number) => [
@@ -478,45 +512,21 @@ router.get('/', async(req, res) => {
             )
         },
         userWearingCostume3dMap: undefined,
-        userMusicClearInfoMap: {
-
-        },
-        userMusicClearCountInfoMap: {
-
-        },
-        userCharacterSituationCountMap: {
-
-        },
+        userMusicClearInfoMap: undefined,
+        userMusicClearCountInfoMap: undefined,
+        userCharacterSituationCountMap: undefined,
         userDecoCharacterBackgroundInventoryMap: undefined,
         userDecoCharacter3dMotionInventoryListMap: undefined,
-        userMusicVideo3dCustomDeckMap: {
-
-        },
-        userCostume3dMakingItemInventoryMap: {
-
-        },
-        userMusicVideo3dOriginalDeckCostumeMap: {
-
-        },
-        userLimitBreakItemList: {
-
-        },
-        userDecoAppealInventoryMap: {
-
-        },
-        userInvitationInfo: {
-
-        },
-        userCharacterUseStyleMap: {
-
-        },
+        userMusicVideo3dCustomDeckMap: undefined,
+        userCostume3dMakingItemInventoryMap: undefined,
+        userMusicVideo3dOriginalDeckCostumeMap: undefined,
+        userLimitBreakItemList: undefined,
+        userDecoAppealInventoryMap: undefined,
+        userInvitationInfo: undefined,
+        userCharacterUseStyleMap: undefined,
         userPurchaseStarList: undefined,
-        userInviteMissionListMap: {
-
-        },
-        userGachaBonusMap: {
-
-        },
+        userInviteMissionListMap: undefined,
+        userGachaBonusMap: undefined,
         userStampVoiceMap: undefined,
         userEventRankedCountAppeal: undefined,
         userEventMusicRankedCountAppeal: undefined,
@@ -535,13 +545,9 @@ router.get('/', async(req, res) => {
         userCharacterMissionBonusMap: undefined,
         userPhotoStudioMap: undefined,
         userGachaSelfPickupSituationList: undefined,
-        userPhotoBackInventoryMap: {
-
-        },
+        userPhotoBackInventoryMap: undefined,
         userLimitedSkinInventoryMap: undefined,
-        userMusicClearCountDetailMap: {
-
-        }
+        userMusicClearCountDetailMap: undefined
 
     }
 
@@ -549,7 +555,13 @@ router.get('/', async(req, res) => {
     const buffer = Buffer.from(SuiteUserGetResponse.encode(message).finish());
     const encBuffer = encrypt(buffer);
 
-    res.send(encBuffer);
+    res.removeHeader('Content-Length');
+    res.removeHeader('Transfer-Encoding');
+    res.setHeader('content-type', 'application/octet-stream');
+
+    res.writeHead(200);
+    res.write(encBuffer);
+    res.end();
 })
 
 export default router;

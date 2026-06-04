@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { Keys } from '@gamedata/config.json'
+import { Keys } from '../config.json'
 import fs from "fs";
 
 export function decrypt(buf: Buffer): Buffer {

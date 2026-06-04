@@ -8,6 +8,8 @@ const PORT = 8482;
 
 app.set('strict routing', true);
 app.use(morgan('dev'));
+app.disable('x-powered-by');
+app.set('etag', false);
 
 app.use(express.raw({ type: "*/*" }))
 
