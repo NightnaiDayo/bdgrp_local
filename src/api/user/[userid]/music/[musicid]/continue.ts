@@ -1,32 +1,23 @@
 import { Router } from "express";
-import { UserGetResponse } from "@proto";
-import { db, saveDb } from "@db"
-import { encrypt } from "@util/encrypt";
+import {UserMusicContinueRequest, UserMusicContinueResponse, UserPutRequest} from "@proto"
+import {db} from "@db";
+import crypto from "crypto";
+import {encrypt} from "@util/encrypt";
+import {decrypt} from "@util/decrypt";
 
 const router = Router({ mergeParams: true })
 
-router.get("/", async (req, res) => {
+router.put('/', async(req, res) => {
+    const encReq = req.body;
+    const reqbuffer = decrypt(encReq);
+    const decoded = UserMusicContinueRequest.decode(reqbuffer)
+
     // @ts-ignore
-    const userId = req.params.userid;
+    const userid = req.params.userid;
 
-    const user = db.Users.find((u: any) => String(u.userId) === userId);
+    const user = db.Users.find((u: any) => u.userId == userid);
 
-    if(!user) return res.status(404).send('')
-    
-    const data: UserGetResponse = {
-        userRegistration: {
-            userId: String(user.userId),
-            hash: user.hash,
-            userName: user.userName,
-            clientVersion: user.clientVersion ?? '',
-            platform: user.platform ?? '',
-            deviceModel: user.deviceModel ?? '',
-            operatingSystem: user.operatingSystem ?? '',
-            birthMonth: user.birthMonth,
-            tutorialStatus: user.tutorialStatus,
-            introduction: user.introduction,
-            tutorialEndedAt: String(user.tutorialEndedAt)
-        },
+    const data = {
         userGamedata: {
             userId: String(user.userId),
             rank: user.rank,
@@ -54,15 +45,16 @@ router.get("/", async (req, res) => {
             publishStageFriendRankingFlg: user.publishStageFriendRankingFlg,
             publishCharacterRankFlg: user.publishCharacterRankFlg,
             loginDays: user.loginDays
-        }
+        },
+        // @ts-ignore
+        contiuneHash: crypto.createHash("sha1").update(`${String(userid) + decoded.continueCount.toString() + decoded.continueTime.toString()}`, "utf8").digest("hex")
     }
 
+    const message = UserMusicContinueResponse.fromJSON(data);
+    const buffer = Buffer.from(UserMusicContinueResponse.encode(message).finish());
+    const encBuffer = encrypt(buffer);
 
-    const encoded = Buffer.from(UserGetResponse.encode(data).finish());
-    const encBuffer = encrypt(encoded);
-
-    res.send(encBuffer);
-
+    res.send(encBuffer)
 })
 
 export default router;

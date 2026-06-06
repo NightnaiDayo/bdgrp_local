@@ -37,4 +37,9 @@ router.put('/', async (req, res) => {
     saveDb();
     res.send('');
 });
+
+router.get('/', async(req, res) => {
+
+})
+
 export default router;

@@ -30,12 +30,12 @@ router.post('/', async (req, res) => {
         }
 
         const newGamedata = {
-            rank: 1,
-            exp: 0,
+            rank: 114,
+            exp: 67,
             coin: 114514,
             mainDeck: 1,
             paidStar: 0,
-            freeStar: 0,
+            freeStar: 514,
             seal: 0,
             degree: 100,
             publishTotalDeckPowerFlg: false,

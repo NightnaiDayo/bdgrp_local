@@ -12,12 +12,14 @@
   "dependencies": {
     "axios": "^1.13.5",
     "body-parser": "^2.2.2",
+    "compressing": "^2.1.1",
     "express": "^5.2.1",
     "google-protobuf": "^4.0.1",
     "mongoose": "^9.2.1",
     "morgan": "^1.10.1",
     "path": "^0.12.7",
     "protobufjs": "^8.0.0",
+    "seek-bzip": "^2.0.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
     "ts-proto": "^2.11.2"
