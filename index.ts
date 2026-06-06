@@ -13,6 +13,13 @@ app.set('etag', false);
 
 app.use(express.raw({ type: "*/*" }))
 
+if(!fs.existsSync(`./db.json`)) {
+    const db = {
+        "Users": []
+    }
+    fs.writeFileSync('./db.json', JSON.stringify(db, null, 2))
+}
+
 const root = path.join(__dirname, "src/api")
 
 function normalizeSegment(segment: string) {
