@@ -20,16 +20,19 @@ router.put('/', async (req, res) => {
             case 'birthMonth':
             case 'introduction':
             case 'tutorialStatus':
-                user[key] = value;
-                if (key === 'tutorialStatus' && value === 'end') {
-                    user.tutorialEndedAt = String(Date.now());
+                if (value !== "" && value !== undefined) {
+                    user[key] = value;
                 }
                 break;
             case 'mainDeck':
-                user.mainDeck = Number(value);
+                if (Number(value) !== 0) {
+                    user.mainDeck = Number(value);
+                }
                 break;
             case 'degree':
-                user.degree = value;
+                if (value !== 0) {
+                    user.degree = value;
+                }
                 break;
         }
     }

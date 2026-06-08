@@ -2,17 +2,7 @@ import { Router } from "express";
 import { encrypt } from "@util/encrypt";
 import { db, saveDb } from "@db";
 import { SuiteUserGetResponse, SuiteMasterGetResponse } from "@proto"
-import cards from "@gamedata/cards.json";
 import songs from "@gamedata/songs.json"
-import costumes from "@gamedata/costumes.json"
-import degrees from "@gamedata/degrees.json"
-import stamps from "@gamedata/stamps.json"
-import costumes3d from "@gamedata/costume3dDress.json"
-import costumes3dHairstyle from "@gamedata/costume3dHairstyle.json"
-import areas from "@gamedata/areas.json"
-import genericAnimations from "@gamedata/genericAnimations.json"
-import commonsLive2d from "@gamedata/commonsLive2d.json"
-import characterProfileL2d from "@gamedata/characterProfileL2d.json"
 import * as stories from "@gamedata/stories"
 import { decrypt } from "@util/decrypt";
 import fs from "fs";
@@ -33,7 +23,6 @@ router.get('/', async(req, res) => {
     if (!user) return res.status(404).send();
 
     const userCharacterMap: Record<string, any> = {};
-    let userSituations;
     let userDeckList;
     
     for(let i = 1; i <=40; i++) {
@@ -48,43 +37,37 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: 1643
     }
-    if(!user.situations) {
-        // @ts-ignore
-        userSituations = cards.situations.map(card => ({
+    const userSituations = Object.values(master.masterCharacterSituationMap.entries).map((card: any) => {
+        const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
+        const hasTraining = card.rarity >= 3;
+        return {
+            userId: userid,
+            situationId: Number(card.situationId),
+            level: maxLevel,
+            exp: 0,
+            createdAt: Date.now(),
+            addExp: 0,
+            trainingStatus: hasTraining ? "done" : "not_doing",
+            duplicateCount: 1,
+            illust: hasTraining ? "after_training" : "normal",
+            skillExp: 0,
+            skillLevel: 5,
+            userAppendParameter: hasTraining ? {
                 userId: userid,
                 situationId: Number(card.situationId),
-                level: Math.max(...Object.keys(master.masterCharacterSituationMap.entries[card.situationId].parameterMap || {}).map(Number)),
-                exp: 0,
-                createdAt: Date.now(),
-                addExp: 0,
-                trainingStatus: (card.rarity >= 3 ? "done" : "not_doing"),
-                duplicateCount: 1,
-                illust: (card.rarity >= 3 ? "after_training" : "normal"),
-                skillExp: 0,
-                skillLevel: 5,
-                userAppendParameter: card.rarity >= 3 ? {
-                    userId: userid,
-                    situationId: Number(card.situationId),
-                    performance: master.masterCharacterSituationMap.entries[card.situationId].training.trainingPerformance,
-                    technique: master.masterCharacterSituationMap.entries[card.situationId].training.trainingTechnique,
-                    visual: master.masterCharacterSituationMap.entries[card.situationId].training.trainingVisual,
-                    characterPotentialPerformance: 30,
-                    characterPotentialTechnique: 30,
-                    characterPotentialVisual: 30,
-                    characterBonusPerformance: 30,
-                    characterBonusTechnique: 30,
-                    characterBonusVisual: 30
-                } : undefined,
-                limitBreakRank: 0
-        }))
-
-        user.situations = userSituations
-
-        saveDb();
-
-    } else {
-        userSituations = user.situations
-    }
+                performance: card.training?.trainingPerformance,
+                technique: card.training?.trainingTechnique,
+                visual: card.training?.trainingVisual,
+                characterPotentialPerformance: 30,
+                characterPotentialTechnique: 30,
+                characterPotentialVisual: 30,
+                characterBonusPerformance: 30,
+                characterBonusTechnique: 30,
+                characterBonusVisual: 30
+            } : undefined,
+            limitBreakRank: 0
+        };
+    });
 
     if(!user.decks) {
         userDeckList = [
@@ -108,10 +91,61 @@ router.get('/', async(req, res) => {
     }
     if(!user.musicScore) {
         user.musicScore = {}
-        saveDb()
+        saveDb();
+    }
+    if(!user.wearingCostume) {
+        user.wearingCostume = Object.fromEntries(
+            [...Array.from({length: 40}, (_, i) => i + 1), 601].map(charId => {
+                const defaults: Record<number, {dressId: number, hairstyleId: number}> = {
+                    36: { dressId: 12854, hairstyleId: 502 },
+                    37: { dressId: 12855, hairstyleId: 503 },
+                    38: { dressId: 12856, hairstyleId: 504 },
+                    39: { dressId: 12857, hairstyleId: 505 },
+                    40: { dressId: 12858, hairstyleId: 506 },
+                    601: { dressId: 36, hairstyleId: 36 },
+                };
+                return [
+                    String(charId),
+                    defaults[charId] ?? { dressId: charId, hairstyleId: charId }
+                ];
+            })
+        );
+        saveDb();
     }
 
-    const deckMembers = [17,21,22,23,25]
+    const DECO_MOTION_MAP: Record<number, number[]> = {
+        1: [217, 218, 219], 2: [222, 223, 224], 3: [227, 228, 229],
+        4: [232, 233, 234], 5: [237, 238, 239], 6: [242, 243, 244],
+        7: [247, 248, 249], 8: [252, 253, 254], 9: [257, 258, 259],
+        10: [262, 263, 264], 11: [267, 268, 269], 12: [272, 273, 274],
+        13: [277, 278, 279], 14: [282, 283, 284], 15: [287, 288, 289],
+        16: [292, 293, 294], 17: [297, 298, 299], 18: [302, 303, 304],
+        19: [307, 308, 309], 20: [312, 313, 314], 21: [317, 318, 319],
+        22: [322, 323, 324], 23: [327, 328, 329], 24: [332, 333, 334],
+        25: [337, 338, 339], 26: [342, 343, 344], 27: [347, 348, 349],
+        28: [352, 353, 354], 29: [357, 358, 359], 30: [362, 363, 364],
+        31: [367, 368, 369], 32: [372, 373, 374], 33: [377, 378, 379],
+        34: [382, 383, 384], 35: [387, 388, 389], 36: [462, 463, 464],
+        37: [467, 468, 469], 38: [472, 473, 474], 39: [477, 478, 479],
+        40: [482, 483, 484], 601: [392, 393, 394]
+    };
+
+    const mainDeck = user.decks[user.mainDeck - 1];
+    const situationIds = [mainDeck.leader, mainDeck.member1, mainDeck.member2, mainDeck.member3, mainDeck.member4].filter(Boolean);
+    const deckMembers = [...new Set(
+        // @ts-ignore
+        situationIds.map(sid => master.masterCharacterSituationMap.entries[String(sid)]?.characterId).filter(Boolean)
+    )];
+
+    const commonsLive2d: Record<string, Record<number, number[]>> = {};
+    for (const entry of Object.values(master.masterCommonsLive2dMap.entries) as any[]) {
+        const category = entry.live2dCategory;
+        const charId = entry.characterId;
+        if (!commonsLive2d[category]) commonsLive2d[category] = {};
+        if (!commonsLive2d[category][charId]) commonsLive2d[category][charId] = [];
+        commonsLive2d[category][charId].push(entry.live2dId);
+    }
+
     const aggregated: Record<string, number[]> = {};
 
     for (const [category, charMap] of Object.entries(commonsLive2d)) {
@@ -169,7 +203,28 @@ router.get('/', async(req, res) => {
         return { entries };
     }
 
+    const userProfileDegree = {
+        "first": {
+            userId: Number(userid),
+            profileDegreeType: "first",
+            degreeId: user.degree[0]
+        }
+    }
     // @ts-ignore
+    if(user.degree[1]) userProfileDegree["second"] = {
+        userId: Number(userid),
+        profileDegreeType: "second",
+        degreeId: user.degree[1]
+    }
+
+    const characterProfileL2d: Record<number, number[]> = {};
+    for (const entry of Object.values(master.masterCharacterProfileLive2dMap.entries) as any[]) {
+        if (!characterProfileL2d[entry.characterId]) {
+            characterProfileL2d[entry.characterId] = [];
+        }
+        characterProfileL2d[entry.characterId].push(entry.characterProfileLive2dId);
+    }
+
     // @ts-ignore
     const data = {
         user: {
@@ -195,7 +250,7 @@ router.get('/', async(req, res) => {
                 paidStar: user.paidStar,
                 freeStar: user.freeStar,
                 seal: user.seal,
-                degree: user.degree,
+                degree: user.degree[0],
                 publishTotalDeckPowerFlg: user.publishTotalDeckPowerFlg,
                 publishBandRankFlg: user.publishBandRankFlg,
                 publishMusicClearedFlg: user.publishMusicClearedFlg,
@@ -292,14 +347,14 @@ router.get('/', async(req, res) => {
         },
         userBandRankMap: {
             entries: {
-                "1": { userId: userid, bandId: 1, bandRank: 1, exp: 15, totalExp: 15, nextExp: 385 },
-                "2": { userId: userid, bandId: 2, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 },
-                "3": { userId: userid, bandId: 3, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 },
-                "4": { userId: userid, bandId: 4, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 },
-                "5": { userId: userid, bandId: 5, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 },
-                "18": { userId: userid, bandId: 18, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 },
-                "21": { userId: userid, bandId: 21, bandRank: 1, exp: 100, totalExp: 100, nextExp: 300 },
-                "45": { userId: userid, bandId: 45, bandRank: 1, exp: 0, totalExp: 0, nextExp: 400 }
+                "1": { userId: userid, bandId: 1, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "2": { userId: userid, bandId: 2, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "3": { userId: userid, bandId: 3, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "4": { userId: userid, bandId: 4, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "5": { userId: userid, bandId: 5, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "18": { userId: userid, bandId: 18, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "21": { userId: userid, bandId: 21, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
+                "45": { userId: userid, bandId: 45, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 }
             }
         },
         userPoppinPartyStoryList: {
@@ -411,36 +466,43 @@ router.get('/', async(req, res) => {
         userGachaStatusMap: undefined,
         userAreaStatusMap: {
             entries: Object.fromEntries(
-                areas.areas.map((areaId: number) => [
-                    String(areaId),
-                    { userId: userid, areaId }
-                ])
+                Object.entries(master.masterAreaMap.entries)
+                    .filter(([_, area]) => area.areaType === "common")
+                    .map(([areaId]) => [
+                        Number(areaId),
+                        {userId: userid, areaId: Number(areaId)}
+                    ])
             )
         },
         userLoginBonusMap: { entries: {} },
         userHomeBannerList: undefined,
         userStampMap: {
             entries: Object.fromEntries(
-                stamps.stamps.map((stampId: number) => [
-                    String(stampId),
-                    { userId: userid, stampId, seq: 1, isUnlockVoice: false }
+                Object.keys(master.masterStampMap.entries).map((stampId) => [
+                    Number(stampId),
+                    { userId: userid, stampId: Number(stampId), seq: 1, isUnlockVoice: false }
                 ])
             )
         },
         userDegreeMap: {
             entries: Object.fromEntries(
-                degrees.degrees.map((degreeId: number) => [
-                    String(degreeId),
-                    { userId: userid, degreeId }
+                Object.keys(master.masterDegreeMap.entries).map((degreeId) => [
+                    Number(degreeId),
+                    { userId: userid, degreeId: Number(degreeId) }
                 ])
             )
         },
         userBadPenalty: undefined,
         userCharacterProfileLive2dMap: {
             entries: Object.fromEntries(
-                Object.entries(characterProfileL2d).map(([charId, live2dIds]) => [
+                Object.entries(characterProfileL2d).map(([charId, ids]) => [
                     charId,
-                    live2dIds.map(live2dId => ({ characterId: Number(charId), live2dId }))
+                    {
+                        entries: ids.map(id => ({
+                            characterId: Number(charId),
+                            live2dId: id
+                        }))
+                    }
                 ])
             )
         },
@@ -452,7 +514,7 @@ router.get('/', async(req, res) => {
                 "2": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 2,
                             "seq": 1,
                             "progress": 3,
@@ -464,7 +526,7 @@ router.get('/', async(req, res) => {
                 "6": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 6,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -475,7 +537,7 @@ router.get('/', async(req, res) => {
                 "8": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 8,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -486,7 +548,7 @@ router.get('/', async(req, res) => {
                 "9": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 9,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -497,7 +559,7 @@ router.get('/', async(req, res) => {
                 "11": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 11,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -508,7 +570,7 @@ router.get('/', async(req, res) => {
                 "12": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 12,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -519,7 +581,7 @@ router.get('/', async(req, res) => {
                 "14": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 14,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -530,7 +592,7 @@ router.get('/', async(req, res) => {
                 "22": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 22,
                             "seq": 1,
                             "progress": 1,
@@ -542,7 +604,7 @@ router.get('/', async(req, res) => {
                 "23": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 23,
                             "seq": 1,
                             "progress": 1,
@@ -554,7 +616,7 @@ router.get('/', async(req, res) => {
                 "24": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 24,
                             "seq": 1,
                             "progress": 1,
@@ -566,7 +628,7 @@ router.get('/', async(req, res) => {
                 "25": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 25,
                             "seq": 1,
                             "progress": 1,
@@ -578,7 +640,7 @@ router.get('/', async(req, res) => {
                 "26": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 26,
                             "seq": 1,
                             "progress": 1,
@@ -590,7 +652,7 @@ router.get('/', async(req, res) => {
                 "27": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 27,
                             "seq": 1,
                             "progress": 1,
@@ -602,7 +664,7 @@ router.get('/', async(req, res) => {
                 "28": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 28,
                             "seq": 1,
                             "progress": 1,
@@ -614,7 +676,7 @@ router.get('/', async(req, res) => {
                 "29": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 29,
                             "seq": 1,
                             "progress": 89219,
@@ -626,7 +688,7 @@ router.get('/', async(req, res) => {
                 "30": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 30,
                             "seq": 1,
                             "progress": 32572,
@@ -638,7 +700,7 @@ router.get('/', async(req, res) => {
                 "31": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 31,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -649,7 +711,7 @@ router.get('/', async(req, res) => {
                 "32": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 32,
                             "seq": 1,
                             "progress": 262272,
@@ -661,7 +723,7 @@ router.get('/', async(req, res) => {
                 "33": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 33,
                             "seq": 1,
                             "progress": 50313,
@@ -673,7 +735,7 @@ router.get('/', async(req, res) => {
                 "34": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 34,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -684,7 +746,7 @@ router.get('/', async(req, res) => {
                 "35": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 35,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -695,7 +757,7 @@ router.get('/', async(req, res) => {
                 "50": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 50,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -706,7 +768,7 @@ router.get('/', async(req, res) => {
                 "66": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 66,
                             "seq": 1,
                             "progress": 1,
@@ -718,7 +780,7 @@ router.get('/', async(req, res) => {
                 "67": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 67,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -729,7 +791,7 @@ router.get('/', async(req, res) => {
                 "1001": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1001,
                             "seq": 1,
                             "progress": 1,
@@ -741,7 +803,7 @@ router.get('/', async(req, res) => {
                 "1002": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1002,
                             "seq": 1,
                             "progress": 1,
@@ -753,7 +815,7 @@ router.get('/', async(req, res) => {
                 "1003": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1003,
                             "seq": 1,
                             "progress": 1,
@@ -765,7 +827,7 @@ router.get('/', async(req, res) => {
                 "1004": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1004,
                             "seq": 1,
                             "progress": 2,
@@ -777,7 +839,7 @@ router.get('/', async(req, res) => {
                 "1005": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1005,
                             "seq": 1,
                             "progress": 1,
@@ -789,7 +851,7 @@ router.get('/', async(req, res) => {
                 "1006": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1006,
                             "seq": 1,
                             "progress": 1,
@@ -801,7 +863,7 @@ router.get('/', async(req, res) => {
                 "1007": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1007,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -812,7 +874,7 @@ router.get('/', async(req, res) => {
                 "1008": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1008,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -823,7 +885,7 @@ router.get('/', async(req, res) => {
                 "1009": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1009,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -834,7 +896,7 @@ router.get('/', async(req, res) => {
                 "1010": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1010,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -845,7 +907,7 @@ router.get('/', async(req, res) => {
                 "1011": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1011,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -856,7 +918,7 @@ router.get('/', async(req, res) => {
                 "1012": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1012,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -867,7 +929,7 @@ router.get('/', async(req, res) => {
                 "1013": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1013,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -878,7 +940,7 @@ router.get('/', async(req, res) => {
                 "1014": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1014,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -889,7 +951,7 @@ router.get('/', async(req, res) => {
                 "1015": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1015,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -900,7 +962,7 @@ router.get('/', async(req, res) => {
                 "1016": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1016,
                             "seq": 1,
                             "progress": 1,
@@ -912,7 +974,7 @@ router.get('/', async(req, res) => {
                 "1017": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1017,
                             "seq": 1,
                             "progress": 3,
@@ -920,7 +982,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 201
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1017,
                             "seq": 2,
                             "progress": 3,
@@ -932,7 +994,7 @@ router.get('/', async(req, res) => {
                 "1018": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1018,
                             "seq": 1,
                             "progress": 1,
@@ -944,7 +1006,7 @@ router.get('/', async(req, res) => {
                 "1019": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1019,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -955,7 +1017,7 @@ router.get('/', async(req, res) => {
                 "1020": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1020,
                             "seq": 1,
                             "progress": 1,
@@ -967,7 +1029,7 @@ router.get('/', async(req, res) => {
                 "1021": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1021,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -978,7 +1040,7 @@ router.get('/', async(req, res) => {
                 "1022": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1022,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -989,7 +1051,7 @@ router.get('/', async(req, res) => {
                 "1023": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1023,
                             "seq": 1,
                             "progress": 1,
@@ -1001,7 +1063,7 @@ router.get('/', async(req, res) => {
                 "1024": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1024,
                             "seq": 1,
                             "progress": 1,
@@ -1013,7 +1075,7 @@ router.get('/', async(req, res) => {
                 "1025": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1025,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1024,7 +1086,7 @@ router.get('/', async(req, res) => {
                 "1026": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1026,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1035,7 +1097,7 @@ router.get('/', async(req, res) => {
                 "1027": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1027,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1046,7 +1108,7 @@ router.get('/', async(req, res) => {
                 "1028": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1028,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1057,7 +1119,7 @@ router.get('/', async(req, res) => {
                 "1029": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1029,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1068,7 +1130,7 @@ router.get('/', async(req, res) => {
                 "1030": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1030,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1079,7 +1141,7 @@ router.get('/', async(req, res) => {
                 "1031": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1031,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1090,7 +1152,7 @@ router.get('/', async(req, res) => {
                 "1032": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1032,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1101,7 +1163,7 @@ router.get('/', async(req, res) => {
                 "1033": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1033,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1112,7 +1174,7 @@ router.get('/', async(req, res) => {
                 "1034": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1034,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1123,7 +1185,7 @@ router.get('/', async(req, res) => {
                 "1035": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1035,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1134,7 +1196,7 @@ router.get('/', async(req, res) => {
                 "1106": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1106,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1145,7 +1207,7 @@ router.get('/', async(req, res) => {
                 "1107": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1107,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1156,7 +1218,7 @@ router.get('/', async(req, res) => {
                 "1108": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1108,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1167,7 +1229,7 @@ router.get('/', async(req, res) => {
                 "1109": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1109,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1178,7 +1240,7 @@ router.get('/', async(req, res) => {
                 "1110": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1110,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1189,7 +1251,7 @@ router.get('/', async(req, res) => {
                 "1111": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1111,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1200,7 +1262,7 @@ router.get('/', async(req, res) => {
                 "1112": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1112,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1211,7 +1273,7 @@ router.get('/', async(req, res) => {
                 "1113": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1113,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1222,7 +1284,7 @@ router.get('/', async(req, res) => {
                 "1114": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1114,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1233,7 +1295,7 @@ router.get('/', async(req, res) => {
                 "1115": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1115,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1244,7 +1306,7 @@ router.get('/', async(req, res) => {
                 "1801": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1801,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1255,7 +1317,7 @@ router.get('/', async(req, res) => {
                 "1802": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1802,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1266,7 +1328,7 @@ router.get('/', async(req, res) => {
                 "1803": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1803,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1277,7 +1339,7 @@ router.get('/', async(req, res) => {
                 "1804": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1804,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1288,7 +1350,7 @@ router.get('/', async(req, res) => {
                 "1805": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1805,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1299,7 +1361,7 @@ router.get('/', async(req, res) => {
                 "1806": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1806,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1310,7 +1372,7 @@ router.get('/', async(req, res) => {
                 "1807": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1807,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1321,7 +1383,7 @@ router.get('/', async(req, res) => {
                 "1808": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1808,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1332,7 +1394,7 @@ router.get('/', async(req, res) => {
                 "1809": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1809,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1343,7 +1405,7 @@ router.get('/', async(req, res) => {
                 "1810": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1810,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1354,7 +1416,7 @@ router.get('/', async(req, res) => {
                 "1811": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1811,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1365,7 +1427,7 @@ router.get('/', async(req, res) => {
                 "1812": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1812,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1376,7 +1438,7 @@ router.get('/', async(req, res) => {
                 "1813": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1813,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1387,7 +1449,7 @@ router.get('/', async(req, res) => {
                 "1814": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1814,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1398,7 +1460,7 @@ router.get('/', async(req, res) => {
                 "1815": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1815,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1409,7 +1471,7 @@ router.get('/', async(req, res) => {
                 "1816": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1816,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1420,7 +1482,7 @@ router.get('/', async(req, res) => {
                 "1817": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1817,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1431,7 +1493,7 @@ router.get('/', async(req, res) => {
                 "1818": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1818,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1442,7 +1504,7 @@ router.get('/', async(req, res) => {
                 "1819": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1819,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1453,7 +1515,7 @@ router.get('/', async(req, res) => {
                 "1820": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1820,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1464,7 +1526,7 @@ router.get('/', async(req, res) => {
                 "1821": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1821,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1475,7 +1537,7 @@ router.get('/', async(req, res) => {
                 "1822": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1822,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1486,7 +1548,7 @@ router.get('/', async(req, res) => {
                 "1823": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1823,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1497,7 +1559,7 @@ router.get('/', async(req, res) => {
                 "1824": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1824,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1508,7 +1570,7 @@ router.get('/', async(req, res) => {
                 "1825": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1825,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1519,7 +1581,7 @@ router.get('/', async(req, res) => {
                 "1826": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1826,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1530,7 +1592,7 @@ router.get('/', async(req, res) => {
                 "1827": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1827,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1541,7 +1603,7 @@ router.get('/', async(req, res) => {
                 "1828": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1828,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1552,7 +1614,7 @@ router.get('/', async(req, res) => {
                 "1829": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1829,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1563,7 +1625,7 @@ router.get('/', async(req, res) => {
                 "1830": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1830,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1574,7 +1636,7 @@ router.get('/', async(req, res) => {
                 "1831": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1831,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1585,7 +1647,7 @@ router.get('/', async(req, res) => {
                 "1832": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1832,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1596,7 +1658,7 @@ router.get('/', async(req, res) => {
                 "1833": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1833,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1607,7 +1669,7 @@ router.get('/', async(req, res) => {
                 "1834": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1834,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1618,7 +1680,7 @@ router.get('/', async(req, res) => {
                 "1835": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 1835,
                             "seq": 1,
                             "missionProgressType": "in_progress",
@@ -1629,7 +1691,7 @@ router.get('/', async(req, res) => {
                 "10000341": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 10000341,
                             "seq": 1,
                             "progress": 1,
@@ -1641,7 +1703,7 @@ router.get('/', async(req, res) => {
                 "10000342": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 10000342,
                             "seq": 1,
                             "progress": 1,
@@ -1653,7 +1715,7 @@ router.get('/', async(req, res) => {
                 "10000346": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 10000346,
                             "seq": 1,
                             "progress": 1,
@@ -1665,7 +1727,7 @@ router.get('/', async(req, res) => {
                 "310000001": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000001,
                             "seq": 1,
                             "progress": 1,
@@ -1673,7 +1735,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000001,
                             "seq": 2,
                             "progress": 1,
@@ -1685,7 +1747,7 @@ router.get('/', async(req, res) => {
                 "310000002": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000002,
                             "seq": 1,
                             "progress": 1,
@@ -1693,7 +1755,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000002,
                             "seq": 2,
                             "progress": 1,
@@ -1705,7 +1767,7 @@ router.get('/', async(req, res) => {
                 "310000003": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000003,
                             "seq": 1,
                             "progress": 1,
@@ -1713,7 +1775,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000003,
                             "seq": 2,
                             "progress": 1,
@@ -1725,7 +1787,7 @@ router.get('/', async(req, res) => {
                 "310000004": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000004,
                             "seq": 1,
                             "progress": 1,
@@ -1733,7 +1795,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000004,
                             "seq": 2,
                             "progress": 2,
@@ -1741,7 +1803,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000004,
                             "seq": 3,
                             "progress": 2,
@@ -1753,7 +1815,7 @@ router.get('/', async(req, res) => {
                 "310000005": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000005,
                             "seq": 1,
                             "progress": 1,
@@ -1761,7 +1823,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000005,
                             "seq": 2,
                             "progress": 1,
@@ -1773,7 +1835,7 @@ router.get('/', async(req, res) => {
                 "310000006": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000006,
                             "seq": 1,
                             "progress": 1,
@@ -1781,7 +1843,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000006,
                             "seq": 2,
                             "progress": 1,
@@ -1793,7 +1855,7 @@ router.get('/', async(req, res) => {
                 "310000013": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000013,
                             "seq": 1,
                             "progress": 1,
@@ -1801,7 +1863,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000013,
                             "seq": 2,
                             "progress": 1,
@@ -1813,7 +1875,7 @@ router.get('/', async(req, res) => {
                 "310000014": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000014,
                             "seq": 1,
                             "progress": 1,
@@ -1821,7 +1883,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000014,
                             "seq": 2,
                             "progress": 1,
@@ -1833,7 +1895,7 @@ router.get('/', async(req, res) => {
                 "310000021": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000021,
                             "seq": 1,
                             "progress": 1,
@@ -1841,7 +1903,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000021,
                             "seq": 2,
                             "progress": 1,
@@ -1853,7 +1915,7 @@ router.get('/', async(req, res) => {
                 "310000022": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000022,
                             "seq": 1,
                             "progress": 1,
@@ -1861,7 +1923,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000022,
                             "seq": 2,
                             "progress": 2,
@@ -1869,7 +1931,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000022,
                             "seq": 3,
                             "progress": 3,
@@ -1877,7 +1939,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000022,
                             "seq": 4,
                             "progress": 3,
@@ -1889,7 +1951,7 @@ router.get('/', async(req, res) => {
                 "310000023": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000023,
                             "seq": 1,
                             "progress": 1,
@@ -1897,7 +1959,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000023,
                             "seq": 2,
                             "progress": 1,
@@ -1909,7 +1971,7 @@ router.get('/', async(req, res) => {
                 "310000025": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000025,
                             "seq": 1,
                             "progress": 1,
@@ -1917,7 +1979,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000025,
                             "seq": 2,
                             "progress": 1,
@@ -1929,7 +1991,7 @@ router.get('/', async(req, res) => {
                 "310000041": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000041,
                             "seq": 1,
                             "progress": 1,
@@ -1937,7 +1999,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000041,
                             "seq": 2,
                             "progress": 2,
@@ -1945,7 +2007,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000041,
                             "seq": 3,
                             "progress": 3,
@@ -1953,7 +2015,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000041,
                             "seq": 4,
                             "progress": 3,
@@ -1965,7 +2027,7 @@ router.get('/', async(req, res) => {
                 "310000042": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000042,
                             "seq": 1,
                             "progress": 1,
@@ -1973,7 +2035,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000042,
                             "seq": 2,
                             "progress": 2,
@@ -1981,7 +2043,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000042,
                             "seq": 3,
                             "progress": 3,
@@ -1989,7 +2051,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000042,
                             "seq": 4,
                             "progress": 3,
@@ -2001,7 +2063,7 @@ router.get('/', async(req, res) => {
                 "310000043": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000043,
                             "seq": 1,
                             "progress": 1,
@@ -2009,7 +2071,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000043,
                             "seq": 2,
                             "progress": 2,
@@ -2017,7 +2079,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000043,
                             "seq": 3,
                             "progress": 3,
@@ -2025,7 +2087,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000043,
                             "seq": 4,
                             "progress": 3,
@@ -2037,7 +2099,7 @@ router.get('/', async(req, res) => {
                 "310000044": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000044,
                             "seq": 1,
                             "progress": 1,
@@ -2045,7 +2107,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000044,
                             "seq": 2,
                             "progress": 2,
@@ -2053,7 +2115,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000044,
                             "seq": 3,
                             "progress": 3,
@@ -2061,7 +2123,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000044,
                             "seq": 4,
                             "progress": 3,
@@ -2073,7 +2135,7 @@ router.get('/', async(req, res) => {
                 "310000045": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000045,
                             "seq": 1,
                             "progress": 1,
@@ -2081,7 +2143,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000045,
                             "seq": 2,
                             "progress": 2,
@@ -2089,7 +2151,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000045,
                             "seq": 3,
                             "progress": 3,
@@ -2097,7 +2159,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000045,
                             "seq": 4,
                             "progress": 3,
@@ -2109,7 +2171,7 @@ router.get('/', async(req, res) => {
                 "310000046": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000046,
                             "seq": 1,
                             "progress": 1,
@@ -2117,7 +2179,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000046,
                             "seq": 2,
                             "progress": 2,
@@ -2125,7 +2187,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000046,
                             "seq": 3,
                             "progress": 3,
@@ -2133,7 +2195,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000046,
                             "seq": 4,
                             "progress": 3,
@@ -2145,7 +2207,7 @@ router.get('/', async(req, res) => {
                 "310000047": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000047,
                             "seq": 1,
                             "progress": 1,
@@ -2153,7 +2215,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000047,
                             "seq": 2,
                             "progress": 2,
@@ -2161,7 +2223,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000047,
                             "seq": 3,
                             "progress": 3,
@@ -2169,7 +2231,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000047,
                             "seq": 4,
                             "progress": 3,
@@ -2181,7 +2243,7 @@ router.get('/', async(req, res) => {
                 "310000048": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000048,
                             "seq": 1,
                             "progress": 1,
@@ -2189,7 +2251,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000048,
                             "seq": 2,
                             "progress": 2,
@@ -2197,7 +2259,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000048,
                             "seq": 3,
                             "progress": 3,
@@ -2205,7 +2267,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000048,
                             "seq": 4,
                             "progress": 3,
@@ -2217,7 +2279,7 @@ router.get('/', async(req, res) => {
                 "310000049": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000049,
                             "seq": 1,
                             "progress": 1,
@@ -2225,7 +2287,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000049,
                             "seq": 2,
                             "progress": 2,
@@ -2233,7 +2295,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000049,
                             "seq": 3,
                             "progress": 3,
@@ -2241,7 +2303,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000049,
                             "seq": 4,
                             "progress": 3,
@@ -2253,7 +2315,7 @@ router.get('/', async(req, res) => {
                 "310000050": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000050,
                             "seq": 1,
                             "progress": 1,
@@ -2261,7 +2323,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000050,
                             "seq": 2,
                             "progress": 2,
@@ -2269,7 +2331,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000050,
                             "seq": 3,
                             "progress": 3,
@@ -2277,7 +2339,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000050,
                             "seq": 4,
                             "progress": 3,
@@ -2289,7 +2351,7 @@ router.get('/', async(req, res) => {
                 "310000051": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000051,
                             "seq": 1,
                             "progress": 1,
@@ -2297,7 +2359,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000051,
                             "seq": 2,
                             "progress": 2,
@@ -2305,7 +2367,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000051,
                             "seq": 3,
                             "progress": 3,
@@ -2313,7 +2375,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000051,
                             "seq": 4,
                             "progress": 3,
@@ -2325,7 +2387,7 @@ router.get('/', async(req, res) => {
                 "310000052": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000052,
                             "seq": 1,
                             "progress": 1,
@@ -2333,7 +2395,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000052,
                             "seq": 2,
                             "progress": 2,
@@ -2341,7 +2403,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000052,
                             "seq": 3,
                             "progress": 3,
@@ -2349,7 +2411,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000052,
                             "seq": 4,
                             "progress": 3,
@@ -2361,7 +2423,7 @@ router.get('/', async(req, res) => {
                 "310000053": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000053,
                             "seq": 1,
                             "progress": 1,
@@ -2369,7 +2431,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000053,
                             "seq": 2,
                             "progress": 2,
@@ -2377,7 +2439,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000053,
                             "seq": 3,
                             "progress": 3,
@@ -2385,7 +2447,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000053,
                             "seq": 4,
                             "progress": 3,
@@ -2397,7 +2459,7 @@ router.get('/', async(req, res) => {
                 "310000054": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000054,
                             "seq": 1,
                             "progress": 1,
@@ -2405,7 +2467,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000054,
                             "seq": 2,
                             "progress": 2,
@@ -2413,7 +2475,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000054,
                             "seq": 3,
                             "progress": 3,
@@ -2421,7 +2483,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000054,
                             "seq": 4,
                             "progress": 3,
@@ -2433,7 +2495,7 @@ router.get('/', async(req, res) => {
                 "310000055": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 1,
                             "progress": 1,
@@ -2441,7 +2503,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 2,
                             "progress": 2,
@@ -2449,7 +2511,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 3,
                             "progress": 3,
@@ -2457,7 +2519,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 4,
                             "progress": 4,
@@ -2465,7 +2527,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 5,
                             "progress": 5,
@@ -2473,7 +2535,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 6,
                             "progress": 6,
@@ -2481,7 +2543,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000055,
                             "seq": 7,
                             "progress": 6,
@@ -2493,7 +2555,7 @@ router.get('/', async(req, res) => {
                 "310000056": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000056,
                             "seq": 1,
                             "progress": 1,
@@ -2501,7 +2563,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000056,
                             "seq": 2,
                             "progress": 2,
@@ -2509,7 +2571,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000056,
                             "seq": 3,
                             "progress": 3,
@@ -2517,7 +2579,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000056,
                             "seq": 4,
                             "progress": 3,
@@ -2529,7 +2591,7 @@ router.get('/', async(req, res) => {
                 "310000057": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000057,
                             "seq": 1,
                             "progress": 1,
@@ -2537,7 +2599,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000057,
                             "seq": 2,
                             "progress": 2,
@@ -2545,7 +2607,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000057,
                             "seq": 3,
                             "progress": 3,
@@ -2553,7 +2615,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000057,
                             "seq": 4,
                             "progress": 3,
@@ -2565,7 +2627,7 @@ router.get('/', async(req, res) => {
                 "310000058": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000058,
                             "seq": 1,
                             "progress": 1,
@@ -2573,7 +2635,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000058,
                             "seq": 2,
                             "progress": 2,
@@ -2581,7 +2643,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000058,
                             "seq": 3,
                             "progress": 3,
@@ -2589,7 +2651,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000058,
                             "seq": 4,
                             "progress": 3,
@@ -2601,7 +2663,7 @@ router.get('/', async(req, res) => {
                 "310000059": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000059,
                             "seq": 1,
                             "progress": 1,
@@ -2609,7 +2671,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000059,
                             "seq": 2,
                             "progress": 2,
@@ -2617,7 +2679,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000059,
                             "seq": 3,
                             "progress": 3,
@@ -2625,7 +2687,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000059,
                             "seq": 4,
                             "progress": 3,
@@ -2637,7 +2699,7 @@ router.get('/', async(req, res) => {
                 "310000060": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000060,
                             "seq": 1,
                             "progress": 1,
@@ -2645,7 +2707,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000060,
                             "seq": 2,
                             "progress": 2,
@@ -2653,7 +2715,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000060,
                             "seq": 3,
                             "progress": 3,
@@ -2661,7 +2723,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000060,
                             "seq": 4,
                             "progress": 3,
@@ -2673,7 +2735,7 @@ router.get('/', async(req, res) => {
                 "310000061": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000061,
                             "seq": 1,
                             "progress": 1,
@@ -2681,7 +2743,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000061,
                             "seq": 2,
                             "progress": 2,
@@ -2689,7 +2751,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000061,
                             "seq": 3,
                             "progress": 3,
@@ -2697,7 +2759,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000061,
                             "seq": 4,
                             "progress": 3,
@@ -2709,7 +2771,7 @@ router.get('/', async(req, res) => {
                 "310000062": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 1,
                             "progress": 1,
@@ -2717,7 +2779,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 2,
                             "progress": 2,
@@ -2725,7 +2787,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 3,
                             "progress": 3,
@@ -2733,7 +2795,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 4,
                             "progress": 4,
@@ -2741,7 +2803,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 5,
                             "progress": 5,
@@ -2749,7 +2811,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000062,
                             "seq": 6,
                             "progress": 5,
@@ -2761,7 +2823,7 @@ router.get('/', async(req, res) => {
                 "310000063": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000063,
                             "seq": 1,
                             "progress": 1,
@@ -2769,7 +2831,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000063,
                             "seq": 2,
                             "progress": 2,
@@ -2777,7 +2839,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000063,
                             "seq": 3,
                             "progress": 3,
@@ -2785,7 +2847,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000063,
                             "seq": 4,
                             "progress": 3,
@@ -2797,7 +2859,7 @@ router.get('/', async(req, res) => {
                 "310000064": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000064,
                             "seq": 1,
                             "progress": 1,
@@ -2805,7 +2867,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000064,
                             "seq": 2,
                             "progress": 2,
@@ -2813,7 +2875,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000064,
                             "seq": 3,
                             "progress": 3,
@@ -2821,7 +2883,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000064,
                             "seq": 4,
                             "progress": 3,
@@ -2833,7 +2895,7 @@ router.get('/', async(req, res) => {
                 "310000065": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000065,
                             "seq": 1,
                             "progress": 1,
@@ -2841,7 +2903,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000065,
                             "seq": 2,
                             "progress": 2,
@@ -2849,7 +2911,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000065,
                             "seq": 3,
                             "progress": 3,
@@ -2857,7 +2919,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000065,
                             "seq": 4,
                             "progress": 3,
@@ -2869,7 +2931,7 @@ router.get('/', async(req, res) => {
                 "310000066": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000066,
                             "seq": 1,
                             "progress": 1,
@@ -2877,7 +2939,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000066,
                             "seq": 2,
                             "progress": 2,
@@ -2885,7 +2947,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000066,
                             "seq": 3,
                             "progress": 3,
@@ -2893,7 +2955,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000066,
                             "seq": 4,
                             "progress": 3,
@@ -2905,7 +2967,7 @@ router.get('/', async(req, res) => {
                 "310000067": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000067,
                             "seq": 1,
                             "progress": 1,
@@ -2913,7 +2975,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000067,
                             "seq": 2,
                             "progress": 2,
@@ -2921,7 +2983,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000067,
                             "seq": 3,
                             "progress": 3,
@@ -2929,7 +2991,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000067,
                             "seq": 4,
                             "progress": 3,
@@ -2941,7 +3003,7 @@ router.get('/', async(req, res) => {
                 "310000068": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000068,
                             "seq": 1,
                             "progress": 1,
@@ -2949,7 +3011,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000068,
                             "seq": 2,
                             "progress": 2,
@@ -2957,7 +3019,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000068,
                             "seq": 3,
                             "progress": 3,
@@ -2965,7 +3027,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000068,
                             "seq": 4,
                             "progress": 3,
@@ -2977,7 +3039,7 @@ router.get('/', async(req, res) => {
                 "310000069": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000069,
                             "seq": 1,
                             "progress": 1,
@@ -2985,7 +3047,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000069,
                             "seq": 2,
                             "progress": 2,
@@ -2993,7 +3055,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000069,
                             "seq": 3,
                             "progress": 3,
@@ -3001,7 +3063,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000069,
                             "seq": 4,
                             "progress": 3,
@@ -3013,7 +3075,7 @@ router.get('/', async(req, res) => {
                 "310000070": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000070,
                             "seq": 1,
                             "progress": 1,
@@ -3021,7 +3083,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000070,
                             "seq": 2,
                             "progress": 2,
@@ -3029,7 +3091,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000070,
                             "seq": 3,
                             "progress": 3,
@@ -3037,7 +3099,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000070,
                             "seq": 4,
                             "progress": 3,
@@ -3049,7 +3111,7 @@ router.get('/', async(req, res) => {
                 "310000071": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000071,
                             "seq": 1,
                             "progress": 1,
@@ -3057,7 +3119,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000071,
                             "seq": 2,
                             "progress": 2,
@@ -3065,7 +3127,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000071,
                             "seq": 3,
                             "progress": 3,
@@ -3073,7 +3135,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000071,
                             "seq": 4,
                             "progress": 3,
@@ -3085,7 +3147,7 @@ router.get('/', async(req, res) => {
                 "310000072": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000072,
                             "seq": 1,
                             "progress": 1,
@@ -3093,7 +3155,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000072,
                             "seq": 2,
                             "progress": 2,
@@ -3101,7 +3163,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000072,
                             "seq": 3,
                             "progress": 3,
@@ -3109,7 +3171,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000072,
                             "seq": 4,
                             "progress": 3,
@@ -3121,7 +3183,7 @@ router.get('/', async(req, res) => {
                 "310000073": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000073,
                             "seq": 1,
                             "progress": 1,
@@ -3129,7 +3191,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000073,
                             "seq": 2,
                             "progress": 2,
@@ -3137,7 +3199,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000073,
                             "seq": 3,
                             "progress": 3,
@@ -3145,7 +3207,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000073,
                             "seq": 4,
                             "progress": 3,
@@ -3157,7 +3219,7 @@ router.get('/', async(req, res) => {
                 "310000074": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000074,
                             "seq": 1,
                             "progress": 1,
@@ -3165,7 +3227,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000074,
                             "seq": 2,
                             "progress": 2,
@@ -3173,7 +3235,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000074,
                             "seq": 3,
                             "progress": 3,
@@ -3181,7 +3243,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000074,
                             "seq": 4,
                             "progress": 3,
@@ -3193,7 +3255,7 @@ router.get('/', async(req, res) => {
                 "310000075": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000075,
                             "seq": 1,
                             "progress": 1,
@@ -3201,7 +3263,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000075,
                             "seq": 2,
                             "progress": 2,
@@ -3209,7 +3271,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000075,
                             "seq": 3,
                             "progress": 3,
@@ -3217,7 +3279,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000075,
                             "seq": 4,
                             "progress": 3,
@@ -3229,7 +3291,7 @@ router.get('/', async(req, res) => {
                 "310000076": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000076,
                             "seq": 1,
                             "progress": 1,
@@ -3237,7 +3299,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000076,
                             "seq": 2,
                             "progress": 2,
@@ -3245,7 +3307,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000076,
                             "seq": 3,
                             "progress": 3,
@@ -3253,7 +3315,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000076,
                             "seq": 4,
                             "progress": 3,
@@ -3265,7 +3327,7 @@ router.get('/', async(req, res) => {
                 "310000077": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000077,
                             "seq": 1,
                             "progress": 1,
@@ -3273,7 +3335,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000077,
                             "seq": 2,
                             "progress": 2,
@@ -3281,7 +3343,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000077,
                             "seq": 3,
                             "progress": 3,
@@ -3289,7 +3351,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000077,
                             "seq": 4,
                             "progress": 3,
@@ -3301,7 +3363,7 @@ router.get('/', async(req, res) => {
                 "310000078": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000078,
                             "seq": 1,
                             "progress": 1,
@@ -3309,7 +3371,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000078,
                             "seq": 2,
                             "progress": 2,
@@ -3317,7 +3379,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000078,
                             "seq": 3,
                             "progress": 3,
@@ -3325,7 +3387,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000078,
                             "seq": 4,
                             "progress": 3,
@@ -3337,7 +3399,7 @@ router.get('/', async(req, res) => {
                 "310000079": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000079,
                             "seq": 1,
                             "progress": 1,
@@ -3345,7 +3407,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000079,
                             "seq": 2,
                             "progress": 2,
@@ -3353,7 +3415,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000079,
                             "seq": 3,
                             "progress": 3,
@@ -3361,7 +3423,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000079,
                             "seq": 4,
                             "progress": 3,
@@ -3373,7 +3435,7 @@ router.get('/', async(req, res) => {
                 "310000080": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000080,
                             "seq": 1,
                             "progress": 1,
@@ -3381,7 +3443,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000080,
                             "seq": 2,
                             "progress": 2,
@@ -3389,7 +3451,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000080,
                             "seq": 3,
                             "progress": 3,
@@ -3397,7 +3459,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000080,
                             "seq": 4,
                             "progress": 3,
@@ -3409,7 +3471,7 @@ router.get('/', async(req, res) => {
                 "310000081": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 1,
                             "progress": 1,
@@ -3417,7 +3479,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 2,
                             "progress": 2,
@@ -3425,7 +3487,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 3,
                             "progress": 3,
@@ -3433,7 +3495,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 4,
                             "progress": 4,
@@ -3441,7 +3503,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 5,
                             "progress": 5,
@@ -3449,7 +3511,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 6,
                             "progress": 6,
@@ -3457,7 +3519,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 7,
                             "progress": 7,
@@ -3465,7 +3527,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000081,
                             "seq": 8,
                             "progress": 7,
@@ -3477,7 +3539,7 @@ router.get('/', async(req, res) => {
                 "310000082": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 1,
                             "progress": 1,
@@ -3485,7 +3547,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 2,
                             "progress": 2,
@@ -3493,7 +3555,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 3,
                             "progress": 3,
@@ -3501,7 +3563,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 4,
                             "progress": 4,
@@ -3509,7 +3571,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 5,
                             "progress": 5,
@@ -3517,7 +3579,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 6,
                             "progress": 6,
@@ -3525,7 +3587,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 7,
                             "progress": 7,
@@ -3533,7 +3595,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000082,
                             "seq": 8,
                             "progress": 7,
@@ -3545,7 +3607,7 @@ router.get('/', async(req, res) => {
                 "310000083": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 1,
                             "progress": 1,
@@ -3553,7 +3615,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 2,
                             "progress": 2,
@@ -3561,7 +3623,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 3,
                             "progress": 3,
@@ -3569,7 +3631,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 4,
                             "progress": 4,
@@ -3577,7 +3639,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 5,
                             "progress": 5,
@@ -3585,7 +3647,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 6,
                             "progress": 6,
@@ -3593,7 +3655,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 7,
                             "progress": 7,
@@ -3601,7 +3663,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000083,
                             "seq": 8,
                             "progress": 7,
@@ -3613,7 +3675,7 @@ router.get('/', async(req, res) => {
                 "310000084": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 1,
                             "progress": 1,
@@ -3621,7 +3683,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 2,
                             "progress": 2,
@@ -3629,7 +3691,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 3,
                             "progress": 3,
@@ -3637,7 +3699,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 4,
                             "progress": 4,
@@ -3645,7 +3707,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 5,
                             "progress": 5,
@@ -3653,7 +3715,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 6,
                             "progress": 6,
@@ -3661,7 +3723,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 7,
                             "progress": 7,
@@ -3669,7 +3731,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000084,
                             "seq": 8,
                             "progress": 7,
@@ -3681,7 +3743,7 @@ router.get('/', async(req, res) => {
                 "310000085": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 1,
                             "progress": 1,
@@ -3689,7 +3751,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 2,
                             "progress": 2,
@@ -3697,7 +3759,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 3,
                             "progress": 3,
@@ -3705,7 +3767,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 4,
                             "progress": 4,
@@ -3713,7 +3775,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 5,
                             "progress": 5,
@@ -3721,7 +3783,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 6,
                             "progress": 6,
@@ -3729,7 +3791,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 7,
                             "progress": 7,
@@ -3737,7 +3799,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000085,
                             "seq": 8,
                             "progress": 7,
@@ -3749,7 +3811,7 @@ router.get('/', async(req, res) => {
                 "310000086": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 1,
                             "progress": 1,
@@ -3757,7 +3819,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 2,
                             "progress": 2,
@@ -3765,7 +3827,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 3,
                             "progress": 3,
@@ -3773,7 +3835,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 4,
                             "progress": 4,
@@ -3781,7 +3843,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 5,
                             "progress": 5,
@@ -3789,7 +3851,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 6,
                             "progress": 6,
@@ -3797,7 +3859,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 7,
                             "progress": 7,
@@ -3805,7 +3867,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 8,
                             "progress": 8,
@@ -3813,7 +3875,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 9,
                             "progress": 9,
@@ -3821,7 +3883,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000086,
                             "seq": 10,
                             "progress": 9,
@@ -3833,7 +3895,7 @@ router.get('/', async(req, res) => {
                 "310000087": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 1,
                             "progress": 1,
@@ -3841,7 +3903,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 2,
                             "progress": 2,
@@ -3849,7 +3911,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 3,
                             "progress": 3,
@@ -3857,7 +3919,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 4,
                             "progress": 4,
@@ -3865,7 +3927,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 5,
                             "progress": 5,
@@ -3873,7 +3935,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 6,
                             "progress": 6,
@@ -3881,7 +3943,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 7,
                             "progress": 7,
@@ -3889,7 +3951,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000087,
                             "seq": 8,
                             "progress": 7,
@@ -3901,7 +3963,7 @@ router.get('/', async(req, res) => {
                 "310000088": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 1,
                             "progress": 1,
@@ -3909,7 +3971,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 2,
                             "progress": 2,
@@ -3917,7 +3979,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 3,
                             "progress": 3,
@@ -3925,7 +3987,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 4,
                             "progress": 4,
@@ -3933,7 +3995,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 5,
                             "progress": 5,
@@ -3941,7 +4003,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 6,
                             "progress": 6,
@@ -3949,7 +4011,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 7,
                             "progress": 7,
@@ -3957,7 +4019,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000088,
                             "seq": 8,
                             "progress": 7,
@@ -3969,7 +4031,7 @@ router.get('/', async(req, res) => {
                 "310000089": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 1,
                             "progress": 1,
@@ -3977,7 +4039,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 2,
                             "progress": 2,
@@ -3985,7 +4047,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 3,
                             "progress": 3,
@@ -3993,7 +4055,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 4,
                             "progress": 4,
@@ -4001,7 +4063,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 5,
                             "progress": 5,
@@ -4009,7 +4071,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 6,
                             "progress": 6,
@@ -4017,7 +4079,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 7,
                             "progress": 7,
@@ -4025,7 +4087,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000089,
                             "seq": 8,
                             "progress": 7,
@@ -4037,7 +4099,7 @@ router.get('/', async(req, res) => {
                 "310000090": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 1,
                             "progress": 1,
@@ -4045,7 +4107,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 2,
                             "progress": 2,
@@ -4053,7 +4115,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 3,
                             "progress": 3,
@@ -4061,7 +4123,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 4,
                             "progress": 4,
@@ -4069,7 +4131,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 5,
                             "progress": 5,
@@ -4077,7 +4139,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 6,
                             "progress": 6,
@@ -4085,7 +4147,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 7,
                             "progress": 7,
@@ -4093,7 +4155,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000090,
                             "seq": 8,
                             "progress": 7,
@@ -4105,7 +4167,7 @@ router.get('/', async(req, res) => {
                 "310000091": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 1,
                             "progress": 1,
@@ -4113,7 +4175,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 2,
                             "progress": 2,
@@ -4121,7 +4183,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 3,
                             "progress": 3,
@@ -4129,7 +4191,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 4,
                             "progress": 4,
@@ -4137,7 +4199,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 5,
                             "progress": 5,
@@ -4145,7 +4207,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 6,
                             "progress": 6,
@@ -4153,7 +4215,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 7,
                             "progress": 7,
@@ -4161,7 +4223,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000091,
                             "seq": 8,
                             "progress": 7,
@@ -4173,7 +4235,7 @@ router.get('/', async(req, res) => {
                 "310000092": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 1,
                             "progress": 1,
@@ -4181,7 +4243,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 2,
                             "progress": 2,
@@ -4189,7 +4251,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 3,
                             "progress": 3,
@@ -4197,7 +4259,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 4,
                             "progress": 4,
@@ -4205,7 +4267,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 5,
                             "progress": 5,
@@ -4213,7 +4275,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 6,
                             "progress": 6,
@@ -4221,7 +4283,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 7,
                             "progress": 7,
@@ -4229,7 +4291,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000092,
                             "seq": 8,
                             "progress": 7,
@@ -4241,7 +4303,7 @@ router.get('/', async(req, res) => {
                 "310000093": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 1,
                             "progress": 1,
@@ -4249,7 +4311,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 2,
                             "progress": 2,
@@ -4257,7 +4319,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 3,
                             "progress": 3,
@@ -4265,7 +4327,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 4,
                             "progress": 4,
@@ -4273,7 +4335,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 5,
                             "progress": 5,
@@ -4281,7 +4343,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 6,
                             "progress": 6,
@@ -4289,7 +4351,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 7,
                             "progress": 7,
@@ -4297,7 +4359,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000093,
                             "seq": 8,
                             "progress": 7,
@@ -4309,7 +4371,7 @@ router.get('/', async(req, res) => {
                 "310000094": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 1,
                             "progress": 1,
@@ -4317,7 +4379,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 2,
                             "progress": 2,
@@ -4325,7 +4387,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 3,
                             "progress": 3,
@@ -4333,7 +4395,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 4,
                             "progress": 4,
@@ -4341,7 +4403,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 5,
                             "progress": 5,
@@ -4349,7 +4411,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 6,
                             "progress": 6,
@@ -4357,7 +4419,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 7,
                             "progress": 7,
@@ -4365,7 +4427,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000094,
                             "seq": 8,
                             "progress": 7,
@@ -4377,7 +4439,7 @@ router.get('/', async(req, res) => {
                 "310000095": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 1,
                             "progress": 1,
@@ -4385,7 +4447,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 2,
                             "progress": 2,
@@ -4393,7 +4455,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 3,
                             "progress": 3,
@@ -4401,7 +4463,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 4,
                             "progress": 4,
@@ -4409,7 +4471,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 5,
                             "progress": 5,
@@ -4417,7 +4479,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 6,
                             "progress": 6,
@@ -4425,7 +4487,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 7,
                             "progress": 7,
@@ -4433,7 +4495,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 8,
                             "progress": 8,
@@ -4441,7 +4503,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 9,
                             "progress": 9,
@@ -4449,7 +4511,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000095,
                             "seq": 10,
                             "progress": 9,
@@ -4461,7 +4523,7 @@ router.get('/', async(req, res) => {
                 "310000096": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 1,
                             "progress": 1,
@@ -4469,7 +4531,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 2,
                             "progress": 2,
@@ -4477,7 +4539,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 3,
                             "progress": 3,
@@ -4485,7 +4547,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 4,
                             "progress": 4,
@@ -4493,7 +4555,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 5,
                             "progress": 5,
@@ -4501,7 +4563,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 6,
                             "progress": 6,
@@ -4509,7 +4571,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 7,
                             "progress": 7,
@@ -4517,7 +4579,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000096,
                             "seq": 8,
                             "progress": 7,
@@ -4529,7 +4591,7 @@ router.get('/', async(req, res) => {
                 "310000097": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 1,
                             "progress": 1,
@@ -4537,7 +4599,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 2,
                             "progress": 2,
@@ -4545,7 +4607,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 3,
                             "progress": 3,
@@ -4553,7 +4615,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 4,
                             "progress": 4,
@@ -4561,7 +4623,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 5,
                             "progress": 5,
@@ -4569,7 +4631,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 6,
                             "progress": 6,
@@ -4577,7 +4639,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 7,
                             "progress": 7,
@@ -4585,7 +4647,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000097,
                             "seq": 8,
                             "progress": 7,
@@ -4597,7 +4659,7 @@ router.get('/', async(req, res) => {
                 "310000098": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 1,
                             "progress": 1,
@@ -4605,7 +4667,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 2,
                             "progress": 2,
@@ -4613,7 +4675,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 3,
                             "progress": 3,
@@ -4621,7 +4683,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 4,
                             "progress": 4,
@@ -4629,7 +4691,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 5,
                             "progress": 5,
@@ -4637,7 +4699,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 6,
                             "progress": 6,
@@ -4645,7 +4707,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 7,
                             "progress": 7,
@@ -4653,7 +4715,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000098,
                             "seq": 8,
                             "progress": 7,
@@ -4665,7 +4727,7 @@ router.get('/', async(req, res) => {
                 "310000099": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 1,
                             "progress": 1,
@@ -4673,7 +4735,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 2,
                             "progress": 2,
@@ -4681,7 +4743,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 3,
                             "progress": 3,
@@ -4689,7 +4751,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 4,
                             "progress": 4,
@@ -4697,7 +4759,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 5,
                             "progress": 5,
@@ -4705,7 +4767,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 6,
                             "progress": 6,
@@ -4713,7 +4775,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 7,
                             "progress": 7,
@@ -4721,7 +4783,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000099,
                             "seq": 8,
                             "progress": 7,
@@ -4733,7 +4795,7 @@ router.get('/', async(req, res) => {
                 "310000100": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 1,
                             "progress": 1,
@@ -4741,7 +4803,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 2,
                             "progress": 2,
@@ -4749,7 +4811,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 3,
                             "progress": 3,
@@ -4757,7 +4819,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 4,
                             "progress": 4,
@@ -4765,7 +4827,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 5,
                             "progress": 5,
@@ -4773,7 +4835,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 6,
                             "progress": 6,
@@ -4781,7 +4843,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 7,
                             "progress": 7,
@@ -4789,7 +4851,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000100,
                             "seq": 8,
                             "progress": 7,
@@ -4801,7 +4863,7 @@ router.get('/', async(req, res) => {
                 "310000101": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 1,
                             "progress": 1,
@@ -4809,7 +4871,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 2,
                             "progress": 2,
@@ -4817,7 +4879,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 3,
                             "progress": 3,
@@ -4825,7 +4887,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 4,
                             "progress": 4,
@@ -4833,7 +4895,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 5,
                             "progress": 5,
@@ -4841,7 +4903,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 6,
                             "progress": 6,
@@ -4849,7 +4911,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 7,
                             "progress": 7,
@@ -4857,7 +4919,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000101,
                             "seq": 8,
                             "progress": 7,
@@ -4869,7 +4931,7 @@ router.get('/', async(req, res) => {
                 "310000102": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 1,
                             "progress": 1,
@@ -4877,7 +4939,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 2,
                             "progress": 2,
@@ -4885,7 +4947,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 3,
                             "progress": 3,
@@ -4893,7 +4955,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 4,
                             "progress": 4,
@@ -4901,7 +4963,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 5,
                             "progress": 5,
@@ -4909,7 +4971,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 6,
                             "progress": 6,
@@ -4917,7 +4979,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 7,
                             "progress": 7,
@@ -4925,7 +4987,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 8,
                             "progress": 8,
@@ -4933,7 +4995,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 9,
                             "progress": 9,
@@ -4941,7 +5003,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000102,
                             "seq": 10,
                             "progress": 9,
@@ -4953,7 +5015,7 @@ router.get('/', async(req, res) => {
                 "310000103": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 1,
                             "progress": 1,
@@ -4961,7 +5023,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 2,
                             "progress": 2,
@@ -4969,7 +5031,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 3,
                             "progress": 3,
@@ -4977,7 +5039,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 4,
                             "progress": 4,
@@ -4985,7 +5047,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 5,
                             "progress": 5,
@@ -4993,7 +5055,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 6,
                             "progress": 6,
@@ -5001,7 +5063,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 7,
                             "progress": 7,
@@ -5009,7 +5071,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000103,
                             "seq": 8,
                             "progress": 7,
@@ -5021,7 +5083,7 @@ router.get('/', async(req, res) => {
                 "310000104": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 1,
                             "progress": 1,
@@ -5029,7 +5091,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 2,
                             "progress": 2,
@@ -5037,7 +5099,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 3,
                             "progress": 3,
@@ -5045,7 +5107,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 4,
                             "progress": 4,
@@ -5053,7 +5115,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 5,
                             "progress": 5,
@@ -5061,7 +5123,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 6,
                             "progress": 6,
@@ -5069,7 +5131,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 7,
                             "progress": 7,
@@ -5077,7 +5139,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000104,
                             "seq": 8,
                             "progress": 7,
@@ -5089,7 +5151,7 @@ router.get('/', async(req, res) => {
                 "310000105": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 1,
                             "progress": 1,
@@ -5097,7 +5159,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 2,
                             "progress": 2,
@@ -5105,7 +5167,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 3,
                             "progress": 3,
@@ -5113,7 +5175,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 4,
                             "progress": 4,
@@ -5121,7 +5183,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 5,
                             "progress": 5,
@@ -5129,7 +5191,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 6,
                             "progress": 6,
@@ -5137,7 +5199,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 7,
                             "progress": 7,
@@ -5145,7 +5207,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000105,
                             "seq": 8,
                             "progress": 7,
@@ -5157,7 +5219,7 @@ router.get('/', async(req, res) => {
                 "310000106": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000106,
                             "seq": 1,
                             "progress": 1,
@@ -5165,7 +5227,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000106,
                             "seq": 2,
                             "progress": 2,
@@ -5173,7 +5235,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000106,
                             "seq": 3,
                             "progress": 3,
@@ -5181,7 +5243,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000106,
                             "seq": 4,
                             "progress": 4,
@@ -5189,7 +5251,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000106,
                             "seq": 5,
                             "progress": 4,
@@ -5201,7 +5263,7 @@ router.get('/', async(req, res) => {
                 "310000107": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000107,
                             "seq": 1,
                             "progress": 1,
@@ -5209,7 +5271,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000107,
                             "seq": 2,
                             "progress": 2,
@@ -5217,7 +5279,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000107,
                             "seq": 3,
                             "progress": 3,
@@ -5225,7 +5287,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000107,
                             "seq": 4,
                             "progress": 4,
@@ -5233,7 +5295,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000107,
                             "seq": 5,
                             "progress": 4,
@@ -5245,7 +5307,7 @@ router.get('/', async(req, res) => {
                 "310000108": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000108,
                             "seq": 1,
                             "progress": 1,
@@ -5253,7 +5315,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000108,
                             "seq": 2,
                             "progress": 2,
@@ -5261,7 +5323,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000108,
                             "seq": 3,
                             "progress": 3,
@@ -5269,7 +5331,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000108,
                             "seq": 4,
                             "progress": 4,
@@ -5277,7 +5339,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000108,
                             "seq": 5,
                             "progress": 4,
@@ -5289,7 +5351,7 @@ router.get('/', async(req, res) => {
                 "310000109": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000109,
                             "seq": 1,
                             "progress": 1,
@@ -5297,7 +5359,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000109,
                             "seq": 2,
                             "progress": 2,
@@ -5305,7 +5367,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000109,
                             "seq": 3,
                             "progress": 3,
@@ -5313,7 +5375,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000109,
                             "seq": 4,
                             "progress": 4,
@@ -5321,7 +5383,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000109,
                             "seq": 5,
                             "progress": 4,
@@ -5333,7 +5395,7 @@ router.get('/', async(req, res) => {
                 "310000110": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000110,
                             "seq": 1,
                             "progress": 1,
@@ -5341,7 +5403,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000110,
                             "seq": 2,
                             "progress": 2,
@@ -5349,7 +5411,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000110,
                             "seq": 3,
                             "progress": 3,
@@ -5357,7 +5419,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000110,
                             "seq": 4,
                             "progress": 4,
@@ -5365,7 +5427,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000110,
                             "seq": 5,
                             "progress": 4,
@@ -5377,7 +5439,7 @@ router.get('/', async(req, res) => {
                 "310000111": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000111,
                             "seq": 1,
                             "progress": 1,
@@ -5385,7 +5447,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000111,
                             "seq": 2,
                             "progress": 2,
@@ -5393,7 +5455,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000111,
                             "seq": 3,
                             "progress": 3,
@@ -5401,7 +5463,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000111,
                             "seq": 4,
                             "progress": 4,
@@ -5409,7 +5471,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000111,
                             "seq": 5,
                             "progress": 4,
@@ -5421,7 +5483,7 @@ router.get('/', async(req, res) => {
                 "310000112": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000112,
                             "seq": 1,
                             "progress": 1,
@@ -5429,7 +5491,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000112,
                             "seq": 2,
                             "progress": 2,
@@ -5437,7 +5499,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000112,
                             "seq": 3,
                             "progress": 3,
@@ -5445,7 +5507,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000112,
                             "seq": 4,
                             "progress": 4,
@@ -5453,7 +5515,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000112,
                             "seq": 5,
                             "progress": 4,
@@ -5465,7 +5527,7 @@ router.get('/', async(req, res) => {
                 "310000113": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000113,
                             "seq": 1,
                             "progress": 1,
@@ -5473,7 +5535,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000113,
                             "seq": 2,
                             "progress": 2,
@@ -5481,7 +5543,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000113,
                             "seq": 3,
                             "progress": 3,
@@ -5489,7 +5551,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000113,
                             "seq": 4,
                             "progress": 4,
@@ -5497,7 +5559,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000113,
                             "seq": 5,
                             "progress": 4,
@@ -5509,7 +5571,7 @@ router.get('/', async(req, res) => {
                 "310000114": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000114,
                             "seq": 1,
                             "progress": 1,
@@ -5517,7 +5579,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000114,
                             "seq": 2,
                             "progress": 2,
@@ -5525,7 +5587,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000114,
                             "seq": 3,
                             "progress": 3,
@@ -5533,7 +5595,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000114,
                             "seq": 4,
                             "progress": 4,
@@ -5541,7 +5603,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000114,
                             "seq": 5,
                             "progress": 4,
@@ -5553,7 +5615,7 @@ router.get('/', async(req, res) => {
                 "310000115": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000115,
                             "seq": 1,
                             "progress": 1,
@@ -5561,7 +5623,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000115,
                             "seq": 2,
                             "progress": 2,
@@ -5569,7 +5631,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000115,
                             "seq": 3,
                             "progress": 3,
@@ -5577,7 +5639,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000115,
                             "seq": 4,
                             "progress": 4,
@@ -5585,7 +5647,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000115,
                             "seq": 5,
                             "progress": 4,
@@ -5597,7 +5659,7 @@ router.get('/', async(req, res) => {
                 "310000116": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000116,
                             "seq": 1,
                             "progress": 1,
@@ -5605,7 +5667,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000116,
                             "seq": 2,
                             "progress": 1,
@@ -5617,7 +5679,7 @@ router.get('/', async(req, res) => {
                 "310000117": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000117,
                             "seq": 1,
                             "progress": 1,
@@ -5625,7 +5687,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000117,
                             "seq": 2,
                             "progress": 1,
@@ -5637,7 +5699,7 @@ router.get('/', async(req, res) => {
                 "310000118": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000118,
                             "seq": 1,
                             "progress": 1,
@@ -5645,7 +5707,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000118,
                             "seq": 2,
                             "progress": 1,
@@ -5657,7 +5719,7 @@ router.get('/', async(req, res) => {
                 "310000119": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000119,
                             "seq": 1,
                             "progress": 1,
@@ -5665,7 +5727,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000119,
                             "seq": 2,
                             "progress": 1,
@@ -5677,7 +5739,7 @@ router.get('/', async(req, res) => {
                 "310000120": {
                     "entries": [
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000120,
                             "seq": 1,
                             "progress": 1,
@@ -5685,7 +5747,7 @@ router.get('/', async(req, res) => {
                             "missionGroupId": 310000001
                         },
                         {
-                            "userId": "8770979",
+                            "userId": userid,
                             "missionId": 310000120,
                             "seq": 2,
                             "progress": 1,
@@ -5712,7 +5774,12 @@ router.get('/', async(req, res) => {
         userHighScoreMusicRating: undefined,
         userHighScoreMusicRatingMap: undefined,
         userSeason: {
-            seasonId: 37
+            seasonId: (() => {
+                const now = Date.now();
+                const entries = Object.values(master.masterSeasonBasicMap.entries) as any[];
+                const current = entries.find(s => Number(s.startAt) <= now && now < Number(s.endAt));
+                return current?.seasonId;
+            })()
         },
         userQualifyTournamentMusicScoreMap: undefined,
         userEventStoryMemorialMap: undefined,
@@ -5748,11 +5815,11 @@ router.get('/', async(req, res) => {
         userBirthdayStoryMap: undefined,
         userGenericAnimationMap: {
             entries: Object.fromEntries(
-                genericAnimations.genericAnimations.map((genericAnimationId: any) => [
-                    String(genericAnimationId),
+                Object.keys(master.masterGenericAnimationMap.entries).map((genericAnimationId: any) => [
+                    Number(genericAnimationId),
                     {
                         userId: userid,
-                        genericAnimationId,
+                        genericAnimationId: Number(genericAnimationId),
                         status: "already_read"
                     }
                 ])
@@ -5817,7 +5884,9 @@ router.get('/', async(req, res) => {
             entries: []
         },
         userProfileSituation: undefined,
-        userProfileDegreeMap: undefined,
+        userProfileDegreeMap: {
+            entries: userProfileDegree
+        },
         userDecoFrameInventoryMap: undefined,
         userDecoPinsInventoryMap: undefined,
         userDecoEffectInventoryMap: undefined,
@@ -5973,10 +6042,10 @@ router.get('/', async(req, res) => {
         userMusicVideo3dListMap: undefined,
         userCostume3dDressInventoryMap: {
             entries: Object.fromEntries(
-                costumes3d.costume3dDress.map((costumeId: number) => [
-                    String(costumeId),
+                Object.keys(master.masterCostume3dDressMap.entries).map(id => [
+                    id,
                     {
-                        costume3dDressId: costumeId,
+                        costume3dDressId: Number(id),
                         status: "obtained"
                     }
                 ])
@@ -5984,21 +6053,44 @@ router.get('/', async(req, res) => {
         },
         userCostume3dHairstyleInventoryMap: {
             entries: Object.fromEntries(
-                costumes3dHairstyle.costume3dHairstyle.map((costumeId: number) => [
-                    String(costumeId),
+                Object.keys(master.masterCostume3dHairstyleMap.entries).map(id => [
+                    id,
                     {
-                        costume3dHairstyleId: costumeId,
+                        costume3dHairstyleId: Number(id),
                         status: "obtained"
                     }
                 ])
             )
         },
-        userWearingCostume3dMap: undefined,
+        userWearingCostume3dMap: {
+            entries: Object.fromEntries(
+                Object.entries(user.wearingCostume).map(([charId, costume]: [string, any]) => [
+                    String(charId),
+                    {
+                        characterId: Number(charId),
+                        costume3dDressId: costume.dressId,
+                        costume3dHairstyleId: costume.hairstyleId
+                    }
+                ])
+            )
+        },
         userMusicClearInfoMap: computeMusicClearInfo(user.musicScore),
         userMusicClearCountInfoMap: computeMusicClearCountInfo(user.musicScore),
         userCharacterSituationCountMap: undefined,
         userDecoCharacterBackgroundInventoryMap: undefined,
-        userDecoCharacter3dMotionInventoryListMap: undefined,
+        userDecoCharacter3dMotionInventoryListMap: {
+            entries: Object.fromEntries(
+                Object.entries(DECO_MOTION_MAP).map(([charId, motionIds]) => [
+                    charId,
+                    {
+                        entries: motionIds.map(motionId => ({
+                            userId: userid,
+                            motionId
+                        }))
+                    }
+                ])
+            )
+        },
         userMusicVideo3dCustomDeckMap: undefined,
         userCostume3dMakingItemInventoryMap: undefined,
         userMusicVideo3dOriginalDeckCostumeMap: undefined,

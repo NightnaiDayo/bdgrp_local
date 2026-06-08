@@ -13,6 +13,11 @@ app.set('etag', false);
 
 app.use(express.raw({ type: "*/*" }))
 
+app.use((req, res, next) => {
+    req.url = req.url.replace(/\/+/g, '/');
+    next();
+});
+
 if(!fs.existsSync(`./db.json`)) {
     const db = {
         "Users": []

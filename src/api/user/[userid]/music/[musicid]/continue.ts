@@ -47,7 +47,7 @@ router.put('/', async(req, res) => {
             loginDays: user.loginDays
         },
         // @ts-ignore
-        contiuneHash: crypto.createHash("sha1").update(`${String(userid) + decoded.continueCount.toString() + decoded.continueTime.toString()}`, "utf8").digest("hex")
+        continueHash: crypto.createHash("sha1").update(`${String(userid) + decoded.continueCount.toString() + decoded.continueTime.toString()}`, "utf8").digest("hex")
     }
 
     const message = UserMusicContinueResponse.fromJSON(data);

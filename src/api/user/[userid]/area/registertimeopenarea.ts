@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { RegisterTimeOpenAreaResponse } from "@proto";
-import areas from "@gamedata/areas.json";
-import {encrypt} from "@util/encrypt";
+import { RegisterTimeOpenAreaResponse, SuiteMasterGetResponse } from "@proto";
+import { encrypt } from "@util/encrypt";
+import { decrypt } from "@util/decrypt";
+import fs from "fs";
+import path from "path";
+// @ts-ignore
+import bzip2 from 'seek-bzip'
 
 const router = Router({ mergeParams: true })
 
@@ -9,18 +13,18 @@ router.get('/', (req, res) => {
     // @ts-ignore
     const userid = req.params.userid
 
-    const a = []
-
-    areas.areas.map((areaId: number) => a.push(areaId))
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
 
     const data = {
-        registerTimeOpenAreaIdList: [],
+        registerTimeOpenAreaIdList: undefined,
         userAreaStatusMap: {
             entries: Object.fromEntries(
-                areas.areas.map((areaId: number) => [
-                    String(areaId),
-                    { userId: userid, areaId }
-                ])
+                Object.entries(master.masterAreaMap.entries)
+                    .filter(([_, area]) => area.areaType === "common")
+                    .map(([areaId]) => [
+                        Number(areaId),
+                        {userId: userid, areaId: Number(areaId)}
+                    ])
             )
         }
     }

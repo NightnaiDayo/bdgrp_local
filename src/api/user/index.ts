@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
             paidStar: 0,
             freeStar: 514,
             seal: 0,
-            degree: 100,
+            degree: [100, null],
             publishTotalDeckPowerFlg: false,
             publishBandRankFlg: false,
             publishMusicClearedFlg: false,

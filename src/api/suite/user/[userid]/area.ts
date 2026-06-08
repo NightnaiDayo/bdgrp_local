@@ -1,38 +1,52 @@
 import { Router } from "express";
-import { UserAreaCharacterResponse } from "@proto";
+import {SuiteMasterGetResponse, UserAreaCharacterResponse} from "@proto";
 import { encrypt } from "@util/encrypt";
-import areas from "@gamedata/areas.json"
 import actionSets from "@gamedata/actionSets.json"
+import {decrypt} from "@util/decrypt";
+import fs from "fs";
+import path from "path";
+// @ts-ignore
+import bzip2 from 'seek-bzip'
 
 const router = Router()
 
 router.get('/', (req, res) => {
 
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
+
     const data = {
         userAreaMap: {
             entries: Object.fromEntries(
-                areas.areas.map((areaId: number) => [
-                    String(areaId),
-                    {
-                        areaId,
-                        actionSets: (() => {
-                            // @ts-ignore
-                            const available = actionSets[String(areaId)] || [];
-                            const count = Math.min(available.length, Math.floor(Math.random() * 3) + 1);
-                            const shuffled = [...available];
-                            for (let i = shuffled.length - 1; i > 0; i--) {
-                                const j = Math.floor(Math.random() * (i + 1));
-                                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-                            }
-                            return shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" }));
-                        })()
-                    }
-                ])
+                // @ts-ignore
+                Object.entries(master.masterAreaMap.entries)
+                    .filter(([_, area]) => area.areaType === "common")
+                    .map(([areaId]) => [
+                        Number(areaId),
+                        {
+                            areaId: Number(areaId),
+                            actionSets: (() => {
+                                // @ts-ignore
+                                const available = actionSets[String(areaId)] || [];
+                                const count = Math.min(available.length, Math.floor(Math.random() * 3) + 1);
+                                const shuffled = [...available];
+                                for (let i = shuffled.length - 1; i > 0; i--) {
+                                    const j = Math.floor(Math.random() * (i + 1));
+                                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                                }
+                                return shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" }));
+                            })()
+                        }
+                    ])
             )
         },
         backstage: undefined,
         userSeason: {
-            seasonId: 37
+            seasonId: (() => {
+                const now = Date.now();
+                const entries = Object.values(master.masterSeasonBasicMap.entries) as any[];
+                const current = entries.find(s => Number(s.startAt) <= now && now < Number(s.endAt));
+                return current?.seasonId;
+            })()
         },
         userLotterySelectedBackstageTalkSetMap: undefined
     }
