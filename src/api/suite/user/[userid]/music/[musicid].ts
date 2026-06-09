@@ -44,6 +44,43 @@ router.put('/', (req, res) => {
     }
     saveDb();
 
+    const userSituations = Object.values(master.masterCharacterSituationMap.entries).map((card: any) => {
+        const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
+        const hasTraining = card.rarity >= 3;
+        return {
+            userId: userid,
+            situationId: Number(card.situationId),
+            level: maxLevel,
+            exp: 0,
+            createdAt: Date.now(),
+            addExp: 0,
+            trainingStatus: hasTraining ? "done" : "not_doing",
+            duplicateCount: 1,
+            illust: hasTraining ? "after_training" : "normal",
+            skillExp: 0,
+            skillLevel: 5,
+            userAppendParameter: hasTraining ? {
+                userId: userid,
+                situationId: Number(card.situationId),
+                performance: card.training?.trainingPerformance,
+                technique: card.training?.trainingTechnique,
+                visual: card.training?.trainingVisual,
+                characterPotentialPerformance: 30,
+                characterPotentialTechnique: 30,
+                characterPotentialVisual: 30,
+                characterBonusPerformance: 30,
+                characterBonusTechnique: 30,
+                characterBonusVisual: 30
+            } : undefined,
+            limitBreakRank: 0
+        };
+    });
+
+
+    const mainDeck = user.decks[user.mainDeck - 1];
+    const situationIds = [mainDeck.leader, mainDeck.member1, mainDeck.member2, mainDeck.member3, mainDeck.member4].filter(Boolean);
+
+
     function computeMusicClearInfo(userMusicScore: any): Record<string, any> {
         const difficulties = ["easy", "normal", "hard", "expert", "special"];
         const stats: Record<string, { cleared: number; fullCombo: number; allPerfect: number }> = {};
@@ -116,16 +153,8 @@ router.put('/', (req, res) => {
         { resourceId: 8, resourceType: "item", quantity: 160, lbBonus: 20 }
     ]
 
-    const deckSituationIds = [
-        user.decks[user.mainDeck - 1].leader,
-        user.decks[user.mainDeck - 1].member1,
-        user.decks[user.mainDeck - 1].member2,
-        user.decks[user.mainDeck - 1].member3,
-        user.decks[user.mainDeck - 1].member4
-    ].filter(id => id && id !== 0);
-
     const characterIds = new Set<number>();
-    for (const sid of deckSituationIds) {
+    for (const sid of situationIds) {
         const masterSit = master.masterCharacterSituationMap.entries[sid];
         if (masterSit && masterSit.characterId) {
             characterIds.add(masterSit.characterId);
@@ -173,7 +202,9 @@ router.put('/', (req, res) => {
             ]
         },
         userSituationList: {
-            entries: user.situations.filter((sit: any) => deckSituationIds.includes(sit.situationId))
+            entries: situationIds.map(sid => {
+                return userSituations.find((s: any) => s.situationId === sid);
+            })
         },
         achievementRewards: {},
         lbBonus: 20,
