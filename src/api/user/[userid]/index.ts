@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
             paidStar: user.paidStar,
             freeStar: user.freeStar,
             seal: user.seal,
-            degree: user.degree,
+            degree: user.degree[0],
             publishTotalDeckPowerFlg: user.publishTotalDeckPowerFlg,
             publishBandRankFlg: user.publishBandRankFlg,
             publishMusicClearedFlg: user.publishMusicClearedFlg,
