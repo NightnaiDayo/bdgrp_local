@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
         const hash = crypto.randomUUID();
         const newUser = {
-            userId: ((db.Users.at(-1)?.userId ?? 1000) as number) + 1,
+            userId: ((db.Users[process.env.SERVER].at(-1)?.userId ?? 1000) as number) + 1,
             hash: hash,
             userName: "新人工作人員",
             clientVersion: decoded.clientVersion,
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
             publishCharacterRankFlg: false,
             loginDays: 0
         };
-        db.Users.push({ ...newUser, ...newGamedata });
+        db.Users[process.env.SERVER].push({ ...newUser, ...newGamedata });
         saveDb();
 
         const data = {

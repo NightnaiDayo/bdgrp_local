@@ -1,7 +1,6 @@
 import { Router } from "express";
 import {SuiteMasterGetResponse, UserAreaCharacterResponse} from "@proto";
 import { encrypt } from "@util/encrypt";
-import actionSets from "@gamedata/actionSets.json"
 import {decrypt} from "@util/decrypt";
 import fs from "fs";
 import path from "path";
@@ -12,31 +11,27 @@ const router = Router()
 
 router.get('/', (req, res) => {
 
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
 
     const data = {
         userAreaMap: {
             entries: Object.fromEntries(
-                // @ts-ignore
                 Object.entries(master.masterAreaMap.entries)
-                    .filter(([_, area]) => area.areaType === "common")
-                    .map(([areaId]) => [
-                        Number(areaId),
-                        {
-                            areaId: Number(areaId),
-                            actionSets: (() => {
-                                // @ts-ignore
-                                const available = actionSets[String(areaId)] || [];
-                                const count = Math.min(available.length, Math.floor(Math.random() * 3) + 1);
-                                const shuffled = [...available];
-                                for (let i = shuffled.length - 1; i > 0; i--) {
-                                    const j = Math.floor(Math.random() * (i + 1));
-                                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-                                }
-                                return shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" }));
-                            })()
-                        }
-                    ])
+                    .filter(([_, area]: [string, any]) => area.areaType === "common")
+                    .map(([areaId]) => {
+                        const available = Object.values(master.masterActionSetMap.entries)
+                            .filter((a: any) => String(a.areaId) === areaId)
+                            .map((a: any) => a.actionSetId);
+                        const count = Math.min(available.length, Math.floor(Math.random() * 3) + 1);
+                        const shuffled = [...available].sort(() => Math.random() - 0.5);
+                        return [
+                            Number(areaId),
+                            {
+                                areaId: Number(areaId),
+                                actionSets: shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" }))
+                            }
+                        ];
+                    })
             )
         },
         backstage: undefined,

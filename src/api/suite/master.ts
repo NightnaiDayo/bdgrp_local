@@ -7,9 +7,18 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     let buffer;
+    let baseUrl;
+
+    switch(process.env.SERVER) {
+        case 'TW':
+            baseUrl = 'https://v940-bd.mobimon.com.tw';
+            break;
+        case 'JP':
+            baseUrl = 'https://api.garupa.jp'
+    }
 
     try {
-        const resp = await axios.get('https://v940-bd.mobimon.com.tw/api/suite/master', {
+        const resp = await axios.get(`${baseUrl}/api/suite/master`, {
             responseType: 'arraybuffer',
             headers: {
                 'User-Agent': req.get("User-Agent") as string,
@@ -21,9 +30,9 @@ router.get('/', async (req, res) => {
         });
 
         buffer = resp.data;
-        fs.writeFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`, Buffer.from(buffer));
+        fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`, Buffer.from(buffer));
     } catch(e) {
-        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)
+        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)
     }
 
     res.set({

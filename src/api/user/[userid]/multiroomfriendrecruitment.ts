@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router({ mergeParams: true })
 
-router.post('/', async(req, res) => {
+router.get('/', async(req, res) => {
     res.send('')
 })
 

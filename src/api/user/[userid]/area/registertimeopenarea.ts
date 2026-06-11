@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     // @ts-ignore
     const userid = req.params.userid
 
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
 
     const data = {
         registerTimeOpenAreaIdList: undefined,

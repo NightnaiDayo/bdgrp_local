@@ -7,8 +7,18 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     let buffer;
+    let baseUrl;
+
+    switch(process.env.SERVER) {
+        case 'TW':
+            baseUrl = 'https://v940-bd.mobimon.com.tw';
+            break;
+        case 'JP':
+            baseUrl = 'https://api.garupa.jp'
+    }
+
     try {
-        const resp = await axios.get('https://v940-bd.mobimon.com.tw/api/information/overview', {
+        const resp = await axios.get(`${baseUrl}/api/information/overview`, {
             responseType: 'arraybuffer',
             headers: {
                 'User-Agent': req.get("User-Agent") as string,
@@ -21,9 +31,9 @@ router.get('/', async (req, res) => {
         });
 
         buffer = resp.data;
-        fs.writeFileSync(`${path.join(process.cwd(), "resp", "overview.binpb")}`, Buffer.from(resp.data));
+        fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "overview.binpb")}`, Buffer.from(resp.data));
     } catch(e) {
-        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", "overview.binpb")}`);
+        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "overview.binpb")}`);
     }
 
     res.send(buffer);

@@ -15,11 +15,11 @@ router.put('/', (req, res) => {
     const userid = req.params.userid
     // @ts-ignore
     const musicid = req.params.musicid
-    const user = db.Users.find((u: any) => u.userId == userid);
+    const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid);
     const encReq = req.body;
     const reqbuffer = decrypt(encReq);
     const decoded = UserMusicRequest.decode(reqbuffer)
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
 
     const musicKey = String(musicid);
     user.musicScore[musicKey] ??= { entries: [] };

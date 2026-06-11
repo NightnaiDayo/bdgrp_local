@@ -15,7 +15,7 @@ router.put('/', async(req, res) => {
     const reqbuffer = decrypt(encReq);
     const decoded = EditUserDeckRequest.decode(reqbuffer)
 
-    const user = db.Users.find((u: any) => String(u.userId) === userid)
+    const user = db.Users[process.env.SERVER].find((u: any) => String(u.userId) === userid)
     let deck = user.decks[(deckid - 1)]
 
     if(!deck) {

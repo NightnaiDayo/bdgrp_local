@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     // @ts-ignore
     const userId = req.params.userid;
 
-    const user = db.Users.find((u: any) => String(u.userId) === userId);
+    const user = db.Users[process.env.SERVER].find((u: any) => String(u.userId) === userId);
 
     if(!user) return res.status(404).send('')
     

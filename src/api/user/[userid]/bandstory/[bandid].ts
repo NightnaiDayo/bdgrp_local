@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { UserBandStoryList } from "@proto";
-import { encrypt } from "@util/encrypt";
-import * as stories from "@gamedata/stories"
+import {SuiteMasterGetResponse, UserBandStoryList} from "@proto";
+import { encrypt } from "@util/encrypt"
+import {decrypt} from "@util/decrypt";
+import fs from "fs";
+import path from "path";
+// @ts-ignore
+import bzip2 from 'seek-bzip'
 
 const router = Router({ mergeParams: true })
 
@@ -9,18 +13,20 @@ router.get('/', async(req, res) => {
     // @ts-ignore
     const userid = req.params.userid
 
-    const bandMap: Record<number, any> = {
-        1: stories.ppp,
-        2: stories.afterglow,
-        3: stories.hhw,
-        4: stories.paspal,
-        5: stories.roselia,
-        18: stories.ras,
-        21: stories.morfonica,
-        45: stories.mygo,
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
+
+    const bandStoryMap: Record<number, any> = {
+        1: master.masterPoppinPartyStoryMap,
+        2: master.masterAfterglowStoryMap,
+        3: master.masterHelloHappyWorldStoryMap,
+        4: master.masterPastelPalettesStoryMap,
+        5: master.masterRoseliaStoryMap,
+        18: master.masterRaiseASuilenStoryMap,
+        21: master.masterMorfonicaStoryMap,
+        45: master.masterMyGoStoryMap,
     };
 
-    const entries = Object.values(bandMap[req.params.bandid]).map((story: any) => ({
+    const entries = Object.values(bandStoryMap[req.params.bandid]).map((story: any) => ({
         userId: userid,
         bandStoryId: story.bandStoryId,
         bandId: story.bandId,

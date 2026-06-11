@@ -1,7 +1,8 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
-import morgan from "morgan";
+import morgan from "morgan"
+import chalk from "chalk";
 
 const app = express();
 const PORT = 8482;
@@ -20,7 +21,10 @@ app.use((req, res, next) => {
 
 if(!fs.existsSync(`./db.json`)) {
     const db = {
-        "Users": []
+        "Users": {
+            "TW": [],
+            "JP": []
+        }
     }
     fs.writeFileSync('./db.json', JSON.stringify(db, null, 2))
 }
@@ -66,4 +70,5 @@ loadRoutes(root);
 
 app.listen(PORT, () => {
     console.log(`Running on ${PORT}`)
+    console.log(`Server: ${chalk.hex('00AABB')(process.env.SERVER)}`)
 })

@@ -13,8 +13,8 @@ const router = Router({ mergeParams: true });
 router.put('/', async(req, res) => {
     // @ts-ignore
     const userid = req.params.usrid
-    const user = db.Users.find((u: any) => u.userId == userid)
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", "suitemaster.bz2")}`)))))
+    const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid)
+    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
     // @ts-ignore
     const userSituations = Object.values(master.masterCharacterSituationMap.entries).map((card: any) => {
         const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));

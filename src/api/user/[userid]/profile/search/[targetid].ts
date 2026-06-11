@@ -8,7 +8,7 @@ const router = Router({ mergeParams: true });
 router.put('/', async(req, res) => {
     // @ts-ignore
     // const targetid = req.params.targetid
-    // const user = db.Users.find((u: any) => u.userId == targetid);
+    // const user = db.Users[process.env.SERVER].find((u: any) => u.userId == targetid);
 
     const data = {
         userProfile: undefined,

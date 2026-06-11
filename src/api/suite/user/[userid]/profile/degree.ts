@@ -14,7 +14,7 @@ router.put('/', async(req, res) => {
     // @ts-ignore
     const userid = req.params.userid;
 
-    const user = db.Users.find((u: any) => u.userId == userid);
+    const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid);
     const entries = {}
 
 

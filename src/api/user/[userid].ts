@@ -11,7 +11,7 @@ router.put('/', async (req, res) => {
 
     //@ts-ignore
     const userId = Number(req.params.userid);
-    const user = db.Users.find((u: any) => u.userId === userId);
+    const user = db.Users[process.env.SERVER].find((u: any) => u.userId === userId);
 
     for (const key in decoded) {
         const value = decoded[key as keyof typeof decoded];
