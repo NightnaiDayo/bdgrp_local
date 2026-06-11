@@ -25,6 +25,8 @@ router.put('/', async(req, res) => {
         }
     }
 
+    const update = []
+
     if(decoded.leader) deck.leader = decoded.leader
     if(decoded.member1) deck.member1 = decoded.member1
     if(decoded.member2) deck.member2 = decoded.member2
@@ -40,7 +42,9 @@ router.put('/', async(req, res) => {
 
     const data = {
         updateResources: {
-            entries: user.decks
+            userDeckList: {
+                entries: user.decks
+            }
         }
     }
 
