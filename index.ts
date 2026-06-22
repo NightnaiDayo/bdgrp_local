@@ -7,6 +7,11 @@ import chalk from "chalk";
 const app = express();
 const PORT = 8482;
 
+if (!fs.existsSync('.env')) {
+    console.error('Error: .env not found.')
+    process.exit(0)
+}
+
 app.set('strict routing', true);
 app.use(morgan('dev'));
 app.disable('x-powered-by');
