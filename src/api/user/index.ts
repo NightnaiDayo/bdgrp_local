@@ -17,14 +17,14 @@ router.post('/', async (req, res) => {
         const newUser = {
             userId: ((db.Users[process.env.SERVER].at(-1)?.userId ?? 1000) as number) + 1,
             hash: hash,
-            userName: "新人工作人員",
+            userName: process.env.SERVER == "TW" ? "新人工作人員" : "新人スタッフ",
             clientVersion: decoded.clientVersion,
             platform: decoded.platform,
             deviceModel: decoded.deviceModel,
             operatingSystem: decoded.operatingSystem,
             birthMonth: "199001",
             tutorialStatus: "end",
-            introduction: "你好！",
+            introduction: process.env.SERVER == "TW" ? "你好！" : "よろしくお願いします！",
             unknownString: "standard",
             tutorialEndedAt: Date.now()
         }
@@ -53,7 +53,10 @@ router.post('/', async (req, res) => {
             publishStageAchievementConditionsFlg: false,
             publishStageFriendRankingFlg: true,
             publishCharacterRankFlg: false,
-            loginDays: 0
+            loginDays: 0,
+            useProfileSettingDegree: true,
+            useProfileSettingSituation: true,
+            selectedCharacterType: "character_situation"
         };
         db.Users[process.env.SERVER].push({ ...newUser, ...newGamedata });
         saveDb();

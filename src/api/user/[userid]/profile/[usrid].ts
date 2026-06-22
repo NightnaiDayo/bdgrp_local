@@ -2,11 +2,7 @@ import {Router} from "express";
 import { SuiteMasterGetResponse, UserProfile } from "@proto";
 import { db } from "@db";
 import { encrypt } from "@util/encrypt";
-import { decrypt } from "@util/decrypt";
-import fs from "fs";
-import path from "path";
-// @ts-ignore
-import bzip2 from 'seek-bzip'
+import { getMaster } from "@master";
 
 const router = Router({ mergeParams: true });
 
@@ -14,7 +10,7 @@ router.put('/', async(req, res) => {
     // @ts-ignore
     const userid = req.params.usrid
     const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid)
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
+    const master = getMaster();
     // @ts-ignore
     const userSituations = Object.values(master.masterCharacterSituationMap.entries).map((card: any) => {
         const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));

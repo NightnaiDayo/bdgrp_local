@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {SuiteMasterGetResponse, UserAreaCharacterResponse} from "@proto";
 import { encrypt } from "@util/encrypt";
-import {decrypt} from "@util/decrypt";
-import fs from "fs";
-import path from "path";
-// @ts-ignore
-import bzip2 from 'seek-bzip'
+import { getMaster } from "@master";
+import {db} from "@db";
 
-const router = Router()
+
+const router = Router({ mergeParams: true })
 
 router.get('/', (req, res) => {
-
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
-
+    // @ts-ignore
+    const userid = req.params.userid
+    // @ts-ignore
+    const user = db.Users[process.env.SERVER].find((u: any) => u.userId == String(userid));
+    const master = getMaster();
     const data = {
         userAreaMap: {
             entries: Object.fromEntries(
@@ -28,7 +28,8 @@ router.get('/', (req, res) => {
                             Number(areaId),
                             {
                                 areaId: Number(areaId),
-                                actionSets: shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" }))
+                                actionSets: shuffled.slice(0, count).map(id => ({ actionSetId: id, status: "already_read" })),
+                                areaItemIds: user.areaItems[areaId] ?? []
                             }
                         ];
                     })

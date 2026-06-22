@@ -2,6 +2,7 @@ import { Router } from 'express';
 import axios from "axios";
 import fs from 'fs';
 import path from "path";
+import { reloadMaster } from "@master"
 
 const router = Router()
 
@@ -15,6 +16,7 @@ router.get('/', async (req, res) => {
             break;
         case 'JP':
             baseUrl = 'https://api.garupa.jp'
+            break;
     }
 
     try {
@@ -42,6 +44,8 @@ router.get('/', async (req, res) => {
     });
 
     res.send(buffer)
+
+    reloadMaster();
 })
 
 export default router;

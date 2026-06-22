@@ -1,11 +1,8 @@
 import { Router } from "express";
 import {SuiteMasterGetResponse, SuiteUserGetResponse} from "@proto";
 import { encrypt } from "@util/encrypt";
-// @ts-ignore
-import bzip2 from 'seek-bzip'
-import {decrypt} from "@util/decrypt";
-import fs from "fs";
-import path from "path";
+import { getMaster } from "@master";
+
 
 const router = Router({ mergeParams: true })
 
@@ -13,7 +10,7 @@ router.post('/', (req, res) => {
     // @ts-ignore
     const userid = req.params.userid
 
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
+    const master = getMaster();
 
     const data = {
         userNewSituationIntroductionMap: {

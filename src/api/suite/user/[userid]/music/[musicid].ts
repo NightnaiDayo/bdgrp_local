@@ -3,10 +3,8 @@ import {SuiteUserMusic, UserMusicRequest, PlayerResourceList, SuiteMasterGetResp
 import { decrypt } from "@util/decrypt";
 import { saveDb, db } from "@db";
 import { encrypt } from "@util/encrypt";
-import fs from "fs";
-import path from "path";
-// @ts-ignore
-import bzip2 from 'seek-bzip'
+import { getMaster } from "@master";
+
 
 const router = Router({ mergeParams: true })
 
@@ -19,7 +17,7 @@ router.put('/', (req, res) => {
     const encReq = req.body;
     const reqbuffer = decrypt(encReq);
     const decoded = UserMusicRequest.decode(reqbuffer)
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
+    const master = getMaster();
 
     const musicKey = String(musicid);
     user.musicScore[musicKey] ??= { entries: [] };
@@ -241,7 +239,8 @@ router.put('/', (req, res) => {
                 }
                 return entries;
             })()
-        }
+        },
+        challengeEventResponse: {},
     }
 
     const message = SuiteUserMusic.fromJSON(data);

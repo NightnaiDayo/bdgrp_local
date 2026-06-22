@@ -46,6 +46,7 @@
       "@db": ["./db.ts"],
       "@util/*": ["./util/*"],
       "@proto": ["./proto/index.cts"],
+      "@master": ["./master.ts"]
     }
   }
 }

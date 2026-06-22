@@ -68,6 +68,10 @@ function loadRoutes(dir: string, basePath = "/api") {
 
 loadRoutes(root);
 
+app.get('/', (req, res) => {
+    res.send(process.env.SERVER)
+})
+
 app.listen(PORT, () => {
     console.log(`Running on ${PORT}`)
     console.log(`Server: ${chalk.hex('00AABB')(process.env.SERVER)}`)

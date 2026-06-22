@@ -2,11 +2,7 @@ import { Router } from "express";
 import { encrypt } from "@util/encrypt";
 import { db, saveDb } from "@db";
 import { SuiteUserGetResponse, SuiteMasterGetResponse } from "@proto"
-import { decrypt } from "@util/decrypt";
-import fs from "fs";
-import path from "path";
-// @ts-ignore
-import bzip2 from 'seek-bzip'
+import { getMaster } from "@master";
 
 const router = Router({ mergeParams: true })
 
@@ -16,7 +12,7 @@ router.get('/', async(req, res) => {
 
     const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid);
 
-    const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(bzip2.decode(decrypt(fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)))))
+    const master = getMaster();
 
     if (!user) return res.status(404).send();
 
@@ -45,7 +41,9 @@ router.get('/', async(req, res) => {
         characterId: 601,
         costumeId: user.wearingCostume ? user.wearingCostume["601"].costumeId : 1643
     }
-    const userSituations = Object.values(master.masterCharacterSituationMap.entries).map((card: any) => {
+    const userSituations = Object.values(master.masterCharacterSituationMap.entries)
+        .filter((card: any) => card.releasedAt !== "4128645600000")
+        .map((card: any) => {
         const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
         const hasTraining = card.rarity >= 3;
         return {
@@ -53,10 +51,10 @@ router.get('/', async(req, res) => {
             situationId: Number(card.situationId),
             level: maxLevel,
             exp: 0,
-            createdAt: Date.now().toString(),
+            createdAt: card.releasedAt,
             addExp: 0,
             trainingStatus: hasTraining ? "done" : "not_doing",
-            duplicateCount: 1,
+            duplicateCount: 0,
             illust: hasTraining ? "after_training" : "normal",
             skillExp: 0,
             skillLevel: 5,
@@ -416,7 +414,20 @@ router.get('/', async(req, res) => {
             )
         },
         userAfterLiveTalkListMap: undefined,
-        userAreaItemMap: undefined,
+        userAreaItemMap: {
+            entries: Object.fromEntries(
+                Object.entries(master.masterAreaItemMap.entries).map(([id, areaItem]) => [
+                    id,
+                    {
+                        userId: userid,
+                        areaItemId: areaItem.areaItemId,
+                        areaItemCategory: areaItem.categoryId,
+                        level: 8
+                    }
+                ])
+            ),
+            newlyOpenedContents: { entries: [] }
+        },
         userResourceCount: undefined,
         userLiveBoost: {
             userId: userid,
@@ -5865,35 +5876,86 @@ router.get('/', async(req, res) => {
         userProfileDegreeMap: {
             entries: userProfileDegree
         },
-        userDecoFrameInventoryMap: undefined,
-        userDecoPinsInventoryMap: undefined,
-        userDecoEffectInventoryMap: undefined,
-        userDecoEquipment: undefined/*{
+        userDecoFrameInventoryMap: {
+            entries: Object.fromEntries(
+                Object.values(master.masterDecoFrameMap.entries).map(f => [
+                    f.decoFrameId,
+                    {
+                        userId: Number(userid),
+                        decoFrameId: f.decoFrameId,
+                        level: 5
+                    }
+                ])
+            )
+        },
+        userDecoPinsInventoryMap: {
+            entries: Object.fromEntries(
+                Object.values(master.masterDecoPinsMap.entries).map(p => [
+                    p.decoPinsId,
+                    {
+                        userId: Number(userid),
+                        decoPinsId: p.decoPinsId,
+                        quantity: 5
+                    }
+                ])
+            )
+        },
+        userDecoEffectInventoryMap: {
+            entries: Object.fromEntries(
+                master.masterDecoEffectList.entries
+                    .filter(e => Number(e.startAt) <= Date.now() && Number(e.endAt) >= Date.now())
+                    .map(e => [
+                    e.decoEffectId,
+                    {
+                        userId: Number(userid),
+                        decoEffectId: e.decoEffectId
+                    }
+                ])
+            )
+        },
+        userDecoEquipment: {
             userDecoCharacterSituation: {
-
+                userId: userid,
+                situationId: 1,
+                situationStatus: "normal"
             },
             userDecoCharacterLive2d: {
-
+                userId: userid,
+                characterId: master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
+                costumeId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].costumeId,
+                motionId: Object.values(master.masterDecoCharacterLive2dMotionMap.entries)
+                    .filter(m => m.characterId === master.masterCharacterSituationMap.entries[mainDeck.leader].characterId)
+                    .sort((a, b) => a.seq - b.seq)[0].motionId,
+                backgroundId: 1
             },
             userDecoCharacter3d: {
-
+                userId: userid,
+                characterId: master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
+                dressId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].dressId,
+                hairstyleId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].hairstyleId,
+                motionId: master.masterEnableCharacter3dMotionTypeMap.entries[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId]
+                    ?.entries?.deco?.entries
+                    ?.sort((a, b) => a.seq - b.seq)[0].motionId,
+                backgroundId: 11
             },
             userDecoFramePins: {
-
+                userId: userid,
+                decoFrameId: 1
             },
             userDecoDegreeMap: {
-
+                entries: userProfileDegree
             },
-            userDecoAppealMap: {
-
-            },
+            userDecoAppealMap: {},
             userDecoSetting: {
-
+                useProfileSettingDegree: user.useProfileSettingDegree,
+                useProfileSettingSituation: user.useProfileSettingSituation,
+                selectedCharacterType: user.selectedCharacterType
             },
             userDecoEffect: {
-
+                userId: userid,
+                decoEffectId: 1
             }
-        }*/,
+        },
         userMusicVideoListMap: {
             userMusicVideoInventoryListMap: {
                 entries: Object.fromEntries(
