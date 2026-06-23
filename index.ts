@@ -3,7 +3,6 @@ import path from 'path';
 import fs from 'fs';
 import morgan from "morgan"
 import chalk from "chalk";
-import { reloadMaster } from "@master"
 
 const app = express();
 const PORT = 8482;
@@ -78,8 +77,6 @@ loadRoutes(root);
 app.get('/', (req, res) => {
     res.send(process.env.SERVER)
 })
-
-reloadMaster();
 
 app.listen(PORT, () => {
     console.log(`Running on ${PORT}`)
