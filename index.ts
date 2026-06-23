@@ -12,11 +12,12 @@ if (!fs.existsSync('.env')) {
     process.exit(0)
 }
 
-app.set('strict routing', true);
-app.use(morgan('dev'));
-app.disable('x-powered-by');
-app.set('etag', false);
+fs.mkdirSync("resp/TW", { recursive: true });
+fs.mkdirSync("resp/JP", { recursive: true });
 
+app.set('strict routing', true); 
+app.use(morgan('dev')); app.disable('x-powered-by'); 
+app.set('etag', false);
 app.use(express.raw({ type: "*/*" }))
 
 app.use((req, res, next) => {
