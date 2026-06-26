@@ -55,7 +55,7 @@ router.get('/', async(req, res) => {
             addExp: 0,
             trainingStatus: hasTraining ? "done" : "not_doing",
             duplicateCount: 0,
-            illust: hasTraining ? "after_training" : "normal",
+            illust: user.situationIllust[card.situationId] ?? (hasTraining ? "after_training" : "normal"),
             skillExp: 0,
             skillLevel: 5,
             userAppendParameter: hasTraining ? {
