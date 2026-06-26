@@ -46,6 +46,8 @@ router.get('/', async(req, res) => {
         .map((card: any) => {
         const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
         const hasTraining = card.rarity >= 3;
+        if(!user.situationIllust) user.situationIllust = {}
+        saveDb()
         return {
             userId: userid,
             situationId: Number(card.situationId),
