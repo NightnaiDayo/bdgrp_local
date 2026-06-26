@@ -84,32 +84,6 @@ router.post('/', async (req, res) => {
 
         res.send(encBuffer);
 
-        let baseUrl;
-        switch(process.env.SERVER) {
-            case 'TW':
-                baseUrl = 'https://v940-bd.mobimon.com.tw';
-                break;
-            case 'JP':
-                baseUrl = 'https://api.garupa.jp'
-                break;
-        }
-
-        let master = getMaster();
-        if(!master) {
-            const d = await axios.get(`${baseUrl}/api/suite/master`, {
-                responseType: 'arraybuffer',
-                headers: {
-                    'User-Agent': req.get("User-Agent") as string,
-                    'Content-Type': req.get("Content-Type") as string,
-                    'Accept': req.get("Accept") as string,
-                    'Accept-Encoding': req.get("Accept-Encoding") as string,
-                    'x-clientversion': req.get("x-clientversion") as string,
-                }
-            });
-            fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`, Buffer.from(d.data));
-            reloadMaster()
-        }
-
 });
 
 export default router;

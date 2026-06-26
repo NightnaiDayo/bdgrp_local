@@ -23,7 +23,7 @@ router.get('/', async(req, res) => {
         45: master.masterMyGoStoryMap,
     };
 
-    const entries = Object.values(bandStoryMap[req.params.bandid]).map((story: any) => ({
+    const entries = Object.values(bandStoryMap[req.params.bandid].entries).map((story: any) => ({
         userId: userid,
         bandStoryId: story.bandStoryId,
         bandId: story.bandId,

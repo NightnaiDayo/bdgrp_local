@@ -292,10 +292,9 @@ router.get('/', async(req, res) => {
         userMainStoryList: {
             entries: Object.values(master.masterMainStoryMap.entries).map((story: any) => ({
                 userId: userid,
-                mainStoryId: story.mainStoryId,
-                status: "already_read",
-                seq: story.seq
-            }))
+                storyId: story.mainStoryId,
+                status: "already_read"
+            })).reverse()
         },
         userPracticeTicketList: undefined,
         userBondsList: {
@@ -5773,7 +5772,25 @@ router.get('/', async(req, res) => {
             })()
         },
         userQualifyTournamentMusicScoreMap: undefined,
-        userEventStoryMemorialMap: undefined,
+        userEventStoryMemorialMap: {
+            entries: Object.fromEntries(
+                Object.entries(master.masterEventStoryMemorialConfigMap.entries).map(([eventId, config]: [string, any]) => [
+                    eventId,
+                    {
+                        eventId: Number(eventId),
+                        userEventStoryList: {
+                            entries: [{
+                                userId: userid,
+                                eventId: Number(eventId),
+                                status: "already_read"
+                            }]
+                        },
+                        isExistUnReadStory: false,
+                        isLocked: false
+                    }
+                ])
+            )
+        },
         userReleasedBondsIdList: {
             // @ts-ignore
             entries: Object.keys(master.masterBondsMap?.entries || {}).map(Number)
@@ -5840,7 +5857,7 @@ router.get('/', async(req, res) => {
         userNewMusicIntroductionMap: {
             entries: Object.fromEntries(
                 // @ts-ignore
-                Object.values(master.masterNewMusicIntroductionMap.entries).map((item: any) => [
+                Object.values(master.masterNewMusicIntroductionMap.entries ?? {}).map((item: any) => [
                     String(item.newMusicIntroductionId),
                     {
                         userId: userid,
