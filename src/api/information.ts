@@ -15,7 +15,7 @@ router.options('/', async(req, res) => {
             break;
     }
 
-    const resp = await axios.options(`${baseUrl}/information`)
+    const resp = await axios.options(`${baseUrl}/api/information`)
     res.send(resp.data)
 })
 
