@@ -9,7 +9,14 @@ const PORT = 8482;
 
 if (!fs.existsSync('.env')) {
     console.error('Error: .env not found.')
-    process.exit(0)
+    process.exit(1)
+}
+
+const servers = ["TW", "JP"]
+
+if(!servers.find(s => process.env.SERVER == s)) {
+    console.error('Error: Unknown Server.')
+    process.exit(1)
 }
 
 fs.mkdirSync("resp/TW", { recursive: true });
