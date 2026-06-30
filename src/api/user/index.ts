@@ -4,10 +4,6 @@ import { encrypt } from "@util/encrypt"
 import { decrypt } from "@util/decrypt";
 import crypto from "crypto";
 import { db, saveDb } from "@db"
-import {getMaster, reloadMaster} from "@master";
-import axios from "axios";
-import fs from "fs";
-import path from "path";
 
 const router = Router()
 

@@ -1,7 +1,9 @@
-# Nothing.
-What is this? A private server for a girl rhythm game (TW/JP version)?
-# Change Server
-**copy .env.example and rename it to .env first**  
+## A project
+A local server for a girl rhythm game
+Support TW /JP server.
+CN? Never.
+# Changeing Server
+**copy .env.example and rename it to .env first**
 
 go .env  
 change `SERVER=` to the server you want (`TW`/`JP`)  
@@ -12,5 +14,11 @@ JP server: `https://api.garupa.jp` -> `http://IP:8482`
 
 replace XXX with actual game version
 
-
-https://files.catbox.moe/bpejdz.mp4
+# Features
+- Free live
+- Multi live (not recommended)
+- Area items
+- Profile (deco and settings not available)
+- Outfits
+- Stories (event stories not available)
+- NFO not available

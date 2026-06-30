@@ -94,7 +94,7 @@ router.get('/', async(req, res) => {
         }
     }
 
-    res.send(encrypt(UserEventStoryMemorialResponse.encode(UserEventStoryMemorialResponse.fromJSON(data)).finish()))
+    res.send(encrypt(Buffer.from(UserEventStoryMemorialResponse.encode(UserEventStoryMemorialResponse.fromJSON(data)).finish())))
 })
 
 export default router;

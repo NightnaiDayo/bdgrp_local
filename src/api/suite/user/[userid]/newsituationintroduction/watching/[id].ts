@@ -17,10 +17,10 @@ router.post('/', (req, res) => {
             entries: Object.fromEntries(
                 // @ts-ignore
                 master.masterNewSituationIntroductionList.entries.map((item: any) => [
-                    String(item.newSituationIntroductionId),
+                    Number(item.newSituationIntroductionId),
                     {
                         userId: userid,
-                        newSituationIntroductionId: item.newSituationIntroductionId,
+                        newSituationIntroductionId: Number(item.newSituationIntroductionId),
                         status: "already_read"
                     }
                 ])

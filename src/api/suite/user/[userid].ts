@@ -490,7 +490,15 @@ router.get('/', async(req, res) => {
             )
         },
         userEventExchangesList: { entries: [] },
-        userEventItemList: undefined,
+        userEventItemList: {
+            entries: Object.entries(master.masterEventItemMap.entries).map((item) => [
+                {
+                    userId: userid,
+                    eventItemId: item.eventItemId,
+                    quantity: 1
+                }
+            ])
+        },
         userPurchaseMap: {
             entries: Object.fromEntries(
                 purchaseIds.map(id => [
@@ -6083,7 +6091,22 @@ router.get('/', async(req, res) => {
                 return entries;
             })()
         },
-        userMusicVideo3dListMap: undefined,
+        userMusicVideo3dListMap: {
+            userMusicVideo3dInventoryListMap: {
+                entries: Object.fromEntries(
+                    Object.entries(master.masterMusicVideo3dMap?.entries ?? {}).map(([_, mv]: [string, any]) => [
+                        String(mv.musicId),
+                        {
+                            entries: [{
+                                musicVideo3dId: mv.musicVideo3dId,
+                                musicId: mv.musicId,
+                                seq: mv.seq
+                            }]
+                        }
+                    ])
+                )
+            }
+        },
         userCostume3dDressInventoryMap: {
             entries: Object.fromEntries(
                 Object.keys(master.masterCostume3dDressMap.entries).map(id => [

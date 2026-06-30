@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
             entries: Object.fromEntries(
                 // @ts-ignore
                 Object.values(master.masterNewMusicIntroductionMap.entries).map((item: any) => [
-                    String(item.newMusicIntroductionId),
+                    Number(item.newMusicIntroductionId),
                     {
                         userId: userid,
                         newMusicIntroductionId: item.newMusicIntroductionId,
