@@ -1,6 +1,8 @@
 ## A project
 A local server for a girl rhythm game
+
 Support TW /JP server.
+
 CN? Never.
 # Changeing Server
 **copy .env.example and rename it to .env first**
