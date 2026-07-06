@@ -23,4 +23,4 @@ replace XXX with actual game version
 - Profile (deco and settings not available)
 - Outfits
 - Stories (event stories not available)
-- NFO not available
+- NFO, Area talk(Album) not available
