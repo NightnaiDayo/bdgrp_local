@@ -2,7 +2,7 @@ import { Router } from "express";
 import {UserGachaRequest, SuiteUserGachaResponse, SuiteMasterGetResponse} from "@proto";
 import {decrypt} from "@util/decrypt";
 import { getMaster } from "@master";
-
+import { encrypt } from "@util/encrypt"
 
 const router = Router({ mergeParams: true })
 
