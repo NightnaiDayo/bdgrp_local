@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { DeviceInfoUpdateRequest } from "@proto";
-import {decrypt} from "@util/decrypt";
+import { DeviceInfoUpdateRequest, UserRegistration } from "@proto";
+import { decrypt } from "@util/decrypt";
 import { saveDb, db } from "@db";
+import { encrypt } from "@util/encrypt";
 
 const router = Router({ mergeParams: true })
 
@@ -18,9 +19,13 @@ router.put('/', (req, res) => {
 
     saveDb();
 
-    res.send('')
+    const data = {
+        deviceModel: user.deviceModel,
+        operatingSystem: user.operatingSystem,
+        clientVersion: user.clientVersion
+    }
 
-
+    res.send(encrypt(Buffer.from(UserRegistration.encode(UserRegistration.fromJSON(data)).finish())))
 })
 
 export default router;
