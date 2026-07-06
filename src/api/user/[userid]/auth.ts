@@ -22,7 +22,7 @@ router.put('/', (req, res) => {
         errorMessage: "signature invalid."
     }
 
-    if(hash != decoded.hash1) {
+    if(hash != decoded.hash1 || !user) {
         res.status(403).send(encrypt(Buffer.from(ClientErrorResponse.encode(ClientErrorResponse.fromJSON(data)).finish())))
     } else {
         if(req.headers['x-signature'] != user.hash) {
