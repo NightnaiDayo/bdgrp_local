@@ -23,6 +23,7 @@ router.put('/', (req, res) => {
     user.musicScore[musicKey] ??= { entries: [] };
 
     let target = user.musicScore[musicKey].entries.find((score: any) => score.musicDifficulty == decoded.musicDifficulty)
+    let first = false;
 
     const scoreInfo = {
         userId: userid,
@@ -35,6 +36,7 @@ router.put('/', (req, res) => {
     };
 
     if (!target) {
+        first = true
         user.musicScore[musicKey].entries.push(scoreInfo);
     } else {
         if (target.soloHighScore >= decoded.score) return;
@@ -170,7 +172,7 @@ router.put('/', (req, res) => {
                                 userId: String(user.userId),
                                 musicId: Number(musicId),
                                 musicDifficulty: score.musicDifficulty,
-                                soloHighScore: score.soloHighScore,
+                                soloHighScore: first ? 0 : score.soloHighScore,
                                 maxCombo: score.maxCombo,
                                 soloScoreRank: score.soloScoreRank,
                                 clearStatus: score.clearStatus
