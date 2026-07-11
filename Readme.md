@@ -3,7 +3,7 @@ A local server for a girl rhythm game
 
 Support TW /JP server.
 
-CN? Never.
+CN? Never. Their account system sucks.
 # Changing Server
 **copy .env.example and rename it to .env first**
 
