@@ -461,10 +461,14 @@ router.get('/', async(req, res) => {
         userHomeBannerList: undefined,
         userStampMap: {
             entries: Object.fromEntries(
-                Object.keys(master.masterStampMap.entries).map(([stampId, stamp]) => [
-                    Number(stampId),
-                    // @ts-ignore
-                    { userId: userid, stampId: Number(stampId), seq: 1, isUnlockVoice: !!stamp.withVoice }
+                Object.entries(master.masterStampMap.entries).map(([stampId, stamp]) => [
+                    Number(stampId), // 保持字串作為物件的鍵
+                    {
+                        userId: userid,
+                        stampId: Number(stampId),
+                        seq: 1,
+                        isUnlockVoice: !!stamp.withVoice // PS全解鎖：或者直接給 true 也行
+                    }
                 ])
             )
         },
