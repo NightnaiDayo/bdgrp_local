@@ -461,9 +461,10 @@ router.get('/', async(req, res) => {
         userHomeBannerList: undefined,
         userStampMap: {
             entries: Object.fromEntries(
-                Object.keys(master.masterStampMap.entries).map((stampId) => [
+                Object.keys(master.masterStampMap.entries).map(([stampId, stamp]) => [
                     Number(stampId),
-                    { userId: userid, stampId: Number(stampId), seq: 1, isUnlockVoice: false }
+                    // @ts-ignore
+                    { userId: userid, stampId: Number(stampId), seq: 1, isUnlockVoice: !!stamp.withVoice }
                 ])
             )
         },
@@ -6168,7 +6169,17 @@ router.get('/', async(req, res) => {
         userPurchaseStarList: undefined,
         userInviteMissionListMap: undefined,
         userGachaBonusMap: undefined,
-        userStampVoiceMap: undefined,
+        userStampVoiceMap: {
+            entries: Object.fromEntries(
+                Object.keys(master.masterStampMap.entries)
+                    .filter((stampId) => master.masterStampMap.entries[stampId].withVoice)
+                    .map((stampId) => [
+                        Number(stampId),
+                        // @ts-ignore
+                        { userId: userid, stampId: Number(stampId) }
+                    ])
+            )
+        },
         userEventRankedCountAppeal: undefined,
         userEventMusicRankedCountAppeal: undefined,
         userMyGoStoryList: storyList(master.masterMyGoStoryMap),
