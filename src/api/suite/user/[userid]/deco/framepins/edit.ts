@@ -34,11 +34,11 @@ router.put('/', async(req, res) => {
     const framepin = {
         "userId": userid,
         "decoFrameId": user.decos.frameId,
-        "decoPinsId1": user.decos["framepins"][0],
-        "decoPinsId2": user.decos["framepins"][1],
-        "decoPinsId3": user.decos["framepins"][2],
-        "decoPinsId4": user.decos["framepins"][3],
-        "decoPinsId5": user.decos["framepins"][4],
+        "decoPinsId1": user.decos.framepins[0],
+        "decoPinsId2": user.decos.framepins[1],
+        "decoPinsId3": user.decos.framepins[2],
+        "decoPinsId4": user.decos.framepins[3],
+        "decoPinsId5": user.decos.framepins[4],
     }
 
     const data = {
