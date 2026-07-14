@@ -20,7 +20,7 @@ replace XXX with actual game version
 - Free live
 - Multi live (not recommended)
 - Area items
-- Profile (deco and settings not available)
+- Profile (settings not available)
 - Outfits
 - Stories (event stories not available)
 - NFO, Area talk(Album) not available
