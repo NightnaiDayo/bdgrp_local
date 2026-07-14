@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { saveDb, db } from "@db";
 import {decrypt} from "@util/decrypt";
-import { UserDecoCharacter3d, SuiteUserDecoCharacter3d } from "@proto";
+import { UserDecoEffectRequestBody, SuiteUserDecoCharacterSituation } from "@proto";
 import {encrypt} from "@util/encrypt";
 
 const router = Router({ mergeParams: true })
@@ -11,30 +11,24 @@ router.put('/', async(req, res) => {
     const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid);
     const encReq = req.body;
     const reqbuffer = decrypt(encReq);
-    const decoded = UserDecoCharacter3d.decode(reqbuffer)
+    const decoded = UserDecoEffectRequestBody.decode(reqbuffer)
 
-    user.decos["3d"] = {
-        "characterId": decoded.characterId,
-        "dressId": decoded.dressId,
-        "hairstyleId": decoded.hairstyleId,
-        "motionId": decoded.motionId,
-        "backgroundId": decoded.backgroundId
-    }
+    user.decos.effect = decoded.decoEffectId
 
-    saveDb();
+    saveDb()
 
     const data = {
         updateResources: {
             userDecoEquipment: {
-                userDecoCharacter3d: {
+                userDecoEffect: {
                     userId: Number(userid),
-                    ...user.decos["3d"]
+                    decoEffectId: user.decos.effect
                 }
             }
         }
     }
 
-    res.send(encrypt(Buffer.from(SuiteUserDecoCharacter3d.encode(SuiteUserDecoCharacter3d.fromJSON(data)).finish())))
+    res.send(encrypt(Buffer.from(SuiteUserDecoCharacterSituation.encode(SuiteUserDecoCharacterSituation.fromJSON(data)).finish())))
 
 })
 

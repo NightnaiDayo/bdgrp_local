@@ -233,6 +233,11 @@ router.get('/', async(req, res) => {
         characterProfileL2d[entry.characterId].push(entry.characterProfileLive2dId);
     }
 
+    if(!user.decos) {
+        user.decos = {}
+        saveDb();
+    }
+
     const masterPurchaseMap = master.masterPurchaseMap?.entries || {};
     const purchaseIds = Object.keys(masterPurchaseMap);
 
@@ -5948,31 +5953,36 @@ router.get('/', async(req, res) => {
         userDecoEquipment: {
             userDecoCharacterSituation: {
                 userId: userid,
-                situationId: 1,
-                situationStatus: "normal"
+                situationId: user.decos["situation"]?.situationId ?? 1,
+                situationStatus: user.decos["situation"]?.situationStatus ?? "normal"
             },
             userDecoCharacterLive2d: {
                 userId: userid,
-                characterId: master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
-                costumeId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].costumeId,
-                motionId: Object.values(master.masterDecoCharacterLive2dMotionMap.entries)
+                characterId: user.decos["live2d"]?.characterId ?? master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
+                costumeId: user.decos["live2d"]?.costumeId ?? user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].costumeId,
+                motionId: user.decos["live2d"]?.motionId ?? Object.values(master.masterDecoCharacterLive2dMotionMap.entries)
                     .filter(m => m.characterId === master.masterCharacterSituationMap.entries[mainDeck.leader].characterId)
                     .sort((a, b) => a.seq - b.seq)[0].motionId,
-                backgroundId: 1
+                backgroundId: user.decos["live2d"]?.backgroundId ?? 1
             },
             userDecoCharacter3d: {
                 userId: userid,
-                characterId: master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
-                dressId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].dressId,
-                hairstyleId: user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].hairstyleId,
-                motionId: master.masterEnableCharacter3dMotionTypeMap.entries[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId]
+                characterId: user.decos["3d"]?.characterId ?? master.masterCharacterSituationMap.entries[mainDeck.leader].characterId,
+                dressId: user.decos["3d"]?.dressId ?? user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].dressId,
+                hairstyleId: user.decos["3d"]?.hairstyleId ?? user.wearingCostume[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId].hairstyleId,
+                motionId: user.decos["3d"]?.motionId ?? master.masterEnableCharacter3dMotionTypeMap.entries[master.masterCharacterSituationMap.entries[mainDeck.leader].characterId]
                     ?.entries?.deco?.entries
                     ?.sort((a, b) => a.seq - b.seq)[0].motionId,
-                backgroundId: 11
+                backgroundId: user.decos["3d"]?.backgroundId ?? 11
             },
             userDecoFramePins: {
                 userId: userid,
-                decoFrameId: 1
+                decoFrameId: user.decos.frameId,
+                decoPinsId1: user.decos["framepins"][0],
+                decoPinsId2: user.decos["framepins"][1],
+                decoPinsId3: user.decos["framepins"][2],
+                decoPinsId4: user.decos["framepins"][3],
+                decoPinsId5: user.decos["framepins"][4],
             },
             userDecoDegreeMap: {
                 entries: userProfileDegree
@@ -5985,7 +5995,7 @@ router.get('/', async(req, res) => {
             },
             userDecoEffect: {
                 userId: userid,
-                decoEffectId: 1
+                decoEffectId: user.decos.effect ?? 1
             }
         },
         userMusicVideoListMap: {
@@ -6149,7 +6159,17 @@ router.get('/', async(req, res) => {
         userMusicClearInfoMap: computeMusicClearInfo(user.musicScore),
         userMusicClearCountInfoMap: computeMusicClearCountInfo(user.musicScore),
         userCharacterSituationCountMap: undefined,
-        userDecoCharacterBackgroundInventoryMap: undefined,
+        userDecoCharacterBackgroundInventoryMap: {
+            entries: Object.fromEntries(
+                Object.keys(master.masterDecoCharacterBackgroundMap.entries).map((backgroundId) => [
+                    backgroundId,
+                    {
+                        userId: userid,
+                        backgroundId
+                    }
+                ])
+            )
+        },
         userDecoCharacter3dMotionInventoryListMap: {
             entries: Object.fromEntries(
                 Object.entries(DECO_MOTION_MAP).map(([charId, motionIds]) => [
