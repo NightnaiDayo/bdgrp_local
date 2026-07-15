@@ -70,12 +70,12 @@ router.get('/', async(req, res) => {
                 },
                 userDecoFramePins: {
                     userId: userid,
-                    decoFrameId: user.decos.frameId ?? 0,
-                    decoPinsId1: user.decos.framepins?.[0] ?? 0,
-                    decoPinsId2: user.decos.framepins?.[1] ?? 0,
-                    decoPinsId3: user.decos.framepins?.[2] ?? 0,
-                    decoPinsId4: user.decos.framepins?.[3] ?? 0,
-                    decoPinsId5: user.decos.framepins?.[4] ?? 0,
+                    decoFrameId: user.decos.frameId ?? 1,
+                    decoPinsId1: user.decos.framepins?.[0],
+                    decoPinsId2: user.decos.framepins?.[1],
+                    decoPinsId3: user.decos.framepins?.[2],
+                    decoPinsId4: user.decos.framepins?.[3],
+                    decoPinsId5: user.decos.framepins?.[4],
                 },
                 userDecoDegreeMap: {
                     entries: userProfileDegree
