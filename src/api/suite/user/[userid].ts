@@ -42,7 +42,7 @@ router.get('/', async(req, res) => {
         costumeId: user.wearingCostume ? user.wearingCostume["601"].costumeId : 1643
     }
     const userSituations = Object.values(master.masterCharacterSituationMap.entries)
-        .filter((card: any) => card.releasedAt !== "4128645600000")
+        .filter((card: any) => card.releasedAt !== "4128645600000" && card.releasedAt !== "4131237600000")
         .map((card: any) => {
         const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
         const hasTraining = card.rarity >= 3;
@@ -73,7 +73,7 @@ router.get('/', async(req, res) => {
                 characterBonusTechnique: 30,
                 characterBonusVisual: 30
             } : undefined,
-            limitBreakRank: 0
+            limitBreakRank: 4
         };
     });
 
@@ -239,7 +239,20 @@ router.get('/', async(req, res) => {
     }
 
     const masterPurchaseMap = master.masterPurchaseMap?.entries || {};
-    const purchaseIds = Object.keys(masterPurchaseMap);
+    const purchaseIds = Object.keys(masterPurchaseMap)
+
+    const userEpisodeMap: Record<string, any> = {};
+    for (const situation of Object.values(master.masterCharacterSituationMap.entries) as any[]) {
+        if (situation.releasedAt === "4128645600000" || situation.releasedAt === "4131237600000") continue;
+        if (!situation.episodes?.entries) continue;
+        for (const episode of situation.episodes.entries) {
+            userEpisodeMap[String(episode.episodeId)] = {
+                userId: Number(userid),
+                episodeId: episode.episodeId,
+                episodeStatus: "already_read"
+            };
+        }
+    }
 
     // @ts-ignore
     const data = {
@@ -378,7 +391,13 @@ router.get('/', async(req, res) => {
         userPastelPalettesStoryList: storyList(master.masterPastelPalettesStoryMap),
         userHelloHappyWorldStoryList: storyList(master.masterHelloHappyWorldStoryMap),
         userRoseliaStoryList: storyList(master.masterRoseliaStoryMap),
-        userItemList: undefined,
+        userItemList: {
+            entries: Object.values(master.masterItemMap.entries).map((item: any) => ({
+                userId: userid,
+                itemId: item.itemId,
+                quantity: 6767
+            }))
+        },
         userCommonsLive2dMap: {
             entries: Object.fromEntries(
                 Object.entries(aggregated).map(([category, idArray]) => [
@@ -392,7 +411,9 @@ router.get('/', async(req, res) => {
                 ])
             )
         },
-        userEpisodeMap: undefined,
+        userEpisodeMap: {
+            entries: userEpisodeMap
+        },
         userMusicInventoryList: {
             entries: master.masterMusicList.entries.map((song: any) => {
                 const musicId = song.musicId;
