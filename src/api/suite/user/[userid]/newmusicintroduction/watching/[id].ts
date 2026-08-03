@@ -14,17 +14,14 @@ router.post('/', (req, res) => {
 
     const data = {
         userNewMusicIntroductionMap: {
-            entries: Object.fromEntries(
-                // @ts-ignore
-                Object.values(master.masterNewMusicIntroductionMap.entries).map((item: any) => [
-                    Number(item.newMusicIntroductionId),
-                    {
-                        userId: userid,
-                        newMusicIntroductionId: item.newMusicIntroductionId,
-                        status: "already_read"
-                    }
-                ])
-            )
+            entries: Object.values(master.masterNewMusicIntroductionMap.entries).map((item: any) => [
+                Number(item.newMusicIntroductionId),
+                {
+                    userId: Number(userid),
+                    newMusicIntroductionId: Number(item.newMusicIntroductionId),
+                    status: "already_read"
+                }
+            ])
         },
     }
 

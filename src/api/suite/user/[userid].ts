@@ -253,7 +253,7 @@ router.get('/', async(req, res) => {
             };
         }
     }
-
+    
     // @ts-ignore
     const data = {
         user: {
@@ -5912,8 +5912,8 @@ router.get('/', async(req, res) => {
                 master.masterNewSituationIntroductionList.entries.map((item: any) => [
                     String(item.newSituationIntroductionId),
                     {
-                        userId: userid,
-                        newSituationIntroductionId: item.newSituationIntroductionId,
+                        userId: Number(userid),
+                        newSituationIntroductionId: Number(item.newSituationIntroductionId),
                         status: "already_read"
                     }
                 ])
