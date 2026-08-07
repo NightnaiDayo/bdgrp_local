@@ -3,6 +3,8 @@ import { encrypt } from "@util/encrypt";
 import { db, saveDb } from "@db";
 import { SuiteUserGetResponse, SuiteMasterGetResponse } from "@proto"
 import { getMaster } from "@master";
+import fs from "fs";
+import path from "path";
 
 const router = Router({ mergeParams: true })
 
@@ -253,6 +255,8 @@ router.get('/', async(req, res) => {
             };
         }
     }
+
+    const past = JSON.parse(fs.readFileSync(path.join(process.cwd(), "pastEvents", `${process.env.SERVER}.json`), 'utf-8'));
     
     // @ts-ignore
     const data = {
@@ -5818,11 +5822,12 @@ router.get('/', async(req, res) => {
                     {
                         eventId: Number(eventId),
                         userEventStoryList: {
-                            entries: [{
+                            entries: Array.from({ length: past.pastEventStoryMap.entries[String(eventId)]?.entries?.length }, (_, i) => ({
                                 userId: userid,
                                 eventId: Number(eventId),
+                                seq: i,
                                 status: "already_read"
-                            }]
+                            }))
                         },
                         isExistUnReadStory: false,
                         isLocked: false

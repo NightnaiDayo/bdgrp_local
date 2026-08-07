@@ -2,7 +2,8 @@ import { Router } from "express";
 import { UserEventStoryMemorialResponse } from "@proto";
 import { getMaster } from "@master";
 import {encrypt} from "@util/encrypt";
-import { getEvents/*, getPastEventStories*/ } from "@util/event";
+import fs from "fs";
+import path from "path";
 
 const router = Router({ mergeParams: true });
 
@@ -11,31 +12,7 @@ router.get('/', async(req, res) => {
 
     const master = getMaster();
 
-    let serverIndex: number
-
-    switch(process.env.SERVER) {
-        case 'TW':
-            serverIndex = 2
-            break;
-        case 'JP':
-            serverIndex = 0
-            break;
-    }
-
-    const evdata = await getEvents();
-
-    // @ts-ignore
-    const pastEvents = Object.entries(evdata)
-        .map(([id, ev]: [string, any]) => ({
-            eventId: Number(id),
-            eventType: ev.eventType,
-            eventName: ev.eventName?.[serverIndex] ?? ev.eventName?.[0],
-            startAt: ev.startAt?.[serverIndex] ?? ev.startAt?.[0],
-            endAt: ev.endAt?.[serverIndex] ?? ev.endAt?.[0],
-            assetBundleName: ev.assetBundleName,
-            characterIdList: ev.characters?.map((c: any) => c.characterId) ?? []
-        }))
-        .filter(e => e.startAt && e.endAt && Number(e.endAt) < Date.now());
+    const past = JSON.parse(fs.readFileSync(path.join(process.cwd(), "pastEvents", `${process.env.SERVER}.json`), 'utf-8'));
 
     const data = {
         userEventStoryMemorialMap: {
@@ -45,11 +22,12 @@ router.get('/', async(req, res) => {
                     {
                         eventId: Number(eventId),
                         userEventStoryList: {
-                            entries: [{
+                            entries: Array.from({ length: past.pastEventStoryMap.entries[String(eventId)]?.entries?.length }, (_, i) => ({
                                 userId: userid,
                                 eventId: Number(eventId),
+                                seq: i,
                                 status: "already_read"
-                            }]
+                            }))
                         },
                         isExistUnReadStory: false,
                         isLocked: false
@@ -57,41 +35,7 @@ router.get('/', async(req, res) => {
                 ])
             )
         },
-        pastEventMap: {
-            entries: Object.fromEntries(
-                pastEvents.map((e: any) => [
-                    e.eventId,
-                    {
-                        eventId: e.eventId,
-                        eventType: e.eventType,
-                        eventName: e.eventName,
-                        assetBundleName: e.assetBundleName,
-                        startAt: e.startAt,
-                        endAt: e.endAt,
-                        enableFlg: true,
-                        publicStartAt: e.startAt,
-                        publicEndAt: master.masterEventStoryMemorialConfigMap.entries[String(e.eventId)]?.eventPublicEndAt || e.endAt,
-                        distributionStartAt: e.startAt,
-                        distributionEndAt: e.endAt,
-                        bgmAssetBundleName: "",
-                        bgmFileName: "",
-                        aggregateEndAt: e.endAt,
-                        eventExchangesEndAt: e.endAt,
-                        receptionEndAt: e.endAt
-                    }
-                ])
-            )
-        },
-        pastEventCharacterListMap: {
-            entries: Object.fromEntries(
-                pastEvents.map(e => [e.eventId, { entries: e.characterIdList }])
-            )
-        },
-        pastEventStoryMap: {
-            entries: Object.fromEntries(
-                pastEvents.map(e => [e.eventId, { entries: [] }])
-            )
-        }
+        ...past
     }
 
     res.send(encrypt(Buffer.from(UserEventStoryMemorialResponse.encode(UserEventStoryMemorialResponse.fromJSON(data)).finish())))
