@@ -60,4 +60,8 @@ router.get('/', (req, res) => {
     res.end();
 })
 
+router.put('/', (req, res) => {
+    res.send('');
+})
+
 export default router;

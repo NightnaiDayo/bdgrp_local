@@ -4,7 +4,6 @@ import path from "path";
 // @ts-ignore
 import bzip2 from 'seek-bzip';
 import { decrypt } from "@util/decrypt";
-import axios from "axios";
 
 let cache: any = null;
 
