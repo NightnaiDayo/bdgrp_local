@@ -1,13 +1,13 @@
 ## A project
 A local server for a girl rhythm game
 
-Support TW /JP server.
+Support TW / JP server.
 
 CN? Never. Their account system sucks.
 # Changing Server
 **copy .env.example and rename it to .env first**
 
-go .env  
+go to .env  
 change `SERVER=` to the server you want (`TW`/`JP`)  
 default is `TW`
 # Connecting
@@ -22,5 +22,5 @@ replace XXX with actual game version
 - Area items
 - Profile (settings not available)
 - Outfits
-- Stories (event stories not available)
+- Stories
 - NFO, Area talk(Album) not available
