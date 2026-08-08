@@ -35,4 +35,4 @@ Redirect the following URLs to `http://IP:8482`:
 - [x] Outfits
 - [x] Stories
 - [ ] NFO
-- [ ] Area talk (Album)
+- [x] Area talk (Album)
