@@ -626,7 +626,18 @@ router.get('/', async(req, res) => {
             )
         },
         userMusicAchievementMap: undefined,
-        userBirthdayStoryMap: undefined,
+        userBirthdayStoryMap: {
+            entries: Object.fromEntries(
+                Object.values(master.masterBirthdayPageMap.entries).map((item: any) => [
+                    item.birthdayStoryId,
+                    {
+                        userId: userid,
+                        birthdayStoryId: item.birthdayStoryId,
+                        status: "already_read"
+                    }
+                ])
+            )
+        },
         userGenericAnimationMap: {
             entries: Object.fromEntries(
                 Object.keys(master.masterGenericAnimationMap.entries).map((genericAnimationId: any) => [
