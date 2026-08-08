@@ -631,7 +631,7 @@ router.get('/', async(req, res) => {
                 Object.values(master.masterBirthdayPageMap.entries).map((item: any) => [
                     Number(item.birthdayStoryId),
                     {
-                        userId: userid,
+                        userId: Number(userid),
                         birthdayStoryId: Number(item.birthdayStoryId),
                         status: "already_read"
                     }
