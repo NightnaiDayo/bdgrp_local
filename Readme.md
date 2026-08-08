@@ -6,11 +6,13 @@ A local server for a girl rhythm game.
 
 - [x] TW
 - [x] JP
+- [ ] KR
 - [ ] CN
 - [ ] GL
 
 ## Requirements
 
+- [Bun](https://bun.sh)
 - Copy `.env.example` and rename it to `.env` before starting.
 
 ## Configuration
