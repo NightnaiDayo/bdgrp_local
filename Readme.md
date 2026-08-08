@@ -14,7 +14,7 @@ default is `TW`
 TW server: `https://vXXX-bd.mobimon.com.tw` -> `http://IP:8482`  
 JP server: `https://api.garupa.jp` -> `http://IP:8482`
 
-replace XXX with actual game version
+replace XXX with actual number
 
 # Features
 - Free live
