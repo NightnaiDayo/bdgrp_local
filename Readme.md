@@ -1,26 +1,36 @@
-## A project
-A local server for a girl rhythm game
+# bdgrp_local
 
-Support TW / JP server.
+A local server for a girl rhythm game.
 
-CN? Never. Their account system sucks.
-# Changing Server
-**copy .env.example and rename it to .env first**
+## Supported Servers
 
-go to .env  
-change `SERVER=` to the server you want (`TW`/`JP`)  
-default is `TW`
-# Connecting
-TW server: `https://vXXX-bd.mobimon.com.tw` -> `http://IP:8482`  
-JP server: `https://api.garupa.jp` -> `http://IP:8482`
+- [x] TW
+- [x] JP
+- [ ] CN
+- [ ] GL
 
-replace XXX with actual number
+## Requirements
 
-# Features
-- Free live
-- Multi live (not recommended)
-- Area items
-- Profile (settings not available)
-- Outfits
-- Stories
-- NFO, Area talk(Album) not available
+- Copy `.env.example` and rename it to `.env` before starting.
+
+## Configuration
+
+Open `.env` and set `SERVER=` to your target server (`TW` / `JP`). Default is `TW`.
+
+## Proxy Setup
+
+Redirect the following URLs to `http://IP:8482`:
+
+- TW: `https://vXXX-bd.mobimon.com.tw` (replace `XXX` with the actual number)
+- JP: `https://api.garupa.jp`
+
+## Features
+
+- [x] Free live
+- [x] Multi live (not recommended)
+- [x] Area items
+- [x] Profile (settings not available)
+- [x] Outfits
+- [x] Stories
+- [ ] NFO
+- [ ] Area talk (Album)
