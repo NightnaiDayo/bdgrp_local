@@ -8,15 +8,103 @@ import path from "path";
 
 const router = Router({ mergeParams: true })
 
-router.get('/', async(req, res) => {
-    //@ts-ignore
+const past = JSON.parse(fs.readFileSync(path.join(process.cwd(), "pastEvents", `${process.env.SERVER}.json`), 'utf-8'));
+const missionsBase = JSON.parse(fs.readFileSync(path.join(process.cwd(), "mission.json"), 'utf-8'));
+
+const DECO_MOTION_MAP: Record<number, number[]> = (() => {
+    const map: Record<number, number[]> = {};
+    for (let i = 1; i <= 35; i++) {
+        const base = 217 + (i - 1) * 5;
+        map[i] = [base, base + 1, base + 2];
+    }
+    map[601] = [392, 393, 394];
+    for (let i = 36; i <= 40; i++) {
+        const base = 462 + (i - 36) * 5;
+        map[i] = [base, base + 1, base + 2];
+    }
+    return map;
+})();
+
+function computeMusicClearInfo(userMusicScore: any): Record<string, any> {
+    const difficulties = ["easy", "normal", "hard", "expert", "special"];
+    const stats: Record<string, { cleared: number; fullCombo: number; allPerfect: number }> =
+        Object.fromEntries(difficulties.map(d => [d, { cleared: 0, fullCombo: 0, allPerfect: 0 }]));
+
+    for (const { entries } of Object.values(userMusicScore) as any[]) {
+        if (!entries) continue;
+        for (const { musicDifficulty: diff, clearStatus } of entries) {
+            if (!stats[diff]) continue;
+            stats[diff].cleared++;
+            if (clearStatus === "full_combo") stats[diff].fullCombo++;
+            if (clearStatus === "all_perfect") stats[diff].allPerfect++;
+        }
+    }
+
+    return {
+        entries: Object.fromEntries(
+            difficulties.map(d => [d, {
+                clearedMusicCount: stats[d].cleared,
+                fullComboMusicCount: stats[d].fullCombo,
+                allPerfectMusicCount: stats[d].allPerfect
+            }])
+        )
+    };
+}
+
+function computeMusicClearCountInfo(userMusicScore: any): Record<string, any> {
+    return {
+        entries: Object.fromEntries(
+            Object.entries(userMusicScore)
+                .map(([id, data]: [string, any]) => [id, data?.entries?.length ?? 0])
+                .filter(([, count]) => count > 0)
+        )
+    };
+}
+
+router.get('/', async (req, res) => {
+    // @ts-ignore
     const userid = req.params.userid
 
     const user = db.Users[process.env.SERVER].find((u: any) => u.userId == userid);
-
     const master = getMaster();
 
     if (!user) return res.status(404).send();
+
+    // DB defaults
+    if (!user.situationIllust) { user.situationIllust = {}; saveDb(); }
+    if (!user.decks) {
+        user.decks = [{
+            deckId: 1,
+            deckName: process.env.SERVER === "TW" ? "樂團1" : "バンド1",
+            leader: 947, member1: 1765, member2: 1730, member3: 2193, member4: 2018,
+            deckType: "normal"
+        }];
+        saveDb();
+    }
+    if (!user.musicScore) { user.musicScore = {}; saveDb(); }
+    if (!user.wearingCostume) {
+        const costumeDefaults: Record<number, any> = {
+            36: { dressId: 12854, hairstyleId: 502, costumeId: 1786 },
+            37: { dressId: 12855, hairstyleId: 503, costumeId: 1787 },
+            38: { dressId: 12856, hairstyleId: 504, costumeId: 1788 },
+            39: { dressId: 12857, hairstyleId: 505, costumeId: 1789 },
+            40: { dressId: 12858, hairstyleId: 506, costumeId: 1790 },
+            601: { dressId: 36, hairstyleId: 36, costumeId: 1643 },
+        };
+        user.wearingCostume = Object.fromEntries(
+            [...Array.from({ length: 40 }, (_, i) => i + 1), 601].map(charId => [
+                String(charId),
+                costumeDefaults[charId] ?? { dressId: charId, hairstyleId: charId, costumeId: 1332 + charId }
+            ])
+        );
+        saveDb();
+    }
+    if (!user.decos) { user.decos = {}; saveDb(); }
+
+    const missions = structuredClone(missionsBase);
+    Object.values(missions).forEach((group: any) =>
+        group.entries.forEach((entry: any) => { entry.userId = userid; })
+    );
 
     const storyList = (storyMap: any) => ({
         entries: Object.values(storyMap.entries).map((story: any) => ({
@@ -28,117 +116,55 @@ router.get('/', async(req, res) => {
         }))
     });
 
-    const userCharacterMap: Record<string, any> = {};
-    let userDeckList;
-    
-    for(let i = 1; i <=40; i++) {
-        userCharacterMap[String(i)] = {
+    const charIds = [...Array.from({ length: 40 }, (_, i) => i + 1), 601];
+    const userCharacterMap: Record<string, any> = Object.fromEntries(
+        charIds.map(id => [String(id), {
             userId: Number(userid),
-            characterId: i,
-            costumeId: user.wearingCostume ? user.wearingCostume[String(i)].costumeId : i >= 36 ? (1786 + (i - 36)) : (1607 + i)
-        }
-    }
-    userCharacterMap["601"] = {
-        userId: Number(userid),
-        characterId: 601,
-        costumeId: user.wearingCostume ? user.wearingCostume["601"].costumeId : 1643
-    }
+            characterId: id,
+            costumeId: user.wearingCostume[String(id)].costumeId
+        }])
+    );
+
     const userSituations = Object.values(master.masterCharacterSituationMap.entries)
         .filter((card: any) => card.releasedAt !== "4128645600000" && card.releasedAt !== "4131237600000")
         .map((card: any) => {
-        const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
-        const hasTraining = card.rarity >= 3;
-        if(!user.situationIllust) user.situationIllust = {}
-        saveDb()
-        return {
-            userId: userid,
-            situationId: Number(card.situationId),
-            level: maxLevel,
-            exp: 0,
-            createdAt: card.releasedAt,
-            addExp: 0,
-            trainingStatus: hasTraining ? "done" : "not_doing",
-            duplicateCount: 0,
-            illust: user.situationIllust[card.situationId] ?? (hasTraining ? "after_training" : "normal"),
-            skillExp: 0,
-            skillLevel: 5,
-            userAppendParameter: hasTraining ? {
+            const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
+            const hasTraining = card.rarity >= 3;
+            return {
                 userId: userid,
                 situationId: Number(card.situationId),
-                performance: card.training?.trainingPerformance,
-                technique: card.training?.trainingTechnique,
-                visual: card.training?.trainingVisual,
-                characterPotentialPerformance: 30,
-                characterPotentialTechnique: 30,
-                characterPotentialVisual: 30,
-                characterBonusPerformance: 30,
-                characterBonusTechnique: 30,
-                characterBonusVisual: 30
-            } : undefined,
-            limitBreakRank: 4
-        };
-    });
+                level: maxLevel,
+                exp: 0,
+                createdAt: card.releasedAt,
+                addExp: 0,
+                trainingStatus: hasTraining ? "done" : "not_doing",
+                duplicateCount: 0,
+                illust: user.situationIllust[card.situationId] ?? (hasTraining ? "after_training" : "normal"),
+                skillExp: 0,
+                skillLevel: 5,
+                userAppendParameter: hasTraining ? {
+                    userId: userid,
+                    situationId: Number(card.situationId),
+                    performance: card.training?.trainingPerformance,
+                    technique: card.training?.trainingTechnique,
+                    visual: card.training?.trainingVisual,
+                    characterPotentialPerformance: 30,
+                    characterPotentialTechnique: 30,
+                    characterPotentialVisual: 30,
+                    characterBonusPerformance: 30,
+                    characterBonusTechnique: 30,
+                    characterBonusVisual: 30
+                } : undefined,
+                limitBreakRank: 4
+            };
+        });
 
-    if(!user.decks) {
-        userDeckList = [
-            {
-                deckId: 1,
-                deckName: process.env.SERVER === "TW" ? "樂團1" : "バンド1",
-                leader: 947,
-                member1: 1765,
-                member2: 1730,
-                member3: 2193,
-                member4: 2018,
-                deckType: "normal"
-            }
-        ]
+    const userDeckList = user.decks;
 
-        user.decks = userDeckList
-
-        saveDb();
-    } else {
-        userDeckList = user.decks
-    }
-    if(!user.musicScore) {
+    if (!user.musicScore) {
         user.musicScore = {}
         saveDb();
     }
-    if(!user.wearingCostume) {
-        user.wearingCostume = Object.fromEntries(
-            [...Array.from({length: 40}, (_, i) => i + 1), 601].map(charId => {
-                const defaults: Record<number, {dressId: number, hairstyleId: number, costumeId: number}> = {
-                    36: { dressId: 12854, hairstyleId: 502, costumeId: 1786 },
-                    37: { dressId: 12855, hairstyleId: 503, costumeId: 1787 },
-                    38: { dressId: 12856, hairstyleId: 504, costumeId: 1788 },
-                    39: { dressId: 12857, hairstyleId: 505, costumeId: 1789 },
-                    40: { dressId: 12858, hairstyleId: 506, costumeId: 1790 },
-                    601: { dressId: 36, hairstyleId: 36, costumeId: 1643 },
-                };
-                return [
-                    String(charId),
-                    defaults[charId] ?? { dressId: charId, hairstyleId: charId, costumeId: 1332+charId }
-                ];
-            })
-        );
-        saveDb();
-    }
-
-    const DECO_MOTION_MAP: Record<number, number[]> = {
-        1: [217, 218, 219], 2: [222, 223, 224], 3: [227, 228, 229],
-        4: [232, 233, 234], 5: [237, 238, 239], 6: [242, 243, 244],
-        7: [247, 248, 249], 8: [252, 253, 254], 9: [257, 258, 259],
-        10: [262, 263, 264], 11: [267, 268, 269], 12: [272, 273, 274],
-        13: [277, 278, 279], 14: [282, 283, 284], 15: [287, 288, 289],
-        16: [292, 293, 294], 17: [297, 298, 299], 18: [302, 303, 304],
-        19: [307, 308, 309], 20: [312, 313, 314], 21: [317, 318, 319],
-        22: [322, 323, 324], 23: [327, 328, 329], 24: [332, 333, 334],
-        25: [337, 338, 339], 26: [342, 343, 344], 27: [347, 348, 349],
-        28: [352, 353, 354], 29: [357, 358, 359], 30: [362, 363, 364],
-        31: [367, 368, 369], 32: [372, 373, 374], 33: [377, 378, 379],
-        34: [382, 383, 384], 35: [387, 388, 389], 36: [462, 463, 464],
-        37: [467, 468, 469], 38: [472, 473, 474], 39: [477, 478, 479],
-        40: [482, 483, 484], 601: [392, 393, 394]
-    };
 
     const mainDeck = user.decks[user.mainDeck - 1];
     const situationIds = [mainDeck.leader, mainDeck.member1, mainDeck.member2, mainDeck.member3, mainDeck.member4].filter(Boolean);
@@ -149,99 +175,37 @@ router.get('/', async(req, res) => {
 
     const commonsLive2d: Record<string, Record<number, number[]>> = {};
     for (const entry of Object.values(master.masterCommonsLive2dMap.entries) as any[]) {
-        const category = entry.live2dCategory;
-        const charId = entry.characterId;
-        if (!commonsLive2d[category]) commonsLive2d[category] = {};
-        if (!commonsLive2d[category][charId]) commonsLive2d[category][charId] = [];
-        commonsLive2d[category][charId].push(entry.live2dId);
+        const { live2dCategory: cat, characterId: cid, live2dId: lid } = entry;
+        if (!commonsLive2d[cat]) commonsLive2d[cat] = {};
+        if (!commonsLive2d[cat][cid]) commonsLive2d[cat][cid] = [];
+        commonsLive2d[cat][cid].push(lid);
     }
 
     const aggregated: Record<string, number[]> = {};
-
-    for (const [category, charMap] of Object.entries(commonsLive2d)) {
+    for (const [cat, charMap] of Object.entries(commonsLive2d)) {
         for (const [charId, ids] of Object.entries(charMap)) {
             if (deckMembers.includes(Number(charId))) {
-                if (!aggregated[category]) aggregated[category] = [];
-                aggregated[category].push(...ids);  // 這裡的展開是安全的，ids 是陣列
+                if (!aggregated[cat]) aggregated[cat] = [];
+                aggregated[cat].push(...ids);
             }
         }
     }
 
-    function computeMusicClearInfo(userMusicScore: any): Record<string, any> {
-        const difficulties = ["easy", "normal", "hard", "expert", "special"];
-        const stats: Record<string, { cleared: number; fullCombo: number; allPerfect: number }> = {};
-
-        for (const diff of difficulties) {
-            stats[diff] = { cleared: 0, fullCombo: 0, allPerfect: 0 };
-        }
-
-        for (const musicId in userMusicScore) {
-            const entries = userMusicScore[musicId]?.entries;
-            if (!entries) continue;
-            for (const score of entries) {
-                const diff = score.musicDifficulty;
-                if (!stats[diff]) continue;
-                stats[diff].cleared++;
-                if (score.clearStatus === "full_combo") stats[diff].fullCombo++;
-                if (score.clearStatus === "all_perfect") stats[diff].allPerfect++;
-            }
-        }
-
-        const entries: Record<string, any> = {};
-        for (const diff of difficulties) {
-            entries[diff] = {
-                // @ts-ignore
-                clearedMusicCount: stats[diff].cleared,
-                // @ts-ignore
-                fullComboMusicCount: stats[diff].fullCombo,
-                // @ts-ignore
-                allPerfectMusicCount: stats[diff].allPerfect
-            };
-        }
-        return { entries };
-    }
-
-    function computeMusicClearCountInfo(userMusicScore: any): Record<string, any> {
-        const entries: Record<string, number> = {};
-        for (const musicId in userMusicScore) {
-            const scoreData = userMusicScore[musicId];
-            const count = scoreData?.entries?.length || 0;
-            if (count > 0) {
-                entries[musicId] = count;
-            }
-        }
-        return { entries };
-    }
-
-    const userProfileDegree = {
-        "first": {
-            userId: Number(userid),
-            profileDegreeType: "first",
-            degreeId: user.degree[0]
-        }
-    }
-    // @ts-ignore
-    if(user.degree[1]) userProfileDegree["second"] = {
-        userId: Number(userid),
-        profileDegreeType: "second",
-        degreeId: user.degree[1]
-    }
+    const userProfileDegree: Record<string, any> = {
+        first: { userId: Number(userid), profileDegreeType: "first", degreeId: user.degree[0] }
+    };
+    if (user.degree[1]) userProfileDegree.second = {
+        userId: Number(userid), profileDegreeType: "second", degreeId: user.degree[1]
+    };
 
     const characterProfileL2d: Record<number, number[]> = {};
     for (const entry of Object.values(master.masterCharacterProfileLive2dMap.entries) as any[]) {
-        if (!characterProfileL2d[entry.characterId]) {
-            characterProfileL2d[entry.characterId] = [];
-        }
+        if (!characterProfileL2d[entry.characterId]) characterProfileL2d[entry.characterId] = [];
         characterProfileL2d[entry.characterId].push(entry.characterProfileLive2dId);
     }
 
-    if(!user.decos) {
-        user.decos = {}
-        saveDb();
-    }
-
     const masterPurchaseMap = master.masterPurchaseMap?.entries || {};
-    const purchaseIds = Object.keys(masterPurchaseMap)
+    const purchaseIds = Object.keys(masterPurchaseMap);
 
     const userEpisodeMap: Record<string, any> = {};
     for (const situation of Object.values(master.masterCharacterSituationMap.entries) as any[]) {
@@ -255,16 +219,6 @@ router.get('/', async(req, res) => {
             };
         }
     }
-
-    const past = JSON.parse(fs.readFileSync(path.join(process.cwd(), "pastEvents", `${process.env.SERVER}.json`), 'utf-8'));
-
-    const missions = JSON.parse(fs.readFileSync(path.join(process.cwd(), "mission.json"), 'utf-8'))
-
-    Object.values(missions).forEach((group: any) => {
-        group.entries.forEach((entry: any) => {
-            entry.userId = userid
-        })
-    })
     
     // @ts-ignore
     const data = {
