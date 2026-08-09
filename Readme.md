@@ -8,7 +8,7 @@ A local server for a girl rhythm game.
 - [x] JP
 - [ ] KR
 - [ ] CN
-- [ ] GL
+- [x] GL
 
 ## Requirements
 
@@ -17,7 +17,7 @@ A local server for a girl rhythm game.
 
 ## Configuration
 
-Open `.env` and set `SERVER=` to your target server (`TW` / `JP`). Default is `TW`.
+Open `.env` and set `SERVER=` to your target server (`TW` / `JP` / `GL`). Default is `TW`.
 
 ## Proxy Setup
 
@@ -25,6 +25,7 @@ Redirect the following URLs to `http://IP:8482`:
 
 - TW: `https://vXXX-bd.mobimon.com.tw` (replace `XXX` with the actual number)
 - JP: `https://api.garupa.jp`
+- GL: `https://api.app-bang-dream-gbp.com`
 
 ## Features
 

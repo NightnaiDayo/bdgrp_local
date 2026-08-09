@@ -14,6 +14,9 @@ router.get('/', (req, res) => {
         case 'JP':
             offset = 32400000;
             break;
+        case 'GL':
+            offset = 0;
+            break;
     }
 
     const data = {

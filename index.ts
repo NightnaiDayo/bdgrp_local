@@ -12,7 +12,7 @@ if (!fs.existsSync('.env')) {
     process.exit(1)
 }
 
-const servers = ["TW", "JP"]
+const servers = ["TW", "JP", "GL"]
 
 if(!servers.find(s => process.env.SERVER == s)) {
     console.error('Error: Unknown Server.')
@@ -21,6 +21,7 @@ if(!servers.find(s => process.env.SERVER == s)) {
 
 fs.mkdirSync("resp/TW", { recursive: true });
 fs.mkdirSync("resp/JP", { recursive: true });
+fs.mkdirSync("resp/GL", { recursive: true });
 
 app.set('strict routing', true); 
 app.use(morgan('dev')); app.disable('x-powered-by'); 
@@ -36,7 +37,8 @@ if(!fs.existsSync(`./db.json`)) {
     const db = {
         "Users": {
             "TW": [],
-            "JP": []
+            "JP": [],
+            "GL": []
         }
     }
     fs.writeFileSync('./db.json', JSON.stringify(db, null, 2))

@@ -1,6 +1,14 @@
 {
   "Keys": {
-    "Key": "mikumikulukaluka",
-    "IV": "lukalukamikumiku"
+    "Key": {
+      "TW": "mikumikulukaluka",
+      "JP": "mikumikulukaluka",
+      "GL": "RXzFAC87WR28eNcP"
+    },
+    "IV": {
+      "TW": "lukalukamikumiku",
+      "JP": "lukalukamikumiku",
+      "GL": "hrk0k7knXlit3S_y"
+    }
   }
 }

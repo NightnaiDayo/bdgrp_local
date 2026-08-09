@@ -2,7 +2,7 @@ import crypto from "crypto";
 import { Keys } from '../config.json'
 
 export function decrypt(buf: Buffer): Buffer {
-    const decipher = crypto.createDecipheriv('aes-128-cbc', Keys.Key, Keys.IV);
+    const decipher = crypto.createDecipheriv('aes-128-cbc', Keys.Key[process.env.SERVER], Keys.IV[process.env.SERVER]);
 
     decipher.setAutoPadding(false);
     let decrypted = Buffer.concat([decipher.update(buf), decipher.final()]);

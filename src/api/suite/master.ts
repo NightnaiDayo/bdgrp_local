@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
         case 'JP':
             baseUrl = 'https://api.garupa.jp'
             break;
+        case 'GL':
+            baseUrl = 'https://api.app-bang-dream-gbp.com'
+            break;
     }
 
     try {

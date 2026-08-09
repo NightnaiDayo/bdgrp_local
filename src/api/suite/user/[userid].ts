@@ -41,12 +41,25 @@ router.get('/', async (req, res) => {
 
     if (!user) return res.status(404).send();
 
+    let deckName = "";
+
+    switch(process.env.SERVER) {
+        case 'TW':
+            deckName = "樂團1"
+            break;
+        case 'JP':
+            deckName = "バンド1"
+            break;
+        case 'GL':
+            deckName = "Band 1"
+    }
+
     // DB defaults
     if (!user.situationIllust) { user.situationIllust = {}; saveDb(); }
     if (!user.decks) {
         user.decks = [{
             deckId: 1,
-            deckName: process.env.SERVER === "TW" ? "樂團1" : "バンド1",
+            deckName,
             leader: 947, member1: 1765, member2: 1730, member3: 2193, member4: 2018,
             deckType: "normal"
         }];
@@ -71,6 +84,7 @@ router.get('/', async (req, res) => {
         saveDb();
     }
     if (!user.decos) { user.decos = {}; saveDb(); }
+    if (!user.areaItems) { user.areaItems = {}; saveDb(); }
 
     const missions = structuredClone(missionsBase);
     Object.values(missions).forEach((group: any) =>

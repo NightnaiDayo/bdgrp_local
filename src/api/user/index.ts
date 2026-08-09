@@ -13,18 +13,35 @@ router.post('/', async (req, res) => {
         const buffer = decrypt(encReq);
         const decoded = UserPostRequest.decode(buffer);
 
+        let userName = "", introduction = "";
+
+        switch(process.env.SERVER) {
+            case 'TW':
+                userName = "新人工作人員"
+                introduction = "你好！"
+                break;
+            case 'JP':
+                userName = "新人スタッフ"
+                introduction = "よろしくお願いします！"
+                break;
+            case 'GL':
+                userName = "New Staff"
+                introduction = "Nice to meet you!"
+                break;
+        }
+
         const hash = crypto.randomUUID();
         const newUser = {
             userId: ((db.Users[process.env.SERVER].at(-1)?.userId ?? 1000) as number) + 1,
             hash: hash,
-            userName: process.env.SERVER == "TW" ? "新人工作人員" : "新人スタッフ",
+            userName,
             clientVersion: decoded.clientVersion,
             platform: decoded.platform,
             deviceModel: decoded.deviceModel,
             operatingSystem: decoded.operatingSystem,
             birthMonth: "199001",
             tutorialStatus: "end",
-            introduction: process.env.SERVER == "TW" ? "你好！" : "よろしくお願いします！",
+            introduction: introduction,
             unknownString: "standard",
             tutorialEndedAt: Date.now()
         }

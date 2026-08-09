@@ -1,8 +1,14 @@
 // @ts-ignore
 const server = process.env.SERVER || 'TW';
 
-if (server === 'TW') {
-    module.exports = require('./generated/allmsgs');
-} else {
-    module.exports = require('./generated/allmsgs_jp');
+switch (server) {
+    case 'TW':
+        module.exports = require('./generated/allmsgs_tw');
+        break;
+    case 'JP':
+        module.exports = require('./generated/allmsgs_jp');
+        break;
+    case 'GL':
+        module.exports = require('./generated/allmsgs_gl');
+        break;
 }
