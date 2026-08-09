@@ -1,8 +1,15 @@
 import { Router } from "express";
 import { encrypt } from "@util/encrypt";
 import { db, saveDb } from "@db";
-import { SuiteUserGetResponse, SuiteMasterGetResponse } from "@proto"
+import { SuiteUserGetResponse } from "@proto"
 import { getMaster } from "@master";
+import {
+    computeMusicClearInfo,
+    computeMusicClearCountInfo,
+    buildUserSituations,
+    buildUserProfileDegree,
+    buildCharacterRankMap
+} from "@util/helpers";
 import fs from "fs";
 import path from "path";
 
@@ -24,42 +31,6 @@ const DECO_MOTION_MAP: Record<number, number[]> = (() => {
     }
     return map;
 })();
-
-function computeMusicClearInfo(userMusicScore: any): Record<string, any> {
-    const difficulties = ["easy", "normal", "hard", "expert", "special"];
-    const stats: Record<string, { cleared: number; fullCombo: number; allPerfect: number }> =
-        Object.fromEntries(difficulties.map(d => [d, { cleared: 0, fullCombo: 0, allPerfect: 0 }]));
-
-    for (const { entries } of Object.values(userMusicScore) as any[]) {
-        if (!entries) continue;
-        for (const { musicDifficulty: diff, clearStatus } of entries) {
-            if (!stats[diff]) continue;
-            stats[diff].cleared++;
-            if (clearStatus === "full_combo") stats[diff].fullCombo++;
-            if (clearStatus === "all_perfect") stats[diff].allPerfect++;
-        }
-    }
-
-    return {
-        entries: Object.fromEntries(
-            difficulties.map(d => [d, {
-                clearedMusicCount: stats[d].cleared,
-                fullComboMusicCount: stats[d].fullCombo,
-                allPerfectMusicCount: stats[d].allPerfect
-            }])
-        )
-    };
-}
-
-function computeMusicClearCountInfo(userMusicScore: any): Record<string, any> {
-    return {
-        entries: Object.fromEntries(
-            Object.entries(userMusicScore)
-                .map(([id, data]: [string, any]) => [id, data?.entries?.length ?? 0])
-                .filter(([, count]) => count > 0)
-        )
-    };
-}
 
 router.get('/', async (req, res) => {
     // @ts-ignore
@@ -116,6 +87,7 @@ router.get('/', async (req, res) => {
         }))
     });
 
+    // userCharacterMap
     const charIds = [...Array.from({ length: 40 }, (_, i) => i + 1), 601];
     const userCharacterMap: Record<string, any> = Object.fromEntries(
         charIds.map(id => [String(id), {
@@ -125,46 +97,10 @@ router.get('/', async (req, res) => {
         }])
     );
 
-    const userSituations = Object.values(master.masterCharacterSituationMap.entries)
-        .filter((card: any) => card.releasedAt !== "4128645600000" && card.releasedAt !== "4131237600000")
-        .map((card: any) => {
-            const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
-            const hasTraining = card.rarity >= 3;
-            return {
-                userId: userid,
-                situationId: Number(card.situationId),
-                level: maxLevel,
-                exp: 0,
-                createdAt: card.releasedAt,
-                addExp: 0,
-                trainingStatus: hasTraining ? "done" : "not_doing",
-                duplicateCount: 0,
-                illust: user.situationIllust[card.situationId] ?? (hasTraining ? "after_training" : "normal"),
-                skillExp: 0,
-                skillLevel: 5,
-                userAppendParameter: hasTraining ? {
-                    userId: userid,
-                    situationId: Number(card.situationId),
-                    performance: card.training?.trainingPerformance,
-                    technique: card.training?.trainingTechnique,
-                    visual: card.training?.trainingVisual,
-                    characterPotentialPerformance: 30,
-                    characterPotentialTechnique: 30,
-                    characterPotentialVisual: 30,
-                    characterBonusPerformance: 30,
-                    characterBonusTechnique: 30,
-                    characterBonusVisual: 30
-                } : undefined,
-                limitBreakRank: 4
-            };
-        });
+    // userSituations
+    const userSituations = buildUserSituations(userid, master, user);
 
     const userDeckList = user.decks;
-
-    if (!user.musicScore) {
-        user.musicScore = {}
-        saveDb();
-    }
 
     const mainDeck = user.decks[user.mainDeck - 1];
     const situationIds = [mainDeck.leader, mainDeck.member1, mainDeck.member2, mainDeck.member3, mainDeck.member4].filter(Boolean);
@@ -191,12 +127,7 @@ router.get('/', async (req, res) => {
         }
     }
 
-    const userProfileDegree: Record<string, any> = {
-        first: { userId: Number(userid), profileDegreeType: "first", degreeId: user.degree[0] }
-    };
-    if (user.degree[1]) userProfileDegree.second = {
-        userId: Number(userid), profileDegreeType: "second", degreeId: user.degree[1]
-    };
+    const userProfileDegree = buildUserProfileDegree(userid, user);
 
     const characterProfileL2d: Record<number, number[]> = {};
     for (const entry of Object.values(master.masterCharacterProfileLive2dMap.entries) as any[]) {
@@ -219,7 +150,7 @@ router.get('/', async (req, res) => {
             };
         }
     }
-    
+
     // @ts-ignore
     const data = {
         user: {
@@ -265,13 +196,9 @@ router.get('/', async (req, res) => {
                 loginDays: user.loginDays
             }
         },
-        userCharacterMap: {
-            entries: userCharacterMap
-        },
+        userCharacterMap: { entries: userCharacterMap },
         userSituationMap: {
-            entries: Object.fromEntries(
-                userSituations.map((sit: any) => [sit.situationId, sit])
-            )
+            entries: Object.fromEntries(userSituations.map((sit: any) => [sit.situationId, sit]))
         },
         userMainStoryList: {
             entries: Object.values(master.masterMainStoryMap.entries).map((story: any) => ({
@@ -282,75 +209,17 @@ router.get('/', async (req, res) => {
         },
         userPracticeTicketList: undefined,
         userBondsList: {
-            entries: [
-                {
-                    userId: userid,
-                    bondsId: 1,
-                    level: 1,
-                    bonds: 10
-                },
-                {
-                    userId: userid,
-                    bondsId: 2,
-                    level: 1,
-                    bonds: 15
-                },
-                {
-                    userId: userid,
-                    bondsId: 3,
-                    level: 1,
-                    bonds: 20
-                },
-                {
-                    userId: userid,
-                    bondsId: 4,
-                    level: 1,
-                    bonds: 25
-                },
-                {
-                    userId: userid,
-                    bondsId: 5,
-                    level: 1,
-                    bonds: 30
-                },
-                {
-                    userId: userid,
-                    bondsId: 6,
-                    level: 1,
-                    bonds: 35
-                },
-                {
-                    userId: userid,
-                    bondsId: 7,
-                    level: 1,
-                    bonds: 40
-                },
-                {
-                    userId: userid,
-                    bondsId: 8,
-                    level: 1,
-                    bonds: 45
-                },
-                {
-                    userId: userid,
-                    bondsId: 9,
-                    level: 1,
-                    bonds: 50
-                },
-
-            ]
+            entries: Array.from({ length: 9 }, (_, i) => ({
+                userId: userid, bondsId: i + 1, level: 1, bonds: 5 * (i + 2)
+            }))
         },
         userBandRankMap: {
-            entries: {
-                "1": { userId: userid, bandId: 1, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "2": { userId: userid, bandId: 2, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "3": { userId: userid, bandId: 3, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "4": { userId: userid, bandId: 4, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "5": { userId: userid, bandId: 5, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "18": { userId: userid, bandId: 18, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "21": { userId: userid, bandId: 21, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 },
-                "45": { userId: userid, bandId: 45, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 }
-            }
+            entries: Object.fromEntries(
+                [1, 2, 3, 4, 5, 18, 21, 45].map(bandId => [
+                    String(bandId),
+                    { userId: userid, bandId, bandRank: 50, exp: 0, totalExp: 0, nextExp: 0 }
+                ])
+            )
         },
         userPoppinPartyStoryList: storyList(master.masterPoppinPartyStoryMap),
         userAfterglowStoryList: storyList(master.masterAfterglowStoryMap),
@@ -359,27 +228,19 @@ router.get('/', async (req, res) => {
         userRoseliaStoryList: storyList(master.masterRoseliaStoryMap),
         userItemList: {
             entries: Object.values(master.masterItemMap.entries).map((item: any) => ({
-                userId: userid,
-                itemId: item.itemId,
-                quantity: 6767
+                userId: userid, itemId: item.itemId, quantity: 6767
             }))
         },
         userCommonsLive2dMap: {
             entries: Object.fromEntries(
-                Object.entries(aggregated).map(([category, idArray]) => [
-                    String(category),
-                    {
-                        entries: idArray.map(live2dId => ({
-                            live2dId,
-                            live2dCategory: category
-                        }))
-                    }
+                Object.entries(aggregated).map(([cat, idArray]) => [
+                    cat,
+                    { entries: idArray.map(live2dId => ({ live2dId, live2dCategory: cat })) }
                 ])
             )
         },
-        userEpisodeMap: {
-            entries: userEpisodeMap
-        },
+        userEpisodeMap: { entries: userEpisodeMap },
+        userAppendParameterMap: undefined,
         userMusicInventoryList: {
             entries: master.masterMusicList.entries.map((song: any) => {
                 const musicId = song.musicId;
@@ -398,11 +259,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.values(master.masterCostumeMap.entries).map(costume => [
                     String(costume.costumeId),
-                    {
-                        userId: userid,
-                        costumeId: costume.costumeId,
-                        characterId: costume.characterId
-                    }
+                    { userId: userid, costumeId: costume.costumeId, characterId: costume.characterId }
                 ])
             )
         },
@@ -411,12 +268,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.entries(master.masterAreaItemMap.entries).map(([id, areaItem]) => [
                     id,
-                    {
-                        userId: userid,
-                        areaItemId: areaItem.areaItemId,
-                        areaItemCategory: areaItem.categoryId,
-                        level: 8
-                    }
+                    { userId: userid, areaItemId: areaItem.areaItemId, areaItemCategory: areaItem.categoryId, level: 8 }
                 ])
             ),
             newlyOpenedContents: { entries: [] }
@@ -429,13 +281,7 @@ router.get('/', async (req, res) => {
             liveBoostBonusType: "default"
         },
         userExchangesList: {
-            entries: [
-                {
-                    userId: 8374399,
-                    exchangesId: 1563,
-                    resetAt: "1779155725000"
-                }
-            ]
+            entries: [{ userId: 8374399, exchangesId: 1563, resetAt: "1779155725000" }]
         },
         userGachaTicketList: undefined,
         userGachaStatusMap: undefined,
@@ -443,10 +289,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.entries(master.masterAreaMap.entries)
                     .filter(([_, area]) => area.areaType === "common")
-                    .map(([areaId]) => [
-                        Number(areaId),
-                        {userId: userid, areaId: Number(areaId)}
-                    ])
+                    .map(([areaId]) => [Number(areaId), { userId: userid, areaId: Number(areaId) }])
             )
         },
         userLoginBonusMap: { entries: {} },
@@ -454,19 +297,14 @@ router.get('/', async (req, res) => {
         userStampMap: {
             entries: Object.fromEntries(
                 Object.entries(master.masterStampMap.entries).map(([stampId, stamp]) => [
-                    Number(stampId), // 保持字串作為物件的鍵
-                    {
-                        userId: userid,
-                        stampId: Number(stampId),
-                        seq: 1,
-                        isUnlockVoice: !!stamp.withVoice // PS全解鎖：或者直接給 true 也行
-                    }
+                    Number(stampId),
+                    { userId: userid, stampId: Number(stampId), seq: 1, isUnlockVoice: !!stamp.withVoice }
                 ])
             )
         },
         userDegreeMap: {
             entries: Object.fromEntries(
-                Object.keys(master.masterDegreeMap.entries).map((degreeId) => [
+                Object.keys(master.masterDegreeMap.entries).map(degreeId => [
                     Number(degreeId),
                     { userId: userid, degreeId: Number(degreeId) }
                 ])
@@ -477,45 +315,29 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.entries(characterProfileL2d).map(([charId, ids]) => [
                     charId,
-                    {
-                        entries: ids.map(id => ({
-                            characterId: Number(charId),
-                            live2dId: id
-                        }))
-                    }
+                    { entries: ids.map(id => ({ characterId: Number(charId), live2dId: id })) }
                 ])
             )
         },
         userEventExchangesList: { entries: [] },
         userEventItemList: {
-            entries: Object.entries(master.masterEventItemMap.entries).map((item) => [
-                {
-                    userId: userid,
-                    eventItemId: item.eventItemId,
-                    quantity: 1
-                }
-            ])
+            entries: Object.values(master.masterEventItemMap.entries).map((item: any) => ({
+                userId: userid,
+                eventItemId: item.eventItemId,
+                quantity: 1
+            }))
         },
         userPurchaseMap: {
             entries: Object.fromEntries(
-                purchaseIds.map(id => [
-                    Number(id),
-                    { userId: userid, purchaseId: Number(id), count: 0 }
-                ])
+                purchaseIds.map(id => [Number(id), { userId: userid, purchaseId: Number(id), count: 0 }])
             )
         },
-        userMissionMap: {
-            entries: missions
-        },
+        userMissionMap: { entries: missions },
         userGenericStoryMap: {
             entries: Object.fromEntries(
                 Object.entries(master.masterGenericStoryMap.entries).map(([id, story]: [string, any]) => [
                     id,
-                    {
-                        userId: userid,
-                        genericStoryId: Number(id),
-                        status: "already_read"
-                    }
+                    { userId: userid, genericStoryId: Number(id), status: "already_read" }
                 ])
             )
         },
@@ -538,12 +360,10 @@ router.get('/', async (req, res) => {
                     {
                         eventId: Number(eventId),
                         userEventStoryList: {
-                            entries: Array.from({ length: past.pastEventStoryMap.entries[String(eventId)]?.entries?.length }, (_, i) => ({
-                                userId: userid,
-                                eventId: Number(eventId),
-                                seq: i,
-                                status: "already_read"
-                            }))
+                            entries: Array.from(
+                                { length: past.pastEventStoryMap.entries[String(eventId)]?.entries?.length ?? 0 },
+                                (_, i) => ({ userId: userid, eventId: Number(eventId), seq: i, status: "already_read" })
+                            )
                         },
                         isExistUnReadStory: false,
                         isLocked: false
@@ -556,9 +376,7 @@ router.get('/', async (req, res) => {
             entries: Object.keys(master.masterBondsMap?.entries || {}).map(Number)
         },
         userMiracleTicketMap: { entries: [] },
-        userMiracleTicketExchangesMap: {
-            entries: []
-        },
+        userMiracleTicketExchangesMap: { entries: [] },
         userMultiDisconnectionBadPenalty: undefined,
         userSpecialLotteryDrawResultMap: undefined,
         userMusicScoreMap: {
@@ -586,23 +404,15 @@ router.get('/', async (req, res) => {
                     .filter((item: any) => item?.birthdayStoryId != null)
                     .map((item: any) => [
                         Number(item.birthdayStoryId),
-                        {
-                            userId: Number(userid),
-                            birthdayStoryId: Number(item.birthdayStoryId),
-                            status: "already_read"
-                        }
+                        { userId: Number(userid), birthdayStoryId: Number(item.birthdayStoryId), status: "already_read" }
                     ])
             )
         },
         userGenericAnimationMap: {
             entries: Object.fromEntries(
-                Object.keys(master.masterGenericAnimationMap.entries).map((genericAnimationId: any) => [
-                    Number(genericAnimationId),
-                    {
-                        userId: userid,
-                        genericAnimationId: Number(genericAnimationId),
-                        status: "already_read"
-                    }
+                Object.keys(master.masterGenericAnimationMap.entries).map((id: any) => [
+                    Number(id),
+                    { userId: userid, genericAnimationId: Number(id), status: "already_read" }
                 ])
             )
         },
@@ -615,7 +425,7 @@ router.get('/', async (req, res) => {
                         shopId: 7,
                         shopCategory: "common",
                         musicId: song.musicId,
-                        status: "sold_out",          // 已購買
+                        status: "sold_out",
                         seq: index + 1,
                         isInitialDistribution: false
                     }))
@@ -632,11 +442,7 @@ router.get('/', async (req, res) => {
                 // @ts-ignore
                 Object.values(master.masterNewMusicIntroductionMap.entries ?? {}).map((item: any) => [
                     String(item.newMusicIntroductionId),
-                    {
-                        userId: userid,
-                        newMusicIntroductionId: item.newMusicIntroductionId,
-                        status: "already_read"
-                    }
+                    { userId: userid, newMusicIntroductionId: item.newMusicIntroductionId, status: "already_read" }
                 ])
             )
         },
@@ -645,11 +451,7 @@ router.get('/', async (req, res) => {
                 // @ts-ignore
                 master.masterNewSituationIntroductionList.entries.map((item: any) => [
                     String(item.newSituationIntroductionId),
-                    {
-                        userId: Number(userid),
-                        newSituationIntroductionId: Number(item.newSituationIntroductionId),
-                        status: "already_read"
-                    }
+                    { userId: Number(userid), newSituationIntroductionId: Number(item.newSituationIntroductionId), status: "already_read" }
                 ])
             )
         },
@@ -661,22 +463,14 @@ router.get('/', async (req, res) => {
             approvalLimit: 50,
             applicationLimit: 50
         },
-        userNotHaveViewExchangesMiracleTicketIdList: {
-            entries: []
-        },
+        userNotHaveViewExchangesMiracleTicketIdList: { entries: [] },
         userProfileSituation: undefined,
-        userProfileDegreeMap: {
-            entries: userProfileDegree
-        },
+        userProfileDegreeMap: { entries: userProfileDegree },
         userDecoFrameInventoryMap: {
             entries: Object.fromEntries(
                 Object.values(master.masterDecoFrameMap.entries).map(f => [
                     f.decoFrameId,
-                    {
-                        userId: Number(userid),
-                        decoFrameId: f.decoFrameId,
-                        level: 5
-                    }
+                    { userId: Number(userid), decoFrameId: f.decoFrameId, level: 5 }
                 ])
             )
         },
@@ -684,11 +478,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.values(master.masterDecoPinsMap.entries).map(p => [
                     p.decoPinsId,
-                    {
-                        userId: Number(userid),
-                        decoPinsId: p.decoPinsId,
-                        quantity: 5
-                    }
+                    { userId: Number(userid), decoPinsId: p.decoPinsId, quantity: 5 }
                 ])
             )
         },
@@ -696,13 +486,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 master.masterDecoEffectList.entries
                     .filter(e => Number(e.startAt) <= Date.now() && Number(e.endAt) >= Date.now())
-                    .map(e => [
-                    e.decoEffectId,
-                    {
-                        userId: Number(userid),
-                        decoEffectId: e.decoEffectId
-                    }
-                ])
+                    .map(e => [e.decoEffectId, { userId: Number(userid), decoEffectId: e.decoEffectId }])
             )
         },
         userDecoEquipment: {
@@ -739,40 +523,26 @@ router.get('/', async (req, res) => {
                 decoPinsId4: user.decos.framepins?.[3],
                 decoPinsId5: user.decos.framepins?.[4],
             },
-            userDecoDegreeMap: {
-                entries: userProfileDegree
-            },
+            userDecoDegreeMap: { entries: userProfileDegree },
             userDecoAppealMap: {},
             userDecoSetting: {
                 useProfileSettingDegree: user.useProfileSettingDegree,
                 useProfileSettingSituation: user.useProfileSettingSituation,
                 selectedCharacterType: user.selectedCharacterType
             },
-            userDecoEffect: {
-                userId: userid,
-                decoEffectId: user.decos.effect ?? 1
-            }
+            userDecoEffect: { userId: userid, decoEffectId: user.decos.effect ?? 1 }
         },
         userMusicVideoListMap: {
             userMusicVideoInventoryListMap: {
                 entries: Object.fromEntries(
-                    Object.entries(master.masterMusicVideoListMap.entries)
-                        .map(([musicId, _]: [string, any]) => [
-                            musicId,
-                            {
-                                entries: [{
-                                    userId: userid,
-                                    musicId: Number(musicId),
-                                    seq: 1
-                                }]
-                            }
-                        ])
+                    Object.entries(master.masterMusicVideoListMap.entries).map(([musicId, _]: [string, any]) => [
+                        musicId,
+                        { entries: [{ userId: userid, musicId: Number(musicId), seq: 1 }] }
+                    ])
                 )
             }
         },
-        userPurchaseMenuLastVisitMap: {
-            entries: {}
-        },
+        userPurchaseMenuLastVisitMap: { entries: {} },
         userSkinLaneMap: undefined,
         currentUserEventMusicScoresMap: undefined,
         currentUserEventMusicAchievementsMap: undefined,
@@ -785,11 +555,7 @@ router.get('/', async (req, res) => {
         userMatchingBonusList: undefined,
         userRaiseASuilenStoryList: storyList(master.masterRaiseASuilenStoryMap),
         userCollaboOriginalMusicScoreMap: undefined,
-        userDailyLive: {
-            lastClearedAt: 0,
-            liveStartedAt: 0,
-            getDailyLiveRewardId: 6
-        },
+        userDailyLive: { lastClearedAt: 0, liveStartedAt: 0, getDailyLiveRewardId: 6 },
         userDailyLiveTotalRewardHistory: undefined,
         userComebackStatus: undefined,
         userGraphicalInformationList: undefined,
@@ -807,12 +573,8 @@ router.get('/', async (req, res) => {
         userBirthdayIntroductionMap: undefined,
         userFestivalTeamMap: undefined,
         userLimitedItemList: undefined,
-        userLimitedExchangesList: {
-            entries: []
-        },
-        userDeckList: {
-            entries: userDeckList
-        },
+        userLimitedExchangesList: { entries: [] },
+        userDeckList: { entries: userDeckList },
         userAddMusicDifficultyIntroductionList: undefined,
         userGalleryList: undefined,
         userBandDeckRatingMap: undefined,
@@ -820,59 +582,25 @@ router.get('/', async (req, res) => {
         userStageChallengeStageNoMap: undefined,
         userStageChallengeMap: undefined,
         userStageChallengeScoreMap: undefined,
-        userStarSeal: {
-            amount: user.seal
-        },
-        userLiveBoostUseFull: {
-            dailyUseFullCount: 99,
-            resetTime: 0
-        },
-        userAutoLive: {
-            resetTime: 0
-        },
+        userStarSeal: { amount: user.seal },
+        userLiveBoostUseFull: { dailyUseFullCount: 99, resetTime: 0 },
+        userAutoLive: { resetTime: 0 },
         userMonthlyMission: undefined,
         userMonthlyMissionRewardList: undefined,
-        userCharacterRankMap: {
-            entries: (() => {
-                const entries: Record<string, any> = {};
-                for (let charId = 1; charId <= 40; charId++) {
-                    entries[String(charId)] = {
-                        rank: 100,
-                        exp: 0,
-                        addExp: 0,
-                        nextExp: 0,
-                        totalExp: 0,
-                        releasedPotentialLevel: 50
-                    };
-                }
-                return entries;
-            })()
-        },
+        userCharacterRankMap: buildCharacterRankMap(),
         userCharacterPotentialLevelMap: {
-            entries: (() => {
-                const entries: Record<string, any> = {};
-                for (let charId = 1; charId <= 40; charId++) {
-                    entries[String(charId)] = {
-                        performanceLevel: 1,
-                        techniqueLevel: 1,
-                        visualLevel: 1
-                    };
-                }
-                return entries;
-            })()
+            entries: Object.fromEntries(
+                Array.from({ length: 40 }, (_, i) => [String(i + 1), {
+                    performanceLevel: 1, techniqueLevel: 1, visualLevel: 1
+                }])
+            )
         },
         userMusicVideo3dListMap: {
             userMusicVideo3dInventoryListMap: {
                 entries: Object.fromEntries(
                     Object.entries(master.masterMusicVideo3dMap?.entries ?? {}).map(([_, mv]: [string, any]) => [
                         String(mv.musicId),
-                        {
-                            entries: [{
-                                musicVideo3dId: mv.musicVideo3dId,
-                                musicId: mv.musicId,
-                                seq: mv.seq
-                            }]
-                        }
+                        { entries: [{ musicVideo3dId: mv.musicVideo3dId, musicId: mv.musicId, seq: mv.seq }] }
                     ])
                 )
             }
@@ -880,22 +608,14 @@ router.get('/', async (req, res) => {
         userCostume3dDressInventoryMap: {
             entries: Object.fromEntries(
                 Object.keys(master.masterCostume3dDressMap.entries).map(id => [
-                    id,
-                    {
-                        costume3dDressId: Number(id),
-                        status: "obtained"
-                    }
+                    id, { costume3dDressId: Number(id), status: "obtained" }
                 ])
             )
         },
         userCostume3dHairstyleInventoryMap: {
             entries: Object.fromEntries(
                 Object.keys(master.masterCostume3dHairstyleMap.entries).map(id => [
-                    id,
-                    {
-                        costume3dHairstyleId: Number(id),
-                        status: "obtained"
-                    }
+                    id, { costume3dHairstyleId: Number(id), status: "obtained" }
                 ])
             )
         },
@@ -903,11 +623,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.entries(user.wearingCostume).map(([charId, costume]: [string, any]) => [
                     String(charId),
-                    {
-                        characterId: Number(charId),
-                        costume3dDressId: costume.dressId,
-                        costume3dHairstyleId: costume.hairstyleId
-                    }
+                    { characterId: Number(charId), costume3dDressId: costume.dressId, costume3dHairstyleId: costume.hairstyleId }
                 ])
             )
         },
@@ -916,12 +632,8 @@ router.get('/', async (req, res) => {
         userCharacterSituationCountMap: undefined,
         userDecoCharacterBackgroundInventoryMap: {
             entries: Object.fromEntries(
-                Object.keys(master.masterDecoCharacterBackgroundMap.entries).map((backgroundId) => [
-                    backgroundId,
-                    {
-                        userId: userid,
-                        backgroundId
-                    }
+                Object.keys(master.masterDecoCharacterBackgroundMap.entries).map(backgroundId => [
+                    backgroundId, { userId: userid, backgroundId }
                 ])
             )
         },
@@ -929,12 +641,7 @@ router.get('/', async (req, res) => {
             entries: Object.fromEntries(
                 Object.entries(DECO_MOTION_MAP).map(([charId, motionIds]) => [
                     charId,
-                    {
-                        entries: motionIds.map(motionId => ({
-                            userId: userid,
-                            motionId
-                        }))
-                    }
+                    { entries: motionIds.map(motionId => ({ userId: userid, motionId })) }
                 ])
             )
         },
@@ -951,27 +658,20 @@ router.get('/', async (req, res) => {
         userStampVoiceMap: {
             entries: Object.fromEntries(
                 Object.keys(master.masterStampMap.entries)
-                    .filter((stampId) => master.masterStampMap.entries[stampId].withVoice)
-                    .map((stampId) => [
-                        Number(stampId),
-                        // @ts-ignore
-                        { userId: userid, stampId: Number(stampId) }
-                    ])
+                    .filter(stampId => master.masterStampMap.entries[stampId].withVoice)
+                    .map(stampId => [Number(stampId), { userId: userid, stampId: Number(stampId) }])
             )
         },
         userEventRankedCountAppeal: undefined,
         userEventMusicRankedCountAppeal: undefined,
         userMyGoStoryList: storyList(master.masterMyGoStoryMap),
-        userTerms: {
-            userId: userid
-        },
+        userTerms: { userId: userid },
         userCharacterMissionBonusMap: undefined,
         userPhotoStudioMap: undefined,
         userGachaSelfPickupSituationList: undefined,
         userPhotoBackInventoryMap: undefined,
         userLimitedSkinInventoryMap: undefined,
         userMusicClearCountDetailMap: undefined
-
     }
 
     const message = SuiteUserGetResponse.fromJSON(data);
@@ -981,7 +681,6 @@ router.get('/', async (req, res) => {
     res.removeHeader('Content-Length');
     res.removeHeader('Transfer-Encoding');
     res.setHeader('content-type', 'application/octet-stream');
-
     res.writeHead(200);
     res.write(encBuffer);
     res.end();
