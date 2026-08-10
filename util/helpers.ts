@@ -62,15 +62,15 @@ export function buildUserSituations(userid: any, master: any, user?: any) {
                 userAppendParameter: hasTraining ? {
                     userId: userid,
                     situationId: Number(card.situationId),
-                    performance: (t?.trainingPerformance ?? 0) + (ep0?.appendPerformance ?? 0) + (ep1?.appendPerformance ?? 0),
-                    technique: (t?.trainingTechnique ?? 0) + (ep0?.appendTechnique ?? 0) + (ep1?.appendTechnique ?? 0),
-                    visual: (t?.trainingVisual ?? 0) + (ep0?.appendVisual ?? 0) + (ep1?.appendVisual ?? 0),
+                    performance: (t?.trainingPerformance ?? 0),
+                    technique: (t?.trainingTechnique ?? 0),
+                    visual: (t?.trainingVisual ?? 0),
                     characterPotentialPerformance: 30,
                     characterPotentialTechnique: 30,
                     characterPotentialVisual: 30,
-                    characterBonusPerformance: 30,
-                    characterBonusTechnique: 30,
-                    characterBonusVisual: 30
+                    characterBonusPerformance: 30 + (ep0?.appendPerformance ?? 0) + (ep1?.appendPerformance ?? 0),
+                    characterBonusTechnique: 30 + (ep0?.appendTechnique ?? 0) + (ep1?.appendTechnique ?? 0),
+                    characterBonusVisual: 30 + (ep0?.appendVisual ?? 0) + (ep1?.appendVisual ?? 0)
                 } : undefined,
                 limitBreakRank: 4
             };
