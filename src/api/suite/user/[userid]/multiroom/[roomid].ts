@@ -121,10 +121,8 @@ router.post('/', (req, res) => {
         soloScoreRank: getScoreRank(decoded.score, difficultyMaster),
         multiScoreRank: getMultiScoreRank(decoded.multiScore, difficultyMaster, decoded.multiDifficulty),
         userMusicAchievementMap: {},
-        missionLiveEventResponse: {},
         dairyLiveRewardReceive: "REWARDRECEIVE",
         limitedDrops: {},
-        challengeEventResponse: {},
         updatedBandDeckRankList: {
             entries: [{
                 bandId: 5, beforeSymbol: "ss", beforeLevel: 1, afterSymbol: "ss", afterLevel: 1

@@ -112,7 +112,6 @@ router.put('/', (req, res) => {
         lbUseCount: 10,
         soloScoreRank: getScoreRank(decoded.score, difficultyMaster),
         userMusicAchievementMap: {},
-        missionLiveEventResponse: {},
         dairyLiveRewardReceive: "REWARDRECEIVE",
         limitedDrops: {},
         updatedBandDeckRankList: {
@@ -128,7 +127,6 @@ router.put('/', (req, res) => {
                 }])
             )
         },
-        challengeEventResponse: {},
     }
 
     const message = SuiteUserMusic.fromJSON(data);
