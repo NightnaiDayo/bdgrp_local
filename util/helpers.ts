@@ -45,6 +45,8 @@ export function buildUserSituations(userid: any, master: any, user?: any) {
         .map((card: any) => {
             const maxLevel = Math.max(...Object.keys(card.parameterMap || {}).map(Number));
             const hasTraining = card.rarity >= 3;
+            const [ep0, ep1] = card.episodes?.entries ?? [];
+            const t = card.training;
             return {
                 userId: userid,
                 situationId: Number(card.situationId),
@@ -60,9 +62,9 @@ export function buildUserSituations(userid: any, master: any, user?: any) {
                 userAppendParameter: hasTraining ? {
                     userId: userid,
                     situationId: Number(card.situationId),
-                    performance: card.training?.trainingPerformance,
-                    technique: card.training?.trainingTechnique,
-                    visual: card.training?.trainingVisual,
+                    performance: (t?.trainingPerformance ?? 0) + (ep0?.appendPerformance ?? 0) + (ep1?.appendPerformance ?? 0),
+                    technique: (t?.trainingTechnique ?? 0) + (ep0?.appendTechnique ?? 0) + (ep1?.appendTechnique ?? 0),
+                    visual: (t?.trainingVisual ?? 0) + (ep0?.appendVisual ?? 0) + (ep1?.appendVisual ?? 0),
                     characterPotentialPerformance: 30,
                     characterPotentialTechnique: 30,
                     characterPotentialVisual: 30,
