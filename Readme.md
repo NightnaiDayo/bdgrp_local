@@ -27,6 +27,15 @@ Redirect the following URLs to `http://IP:8482`:
 - JP: `https://api.garupa.jp`
 - GL: `https://api.app-bang-dream-gbp.com`
 
+## Run server
+
+Open a terminal in the project directory and run:
+
+```
+bun .
+```
+or you can create a script
+
 ## Features
 
 - [x] Free live
