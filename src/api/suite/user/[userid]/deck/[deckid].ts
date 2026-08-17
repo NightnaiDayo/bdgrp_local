@@ -16,16 +16,16 @@ router.put('/', async(req, res) => {
     const decoded = EditUserDeckRequest.decode(reqbuffer)
 
     const user = db.Users[process.env.SERVER].find((u: any) => String(u.userId) === userid)
-    let deck = user.decks[(deckid - 1)]
+    let deck = user.decks.find((d: any) => Number(d.deckId) === deckid);
+    let isNew = false;
 
     if(!deck) {
         deck = {
             deckId: Number(deckid),
             deckName: `樂團${deckid}`
         }
+        isNew = true;
     }
-
-    const update = []
 
     if(decoded.leader) deck.leader = decoded.leader
     if(decoded.member1) deck.member1 = decoded.member1
@@ -36,7 +36,7 @@ router.put('/', async(req, res) => {
     deck.deckType = decoded.deckType
 
 
-    user.decks[(deckid - 1)] = deck
+    if(isNew) user.decks.push(deck)
 
     saveDb();
 
