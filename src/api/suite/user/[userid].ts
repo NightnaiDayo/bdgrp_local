@@ -290,7 +290,7 @@ router.get('/', async (req, res) => {
         userResourceCount: undefined,
         userLiveBoost: {
             userId: userid,
-            liveBoost: 114,
+            liveBoost: 67,
             serverDate: Date.now().toString(),
             liveBoostBonusType: "default"
         },
@@ -597,7 +597,7 @@ router.get('/', async (req, res) => {
         userStageChallengeMap: undefined,
         userStageChallengeScoreMap: undefined,
         userStarSeal: { amount: user.seal },
-        userLiveBoostUseFull: { dailyUseFullCount: 99, resetTime: 0 },
+        userLiveBoostUseFull: { dailyUseFullCount: 67, resetTime: 0 },
         userAutoLive: { resetTime: 0 },
         userMonthlyMission: undefined,
         userMonthlyMissionRewardList: undefined,
