@@ -16,13 +16,12 @@ router.put('/', async(req, res) => {
     const decoded = EditUserDeckRequest.decode(reqbuffer)
 
     const user = db.Users[process.env.SERVER].find((u: any) => String(u.userId) === userid)
-    let deck = user.decks.find((d: any) => Number(d.deckId) === deckid);
+    let deck = user.decks.find((d: any) => Number(d.deckId) === Number(deckid));
     let isNew = false;
 
     if(!deck) {
         deck = {
             deckId: Number(deckid),
-            deckName: `樂團${deckid}`
         }
         isNew = true;
     }
