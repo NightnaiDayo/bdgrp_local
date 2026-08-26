@@ -4,7 +4,6 @@ import { encrypt } from "@util/encrypt"
 import { decrypt } from "@util/decrypt";
 import crypto from "crypto";
 import { db, saveDb } from "@db"
-import axios from "axios";
 
 const router = Router()
 
@@ -20,7 +19,6 @@ router.post('/', async (req, res) => {
         const hash = crypto.randomUUID();
         const newUser = {
             bid: String(decoded.bid),
-            officials: await getOfficial(req),
             userId: ((db.Users[process.env.SERVER].at(-1)?.userId ?? 1000) as number) + 1,
             hash: hash,
             userName: "新手工作人员",
@@ -69,11 +67,6 @@ router.post('/', async (req, res) => {
         user = newUser
     }
 
-    if(!user.officials) {
-        user.officials = await getOfficial(req);
-        saveDb();
-    }
-
     const data = {
         userId: String(user.userId),
         hash: user.hash,
@@ -96,20 +89,3 @@ router.post('/', async (req, res) => {
 });
 
 export default router;
-
-async function getOfficial(req: any) {
-    try {
-        const resp = await axios.post(`https://l3-prod-all-bd.bilibiligame.net/api/user/login`,
-            req.body,
-            {
-                responseType: 'arraybuffer',
-                headers: req.headers
-            }
-        )
-
-        const { userId, hash } = UserRegistration.decode(decrypt(resp.data));
-        return { userId, hash };
-    } catch(e) {
-        console.log(e)
-    }
-}
