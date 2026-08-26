@@ -58,7 +58,10 @@ const serverOnlyRoutes: Record<string, string> = {
     '/api/acdm/:userid': 'CN',
     '/api/user/heart/:userid': 'CN',
     '/api/system/config': 'CN',
-    '/api/missionreward.map': 'CN'
+    '/api/missionreward.map': 'CN',
+    '/api/tcpServer/:userid': 'CN',
+    '/api/user/:userid/livefever': 'CN',
+    '/api/multiroom/create/:userid': 'CN'
 }
 
 function loadRoutes(dir: string, basePath: string) {
