@@ -14,7 +14,6 @@ router.put('/', (req, res) => {
     const encReq = req.body;
     const reqbuffer = decrypt(encReq);
     const decoded = UserAuthRequest.decode(reqbuffer)
-    // console.log(decoded)
     const hash = crypto.createHash("sha1").update(`${String(userid)}:`, "utf8").digest("hex")
     const data = {
         httpStatus: 403,

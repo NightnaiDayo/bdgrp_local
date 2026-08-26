@@ -7,7 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
-export const protobufPackage = "twdori.proto.ce";
+export const protobufPackage = "cndori.proto.ce";
 
 /** Source: APICoreParam.cs */
 export enum Method {
@@ -59,6 +59,7 @@ export enum AfterErrorDetectionType {
   AfterErrorDetectionType_Ok = 0,
   AfterErrorDetectionType_RetryCancel = 1,
   AfterErrorDetectionType_Through = 2,
+  AfterErrorDetectionType_GetUrl = 3,
   UNRECOGNIZED = -1,
 }
 
@@ -73,6 +74,9 @@ export function afterErrorDetectionTypeFromJSON(object: any): AfterErrorDetectio
     case 2:
     case "AfterErrorDetectionType_Through":
       return AfterErrorDetectionType.AfterErrorDetectionType_Through;
+    case 3:
+    case "AfterErrorDetectionType_GetUrl":
+      return AfterErrorDetectionType.AfterErrorDetectionType_GetUrl;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -88,6 +92,8 @@ export function afterErrorDetectionTypeToJSON(object: AfterErrorDetectionType): 
       return "AfterErrorDetectionType_RetryCancel";
     case AfterErrorDetectionType.AfterErrorDetectionType_Through:
       return "AfterErrorDetectionType_Through";
+    case AfterErrorDetectionType.AfterErrorDetectionType_GetUrl:
+      return "AfterErrorDetectionType_GetUrl";
     case AfterErrorDetectionType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -155,6 +161,8 @@ export enum APIState {
   APIState_InvalidToken = 23,
   APIState_ReregistrationUser = 24,
   APIState_UpdateUserDataRequired = 25,
+  APIState_RequestIdInvalid = 26,
+  APIState_ClientConfigError = 27,
   UNRECOGNIZED = -1,
 }
 
@@ -238,6 +246,12 @@ export function aPIStateFromJSON(object: any): APIState {
     case 25:
     case "APIState_UpdateUserDataRequired":
       return APIState.APIState_UpdateUserDataRequired;
+    case 26:
+    case "APIState_RequestIdInvalid":
+      return APIState.APIState_RequestIdInvalid;
+    case 27:
+    case "APIState_ClientConfigError":
+      return APIState.APIState_ClientConfigError;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -299,6 +313,10 @@ export function aPIStateToJSON(object: APIState): string {
       return "APIState_ReregistrationUser";
     case APIState.APIState_UpdateUserDataRequired:
       return "APIState_UpdateUserDataRequired";
+    case APIState.APIState_RequestIdInvalid:
+      return "APIState_RequestIdInvalid";
+    case APIState.APIState_ClientConfigError:
+      return "APIState_ClientConfigError";
     case APIState.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -432,6 +450,88 @@ export function sortScreenTypeToJSON(object: SortScreenType): string {
     case SortScreenType.SortScreenType_SkillPractice:
       return "SortScreenType_SkillPractice";
     case SortScreenType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Source: BiliStageBandSelectData.cs */
+export enum SelectBandIdName {
+  SelectBandIdName_All = 0,
+  SelectBandIdName_PoppinParty = 1,
+  SelectBandIdName_Afterglow = 2,
+  SelectBandIdName_HelloHappyWorld = 3,
+  SelectBandIdName_PastelPalettes = 4,
+  SelectBandIdName_Roselia = 5,
+  SelectBandIdName_RaiseASuilen = 18,
+  SelectBandIdName_Morfonica = 21,
+  SelectBandIdName_MyGO = 45,
+  SelectBandIdName_Other = 999,
+  UNRECOGNIZED = -1,
+}
+
+export function selectBandIdNameFromJSON(object: any): SelectBandIdName {
+  switch (object) {
+    case 0:
+    case "SelectBandIdName_All":
+      return SelectBandIdName.SelectBandIdName_All;
+    case 1:
+    case "SelectBandIdName_PoppinParty":
+      return SelectBandIdName.SelectBandIdName_PoppinParty;
+    case 2:
+    case "SelectBandIdName_Afterglow":
+      return SelectBandIdName.SelectBandIdName_Afterglow;
+    case 3:
+    case "SelectBandIdName_HelloHappyWorld":
+      return SelectBandIdName.SelectBandIdName_HelloHappyWorld;
+    case 4:
+    case "SelectBandIdName_PastelPalettes":
+      return SelectBandIdName.SelectBandIdName_PastelPalettes;
+    case 5:
+    case "SelectBandIdName_Roselia":
+      return SelectBandIdName.SelectBandIdName_Roselia;
+    case 18:
+    case "SelectBandIdName_RaiseASuilen":
+      return SelectBandIdName.SelectBandIdName_RaiseASuilen;
+    case 21:
+    case "SelectBandIdName_Morfonica":
+      return SelectBandIdName.SelectBandIdName_Morfonica;
+    case 45:
+    case "SelectBandIdName_MyGO":
+      return SelectBandIdName.SelectBandIdName_MyGO;
+    case 999:
+    case "SelectBandIdName_Other":
+      return SelectBandIdName.SelectBandIdName_Other;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return SelectBandIdName.UNRECOGNIZED;
+  }
+}
+
+export function selectBandIdNameToJSON(object: SelectBandIdName): string {
+  switch (object) {
+    case SelectBandIdName.SelectBandIdName_All:
+      return "SelectBandIdName_All";
+    case SelectBandIdName.SelectBandIdName_PoppinParty:
+      return "SelectBandIdName_PoppinParty";
+    case SelectBandIdName.SelectBandIdName_Afterglow:
+      return "SelectBandIdName_Afterglow";
+    case SelectBandIdName.SelectBandIdName_HelloHappyWorld:
+      return "SelectBandIdName_HelloHappyWorld";
+    case SelectBandIdName.SelectBandIdName_PastelPalettes:
+      return "SelectBandIdName_PastelPalettes";
+    case SelectBandIdName.SelectBandIdName_Roselia:
+      return "SelectBandIdName_Roselia";
+    case SelectBandIdName.SelectBandIdName_RaiseASuilen:
+      return "SelectBandIdName_RaiseASuilen";
+    case SelectBandIdName.SelectBandIdName_Morfonica:
+      return "SelectBandIdName_Morfonica";
+    case SelectBandIdName.SelectBandIdName_MyGO:
+      return "SelectBandIdName_MyGO";
+    case SelectBandIdName.SelectBandIdName_Other:
+      return "SelectBandIdName_Other";
+    case SelectBandIdName.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
@@ -1189,6 +1289,7 @@ export function inGameResolutionTypeToJSON(object: InGameResolutionType): string
 export enum LightModeIllustType {
   LightModeIllustType_Random = 0,
   LightModeIllustType_Leader = 1,
+  LightModeIllustType_Custom = 2,
   UNRECOGNIZED = -1,
 }
 
@@ -1200,6 +1301,9 @@ export function lightModeIllustTypeFromJSON(object: any): LightModeIllustType {
     case 1:
     case "LightModeIllustType_Leader":
       return LightModeIllustType.LightModeIllustType_Leader;
+    case 2:
+    case "LightModeIllustType_Custom":
+      return LightModeIllustType.LightModeIllustType_Custom;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -1213,7 +1317,49 @@ export function lightModeIllustTypeToJSON(object: LightModeIllustType): string {
       return "LightModeIllustType_Random";
     case LightModeIllustType.LightModeIllustType_Leader:
       return "LightModeIllustType_Leader";
+    case LightModeIllustType.LightModeIllustType_Custom:
+      return "LightModeIllustType_Custom";
     case LightModeIllustType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Source: LiveFeverSettingsData.cs */
+export enum FeverMode {
+  FeverMode_None = 0,
+  FeverMode_On = 1,
+  FeverMode_Off = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function feverModeFromJSON(object: any): FeverMode {
+  switch (object) {
+    case 0:
+    case "FeverMode_None":
+      return FeverMode.FeverMode_None;
+    case 1:
+    case "FeverMode_On":
+      return FeverMode.FeverMode_On;
+    case 2:
+    case "FeverMode_Off":
+      return FeverMode.FeverMode_Off;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return FeverMode.UNRECOGNIZED;
+  }
+}
+
+export function feverModeToJSON(object: FeverMode): string {
+  switch (object) {
+    case FeverMode.FeverMode_None:
+      return "FeverMode_None";
+    case FeverMode.FeverMode_On:
+      return "FeverMode_On";
+    case FeverMode.FeverMode_Off:
+      return "FeverMode_Off";
+    case FeverMode.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
@@ -1705,24 +1851,30 @@ export enum DataType {
   DataType_TeamLiveFestivalEventCacheData = 53,
   DataType_StampUsedMissionCacheData = 54,
   DataType_LastOpendChangedStampIdCacheData = 55,
-  DataType_MedleyEventCacheData = 56,
-  DataType_MedleyMusicRandomSelectFilterCacheData = 57,
-  DataType_MedleyMusicIndividualSelectSortCacheData = 58,
-  DataType_StageChallengeCacheData = 59,
-  DataType_LiveBoostFullUseCacheData = 60,
-  DataType_AutoLiveCachedData = 61,
-  DataType_RarityCheckboxCacheData = 62,
-  DataType_DeckSortFilterFoldingData = 63,
-  DataType_MusicSelectorLastSettingsCacheData = 64,
-  DataType_MemberListCacheData = 65,
-  DataType_SituationDetailCacheData = 66,
-  DataType_MonthlyRankingGradeCacheData = 67,
-  DataType_PhotoStudioScreenShotCacheData = 68,
-  DataType_LimitedSkinCacheData = 69,
-  DataType_BiliCharacterIdListData = 70,
-  DataType_CostumeLive2DFilterCacheData = 71,
-  DataType_Costume3DFilterCacheData = 72,
-  DataType_Costume3DFavoriteCacheData = 73,
+  DataType_AprilFoolCacheData2021 = 56,
+  DataType_MedleyEventCacheData = 57,
+  DataType_MedleyMusicRandomSelectFilterCacheData = 58,
+  DataType_MedleyMusicIndividualSelectSortCacheData = 59,
+  DataType_StageChallengeCacheData = 60,
+  DataType_LiveBoostFullUseCacheData = 61,
+  DataType_AutoLiveCachedData = 62,
+  DataType_RarityCheckboxCacheData = 63,
+  DataType_DeckSortFilterFoldingData = 64,
+  DataType_MusicSelectorLastSettingsCacheData = 65,
+  DataType_MemberListCacheData = 66,
+  DataType_SituationDetailCacheData = 67,
+  DataType_MonthlyRankingGradeCacheData = 68,
+  DataType_PhotoStudioScreenShotCacheData = 69,
+  DataType_LimitedSkinCacheData = 70,
+  DataType_ServerURLConfig = 71,
+  DataType_UserAccountSelectData = 72,
+  DataType_LiveFeverSettingsData = 73,
+  DataType_BiliLimitedTotalSpendEnteredCacheData = 74,
+  DataType_LastLoginUserAccountData = 75,
+  DataType_BiliStageBandSelectData = 76,
+  DataType_BiliPhotoStudioScreenShotCacheData = 77,
+  DataType_BiliCharacterIdListData = 78,
+  DataType_BiliMultiLiveLightSettings = 79,
   UNRECOGNIZED = -1,
 }
 
@@ -1897,59 +2049,77 @@ export function dataTypeFromJSON(object: any): DataType {
     case "DataType_LastOpendChangedStampIdCacheData":
       return DataType.DataType_LastOpendChangedStampIdCacheData;
     case 56:
+    case "DataType_AprilFoolCacheData2021":
+      return DataType.DataType_AprilFoolCacheData2021;
+    case 57:
     case "DataType_MedleyEventCacheData":
       return DataType.DataType_MedleyEventCacheData;
-    case 57:
+    case 58:
     case "DataType_MedleyMusicRandomSelectFilterCacheData":
       return DataType.DataType_MedleyMusicRandomSelectFilterCacheData;
-    case 58:
+    case 59:
     case "DataType_MedleyMusicIndividualSelectSortCacheData":
       return DataType.DataType_MedleyMusicIndividualSelectSortCacheData;
-    case 59:
+    case 60:
     case "DataType_StageChallengeCacheData":
       return DataType.DataType_StageChallengeCacheData;
-    case 60:
+    case 61:
     case "DataType_LiveBoostFullUseCacheData":
       return DataType.DataType_LiveBoostFullUseCacheData;
-    case 61:
+    case 62:
     case "DataType_AutoLiveCachedData":
       return DataType.DataType_AutoLiveCachedData;
-    case 62:
+    case 63:
     case "DataType_RarityCheckboxCacheData":
       return DataType.DataType_RarityCheckboxCacheData;
-    case 63:
+    case 64:
     case "DataType_DeckSortFilterFoldingData":
       return DataType.DataType_DeckSortFilterFoldingData;
-    case 64:
+    case 65:
     case "DataType_MusicSelectorLastSettingsCacheData":
       return DataType.DataType_MusicSelectorLastSettingsCacheData;
-    case 65:
+    case 66:
     case "DataType_MemberListCacheData":
       return DataType.DataType_MemberListCacheData;
-    case 66:
+    case 67:
     case "DataType_SituationDetailCacheData":
       return DataType.DataType_SituationDetailCacheData;
-    case 67:
+    case 68:
     case "DataType_MonthlyRankingGradeCacheData":
       return DataType.DataType_MonthlyRankingGradeCacheData;
-    case 68:
+    case 69:
     case "DataType_PhotoStudioScreenShotCacheData":
       return DataType.DataType_PhotoStudioScreenShotCacheData;
-    case 69:
+    case 70:
     case "DataType_LimitedSkinCacheData":
       return DataType.DataType_LimitedSkinCacheData;
-    case 70:
+    case 71:
+    case "DataType_ServerURLConfig":
+      return DataType.DataType_ServerURLConfig;
+    case 72:
+    case "DataType_UserAccountSelectData":
+      return DataType.DataType_UserAccountSelectData;
+    case 73:
+    case "DataType_LiveFeverSettingsData":
+      return DataType.DataType_LiveFeverSettingsData;
+    case 74:
+    case "DataType_BiliLimitedTotalSpendEnteredCacheData":
+      return DataType.DataType_BiliLimitedTotalSpendEnteredCacheData;
+    case 75:
+    case "DataType_LastLoginUserAccountData":
+      return DataType.DataType_LastLoginUserAccountData;
+    case 76:
+    case "DataType_BiliStageBandSelectData":
+      return DataType.DataType_BiliStageBandSelectData;
+    case 77:
+    case "DataType_BiliPhotoStudioScreenShotCacheData":
+      return DataType.DataType_BiliPhotoStudioScreenShotCacheData;
+    case 78:
     case "DataType_BiliCharacterIdListData":
       return DataType.DataType_BiliCharacterIdListData;
-    case 71:
-    case "DataType_CostumeLive2DFilterCacheData":
-      return DataType.DataType_CostumeLive2DFilterCacheData;
-    case 72:
-    case "DataType_Costume3DFilterCacheData":
-      return DataType.DataType_Costume3DFilterCacheData;
-    case 73:
-    case "DataType_Costume3DFavoriteCacheData":
-      return DataType.DataType_Costume3DFavoriteCacheData;
+    case 79:
+    case "DataType_BiliMultiLiveLightSettings":
+      return DataType.DataType_BiliMultiLiveLightSettings;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -2071,6 +2241,8 @@ export function dataTypeToJSON(object: DataType): string {
       return "DataType_StampUsedMissionCacheData";
     case DataType.DataType_LastOpendChangedStampIdCacheData:
       return "DataType_LastOpendChangedStampIdCacheData";
+    case DataType.DataType_AprilFoolCacheData2021:
+      return "DataType_AprilFoolCacheData2021";
     case DataType.DataType_MedleyEventCacheData:
       return "DataType_MedleyEventCacheData";
     case DataType.DataType_MedleyMusicRandomSelectFilterCacheData:
@@ -2099,14 +2271,24 @@ export function dataTypeToJSON(object: DataType): string {
       return "DataType_PhotoStudioScreenShotCacheData";
     case DataType.DataType_LimitedSkinCacheData:
       return "DataType_LimitedSkinCacheData";
+    case DataType.DataType_ServerURLConfig:
+      return "DataType_ServerURLConfig";
+    case DataType.DataType_UserAccountSelectData:
+      return "DataType_UserAccountSelectData";
+    case DataType.DataType_LiveFeverSettingsData:
+      return "DataType_LiveFeverSettingsData";
+    case DataType.DataType_BiliLimitedTotalSpendEnteredCacheData:
+      return "DataType_BiliLimitedTotalSpendEnteredCacheData";
+    case DataType.DataType_LastLoginUserAccountData:
+      return "DataType_LastLoginUserAccountData";
+    case DataType.DataType_BiliStageBandSelectData:
+      return "DataType_BiliStageBandSelectData";
+    case DataType.DataType_BiliPhotoStudioScreenShotCacheData:
+      return "DataType_BiliPhotoStudioScreenShotCacheData";
     case DataType.DataType_BiliCharacterIdListData:
       return "DataType_BiliCharacterIdListData";
-    case DataType.DataType_CostumeLive2DFilterCacheData:
-      return "DataType_CostumeLive2DFilterCacheData";
-    case DataType.DataType_Costume3DFilterCacheData:
-      return "DataType_Costume3DFilterCacheData";
-    case DataType.DataType_Costume3DFavoriteCacheData:
-      return "DataType_Costume3DFavoriteCacheData";
+    case DataType.DataType_BiliMultiLiveLightSettings:
+      return "DataType_BiliMultiLiveLightSettings";
     case DataType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -2804,6 +2986,46 @@ export function userAuthTypeToJSON(object: UserAuthType): string {
   }
 }
 
+/** Source: UserAccountSelectData.cs */
+export enum UserAccountPlatform {
+  UserAccountPlatform_None = 0,
+  UserAccountPlatform_Bili = 1,
+  UserAccountPlatform_iOS = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function userAccountPlatformFromJSON(object: any): UserAccountPlatform {
+  switch (object) {
+    case 0:
+    case "UserAccountPlatform_None":
+      return UserAccountPlatform.UserAccountPlatform_None;
+    case 1:
+    case "UserAccountPlatform_Bili":
+      return UserAccountPlatform.UserAccountPlatform_Bili;
+    case 2:
+    case "UserAccountPlatform_iOS":
+      return UserAccountPlatform.UserAccountPlatform_iOS;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return UserAccountPlatform.UNRECOGNIZED;
+  }
+}
+
+export function userAccountPlatformToJSON(object: UserAccountPlatform): string {
+  switch (object) {
+    case UserAccountPlatform.UserAccountPlatform_None:
+      return "UserAccountPlatform_None";
+    case UserAccountPlatform.UserAccountPlatform_Bili:
+      return "UserAccountPlatform_Bili";
+    case UserAccountPlatform.UserAccountPlatform_iOS:
+      return "UserAccountPlatform_iOS";
+    case UserAccountPlatform.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 /** Source: UserFriend.cs */
 export enum State {
   State_None = 0,
@@ -2917,6 +3139,13 @@ export interface AppGetResponse {
   monthlyRankingStatues: MonthlyRankingStatus[];
 }
 
+/** Source: AprilFool2021CacheData.cs */
+export interface AprilFool2021CacheData {
+  IsAllStoryReadDialogShowed: boolean;
+  shouldShowReleaseDialoglocalIdList: number[];
+  IsShowedFirstTranstionDescriptionSlide: boolean;
+}
+
 /** Source: AreaItemCategoryList.cs */
 export interface AreaItemCategoryList {
   entries: number[];
@@ -2999,12 +3228,76 @@ export interface BasicResoponse {
   text: string;
 }
 
+/** Source: BiliCDKResponse.cs */
+export interface BiliCDKResponse {
+  userId: string;
+  code: number;
+  message: string;
+}
+
 export interface BiliCharacterFilterData {
   defaultList: number[];
   waitingRoomList: number[];
   memberList: number[];
   deckEditSituationSelectList: number[];
   skillPracticeList: number[];
+}
+
+/** Source: BiliDAQStampRequest.cs */
+export interface BiliDAQStampRequest {
+  entries: UserBiliStampInfo[];
+}
+
+/** Source: BiliLimitedTotalSpendEnteredCacheData.cs */
+export interface BiliLimitedTotalSpendEnteredCacheData {
+  biliActivityIdEnteredMap: { [key: number]: boolean };
+  lastEnterBonusPoint: number;
+}
+
+export interface BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+  key: number;
+  value: boolean;
+}
+
+/** Source: BiliMultiLiveLightSettingsProtoData.cs */
+export interface BiliMultiLiveLightSettingsProtoData {
+  carouselDegreeSetting: boolean;
+  spScreenSetting: boolean;
+}
+
+/** Source: BiliOwnedTrafficResponse.cs */
+export interface BiliOwnedTrafficResponse {
+  urlparameter: string;
+  message: string;
+  url: string;
+}
+
+/** Source: BiliPhotoStudioTextureCacheData.cs */
+export interface BiliPhotoStudioTextureCacheData {
+  photoStudioTextureCacheDataMap: { [key: string]: PhotoStudioTextureCacheData };
+}
+
+export interface BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+  key: string;
+  value: PhotoStudioTextureCacheData | undefined;
+}
+
+/** Source: BiliReportRequest.cs */
+export interface BiliReportRequest {
+  userId: string;
+  userName: string;
+  reportUserId: string;
+  reportUserName: string;
+  timestamp: string;
+  entranceType: string;
+  reportType: string[];
+  roomId: string;
+  score: number;
+}
+
+export interface BiliStageBandSelectData {
+  stageId: number;
+  selectBandIdName: SelectBandIdName;
 }
 
 export interface BillingTransactionData {
@@ -3184,18 +3477,6 @@ export interface CollaborationEventCacheData {
   showedSkinChangeDialogSeasonSpecialId: number;
 }
 
-/** Source: ComebackInviteCheckedData.cs */
-export interface ComebackInviteCheckedData {
-  isTransitionedComebackInviteMission: boolean;
-  lastContractedInviteId: number;
-}
-
-/** Source: ComebackInviteMissionRewardResponse.cs */
-export interface ComebackInviteMissionRewardResponse {
-  updateResources: SuiteUserGetResponse | undefined;
-  comebackInviteMissionRewardList: PlayerResourceList | undefined;
-}
-
 /** Source: CommentBannerRequest.cs */
 export interface CommentBannerRequest {
   /** IsRequired */
@@ -3245,55 +3526,6 @@ export interface ContactFormBackUpData_RequestEntry {
   value: string;
 }
 
-/** Source: Costume3DFavoriteCacheData.cs */
-export interface Costume3DFavoriteCacheData {
-  costume3DDressGroupIdList: number[];
-  costume3DHairstyleGroupIdList: number[];
-}
-
-/** Source: Costume3DFilterCacheData.cs */
-export interface Costume3DFilterCacheData {
-  checkBoxFlagShowSettingPossibleUse: boolean;
-  checkBoxFlagShowSettingMonthly: boolean;
-  checkBoxFlagShowSettingFavorite: boolean;
-  characterList: number[];
-}
-
-/** Source: Costume3DFilterCacheDataMap.cs */
-export interface Costume3DFilterCacheDataMap {
-  costume3DDressFilterCacheDataMap: { [key: number]: Costume3DFilterCacheData };
-  costume3DHairstyleFilterCacheDataMap: { [key: number]: Costume3DFilterCacheData };
-}
-
-export interface Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-  key: number;
-  value: Costume3DFilterCacheData | undefined;
-}
-
-export interface Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-  key: number;
-  value: Costume3DFilterCacheData | undefined;
-}
-
-/** Source: CostumeLive2DFilterCacheData.cs */
-export interface CostumeLive2DFilterCacheData {
-  checkBoxFlagShowSettingSituationRarityStarOther: boolean;
-  checkBoxFlagShowSettingSituationRarityStar2: boolean;
-  checkBoxFlagShowSettingSituationRarityStar3: boolean;
-  checkBoxFlagShowSettingSituationRarityStar4: boolean;
-  checkBoxFlagShowSettingSituationRarityStar5: boolean;
-}
-
-/** Source: CostumeLive2DFilterCacheDataMap.cs */
-export interface CostumeLive2DFilterCacheDataMap {
-  costumeLive2DFilterCacheDataMap: { [key: number]: CostumeLive2DFilterCacheData };
-}
-
-export interface CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-  key: number;
-  value: CostumeLive2DFilterCacheData | undefined;
-}
-
 /** Source: CountDownLiveData.cs */
 export interface CountDownLiveData {
   checkBoxNoMoreShowBandRoomInfoEventId: number;
@@ -3337,7 +3569,6 @@ export interface DebugUserPostResponse {
 /** Source: DeckSortFilterFoldingData.cs */
 export interface DeckSortFilterFoldingData {
   IsDetailConditionFolding: boolean;
-  IsCharacterFolding: boolean;
 }
 
 /** Source: DecoFramePinsResponse.cs */
@@ -3345,10 +3576,36 @@ export interface DecoFramePinsResponse {
   updateResources: SuiteUserGetResponse | undefined;
 }
 
+/** Source: DeviceAccMotionLog.cs */
+export interface DeviceAccMotionLog {
+  timestamp: string;
+  x: number;
+  y: number;
+  z: number;
+}
+
 /** Source: DeviceInfoUpdateRequest.cs */
 export interface DeviceInfoUpdateRequest {
   deviceModel: string;
   operatingSystem: string;
+}
+
+/** Source: DeviceMonitorData.cs */
+export interface DeviceMonitorData {
+  triggerType: string;
+  listTouchLog: DeviceTouchLog[];
+  listAccMotionLog: DeviceAccMotionLog[];
+  batteryPower: string;
+  screenInfo: string;
+}
+
+/** Source: DeviceTouchLog.cs */
+export interface DeviceTouchLog {
+  timestamp: string;
+  x: number;
+  y: number;
+  eventType: string;
+  touchID: number;
 }
 
 /** Source: DialogReadResponse.cs */
@@ -3538,6 +3795,18 @@ export interface FestivalTeamSelectRequest {
   teamId: number;
 }
 
+/** Source: FindMatchServer.cs */
+export interface FindMatchServer {
+  queueName: string;
+}
+
+/** Source: FindMatchServerResult.cs */
+export interface FindMatchServerResult {
+  url: string;
+  port: number;
+  token: string;
+}
+
 /** Source: FourFrameCartoonIdList.cs */
 export interface FourFrameCartoonIdList {
   entries: number[];
@@ -3604,7 +3873,7 @@ export interface GameNoticeData {
   checkedLastEventMissionIds: number[];
   checkedLastMonthlyMissionTime: string;
   friendInviteCheckedData: FriendInviteCheckedData | undefined;
-  comebackInviteCheckedData: ComebackInviteCheckedData | undefined;
+  checkedBiliLimitedMissionIds: number[];
 }
 
 export interface GameNoticeData_MusicShopLastOpenDateEntry {
@@ -3659,6 +3928,11 @@ export interface GeneralElectionLocalData {
   lastDisplayedSlideElectionId: number;
 }
 
+/** Source: GetConsumptionGiftRequeset.cs */
+export interface GetConsumptionGiftRequeset {
+  id: number;
+}
+
 /** Source: GoogleConsume.cs */
 export interface GoogleConsume {
   orderId: string;
@@ -3694,6 +3968,11 @@ export interface InAppCacheProtoData {
   checkBoxFlagShowSettingAttributeCool: boolean;
   checkBoxFlagShowSettingAttributePure: boolean;
   checkBoxFlagShowSettingAttributeHappy: boolean;
+  checkBoxFlagShowSettingBandPoppinParty: boolean;
+  checkBoxFlagShowSettingBandAfterglow: boolean;
+  checkBoxFlagShowSettingBandPastelPalettes: boolean;
+  checkBoxFlagShowSettingBandRoselia: boolean;
+  checkBoxFlagShowSettingBandHelloHappyWorld: boolean;
   radioButtonSortIndex: number;
   sortingOrder: number;
   lastSelectedSoloPlayMusicId: string;
@@ -3743,6 +4022,8 @@ export interface InAppCacheProtoData {
   isNeverShowGachaSealRuleSlide: boolean;
   neverShowBandSelectGachaRuleSlideGachaId: number;
   lastHomeInitializedTimestamp: string;
+  checkBoxFlagShowSettingBandMorfonica: number;
+  checkBoxFlagShowSettingBandRaiseASuilen: number;
   checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: number;
   radioButtonAnimationEpisodeFilterIndex: number;
   checkBoxFlagShowSettingSkillConditionalScoreUpWithNeverDie: number;
@@ -3764,6 +4045,7 @@ export interface InAppCacheProtoData {
   qualifyLiveLastSettingCategoryMap: { [key: number]: number };
   qualifyLiveLastSettingCategoryMusicMap: { [key: number]: string };
   qualifyLiveLastSettingMiddleCategoryAllMusicMap: { [key: number]: string };
+  checkBoxFlagShowSettingBandMyGO: number;
   appealLastSettingCategoryMusicMap: { [key: number]: string };
   appealLastSettingCategoryMap: { [key: number]: number };
   appealLastSettingMiddleCategoryAllMusicMap: { [key: number]: string };
@@ -3776,6 +4058,12 @@ export interface InAppCacheProtoData {
   checkBoxTrainingFlagShowSettingAttributeCool: boolean;
   checkBoxTrainingFlagShowSettingAttributePure: boolean;
   checkBoxTrainingFlagShowSettingAttributeHappy: boolean;
+  checkBoxTrainingFlagShowSettingBandPoppinParty: boolean;
+  checkBoxTrainingFlagShowSettingBandAfterglow: boolean;
+  checkBoxTrainingFlagShowSettingBandPastelPalettes: boolean;
+  checkBoxTrainingFlagShowSettingBandRoselia: boolean;
+  checkBoxTrainingFlagShowSettingBandHelloHappyWorld: boolean;
+  checkBoxTrainingFlagShowSettingBandMyGO: number;
   checkBoxTrainingFlagShowSettingSkillScoreUp: number;
   checkBoxTrainingFlagShowSettingSkillConditionedScoreUp: number;
   checkBoxTrainingFlagShowSettingSkillJudgementWithScoreUp: number;
@@ -3787,14 +4075,24 @@ export interface InAppCacheProtoData {
   checkBoxWaitingRoomFlagShowSettingAttributeCool: boolean;
   checkBoxWaitingRoomFlagShowSettingAttributePure: boolean;
   checkBoxWaitingRoomFlagShowSettingAttributeHappy: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandPoppinParty: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandAfterglow: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandPastelPalettes: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandRoselia: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld: boolean;
+  checkBoxWaitingRoomFlagShowSettingBandMyGO: number;
   checkBoxWaitingRoomFlagShowSettingSkillScoreUp: number;
   checkBoxWaitingRoomFlagShowSettingSkillConditionedScoreUp: number;
   checkBoxWaitingRoomFlagShowSettingSkillJudgementWithScoreUp: number;
   checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp: number;
+  checkBoxWaitingRoomFlagShowSettingBandMorfonica: number;
+  checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen: number;
   checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp: number;
   checkBoxWaitingRoomFlagShowSettingSkillDamageGuardWithScoreUp: number;
   checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: number;
   checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie: number;
+  checkBoxTrainingFlagShowSettingBandMorfonica: number;
+  checkBoxTrainingFlagShowSettingBandRaiseASuilen: number;
   checkBoxTrainingFlagShowSettingSkillHealOrScoreUp: number;
   checkBoxTrainingFlagShowSettingSkillDamageGuardWithScoreUp: number;
   checkBoxTrainingFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: number;
@@ -3810,10 +4108,18 @@ export interface InAppCacheProtoData {
   checkBoxDefaultFlagShowSettingAttributeCool: boolean;
   checkBoxDefaultFlagShowSettingAttributePure: boolean;
   checkBoxDefaultFlagShowSettingAttributeHappy: boolean;
+  checkBoxDefaultFlagShowSettingBandPoppinParty: boolean;
+  checkBoxDefaultFlagShowSettingBandAfterglow: boolean;
+  checkBoxDefaultFlagShowSettingBandPastelPalettes: boolean;
+  checkBoxDefaultFlagShowSettingBandRoselia: boolean;
+  checkBoxDefaultFlagShowSettingBandHelloHappyWorld: boolean;
+  checkBoxDefaultFlagShowSettingBandMyGO: number;
   checkBoxDefaultFlagShowSettingSkillScoreUp: number;
   checkBoxDefaultFlagShowSettingSkillConditionedScoreUp: number;
   checkBoxDefaultFlagShowSettingSkillJudgementWithScoreUp: number;
   checkBoxDefaultFlagShowSettingSkillHealWithScoreUp: number;
+  checkBoxDefaultFlagShowSettingBandMorfonica: number;
+  checkBoxDefaultFlagShowSettingBandRaiseASuilen: number;
   checkBoxDefaultFlagShowSettingSkillHealOrScoreUp: number;
   checkBoxDefaultFlagShowSettingSkillDamageGuardWithScoreUp: number;
   checkBoxDefaultFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: number;
@@ -3826,10 +4132,18 @@ export interface InAppCacheProtoData {
   checkBoxSkillPracticeFlagShowSettingAttributeCool: boolean;
   checkBoxSkillPracticeFlagShowSettingAttributePure: boolean;
   checkBoxSkillPracticeFlagShowSettingAttributeHappy: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandPoppinParty: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandAfterglow: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandPastelPalettes: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandRoselia: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld: boolean;
+  checkBoxSkillPracticeFlagShowSettingBandMyGO: number;
   checkBoxSkillPracticeFlagShowSettingSkillScoreUp: number;
   checkBoxSkillPracticeFlagShowSettingSkillConditionedScoreUp: number;
   checkBoxSkillPracticeFlagShowSettingSkillJudgementWithScoreUp: number;
   checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp: number;
+  checkBoxSkillPracticeFlagShowSettingBandMorfonica: number;
+  checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen: number;
   checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp: number;
   checkBoxSkillPracticeFlagShowSettingSkillDamageGuardWithScoreUp: number;
   checkBoxSkillPracticeFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: number;
@@ -3837,12 +4151,6 @@ export interface InAppCacheProtoData {
   skillPracticeRadioButtonSortIndex: number;
   skillPracticeSortingOrder: number;
   radioButtonSkillPracticeSortIndexWithEventBonus: number;
-  lastSelectedStageChallengeId: number;
-  isNeverShowHabahiroDialogMusicIds: number[];
-  isSituationCharacterFilterInitFlag: boolean;
-  isNfoFirstTransitioned: boolean;
-  selecteNfoLevelId: number;
-  selectNfoCharacterId: number;
 }
 
 export interface InAppCacheProtoData_FavoriteMusicMapEntry {
@@ -4044,6 +4352,9 @@ export interface LiveCoreSettingsProtoData {
   migrateSettingVersion: number;
   HighFrequencyMode: boolean;
   judgementAdjustValueB: number;
+  customLightModeSituationId: number;
+  customLightModeSituationIsAfterTraining: boolean;
+  customLightModeSpScreenId: number;
 }
 
 export interface LiveCoreSettingsProtoData_MvModeDictionaryEntry {
@@ -4069,6 +4380,12 @@ export interface LiveCoreSettingsProtoData_Star3DLiveViewerOriginalMemberModeDic
 export interface LiveCoreSettingsProtoData_Star3DLiveViewerModeDictionaryEntry {
   key: number;
   value: number;
+}
+
+export interface LiveFeverSettingsData {
+  eventId: number;
+  isTutorialCompleted: boolean;
+  feverMode: FeverMode;
 }
 
 /** Source: LiveSettingsProtoData.cs */
@@ -4260,6 +4577,35 @@ export interface MasterAnimationSituation {
 /** Source: MasterAnimationSituationList.cs */
 export interface MasterAnimationSituationList {
   entries: MasterAnimationSituation[];
+}
+
+/** Source: MasterAprilFool2021Page.cs */
+export interface MasterAprilFool2021Page {
+  aprilFool2021PageId: number;
+  assetBundleName: string;
+  bgmFileName: string;
+  startAt: string;
+  endAt: string;
+}
+
+/** Source: MasterAprilFool2021PageList.cs */
+export interface MasterAprilFool2021PageList {
+  entries: MasterAprilFool2021Page[];
+}
+
+/** Source: MasterAprilFool2021Region.cs */
+export interface MasterAprilFool2021Region {
+  aprilFool2021RegionId: number;
+  region: string;
+  storyType: string;
+  seq: number;
+  characterId: number;
+  genericStoryId: number;
+}
+
+/** Source: MasterAprilFool2021RegionList.cs */
+export interface MasterAprilFool2021RegionList {
+  entries: MasterAprilFool2021Region[];
 }
 
 /** Source: MasterArea.cs */
@@ -4683,6 +5029,121 @@ export interface MasterBandStoryMap_EntriesEntry {
   value: MasterBandStory | undefined;
 }
 
+/** Source: MasterBiliActivity.cs */
+export interface MasterBiliActivity {
+  activityId: number;
+  activityName: string;
+  seq: number;
+  startAt: string;
+  endAt: string;
+  upperLimit: number;
+  rewardList: MasterBiliActivityRewardList | undefined;
+}
+
+/** Source: MasterBiliActivityList.cs */
+export interface MasterBiliActivityList {
+  entries: MasterBiliActivity[];
+}
+
+/** Source: MasterBiliActivityMap.cs */
+export interface MasterBiliActivityMap {
+  entries: { [key: number]: MasterBiliActivity };
+}
+
+export interface MasterBiliActivityMap_EntriesEntry {
+  key: number;
+  value: MasterBiliActivity | undefined;
+}
+
+/** Source: MasterBiliActivityReward.cs */
+export interface MasterBiliActivityReward {
+  activityId: number;
+  seq: number;
+  activityRewardId: number;
+  resourceType: string;
+  resourceId: number;
+  quantity: number;
+  rateResourceType: string;
+  rateResourceId: number;
+  rate: number;
+}
+
+/** Source: MasterBiliActivityRewardList.cs */
+export interface MasterBiliActivityRewardList {
+  entries: MasterBiliActivityReward[];
+}
+
+/** Source: MasterBiliActivityRewardMap.cs */
+export interface MasterBiliActivityRewardMap {
+  entries: { [key: number]: MasterBiliActivityRewardList };
+}
+
+export interface MasterBiliActivityRewardMap_EntriesEntry {
+  key: number;
+  value: MasterBiliActivityRewardList | undefined;
+}
+
+/** Source: MasterBiliDecoEffectDetail.cs */
+export interface MasterBiliDecoEffectDetail {
+  decoEffectId: number;
+  forever: boolean;
+  showDisplay: boolean;
+  displayStartAt: string;
+  displayEndAt: string;
+  transitionMethod: string;
+  transitionId: number;
+}
+
+/** Source: MasterBiliDecoEffectDetailList.cs */
+export interface MasterBiliDecoEffectDetailList {
+  entries: MasterBiliDecoEffectDetail[];
+}
+
+/** Source: MasterBiliDegreeEffect.cs */
+export interface MasterBiliDegreeEffect {
+  degreeId: number;
+  seq: number;
+  degreeEffectType: string;
+  assetBundleName: string;
+  description: string;
+  biliDegreeEffectId: number;
+}
+
+/** Source: MasterBiliDegreeEffectList.cs */
+export interface MasterBiliDegreeEffectList {
+  entries: MasterBiliDegreeEffect[];
+}
+
+/** Source: MasterBiliGachaStepupDetail.cs */
+export interface MasterBiliGachaStepupDetail {
+  gachaId: number;
+  stepNumber: number;
+  situationId: number;
+  characterId: number;
+  rarityIndex: number;
+  weight: number;
+  stepGachaFilterId: number;
+}
+
+/** Source: MasterBiliGachaStepupDetailList.cs */
+export interface MasterBiliGachaStepupDetailList {
+  entries: MasterBiliGachaStepupDetail[];
+}
+
+/** Source: MasterBiliGachaStepupRarityRate.cs */
+export interface MasterBiliGachaStepupRarityRate {
+  gachaId: number;
+  stepNumber: number;
+  rarityIndex: number;
+  rate: number;
+  weightTotal: number;
+}
+
+/** Source: MasterBiliGachaStepupRarityRateList.cs */
+export interface MasterBiliGachaStepupRarityRateList {
+  entries: MasterBiliGachaStepupRarityRate[];
+}
+
 /** Source: MasterBiliNfoMission.cs */
 export interface MasterBiliNfoMission {
   missionId: number;
@@ -4695,17 +5156,18 @@ export interface MasterBiliNfoMission {
   endAt: string;
   rewardList: MasterBiliNfoMissionRewardList | undefined;
   reason: string;
-  condList: MasterBiliNfoMissionConditionList | undefined;
+  conditionList: MasterBiliNfoMissionConditionList | undefined;
+  rewardIconSpriteName: string;
 }
 
 /** Source: MasterBiliNfoMissionCondition.cs */
 export interface MasterBiliNfoMissionCondition {
+  missionConditionId: number;
   missionId: number;
-  seq: number;
-  missionConditionType: string;
-  condValue1: number;
-  condValue2: number;
-  condValue3: number;
+  conditionType: string;
+  param1: string;
+  param2: string;
+  param3: string;
 }
 
 /** Source: MasterBiliNfoMissionConditionList.cs */
@@ -4716,6 +5178,16 @@ export interface MasterBiliNfoMissionConditionList {
 /** Source: MasterBiliNfoMissionList.cs */
 export interface MasterBiliNfoMissionList {
   entries: MasterBiliNfoMission[];
+}
+
+/** Source: MasterBiliNfoMissionMap.cs */
+export interface MasterBiliNfoMissionMap {
+  entries: { [key: number]: MasterBiliNfoMission };
+}
+
+export interface MasterBiliNfoMissionMap_EntriesEntry {
+  key: number;
+  value: MasterBiliNfoMission | undefined;
 }
 
 /** Source: MasterBiliNfoMissionReward.cs */
@@ -4731,6 +5203,86 @@ export interface MasterBiliNfoMissionReward {
 /** Source: MasterBiliNfoMissionRewardList.cs */
 export interface MasterBiliNfoMissionRewardList {
   entries: MasterBiliNfoMissionReward[];
+}
+
+/** Source: MasterBiliNfoMissionRewardMap.cs */
+export interface MasterBiliNfoMissionRewardMap {
+  entries: { [key: number]: MasterBiliNfoMissionReward };
+}
+
+export interface MasterBiliNfoMissionRewardMap_EntriesEntry {
+  key: number;
+  value: MasterBiliNfoMissionReward | undefined;
+}
+
+/** Source: MasterBiliNfoSkin.cs */
+export interface MasterBiliNfoSkin {
+  skinID: number;
+  characterID: number;
+  skinType: string;
+}
+
+/** Source: MasterBiliNfoSkinMap.cs */
+export interface MasterBiliNfoSkinMap {
+  entries: { [key: number]: MasterBiliNfoSkin };
+}
+
+export interface MasterBiliNfoSkinMap_EntriesEntry {
+  key: number;
+  value: MasterBiliNfoSkin | undefined;
+}
+
+/** Source: MasterBiliShippingActivity.cs */
+export interface MasterBiliShippingActivity {
+  shippingActivityId: number;
+  seq: number;
+  name: string;
+  shippingActivityType: string;
+  unlockParamId: number;
+  publishedAt: string;
+  closedAt: string;
+  editStartAt: string;
+  editEndAt: string;
+  thumbnailAssetBundleName: string;
+  description: string;
+}
+
+/** Source: MasterBiliShippingActivityList.cs */
+export interface MasterBiliShippingActivityList {
+  entries: MasterBiliShippingActivity[];
+}
+
+/** Source: MasterBiliShippingActivityMap.cs */
+export interface MasterBiliShippingActivityMap {
+  entries: { [key: string]: MasterBiliShippingActivityList };
+}
+
+export interface MasterBiliShippingActivityMap_EntriesEntry {
+  key: string;
+  value: MasterBiliShippingActivityList | undefined;
+}
+
+/** Source: MasterBiliSpecialScreen.cs */
+export interface MasterBiliSpecialScreen {
+  specialScreenId: number;
+  seq: number;
+  name: string;
+  startAt: string;
+  endAt: string;
+  enableFlg: boolean;
+  createAt: string;
+  updateAt: string;
+  offsetX: number;
+  offsetY: number;
+  addScaleRatio: number;
+  obtainMethod: string;
+  texture: boolean;
+  type: string;
+}
+
+/** Source: MasterBiliSpecialScreenList.cs */
+export interface MasterBiliSpecialScreenList {
+  entries: MasterBiliSpecialScreen[];
 }
 
 /** Source: MasterBirthdayIntroduction.cs */
@@ -5329,7 +5881,6 @@ export interface MasterCollaboOriginalMusicPage {
   labelColor: string;
   backgroundName: string;
   animationName: string;
-  isDisplaySpecialDifficulty: boolean;
 }
 
 /** Source: MasterCollaboOriginalMusicPageList.cs */
@@ -5393,70 +5944,6 @@ export interface MasterComebackBonusMap {
 export interface MasterComebackBonusMap_EntriesEntry {
   key: number;
   value: MasterComebackBonus | undefined;
-}
-
-/** Source: MasterComebackInvite.cs */
-export interface MasterComebackInvite {
-  comebackInviteId: number;
-  startAt: string;
-  endAt: string;
-}
-
-/** Source: MasterComebackInviteList.cs */
-export interface MasterComebackInviteList {
-  entries: MasterComebackInvite[];
-}
-
-/** Source: MasterComebackInviteMission.cs */
-export interface MasterComebackInviteMission {
-  missionId: number;
-  comebackInviteId: number;
-  comebackType: number;
-  seq: number;
-  title: string;
-  description: string;
-  missionType: string;
-  transitionMethod: string;
-  clearProgress: number;
-  masterInviteMissionRewardList: MasterComebackInviteMissionRewardList | undefined;
-}
-
-/** Source: MasterComebackInviteMissionList.cs */
-export interface MasterComebackInviteMissionList {
-  entries: MasterComebackInviteMission[];
-}
-
-/** Source: MasterComebackInviteMissionListMap.cs */
-export interface MasterComebackInviteMissionListMap {
-  entries: { [key: number]: MasterComebackInviteMissionList };
-}
-
-export interface MasterComebackInviteMissionListMap_EntriesEntry {
-  key: number;
-  value: MasterComebackInviteMissionList | undefined;
-}
-
-/** Source: MasterComebackInviteMissionListMaps.cs */
-export interface MasterComebackInviteMissionListMaps {
-  entries: { [key: number]: MasterComebackInviteMissionListMap };
-}
-
-export interface MasterComebackInviteMissionListMaps_EntriesEntry {
-  key: number;
-  value: MasterComebackInviteMissionListMap | undefined;
-}
-
-/** Source: MasterComebackInviteMissionReward.cs */
-export interface MasterComebackInviteMissionReward {
-  rewardSeq: number;
-  resourceType: string;
-  resourceId: number;
-  quantity: number;
-}
-
-/** Source: MasterComebackInviteMissionRewardList.cs */
-export interface MasterComebackInviteMissionRewardList {
-  entries: MasterComebackInviteMissionReward[];
 }
 
 /** Source: MasterCommonConfig.cs */
@@ -5527,6 +6014,33 @@ export interface MasterConfigInitializeTutorialMap {
 export interface MasterConfigInitializeTutorialMap_EntriesEntry {
   key: number;
   value: MasterConfigInitializeTutorial | undefined;
+}
+
+/** Source: MasterConsumptionGift.cs */
+export interface MasterConsumptionGift {
+  id: number;
+  giftId: number;
+  startAt: string;
+  endAt: string;
+}
+
+/** Source: MasterConsumptionGiftDetail.cs */
+export interface MasterConsumptionGiftDetail {
+  giftId: number;
+  seq: number;
+  resourceType: string;
+  resourceId: number;
+  quantity: number;
+}
+
+/** Source: MasterConsumptionGiftDetailList.cs */
+export interface MasterConsumptionGiftDetailList {
+  entries: MasterConsumptionGiftDetail[];
+}
+
+/** Source: MasterConsumptionGiftList.cs */
+export interface MasterConsumptionGiftList {
+  entries: MasterConsumptionGift[];
 }
 
 /** Source: MasterCostume.cs */
@@ -5615,7 +6129,6 @@ export interface MasterCostume3dGroup {
   publishedAt: string;
   situationId: number;
   assetBundleName: string;
-  parentCostume3dGroup: number;
 }
 
 /** Source: MasterCostume3dGroupMap.cs */
@@ -7728,6 +8241,7 @@ export interface MasterGraphicalInformation {
   targetUserType: string;
   transitionMethod2: string;
   transitionId2: number;
+  url: string;
 }
 
 /** Source: MasterGraphicalInformationList.cs */
@@ -8275,6 +8789,23 @@ export interface MasterLiveBoostRecoveryItemMap {
 export interface MasterLiveBoostRecoveryItemMap_EntriesEntry {
   key: number;
   value: MasterLiveBoostRecoveryItem | undefined;
+}
+
+/** Source: MasterLiveFeverConfig.cs */
+export interface MasterLiveFeverConfig {
+  liveFeverId: number;
+  feverType: string;
+  liveFeverLimitCount: number;
+  liveFeverRewardRate: number;
+  url: string;
+  challengeLimitLiveBoost: number;
+  startAt: string;
+  endAt: string;
+}
+
+/** Source: MasterLiveFeverConfigList.cs */
+export interface MasterLiveFeverConfigList {
+  entries: MasterLiveFeverConfig[];
 }
 
 /** Source: MasterLiveTryEvent.cs */
@@ -8881,9 +9412,17 @@ export interface MasterMissionPlatformOverviewList {
 
 /** Source: MasterMissionReward.cs */
 export interface MasterMissionReward {
+  missionId: number;
+  seq: number;
+  missionRewardId: number;
   resourceType: string;
   resourceId: number;
   quantity: number;
+}
+
+/** Source: MasterMissionRewardList.cs */
+export interface MasterMissionRewardList {
+  entries: MasterMissionReward[];
 }
 
 /** Source: MasterMissionSetlistValue.cs */
@@ -11332,7 +11871,6 @@ export interface MedleyPlayMusic {
 /** Source: MemberListCacheData.cs */
 export interface MemberListCacheData {
   IsCheckedSpecialTrainingFilter: boolean;
-  IsCheckedSkillPracticeFilter: boolean;
 }
 
 /** Source: MissionCacheData.cs */
@@ -11353,6 +11891,16 @@ export interface MissionClear {
 export interface MissionReward {
   updateResources: SuiteUserGetResponse | undefined;
   missionRewardList: PlayerResourceList | undefined;
+}
+
+/** Source: MissionRewardMap.cs */
+export interface MissionRewardMap {
+  entries: { [key: number]: MasterMissionRewardList };
+}
+
+export interface MissionRewardMap_EntriesEntry {
+  key: number;
+  value: MasterMissionRewardList | undefined;
 }
 
 /** Source: MonthlyMissionReward.cs */
@@ -11470,16 +12018,81 @@ export interface MusicSortCacheData {
   multiMusicExtensionFilterKind: number;
 }
 
+/** Source: NFOBILog.cs */
+export interface NFOBILog {
+  biEventType: string;
+  biLogData: string;
+}
+
+/** Source: NFOCharacterConfigData.cs */
+export interface NFOCharacterConfigData {
+  characterID: number;
+  skinID: number;
+}
+
+/** Source: NFOCharacterLogData.cs */
+export interface NFOCharacterLogData {
+  characterID: number;
+  clearLevelIDs: NFOLevelLogData[];
+}
+
+/** Source: NFOEnemyLogData.cs */
+export interface NFOEnemyLogData {
+  enemyID: number;
+  killCount: number;
+}
+
+/** Source: NFOGetMultiplayServerInfo.cs */
+export interface NFOGetMultiplayServerInfo {
+}
+
+/** Source: NFOGetMultiplayServerInfoResponse.cs */
+export interface NFOGetMultiplayServerInfoResponse {
+  address: string;
+  port: number;
+  mantenance: number;
+  matchToken: string;
+}
+
+/** Source: NFOLevelLogData.cs */
+export interface NFOLevelLogData {
+  levelID: number;
+  maxSurvivedTime: number;
+  clearCount: number;
+  playCount: number;
+  multiplayClearCount: number;
+  multiplaySingleClearCount: number;
+}
+
 /** Source: NFOLoadResponse.cs */
 export interface NFOLoadResponse {
   nfoSaveData: NFOSaveData | undefined;
   missionList: UserBiliNfoMissionList | undefined;
 }
 
+/** Source: NFOLoadSend.cs */
+export interface NFOLoadSend {
+  biLogList: NFOBILog[];
+}
+
+/** Source: NFOMultiplayLogData.cs */
+export interface NFOMultiplayLogData {
+  levelID: number;
+  playTimeUTC: string;
+  teamMateUserID: string;
+  result: number;
+}
+
+/** Source: NFOOtherLogData.cs */
+export interface NFOOtherLogData {
+  MaxReviveTimes: number;
+  MaxDamageDealt: number;
+  MaxHealedHP: number;
+}
+
 /** Source: NFORewardResponse.cs */
 export interface NFORewardResponse {
   success: string;
-  updateResources: SuiteUserGetResponse | undefined;
 }
 
 /** Source: NFOSaveData.cs */
@@ -11492,6 +12105,12 @@ export interface NFOSaveData {
   gotWeapons: number[];
   upgradeCoin: number;
   paidGlobalUpgrade: number[];
+  characterLogDatas: NFOCharacterLogData[];
+  enemyLogDatas: NFOEnemyLogData[];
+  multiplayLogDatas: NFOMultiplayLogData[];
+  otherLogData: NFOOtherLogData | undefined;
+  unlockedSkins: number[];
+  characterConfigDatas: NFOCharacterConfigData[];
 }
 
 /** Source: NFOSaveResponse.cs */
@@ -11503,6 +12122,7 @@ export interface NFOSaveResponse {
 export interface NFOSaveSend {
   nfoSaveData: NFOSaveData | undefined;
   missionList: UserBiliNfoMissionList | undefined;
+  biLogList: NFOBILog[];
 }
 
 /** Source: NeverShowGraphicalInformationIdList.cs */
@@ -11879,6 +12499,19 @@ export interface RetryRequest {
   cutInType: string;
 }
 
+/** Source: RoomCustomProperty.cs */
+export interface RoomCustomProperty {
+  key: string;
+  value: string;
+}
+
+/** Source: RoomMemberStatus.cs */
+export interface RoomMemberStatus {
+  userId: string;
+  isConnected: boolean;
+  score: number;
+}
+
 /** Source: ScenarioPlayModeData.cs */
 export interface ScenarioPlayModeData {
   isAutoMode: boolean;
@@ -11907,6 +12540,16 @@ export interface SendBillingKpiRequest {
 export interface ServerSystem {
   serverDate: string;
   timeZoneRawOffset: number;
+}
+
+/** Source: ServerURLConfig.cs */
+export interface ServerURLConfig {
+  configs: { [key: string]: string };
+}
+
+export interface ServerURLConfig_ConfigsEntry {
+  key: string;
+  value: string;
 }
 
 /** Source: ShowMachingBonusDescriptionData.cs */
@@ -12241,6 +12884,7 @@ export interface SuiteMasterGetResponse {
   masterEventFestivalTeamRewardMap: MasterEventFestivalTeamRewardMap | undefined;
   masterFestivalDisplayPointRateList: MasterFestivalDisplayPointRateList | undefined;
   masterGachaSealExchangeList: MasterGachaSealExchangeList | undefined;
+  masterLiveFeverConfigList: MasterLiveFeverConfigList | undefined;
   masterDegreeSetList: MasterDegreeSetList | undefined;
   masterDegreeSetDetailList: MasterDegreeSetDetailList | undefined;
   masterChangedStampList: MasterChangedStampList | undefined;
@@ -12337,9 +12981,17 @@ export interface SuiteMasterGetResponse {
   masterPhotoBackList: MasterPhotoBackList | undefined;
   masterGachaSelfPickupSituationList: MasterGachaSelfPickupSituationList | undefined;
   masterLimitedSkinMap: MasterLimitedSkinMap | undefined;
-  masterComebackInviteMissionListMaps: MasterComebackInviteMissionListMaps | undefined;
-  masterComebackInviteList: MasterComebackInviteList | undefined;
-  masterBiliNfoMissionList: MasterBiliNfoMissionList | undefined;
+  masterBiliActivityMap: MasterBiliActivityMap | undefined;
+  masterBiliSpecialScreenList: MasterBiliSpecialScreenList | undefined;
+  masterBiliNfoMissionMap: MasterBiliNfoMissionMap | undefined;
+  masterConsumptionGiftList: MasterConsumptionGiftList | undefined;
+  masterConsumptionGiftDetailList: MasterConsumptionGiftDetailList | undefined;
+  masterBiliDecoEffectDetailList: MasterBiliDecoEffectDetailList | undefined;
+  masterBiliDegreeEffectList: MasterBiliDegreeEffectList | undefined;
+  masterBiliGachaStepupDetailList: MasterBiliGachaStepupDetailList | undefined;
+  masterBiliGachaStepupRarityRateList: MasterBiliGachaStepupRarityRateList | undefined;
+  masterBiliShippingActivityList: MasterBiliShippingActivityList | undefined;
+  masterBiliNfoSkinMap: MasterBiliNfoSkinMap | undefined;
 }
 
 /** Source: SuiteMultiLiveCountRewardResponse.cs */
@@ -12409,38 +13061,6 @@ export interface SuiteUserCharacterPotentialPracticeResponse {
   updateResources: SuiteUserGetResponse | undefined;
   userCharacterPotentialLevel: UserCharacterPotentialLevel | undefined;
   updatedBandDeckRankList: UpdatedBandDeckRankList | undefined;
-}
-
-/** Source: SuiteUserComebackInviteCreateCodeResponse.cs */
-export interface SuiteUserComebackInviteCreateCodeResponse {
-  updateResources: SuiteUserGetResponse | undefined;
-}
-
-/** Source: SuiteUserComebackInviteDeleteInfoResponse.cs */
-export interface SuiteUserComebackInviteDeleteInfoResponse {
-  comebackInviteId: number;
-  invitationUserId: string;
-  acceptUserId: string;
-  deleteUserId: string;
-  deleteUserName: string;
-}
-
-/** Source: SuiteUserComebackInviteMissionRewardRequest.cs */
-export interface SuiteUserComebackInviteMissionRewardRequest {
-  missionId: number;
-  comebackInviteId: number;
-  /** IsRequired */
-  seq: number;
-}
-
-/** Source: SuiteUserComebackInviteRegisterRequest.cs */
-export interface SuiteUserComebackInviteRegisterRequest {
-  comebackInviteCode: string;
-}
-
-/** Source: SuiteUserComebackInviteRegisterResponse.cs */
-export interface SuiteUserComebackInviteRegisterResponse {
-  updateResources: SuiteUserGetResponse | undefined;
 }
 
 /** Source: SuiteUserCostume3dChangeResponse.cs */
@@ -12639,7 +13259,7 @@ export interface SuiteUserGetResponse {
   currentUserEventBoxGachaMap: UserEventBoxGachaMap | undefined;
   userPremiumPassList: UserPremiumPassList | undefined;
   userMonthlyPurchaseMap: UserMonthlyPurchaseMap | undefined;
-  userSubscriptionList: UserSubscriptionList | undefined;
+  userGarupaPass: UserGarupaPass | undefined;
   userCommentBannerList: UserCommentBannerList | undefined;
   userEventBoxGachaSpinSettings: UserEventBoxGachaSpinSettings | undefined;
   userMorfonicaStoryList: UserBandStoryList | undefined;
@@ -12710,11 +13330,13 @@ export interface SuiteUserGetResponse {
   userPhotoBackInventoryMap: UserPhotoBackInventoryMap | undefined;
   userLimitedSkinInventoryMap: UserLimitedSkinInventoryMap | undefined;
   monthlyCumulativeAmount: number;
-  userComebackInviteInfo: UserComebackInviteInfo | undefined;
-  userComebackInviteMissionListMap: UserComebackInviteMissionListMap | undefined;
-  userComebackInviteMissionCountMap: UserComebackInviteMissionCountMap | undefined;
-  userComebackInviteMissionClearInformationList: UserComebackInviteMissionClearInformationList | undefined;
   userMusicClearCountDetailMap: UserMusicClearCountDetailMap | undefined;
+  userLiveFeverData: UserLiveFeverData | undefined;
+  userBiliSpecialScreenList: UserBiliSpecialScreenList | undefined;
+  userBiliSpecialScreenSetting: UserSpecialScreenSetting | undefined;
+  userConsumptionGiftList: UserConsumptionGiftList | undefined;
+  userBiliDegreeEffectMap: UserBiliDegreeEffectMap | undefined;
+  userBiliShippingActivityMap: UserBiliShippingActivityMap | undefined;
 }
 
 /** Source: SuiteUserInherit.cs */
@@ -12833,6 +13455,7 @@ export interface SuiteUserMedleyMusic {
   userAfterLiveTalkDeckId: number;
   scoreMap: UserMedleyMusicScoreMap | undefined;
   livePoint: number;
+  liveFeverId: number;
 }
 
 /** Source: SuiteUserMiracleTicketExchangeResponse.cs */
@@ -12877,6 +13500,8 @@ export interface SuiteUserMultiRoom {
   livePoint: number;
   userCharacterRankMap: UserCharacterRankMap | undefined;
   grantCharacterRankRewardListMap: UserCharacterRankRewardListMap | undefined;
+  liveFeverId: number;
+  disconnectCompensationScore: number;
 }
 
 /** Source: SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest.cs */
@@ -12888,6 +13513,7 @@ export interface SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest {
   roomId: string;
   /** IsRequired */
   isFriendRecruitment: boolean;
+  liveFeverUseCount: number;
 }
 
 /** Source: SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostResponse.cs */
@@ -12913,6 +13539,7 @@ export interface SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest {
   roomId: string;
   /** IsRequired */
   isFriendRecruitment: boolean;
+  liveFeverUseCount: number;
 }
 
 /** Source: SuiteUserMultiVersusLiveMusicReserveLiveBoostResponse.cs */
@@ -12946,6 +13573,7 @@ export interface SuiteUserMusic {
   grantCharacterRankRewardListMap: UserCharacterRankRewardListMap | undefined;
   versusEventResponse: UserVersusLiveClearResponse | undefined;
   festivalEventResponse: UserFestivalLiveClearResponse | undefined;
+  liveFeverId: number;
 }
 
 /** Source: SuiteUserMusicPractice.cs */
@@ -13174,7 +13802,6 @@ export interface TutorialCacheProtoData {
   isReadCharacterRank: boolean;
   isRead3DMode: boolean;
   isReadPhotoStudio: boolean;
-  isReadComebackInviteId: number;
 }
 
 export interface TutorialCacheProtoData_IsShowAllMemberGachaTutorialSlideMapEntry {
@@ -13242,6 +13869,16 @@ export interface UsedLiveBoostRecoveryItemResponse {
   recoverValue: number;
 }
 
+export interface UserAccountSelectData {
+  userAccountPlatform: UserAccountPlatform;
+  bidLoginInfos: { [key: string]: UserAccountPlatform };
+}
+
+export interface UserAccountSelectData_BidLoginInfosEntry {
+  key: string;
+  value: UserAccountPlatform;
+}
+
 /** Source: UserActionSet.cs */
 export interface UserActionSet {
   actionSetId: number;
@@ -13299,6 +13936,20 @@ export interface UserActionSetMap {
 export interface UserActionSetMap_EntriesEntry {
   key: number;
   value: UserActionSet | undefined;
+}
+
+/** Source: UserActivityItem.cs */
+export interface UserActivityItem {
+  userId: string;
+  activityId: number;
+  resourceType: string;
+  resourceId: number;
+  quantity: number;
+}
+
+/** Source: UserActivityItemList.cs */
+export interface UserActivityItemList {
+  entries: UserActivityItem[];
 }
 
 /** Source: UserAddMusicDifficultyIntroduction.cs */
@@ -13361,6 +14012,13 @@ export interface UserAppendParameterMap {
 export interface UserAppendParameterMap_EntriesEntry {
   key: number;
   value: UserAppendParameter | undefined;
+}
+
+/** Source: UserAprilFool2021StoryReleaseState.cs */
+export interface UserAprilFool2021StoryReleaseState {
+  /** IsRequired */
+  aprilFool2021localId: number;
+  userGenericStoryMap: UserGenericStoryMap | undefined;
 }
 
 /** Source: UserAreaCharacterResponse.cs */
@@ -13566,6 +14224,99 @@ export interface UserBandStoryList {
   entries: UserBandStory[];
 }
 
+/** Source: UserBiliActivity.cs */
+export interface UserBiliActivity {
+  userId: string;
+  activityId: number;
+  activityName: string;
+  seq: number;
+  startAt: string;
+  endAt: string;
+  upperLimit: number;
+  bonusPoints: number;
+  userUseActivityItemList: UserUseActivityItemList | undefined;
+  userActivityItemList: UserActivityItemList | undefined;
+}
+
+/** Source: UserBiliActivityList.cs */
+export interface UserBiliActivityList {
+  entries: UserBiliActivity[];
+}
+
+/** Source: UserBiliActivityMap.cs */
+export interface UserBiliActivityMap {
+  entries: { [key: number]: UserBiliActivity };
+}
+
+export interface UserBiliActivityMap_EntriesEntry {
+  key: number;
+  value: UserBiliActivity | undefined;
+}
+
+/** Source: UserBiliCharacterBonus.cs */
+export interface UserBiliCharacterBonus {
+  characterId: number;
+  characterBonusType: string;
+  updateResources: SuiteUserGetResponse | undefined;
+  before: CharacterBonusSituationParameter | undefined;
+  after: CharacterBonusSituationParameter | undefined;
+  updatedBandDeckRankList: UpdatedBandDeckRankList | undefined;
+}
+
+/** Source: UserBiliCharacterBonusList.cs */
+export interface UserBiliCharacterBonusList {
+  entries: UserBiliCharacterBonus[];
+}
+
+/** Source: UserBiliCharacterBonusMissionBulkRequest.cs */
+export interface UserBiliCharacterBonusMissionBulkRequest {
+  bandId: number;
+  eventId: number;
+  homeEffectType: string;
+}
+
+/** Source: UserBiliCharacterBonusMissionResponse.cs */
+export interface UserBiliCharacterBonusMissionResponse {
+  userBiliCharacterBonusList: UserBiliCharacterBonusList | undefined;
+  userBiliCharacterMissionBonusList: UserBiliCharacterMissionBonusList | undefined;
+  updateResources: SuiteUserGetResponse | undefined;
+}
+
+/** Source: UserBiliCharacterMissionBonus.cs */
+export interface UserBiliCharacterMissionBonus {
+  missionRewardList: PlayerResourceList | undefined;
+  characterId: number;
+}
+
+/** Source: UserBiliCharacterMissionBonusList.cs */
+export interface UserBiliCharacterMissionBonusList {
+  missionEntries: UserBiliCharacterMissionBonus[];
+}
+
+/** Source: UserBiliDegreeEffect.cs */
+export interface UserBiliDegreeEffect {
+  userId: string;
+  biliDegreeEffectId: number;
+  decoUse: string;
+  profileUse: string;
+  degreeId: number;
+}
+
+/** Source: UserBiliDegreeEffectList.cs */
+export interface UserBiliDegreeEffectList {
+  entries: UserBiliDegreeEffect[];
+}
+
+/** Source: UserBiliDegreeEffectMap.cs */
+export interface UserBiliDegreeEffectMap {
+  entries: { [key: number]: UserBiliDegreeEffect };
+}
+
+export interface UserBiliDegreeEffectMap_EntriesEntry {
+  key: number;
+  value: UserBiliDegreeEffect | undefined;
+}
+
 /** Source: UserBiliNfoMission.cs */
 export interface UserBiliNfoMission {
   userId: string;
@@ -13576,6 +14327,76 @@ export interface UserBiliNfoMission {
 /** Source: UserBiliNfoMissionList.cs */
 export interface UserBiliNfoMissionList {
   entries: UserBiliNfoMission[];
+}
+
+/** Source: UserBiliShippingActivity.cs */
+export interface UserBiliShippingActivity {
+  userId: string;
+  shippingActivityId: number;
+  shippingActivityType: string;
+  recipientName: string;
+  phone: string;
+  address: string;
+  trackingNumber: string;
+  status: string;
+  readStatus: string;
+  grantedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Source: UserBiliShippingActivityList.cs */
+export interface UserBiliShippingActivityList {
+  entries: UserBiliShippingActivity[];
+}
+
+/** Source: UserBiliShippingActivityMap.cs */
+export interface UserBiliShippingActivityMap {
+  entries: { [key: number]: UserBiliShippingActivity };
+}
+
+export interface UserBiliShippingActivityMap_EntriesEntry {
+  key: number;
+  value: UserBiliShippingActivity | undefined;
+}
+
+/** Source: UserBiliShippingActivityRequest.cs */
+export interface UserBiliShippingActivityRequest {
+  userId: string;
+  shippingActivityId: number;
+  shippingActivityType: string;
+  recipientName: string;
+  phone: string;
+  address: string;
+  trackingNumber: string;
+  status: string;
+  readStatus: string;
+  grantedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Source: UserBiliSpecialScreen.cs */
+export interface UserBiliSpecialScreen {
+  userId: string;
+  specialScreenId: number;
+  createAt: string;
+  updateAt: string;
+}
+
+/** Source: UserBiliSpecialScreenList.cs */
+export interface UserBiliSpecialScreenList {
+  entries: UserBiliSpecialScreen[];
+}
+
+/** Source: UserBiliStampInfo.cs */
+export interface UserBiliStampInfo {
+  userId: string;
+  stampId: number;
+  useCount: number;
+  musicId: number;
+  liveType: string;
+  musicDifficulty: string;
 }
 
 /** Source: UserBilling.cs */
@@ -13590,6 +14411,10 @@ export interface UserBilling {
   receipt: string;
   signature: string;
   cumulativeAmount: number;
+  gameMoney: number;
+  money: number;
+  notifyUrl: string;
+  secretKey: string;
 }
 
 /** Source: UserBillingHistory.cs */
@@ -13667,6 +14492,35 @@ export interface UserBondsMap {
 export interface UserBondsMap_EntriesEntry {
   key: number;
   value: UserBonds | undefined;
+}
+
+/** Source: UserCarouselDecoDegree.cs */
+export interface UserCarouselDecoDegree {
+  decoFrameId: number;
+  profileDegreeType: string;
+  degreeId: number;
+}
+
+/** Source: UserCarouselDecoDegreeMap.cs */
+export interface UserCarouselDecoDegreeMap {
+  entries: { [key: string]: UserCarouselDecoDegree };
+}
+
+export interface UserCarouselDecoDegreeMap_EntriesEntry {
+  key: string;
+  value: UserCarouselDecoDegree | undefined;
+}
+
+/** Source: UserCarouselDecoDegreeRequest.cs */
+export interface UserCarouselDecoDegreeRequest {
+  userDecoDegree: UserDecoDegreeRequest | undefined;
+  userCarouselDecoDegree: UserDecoDegreeRequest | undefined;
+}
+
+/** Source: UserCarouselDecoDegreeUseProfileSettingRequest.cs */
+export interface UserCarouselDecoDegreeUseProfileSettingRequest {
+  /** IsRequired */
+  useCarouselProfileSettingDegree: boolean;
 }
 
 /** Source: UserChallengeEventLiveClearResponse.cs */
@@ -13946,106 +14800,6 @@ export interface UserCharacterUseStyleMap_EntriesEntry {
   value: UserCharacterUseStyle | undefined;
 }
 
-/** Source: UserComebackInviteInfo.cs */
-export interface UserComebackInviteInfo {
-  comebackInviteCode: string;
-  userId: string;
-  userName: string;
-  continuousLoginCount: number;
-  lastTimeComebackInviteCodeInputFlg: boolean;
-}
-
-/** Source: UserComebackInviteMission.cs */
-export interface UserComebackInviteMission {
-  userId: string;
-  missionId: number;
-  comebackInviteId: number;
-  comebackType: number;
-  seq: number;
-  status: string;
-}
-
-/** Source: UserComebackInviteMissionClearInformation.cs */
-export interface UserComebackInviteMissionClearInformation {
-  userId: string;
-  missionId: number;
-  comebackInviteId: number;
-  comebackType: number;
-  seq: number;
-  resourceType: string;
-  resourceId: number;
-  quantity: number;
-}
-
-/** Source: UserComebackInviteMissionClearInformationList.cs */
-export interface UserComebackInviteMissionClearInformationList {
-  entries: UserComebackInviteMissionClearInformation[];
-}
-
-/** Source: UserComebackInviteMissionCount.cs */
-export interface UserComebackInviteMissionCount {
-  userId: string;
-  comebackInviteId: number;
-  missionType: string;
-  missionCount: number;
-}
-
-/** Source: UserComebackInviteMissionCountList.cs */
-export interface UserComebackInviteMissionCountList {
-  entries: UserComebackInviteMissionCount[];
-}
-
-/** Source: UserComebackInviteMissionCountMap.cs */
-export interface UserComebackInviteMissionCountMap {
-  entries: { [key: string]: UserComebackInviteMissionCountList };
-}
-
-export interface UserComebackInviteMissionCountMap_EntriesEntry {
-  key: string;
-  value: UserComebackInviteMissionCountList | undefined;
-}
-
-/** Source: UserComebackInviteMissionLatestInfo.cs */
-export interface UserComebackInviteMissionLatestInfo {
-  userComebackInviteInfo: UserComebackInviteInfo | undefined;
-  userComebackInviteMissionListMap: UserComebackInviteMissionListMap | undefined;
-  userComebackInviteMissionCountMap: UserComebackInviteMissionCountMap | undefined;
-  userComebackInviteMissionClearInformationList: UserComebackInviteMissionClearInformationList | undefined;
-}
-
-/** Source: UserComebackInviteMissionList.cs */
-export interface UserComebackInviteMissionList {
-  entries: UserComebackInviteMission[];
-}
-
-/** Source: UserComebackInviteMissionListMap.cs */
-export interface UserComebackInviteMissionListMap {
-  entries: { [key: number]: UserComebackInviteMissionList };
-}
-
-export interface UserComebackInviteMissionListMap_EntriesEntry {
-  key: number;
-  value: UserComebackInviteMissionList | undefined;
-}
-
-/** Source: UserComebackInviteSearchRequest.cs */
-export interface UserComebackInviteSearchRequest {
-  inviteCode: string;
-}
-
-/** Source: UserComebackInviteSearchResponse.cs */
-export interface UserComebackInviteSearchResponse {
-  userId: string;
-  userName: string;
-  introduction: string;
-  userProfileSituation: UserProfileSituation | undefined;
-  userProfileDegreeMap: UserProfileDegreeMap | undefined;
-  leaderSituation: UserSituation | undefined;
-  rank: number;
-  lastLoginAt: string;
-  publishUpdatedAtFlg: boolean;
-}
-
 /** Source: UserComebackStatus.cs */
 export interface UserComebackStatus {
   userId: string;
@@ -14096,6 +14850,17 @@ export interface UserCommonsLive2dMap {
 export interface UserCommonsLive2dMap_EntriesEntry {
   key: string;
   value: UserCommonsLive2dList | undefined;
+}
+
+/** Source: UserConsumptionGift.cs */
+export interface UserConsumptionGift {
+  id: number;
+  receiveAt: string;
+}
+
+/** Source: UserConsumptionGiftList.cs */
+export interface UserConsumptionGiftList {
+  entries: UserConsumptionGift[];
 }
 
 /** Source: UserCostume.cs */
@@ -14411,6 +15176,8 @@ export interface UserDecoDegreeMap_EntriesEntry {
 export interface UserDecoDegreeRequest {
   degreeIdFirst: number;
   degreeIdSecond: number;
+  effectIdFirst: number;
+  effectIdSecond: number;
 }
 
 /** Source: UserDecoDegreeUseProfileSettingRequest.cs */
@@ -14461,6 +15228,7 @@ export interface UserDecoEquipment {
   userDecoAppealMap: UserDecoAppealMap | undefined;
   userDecoSetting: UserDecoSetting | undefined;
   userDecoEffect: UserDecoEffect | undefined;
+  userCarouselDecoDegreeMap: UserCarouselDecoDegreeMap | undefined;
 }
 
 /** Source: UserDecoEquipmentGetResponse.cs */
@@ -14545,6 +15313,7 @@ export interface UserDecoSetting {
   /** IsRequired */
   useProfileSettingSituation: boolean;
   selectedCharacterType: string;
+  useCarouselProfileSettingDegree: boolean;
 }
 
 /** Source: UserDecoSituationUseProfileSettingRequest.cs */
@@ -15012,6 +15781,7 @@ export interface UserFestivalLiveResponse {
   livePoint: number;
   userCharacterRankMap: UserCharacterRankMap | undefined;
   grantCharacterRankRewardListMap: UserCharacterRankRewardListMap | undefined;
+  liveFeverId: number;
 }
 
 export interface MyTeamContributionList {
@@ -15037,6 +15807,26 @@ export interface UserFestivalTeamMap {
 export interface UserFestivalTeamMap_EntriesEntry {
   key: number;
   value: UserFestivalTeam | undefined;
+}
+
+/** Source: UserFeverStoreBuyResponse.cs */
+export interface UserFeverStoreBuyResponse {
+  success: boolean;
+  message: string;
+}
+
+/** Source: UserFeverStoreProduct.cs */
+export interface UserFeverStoreProduct {
+  feverStoreId: string;
+  type: number;
+  status: number;
+  productName: string;
+  description: string;
+  label: string;
+  purchaseLimit: number;
+  amount: number;
+  costPrice: number;
+  remainPurchaseCount: number;
 }
 
 export interface UserFriend {
@@ -15173,6 +15963,7 @@ export interface UserGachaCountCeiling {
   isInheritGachaSealDifferentGacha: boolean;
   isExpiredExchangeItem: boolean;
   exchangeStarSealCount: number;
+  bandId: number;
 }
 
 /** Source: UserGachaCountCeilingMap.cs */
@@ -15285,6 +16076,8 @@ export interface UserGallery {
   illust: string;
   seq: number;
   photoStudioSeq: number;
+  specialScreenId: number;
+  displayType: string;
 }
 
 /** Source: UserGalleryList.cs */
@@ -15338,6 +16131,17 @@ export interface UserGamedata {
   publishStageFriendRankingFlg: boolean;
   publishCharacterRankFlg: boolean;
   loginDays: number;
+}
+
+/** Source: UserGarupaPass.cs */
+export interface UserGarupaPass {
+  userId: string;
+  createAt: string;
+  expiredAt: string;
+  paymentCount: number;
+  reward8: number;
+  reward18: number;
+  reward28: number;
 }
 
 /** Source: UserGenericAnimation.cs */
@@ -15442,11 +16246,6 @@ export interface UserHighScoreRating {
   userMorfonicaHighScoreMusicList: UserHighScoreMusicRatingList | undefined;
   userRaiseASuilenHighScoreMusicList: UserHighScoreMusicRatingList | undefined;
   userMyGOScoreMusicList: UserHighScoreMusicRatingList | undefined;
-}
-
-/** Source: UserHistoryPageResponse.cs */
-export interface UserHistoryPageResponse {
-  requestParam: string;
 }
 
 /** Source: UserHomeBanner.cs */
@@ -15722,6 +16521,54 @@ export interface UserLiveBoostUseFull {
   resetTime: string;
 }
 
+/** Source: UserLiveExchanges.cs */
+export interface UserLiveExchanges {
+  feverStoreId: string;
+  type: number;
+  status: number;
+  productName: string;
+  description: string;
+  label: string;
+  purchaseLimit: number;
+  amount: number;
+  costPrice: number;
+}
+
+/** Source: UserLiveFeverCount.cs */
+export interface UserLiveFeverCount {
+  userId: string;
+  count: number;
+  inActivity: boolean;
+  useCount: number;
+  limitCount: number;
+  reachLimit: boolean;
+  eventPoint: string;
+  lastUse: boolean;
+}
+
+/** Source: UserLiveFeverData.cs */
+export interface UserLiveFeverData {
+  userId: string;
+  liveFeverId: number;
+  rewardCount: number;
+}
+
+/** Source: UserLiveFeverExchangesList.cs */
+export interface UserLiveFeverExchangesList {
+  entries: UserFeverStoreProduct[];
+}
+
+/** Source: UserLiveFeverExchangesResponse.cs */
+export interface UserLiveFeverExchangesResponse {
+  success: boolean;
+  message: string;
+}
+
+/** Source: UserLiveFeverStore.cs */
+export interface UserLiveFeverStore {
+  entries: UserFeverStoreProduct[];
+}
+
 /** Source: UserLiveTryEventLiveClearResponse.cs */
 export interface UserLiveTryEventLiveClearResponse {
   basePoint: number;
@@ -15789,6 +16636,18 @@ export interface UserLiveTryEventTopResponse {
   isLastRewards: boolean;
   userLiveTryEventMissionProgress: UserLiveTryEventMissionProgress | undefined;
   isFirstTransition: boolean;
+}
+
+/** Source: UserLogin.cs */
+export interface UserLogin {
+  bid: string;
+  accessKey: string;
+  platform: string;
+  deviceModel: string;
+  operatingSystem: string;
+  clientVersion: string;
+  udid: UserUdid | undefined;
+  clientPackage: string;
 }
 
 /** Source: UserLoginBonus.cs */
@@ -16119,6 +16978,7 @@ export interface UserMedleyPreProcessRequest {
   livePlayMode: string;
   cutInType: string;
   isAutoLive: boolean;
+  liveFeverUseCount: number;
 }
 
 export interface UserMedleyPreProcessRequest_MusicIdFavoriteStateMapEntry {
@@ -16346,12 +17206,14 @@ export interface UserMultiRoomFriendRecruitment {
   roomId: string;
   liveType: string;
   userFriend: UserFriend | undefined;
+  customProperties: RoomCustomProperty[];
 }
 
 /** Source: UserMultiRoomFriendRecruitmentCreateRequest.cs */
 export interface UserMultiRoomFriendRecruitmentCreateRequest {
   roomId: string;
   liveType: string;
+  customProperties: RoomCustomProperty[];
 }
 
 export interface UserMultiRoomFriendRecruitmentCreateResponse {
@@ -16428,6 +17290,7 @@ export interface UserMultiRoomRequest {
   cutInType: string;
   removeCnt: number;
   lostConnectionFlg: boolean;
+  roomMemberStatus: RoomMemberStatus[];
 }
 
 /** Source: UserMultiTeamLiveFestivalMusicPreProccessRequest.cs */
@@ -16520,6 +17383,7 @@ export interface UserMultiVersusLiveMusicResponse {
   livePoint: number;
   userCharacterRankMap: UserCharacterRankMap | undefined;
   grantCharacterRankRewardListMap: UserCharacterRankRewardListMap | undefined;
+  liveFeverId: number;
 }
 
 /** Source: UserMusicAchievement.cs */
@@ -16662,6 +17526,7 @@ export interface UserMusicPreProcessRequest {
   musicIdFavoriteListStateMap: { [key: number]: UserMusicFavoriteMap };
   livePlayMode: string;
   cutInType: string;
+  liveFeverUseCount: number;
 }
 
 export interface UserMusicPreProcessRequest_MusicIdFavoriteStateMapEntry {
@@ -17071,6 +17936,8 @@ export interface UserPostResponse {
   platform: string;
   deviceModel: string;
   operatingSystem: string;
+  loginStatus: string;
+  createAt: string;
 }
 
 /** Source: UserPracticeTicket.cs */
@@ -17169,6 +18036,7 @@ export interface UserProfile {
   userMusicClearInfoMap: UserMusicClearInfoMap | undefined;
   userCharacterRankMap: UserCharacterRankMap | undefined;
   searchSuccessFlg: boolean;
+  specialScreenSetting: UserSpecialScreenSetting | undefined;
 }
 
 /** Source: UserProfileDegree.cs */
@@ -17176,6 +18044,7 @@ export interface UserProfileDegree {
   userId: string;
   profileDegreeType: string;
   degreeId: number;
+  effectDegreeId: number;
 }
 
 /** Source: UserProfileDegreeMap.cs */
@@ -17192,6 +18061,8 @@ export interface UserProfileDegreeMap_EntriesEntry {
 export interface UserProfileDegreeRequest {
   degreeIdFirst: number;
   degreeIdSecond: number;
+  effectIdFirst: number;
+  effectIdSecond: number;
 }
 
 /** Source: UserProfilePublishConfigPutRequest.cs */
@@ -17419,6 +18290,13 @@ export interface UserQualifyTournamentTopResponse {
   team: UserQualifyTournamentTeam | undefined;
   individualQualifier: boolean;
   teamQualifier: boolean;
+}
+
+/** Source: UserQuestionResponse.cs */
+export interface UserQuestionResponse {
+  code: string;
+  message: string;
+  url: string;
 }
 
 /** Source: UserReceivablePresentLocationList.cs */
@@ -17688,6 +18566,19 @@ export interface UserSpecialLotteryDrawResultMap_EntriesEntry {
   value: UserSpecialLotteryDrawResultList | undefined;
 }
 
+/** Source: UserSpecialScreenSetting.cs */
+export interface UserSpecialScreenSetting {
+  userId: string;
+  profileUsing: boolean;
+  profileSpScreenId: number;
+  decoUsing: boolean;
+  decoSpScreenId: number;
+  enableDecoOffset: boolean;
+  decoOffsetX: number;
+  decoOffsetY: number;
+  decoScale: number;
+}
+
 /** Source: UserStageChallenge.cs */
 export interface UserStageChallenge {
   userId: string;
@@ -17775,7 +18666,6 @@ export interface UserStageChallengeMusicRequest {
   deckMembers: number[];
   livePlayMode: string;
   cutInType: string;
-  isAutoLive: boolean;
 }
 
 /** Source: UserStageChallengeRanking.cs */
@@ -18049,6 +18939,20 @@ export interface UserUpdateInfo {
   newlyOpenedContents: NewlyOpenedContent[];
 }
 
+/** Source: UserUseActivityItem.cs */
+export interface UserUseActivityItem {
+  userId: string;
+  activityId: number;
+  resourceType: string;
+  resourceId: number;
+  quantity: number;
+}
+
+/** Source: UserUseActivityItemList.cs */
+export interface UserUseActivityItemList {
+  entries: UserUseActivityItem[];
+}
+
 /** Source: UserVersusEventRankingResponse.cs */
 export interface UserVersusEventRankingResponse {
   eventPointNearUsers: RankingUserList | undefined;
@@ -18108,6 +19012,19 @@ export interface UserWearingCostume3dMap {
 export interface UserWearingCostume3dMap_EntriesEntry {
   key: number;
   value: UserWearingCostume3d | undefined;
+}
+
+/** Source: ViewFittingSetting.cs */
+export interface ViewFittingSetting {
+  spScreenId: number;
+  scale: number;
+  offsetX: number;
+  offsetY: number;
+}
+
+/** Source: ViewFittingSettingData.cs */
+export interface ViewFittingSettingData {
+  listSettings: ViewFittingSetting[];
 }
 
 function createBaseAcceptResponse(): AcceptResponse {
@@ -18632,6 +19549,120 @@ export const AppGetResponse: MessageFns<AppGetResponse> = {
     message.masterDataVersion = object.masterDataVersion ?? "";
     message.photonAppId = object.photonAppId ?? "";
     message.monthlyRankingStatues = object.monthlyRankingStatues?.map((e) => MonthlyRankingStatus.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseAprilFool2021CacheData(): AprilFool2021CacheData {
+  return {
+    IsAllStoryReadDialogShowed: false,
+    shouldShowReleaseDialoglocalIdList: [],
+    IsShowedFirstTranstionDescriptionSlide: false,
+  };
+}
+
+export const AprilFool2021CacheData: MessageFns<AprilFool2021CacheData> = {
+  encode(message: AprilFool2021CacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.IsAllStoryReadDialogShowed !== false) {
+      writer.uint32(8).bool(message.IsAllStoryReadDialogShowed);
+    }
+    writer.uint32(18).fork();
+    for (const v of message.shouldShowReleaseDialoglocalIdList) {
+      writer.uint32(v);
+    }
+    writer.join();
+    if (message.IsShowedFirstTranstionDescriptionSlide !== false) {
+      writer.uint32(24).bool(message.IsShowedFirstTranstionDescriptionSlide);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): AprilFool2021CacheData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAprilFool2021CacheData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.IsAllStoryReadDialogShowed = reader.bool();
+          continue;
+        }
+        case 2: {
+          if (tag === 16) {
+            message.shouldShowReleaseDialoglocalIdList.push(reader.uint32());
+
+            continue;
+          }
+
+          if (tag === 18) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.shouldShowReleaseDialoglocalIdList.push(reader.uint32());
+            }
+
+            continue;
+          }
+
+          break;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.IsShowedFirstTranstionDescriptionSlide = reader.bool();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AprilFool2021CacheData {
+    return {
+      IsAllStoryReadDialogShowed: isSet(object.IsAllStoryReadDialogShowed)
+        ? globalThis.Boolean(object.IsAllStoryReadDialogShowed)
+        : false,
+      shouldShowReleaseDialoglocalIdList: globalThis.Array.isArray(object?.shouldShowReleaseDialoglocalIdList)
+        ? object.shouldShowReleaseDialoglocalIdList.map((e: any) => globalThis.Number(e))
+        : [],
+      IsShowedFirstTranstionDescriptionSlide: isSet(object.IsShowedFirstTranstionDescriptionSlide)
+        ? globalThis.Boolean(object.IsShowedFirstTranstionDescriptionSlide)
+        : false,
+    };
+  },
+
+  toJSON(message: AprilFool2021CacheData): unknown {
+    const obj: any = {};
+    if (message.IsAllStoryReadDialogShowed !== false) {
+      obj.IsAllStoryReadDialogShowed = message.IsAllStoryReadDialogShowed;
+    }
+    if (message.shouldShowReleaseDialoglocalIdList?.length) {
+      obj.shouldShowReleaseDialoglocalIdList = message.shouldShowReleaseDialoglocalIdList.map((e) => Math.round(e));
+    }
+    if (message.IsShowedFirstTranstionDescriptionSlide !== false) {
+      obj.IsShowedFirstTranstionDescriptionSlide = message.IsShowedFirstTranstionDescriptionSlide;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AprilFool2021CacheData>, I>>(base?: I): AprilFool2021CacheData {
+    return AprilFool2021CacheData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AprilFool2021CacheData>, I>>(object: I): AprilFool2021CacheData {
+    const message = createBaseAprilFool2021CacheData();
+    message.IsAllStoryReadDialogShowed = object.IsAllStoryReadDialogShowed ?? false;
+    message.shouldShowReleaseDialoglocalIdList = object.shouldShowReleaseDialoglocalIdList?.map((e) => e) || [];
+    message.IsShowedFirstTranstionDescriptionSlide = object.IsShowedFirstTranstionDescriptionSlide ?? false;
     return message;
   },
 };
@@ -19795,6 +20826,98 @@ export const BasicResoponse: MessageFns<BasicResoponse> = {
   },
 };
 
+function createBaseBiliCDKResponse(): BiliCDKResponse {
+  return { userId: "0", code: 0, message: "" };
+}
+
+export const BiliCDKResponse: MessageFns<BiliCDKResponse> = {
+  encode(message: BiliCDKResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.code !== 0) {
+      writer.uint32(16).uint32(message.code);
+    }
+    if (message.message !== "") {
+      writer.uint32(26).string(message.message);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliCDKResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliCDKResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.code = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliCDKResponse {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      code: isSet(object.code) ? globalThis.Number(object.code) : 0,
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
+    };
+  },
+
+  toJSON(message: BiliCDKResponse): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.code !== 0) {
+      obj.code = Math.round(message.code);
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliCDKResponse>, I>>(base?: I): BiliCDKResponse {
+    return BiliCDKResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliCDKResponse>, I>>(object: I): BiliCDKResponse {
+    const message = createBaseBiliCDKResponse();
+    message.userId = object.userId ?? "0";
+    message.code = object.code ?? 0;
+    message.message = object.message ?? "";
+    return message;
+  },
+};
+
 function createBaseBiliCharacterFilterData(): BiliCharacterFilterData {
   return {
     defaultList: [],
@@ -19995,10 +21118,914 @@ export const BiliCharacterFilterData: MessageFns<BiliCharacterFilterData> = {
   },
 };
 
+function createBaseBiliDAQStampRequest(): BiliDAQStampRequest {
+  return { entries: [] };
+}
+
+export const BiliDAQStampRequest: MessageFns<BiliDAQStampRequest> = {
+  encode(message: BiliDAQStampRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliStampInfo.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliDAQStampRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliDAQStampRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliStampInfo.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliDAQStampRequest {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliStampInfo.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: BiliDAQStampRequest): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliStampInfo.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliDAQStampRequest>, I>>(base?: I): BiliDAQStampRequest {
+    return BiliDAQStampRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliDAQStampRequest>, I>>(object: I): BiliDAQStampRequest {
+    const message = createBaseBiliDAQStampRequest();
+    message.entries = object.entries?.map((e) => UserBiliStampInfo.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseBiliLimitedTotalSpendEnteredCacheData(): BiliLimitedTotalSpendEnteredCacheData {
+  return { biliActivityIdEnteredMap: {}, lastEnterBonusPoint: 0 };
+}
+
+export const BiliLimitedTotalSpendEnteredCacheData: MessageFns<BiliLimitedTotalSpendEnteredCacheData> = {
+  encode(message: BiliLimitedTotalSpendEnteredCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.biliActivityIdEnteredMap).forEach(([key, value]: [string, boolean]) => {
+      BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry.encode(
+        { key: key as any, value },
+        writer.uint32(10).fork(),
+      ).join();
+    });
+    if (message.lastEnterBonusPoint !== 0) {
+      writer.uint32(16).uint32(message.lastEnterBonusPoint);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliLimitedTotalSpendEnteredCacheData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliLimitedTotalSpendEnteredCacheData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry.decode(
+            reader,
+            reader.uint32(),
+          );
+          if (entry1.value !== undefined) {
+            message.biliActivityIdEnteredMap[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.lastEnterBonusPoint = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliLimitedTotalSpendEnteredCacheData {
+    return {
+      biliActivityIdEnteredMap: isObject(object.biliActivityIdEnteredMap)
+        ? (globalThis.Object.entries(object.biliActivityIdEnteredMap) as [string, any][]).reduce(
+          (acc: { [key: number]: boolean }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = globalThis.Boolean(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+      lastEnterBonusPoint: isSet(object.lastEnterBonusPoint) ? globalThis.Number(object.lastEnterBonusPoint) : 0,
+    };
+  },
+
+  toJSON(message: BiliLimitedTotalSpendEnteredCacheData): unknown {
+    const obj: any = {};
+    if (message.biliActivityIdEnteredMap) {
+      const entries = globalThis.Object.entries(message.biliActivityIdEnteredMap) as [string, boolean][];
+      if (entries.length > 0) {
+        obj.biliActivityIdEnteredMap = {};
+        entries.forEach(([k, v]) => {
+          obj.biliActivityIdEnteredMap[k] = v;
+        });
+      }
+    }
+    if (message.lastEnterBonusPoint !== 0) {
+      obj.lastEnterBonusPoint = Math.round(message.lastEnterBonusPoint);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliLimitedTotalSpendEnteredCacheData>, I>>(
+    base?: I,
+  ): BiliLimitedTotalSpendEnteredCacheData {
+    return BiliLimitedTotalSpendEnteredCacheData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliLimitedTotalSpendEnteredCacheData>, I>>(
+    object: I,
+  ): BiliLimitedTotalSpendEnteredCacheData {
+    const message = createBaseBiliLimitedTotalSpendEnteredCacheData();
+    message.biliActivityIdEnteredMap =
+      (globalThis.Object.entries(object.biliActivityIdEnteredMap ?? {}) as [string, boolean][]).reduce(
+        (acc: { [key: number]: boolean }, [key, value]: [string, boolean]) => {
+          if (value !== undefined) {
+            acc[globalThis.Number(key)] = globalThis.Boolean(value);
+          }
+          return acc;
+        },
+        {},
+      );
+    message.lastEnterBonusPoint = object.lastEnterBonusPoint ?? 0;
+    return message;
+  },
+};
+
+function createBaseBiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry(): BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+  return { key: 0, value: false };
+}
+
+export const BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry: MessageFns<
+  BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry
+> = {
+  encode(
+    message: BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry,
+    writer: BinaryWriter = new BinaryWriter(),
+  ): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== false) {
+      writer.uint32(16).bool(message.value);
+    }
+    return writer;
+  },
+
+  decode(
+    input: BinaryReader | Uint8Array,
+    length?: number,
+  ): BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.value = reader.bool();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? globalThis.Boolean(object.value) : false,
+    };
+  },
+
+  toJSON(message: BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== false) {
+      obj.value = message.value;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry>, I>>(
+    base?: I,
+  ): BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+    return BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry>, I>>(
+    object: I,
+  ): BiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry {
+    const message = createBaseBiliLimitedTotalSpendEnteredCacheData_BiliActivityIdEnteredMapEntry();
+    message.key = object.key ?? 0;
+    message.value = object.value ?? false;
+    return message;
+  },
+};
+
+function createBaseBiliMultiLiveLightSettingsProtoData(): BiliMultiLiveLightSettingsProtoData {
+  return { carouselDegreeSetting: false, spScreenSetting: false };
+}
+
+export const BiliMultiLiveLightSettingsProtoData: MessageFns<BiliMultiLiveLightSettingsProtoData> = {
+  encode(message: BiliMultiLiveLightSettingsProtoData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.carouselDegreeSetting !== false) {
+      writer.uint32(8).bool(message.carouselDegreeSetting);
+    }
+    if (message.spScreenSetting !== false) {
+      writer.uint32(16).bool(message.spScreenSetting);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliMultiLiveLightSettingsProtoData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliMultiLiveLightSettingsProtoData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.carouselDegreeSetting = reader.bool();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.spScreenSetting = reader.bool();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliMultiLiveLightSettingsProtoData {
+    return {
+      carouselDegreeSetting: isSet(object.carouselDegreeSetting)
+        ? globalThis.Boolean(object.carouselDegreeSetting)
+        : false,
+      spScreenSetting: isSet(object.spScreenSetting) ? globalThis.Boolean(object.spScreenSetting) : false,
+    };
+  },
+
+  toJSON(message: BiliMultiLiveLightSettingsProtoData): unknown {
+    const obj: any = {};
+    if (message.carouselDegreeSetting !== false) {
+      obj.carouselDegreeSetting = message.carouselDegreeSetting;
+    }
+    if (message.spScreenSetting !== false) {
+      obj.spScreenSetting = message.spScreenSetting;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliMultiLiveLightSettingsProtoData>, I>>(
+    base?: I,
+  ): BiliMultiLiveLightSettingsProtoData {
+    return BiliMultiLiveLightSettingsProtoData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliMultiLiveLightSettingsProtoData>, I>>(
+    object: I,
+  ): BiliMultiLiveLightSettingsProtoData {
+    const message = createBaseBiliMultiLiveLightSettingsProtoData();
+    message.carouselDegreeSetting = object.carouselDegreeSetting ?? false;
+    message.spScreenSetting = object.spScreenSetting ?? false;
+    return message;
+  },
+};
+
+function createBaseBiliOwnedTrafficResponse(): BiliOwnedTrafficResponse {
+  return { urlparameter: "", message: "", url: "" };
+}
+
+export const BiliOwnedTrafficResponse: MessageFns<BiliOwnedTrafficResponse> = {
+  encode(message: BiliOwnedTrafficResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.urlparameter !== "") {
+      writer.uint32(10).string(message.urlparameter);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.url !== "") {
+      writer.uint32(26).string(message.url);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliOwnedTrafficResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliOwnedTrafficResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.urlparameter = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.url = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliOwnedTrafficResponse {
+    return {
+      urlparameter: isSet(object.urlparameter) ? globalThis.String(object.urlparameter) : "",
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+    };
+  },
+
+  toJSON(message: BiliOwnedTrafficResponse): unknown {
+    const obj: any = {};
+    if (message.urlparameter !== "") {
+      obj.urlparameter = message.urlparameter;
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.url !== "") {
+      obj.url = message.url;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliOwnedTrafficResponse>, I>>(base?: I): BiliOwnedTrafficResponse {
+    return BiliOwnedTrafficResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliOwnedTrafficResponse>, I>>(object: I): BiliOwnedTrafficResponse {
+    const message = createBaseBiliOwnedTrafficResponse();
+    message.urlparameter = object.urlparameter ?? "";
+    message.message = object.message ?? "";
+    message.url = object.url ?? "";
+    return message;
+  },
+};
+
+function createBaseBiliPhotoStudioTextureCacheData(): BiliPhotoStudioTextureCacheData {
+  return { photoStudioTextureCacheDataMap: {} };
+}
+
+export const BiliPhotoStudioTextureCacheData: MessageFns<BiliPhotoStudioTextureCacheData> = {
+  encode(message: BiliPhotoStudioTextureCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.photoStudioTextureCacheDataMap).forEach(
+      ([key, value]: [string, PhotoStudioTextureCacheData]) => {
+        BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry.encode(
+          { key: key as any, value },
+          writer.uint32(10).fork(),
+        ).join();
+      },
+    );
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliPhotoStudioTextureCacheData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliPhotoStudioTextureCacheData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry.decode(
+            reader,
+            reader.uint32(),
+          );
+          if (entry1.value !== undefined) {
+            message.photoStudioTextureCacheDataMap[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliPhotoStudioTextureCacheData {
+    return {
+      photoStudioTextureCacheDataMap: isObject(object.photoStudioTextureCacheDataMap)
+        ? (globalThis.Object.entries(object.photoStudioTextureCacheDataMap) as [string, any][]).reduce(
+          (acc: { [key: string]: PhotoStudioTextureCacheData }, [key, value]: [string, any]) => {
+            acc[key] = PhotoStudioTextureCacheData.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: BiliPhotoStudioTextureCacheData): unknown {
+    const obj: any = {};
+    if (message.photoStudioTextureCacheDataMap) {
+      const entries = globalThis.Object.entries(message.photoStudioTextureCacheDataMap) as [
+        string,
+        PhotoStudioTextureCacheData,
+      ][];
+      if (entries.length > 0) {
+        obj.photoStudioTextureCacheDataMap = {};
+        entries.forEach(([k, v]) => {
+          obj.photoStudioTextureCacheDataMap[k] = PhotoStudioTextureCacheData.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliPhotoStudioTextureCacheData>, I>>(base?: I): BiliPhotoStudioTextureCacheData {
+    return BiliPhotoStudioTextureCacheData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliPhotoStudioTextureCacheData>, I>>(
+    object: I,
+  ): BiliPhotoStudioTextureCacheData {
+    const message = createBaseBiliPhotoStudioTextureCacheData();
+    message.photoStudioTextureCacheDataMap =
+      (globalThis.Object.entries(object.photoStudioTextureCacheDataMap ?? {}) as [
+        string,
+        PhotoStudioTextureCacheData,
+      ][]).reduce(
+        (acc: { [key: string]: PhotoStudioTextureCacheData }, [key, value]: [string, PhotoStudioTextureCacheData]) => {
+          if (value !== undefined) {
+            acc[key] = PhotoStudioTextureCacheData.fromPartial(value);
+          }
+          return acc;
+        },
+        {},
+      );
+    return message;
+  },
+};
+
+function createBaseBiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry(): BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+  return { key: "", value: undefined };
+}
+
+export const BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry: MessageFns<
+  BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry
+> = {
+  encode(
+    message: BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry,
+    writer: BinaryWriter = new BinaryWriter(),
+  ): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      PhotoStudioTextureCacheData.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(
+    input: BinaryReader | Uint8Array,
+    length?: number,
+  ): BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = PhotoStudioTextureCacheData.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? PhotoStudioTextureCacheData.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== undefined) {
+      obj.value = PhotoStudioTextureCacheData.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry>, I>>(
+    base?: I,
+  ): BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+    return BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry>, I>>(
+    object: I,
+  ): BiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry {
+    const message = createBaseBiliPhotoStudioTextureCacheData_PhotoStudioTextureCacheDataMapEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? PhotoStudioTextureCacheData.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseBiliReportRequest(): BiliReportRequest {
+  return {
+    userId: "0",
+    userName: "",
+    reportUserId: "0",
+    reportUserName: "",
+    timestamp: "0",
+    entranceType: "",
+    reportType: [],
+    roomId: "",
+    score: 0,
+  };
+}
+
+export const BiliReportRequest: MessageFns<BiliReportRequest> = {
+  encode(message: BiliReportRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.userName !== "") {
+      writer.uint32(18).string(message.userName);
+    }
+    if (message.reportUserId !== "0") {
+      writer.uint32(24).uint64(message.reportUserId);
+    }
+    if (message.reportUserName !== "") {
+      writer.uint32(34).string(message.reportUserName);
+    }
+    if (message.timestamp !== "0") {
+      writer.uint32(40).uint64(message.timestamp);
+    }
+    if (message.entranceType !== "") {
+      writer.uint32(50).string(message.entranceType);
+    }
+    for (const v of message.reportType) {
+      writer.uint32(58).string(v!);
+    }
+    if (message.roomId !== "") {
+      writer.uint32(66).string(message.roomId);
+    }
+    if (message.score !== 0) {
+      writer.uint32(72).uint32(message.score);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliReportRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliReportRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userName = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.reportUserId = reader.uint64().toString();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.reportUserName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.timestamp = reader.uint64().toString();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.entranceType = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.reportType.push(reader.string());
+          continue;
+        }
+        case 8: {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.roomId = reader.string();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.score = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliReportRequest {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
+      reportUserId: isSet(object.reportUserId) ? globalThis.String(object.reportUserId) : "0",
+      reportUserName: isSet(object.reportUserName) ? globalThis.String(object.reportUserName) : "",
+      timestamp: isSet(object.timestamp) ? globalThis.String(object.timestamp) : "0",
+      entranceType: isSet(object.entranceType) ? globalThis.String(object.entranceType) : "",
+      reportType: globalThis.Array.isArray(object?.reportType)
+        ? object.reportType.map((e: any) => globalThis.String(e))
+        : [],
+      roomId: isSet(object.roomId) ? globalThis.String(object.roomId) : "",
+      score: isSet(object.score) ? globalThis.Number(object.score) : 0,
+    };
+  },
+
+  toJSON(message: BiliReportRequest): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.userName !== "") {
+      obj.userName = message.userName;
+    }
+    if (message.reportUserId !== "0") {
+      obj.reportUserId = message.reportUserId;
+    }
+    if (message.reportUserName !== "") {
+      obj.reportUserName = message.reportUserName;
+    }
+    if (message.timestamp !== "0") {
+      obj.timestamp = message.timestamp;
+    }
+    if (message.entranceType !== "") {
+      obj.entranceType = message.entranceType;
+    }
+    if (message.reportType?.length) {
+      obj.reportType = message.reportType;
+    }
+    if (message.roomId !== "") {
+      obj.roomId = message.roomId;
+    }
+    if (message.score !== 0) {
+      obj.score = Math.round(message.score);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliReportRequest>, I>>(base?: I): BiliReportRequest {
+    return BiliReportRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliReportRequest>, I>>(object: I): BiliReportRequest {
+    const message = createBaseBiliReportRequest();
+    message.userId = object.userId ?? "0";
+    message.userName = object.userName ?? "";
+    message.reportUserId = object.reportUserId ?? "0";
+    message.reportUserName = object.reportUserName ?? "";
+    message.timestamp = object.timestamp ?? "0";
+    message.entranceType = object.entranceType ?? "";
+    message.reportType = object.reportType?.map((e) => e) || [];
+    message.roomId = object.roomId ?? "";
+    message.score = object.score ?? 0;
+    return message;
+  },
+};
+
+function createBaseBiliStageBandSelectData(): BiliStageBandSelectData {
+  return { stageId: 0, selectBandIdName: 0 };
+}
+
+export const BiliStageBandSelectData: MessageFns<BiliStageBandSelectData> = {
+  encode(message: BiliStageBandSelectData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.stageId !== 0) {
+      writer.uint32(8).uint32(message.stageId);
+    }
+    if (message.selectBandIdName !== 0) {
+      writer.uint32(16).int32(message.selectBandIdName);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): BiliStageBandSelectData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBiliStageBandSelectData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.stageId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.selectBandIdName = reader.int32() as any;
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): BiliStageBandSelectData {
+    return {
+      stageId: isSet(object.stageId) ? globalThis.Number(object.stageId) : 0,
+      selectBandIdName: isSet(object.selectBandIdName) ? selectBandIdNameFromJSON(object.selectBandIdName) : 0,
+    };
+  },
+
+  toJSON(message: BiliStageBandSelectData): unknown {
+    const obj: any = {};
+    if (message.stageId !== 0) {
+      obj.stageId = Math.round(message.stageId);
+    }
+    if (message.selectBandIdName !== 0) {
+      obj.selectBandIdName = selectBandIdNameToJSON(message.selectBandIdName);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<BiliStageBandSelectData>, I>>(base?: I): BiliStageBandSelectData {
+    return BiliStageBandSelectData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<BiliStageBandSelectData>, I>>(object: I): BiliStageBandSelectData {
+    const message = createBaseBiliStageBandSelectData();
+    message.stageId = object.stageId ?? 0;
+    message.selectBandIdName = object.selectBandIdName ?? 0;
+    return message;
+  },
+};
+
 function createBaseBillingTransactionData(): BillingTransactionData {
   return {
     userId: "0",
-    billingId: "0",
+    billingId: "",
     productId: "",
     transactionId: "",
     state: 0,
@@ -20015,8 +22042,8 @@ export const BillingTransactionData: MessageFns<BillingTransactionData> = {
     if (message.userId !== "0") {
       writer.uint32(8).uint64(message.userId);
     }
-    if (message.billingId !== "0") {
-      writer.uint32(16).uint64(message.billingId);
+    if (message.billingId !== "") {
+      writer.uint32(18).string(message.billingId);
     }
     if (message.productId !== "") {
       writer.uint32(26).string(message.productId);
@@ -20061,11 +22088,11 @@ export const BillingTransactionData: MessageFns<BillingTransactionData> = {
           continue;
         }
         case 2: {
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.billingId = reader.uint64().toString();
+          message.billingId = reader.string();
           continue;
         }
         case 3: {
@@ -20144,7 +22171,7 @@ export const BillingTransactionData: MessageFns<BillingTransactionData> = {
   fromJSON(object: any): BillingTransactionData {
     return {
       userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "0",
+      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "",
       productId: isSet(object.productId) ? globalThis.String(object.productId) : "",
       transactionId: isSet(object.transactionId) ? globalThis.String(object.transactionId) : "",
       state: isSet(object.state) ? stateTypeFromJSON(object.state) : 0,
@@ -20161,7 +22188,7 @@ export const BillingTransactionData: MessageFns<BillingTransactionData> = {
     if (message.userId !== "0") {
       obj.userId = message.userId;
     }
-    if (message.billingId !== "0") {
+    if (message.billingId !== "") {
       obj.billingId = message.billingId;
     }
     if (message.productId !== "") {
@@ -20197,7 +22224,7 @@ export const BillingTransactionData: MessageFns<BillingTransactionData> = {
   fromPartial<I extends Exact<DeepPartial<BillingTransactionData>, I>>(object: I): BillingTransactionData {
     const message = createBaseBillingTransactionData();
     message.userId = object.userId ?? "0";
-    message.billingId = object.billingId ?? "0";
+    message.billingId = object.billingId ?? "";
     message.productId = object.productId ?? "";
     message.transactionId = object.transactionId ?? "";
     message.state = object.state ?? 0;
@@ -22548,175 +24575,6 @@ export const CollaborationEventCacheData: MessageFns<CollaborationEventCacheData
   },
 };
 
-function createBaseComebackInviteCheckedData(): ComebackInviteCheckedData {
-  return { isTransitionedComebackInviteMission: false, lastContractedInviteId: 0 };
-}
-
-export const ComebackInviteCheckedData: MessageFns<ComebackInviteCheckedData> = {
-  encode(message: ComebackInviteCheckedData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.isTransitionedComebackInviteMission !== false) {
-      writer.uint32(8).bool(message.isTransitionedComebackInviteMission);
-    }
-    if (message.lastContractedInviteId !== 0) {
-      writer.uint32(16).uint32(message.lastContractedInviteId);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ComebackInviteCheckedData {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseComebackInviteCheckedData();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.isTransitionedComebackInviteMission = reader.bool();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.lastContractedInviteId = reader.uint32();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ComebackInviteCheckedData {
-    return {
-      isTransitionedComebackInviteMission: isSet(object.isTransitionedComebackInviteMission)
-        ? globalThis.Boolean(object.isTransitionedComebackInviteMission)
-        : false,
-      lastContractedInviteId: isSet(object.lastContractedInviteId)
-        ? globalThis.Number(object.lastContractedInviteId)
-        : 0,
-    };
-  },
-
-  toJSON(message: ComebackInviteCheckedData): unknown {
-    const obj: any = {};
-    if (message.isTransitionedComebackInviteMission !== false) {
-      obj.isTransitionedComebackInviteMission = message.isTransitionedComebackInviteMission;
-    }
-    if (message.lastContractedInviteId !== 0) {
-      obj.lastContractedInviteId = Math.round(message.lastContractedInviteId);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ComebackInviteCheckedData>, I>>(base?: I): ComebackInviteCheckedData {
-    return ComebackInviteCheckedData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ComebackInviteCheckedData>, I>>(object: I): ComebackInviteCheckedData {
-    const message = createBaseComebackInviteCheckedData();
-    message.isTransitionedComebackInviteMission = object.isTransitionedComebackInviteMission ?? false;
-    message.lastContractedInviteId = object.lastContractedInviteId ?? 0;
-    return message;
-  },
-};
-
-function createBaseComebackInviteMissionRewardResponse(): ComebackInviteMissionRewardResponse {
-  return { updateResources: undefined, comebackInviteMissionRewardList: undefined };
-}
-
-export const ComebackInviteMissionRewardResponse: MessageFns<ComebackInviteMissionRewardResponse> = {
-  encode(message: ComebackInviteMissionRewardResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.updateResources !== undefined) {
-      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(10).fork()).join();
-    }
-    if (message.comebackInviteMissionRewardList !== undefined) {
-      PlayerResourceList.encode(message.comebackInviteMissionRewardList, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ComebackInviteMissionRewardResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseComebackInviteMissionRewardResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.comebackInviteMissionRewardList = PlayerResourceList.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): ComebackInviteMissionRewardResponse {
-    return {
-      updateResources: isSet(object.updateResources)
-        ? SuiteUserGetResponse.fromJSON(object.updateResources)
-        : undefined,
-      comebackInviteMissionRewardList: isSet(object.comebackInviteMissionRewardList)
-        ? PlayerResourceList.fromJSON(object.comebackInviteMissionRewardList)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ComebackInviteMissionRewardResponse): unknown {
-    const obj: any = {};
-    if (message.updateResources !== undefined) {
-      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
-    }
-    if (message.comebackInviteMissionRewardList !== undefined) {
-      obj.comebackInviteMissionRewardList = PlayerResourceList.toJSON(message.comebackInviteMissionRewardList);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ComebackInviteMissionRewardResponse>, I>>(
-    base?: I,
-  ): ComebackInviteMissionRewardResponse {
-    return ComebackInviteMissionRewardResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ComebackInviteMissionRewardResponse>, I>>(
-    object: I,
-  ): ComebackInviteMissionRewardResponse {
-    const message = createBaseComebackInviteMissionRewardResponse();
-    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
-      ? SuiteUserGetResponse.fromPartial(object.updateResources)
-      : undefined;
-    message.comebackInviteMissionRewardList =
-      (object.comebackInviteMissionRewardList !== undefined && object.comebackInviteMissionRewardList !== null)
-        ? PlayerResourceList.fromPartial(object.comebackInviteMissionRewardList)
-        : undefined;
-    return message;
-  },
-};
-
 function createBaseCommentBannerRequest(): CommentBannerRequest {
   return { commentBannerId: 0, url: "" };
 }
@@ -23523,913 +25381,6 @@ export const ContactFormBackUpData_RequestEntry: MessageFns<ContactFormBackUpDat
   },
 };
 
-function createBaseCostume3DFavoriteCacheData(): Costume3DFavoriteCacheData {
-  return { costume3DDressGroupIdList: [], costume3DHairstyleGroupIdList: [] };
-}
-
-export const Costume3DFavoriteCacheData: MessageFns<Costume3DFavoriteCacheData> = {
-  encode(message: Costume3DFavoriteCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    writer.uint32(10).fork();
-    for (const v of message.costume3DDressGroupIdList) {
-      writer.uint32(v);
-    }
-    writer.join();
-    writer.uint32(18).fork();
-    for (const v of message.costume3DHairstyleGroupIdList) {
-      writer.uint32(v);
-    }
-    writer.join();
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Costume3DFavoriteCacheData {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostume3DFavoriteCacheData();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag === 8) {
-            message.costume3DDressGroupIdList.push(reader.uint32());
-
-            continue;
-          }
-
-          if (tag === 10) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.costume3DDressGroupIdList.push(reader.uint32());
-            }
-
-            continue;
-          }
-
-          break;
-        }
-        case 2: {
-          if (tag === 16) {
-            message.costume3DHairstyleGroupIdList.push(reader.uint32());
-
-            continue;
-          }
-
-          if (tag === 18) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.costume3DHairstyleGroupIdList.push(reader.uint32());
-            }
-
-            continue;
-          }
-
-          break;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Costume3DFavoriteCacheData {
-    return {
-      costume3DDressGroupIdList: globalThis.Array.isArray(object?.costume3DDressGroupIdList)
-        ? object.costume3DDressGroupIdList.map((e: any) => globalThis.Number(e))
-        : [],
-      costume3DHairstyleGroupIdList: globalThis.Array.isArray(object?.costume3DHairstyleGroupIdList)
-        ? object.costume3DHairstyleGroupIdList.map((e: any) => globalThis.Number(e))
-        : [],
-    };
-  },
-
-  toJSON(message: Costume3DFavoriteCacheData): unknown {
-    const obj: any = {};
-    if (message.costume3DDressGroupIdList?.length) {
-      obj.costume3DDressGroupIdList = message.costume3DDressGroupIdList.map((e) => Math.round(e));
-    }
-    if (message.costume3DHairstyleGroupIdList?.length) {
-      obj.costume3DHairstyleGroupIdList = message.costume3DHairstyleGroupIdList.map((e) => Math.round(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Costume3DFavoriteCacheData>, I>>(base?: I): Costume3DFavoriteCacheData {
-    return Costume3DFavoriteCacheData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Costume3DFavoriteCacheData>, I>>(object: I): Costume3DFavoriteCacheData {
-    const message = createBaseCostume3DFavoriteCacheData();
-    message.costume3DDressGroupIdList = object.costume3DDressGroupIdList?.map((e) => e) || [];
-    message.costume3DHairstyleGroupIdList = object.costume3DHairstyleGroupIdList?.map((e) => e) || [];
-    return message;
-  },
-};
-
-function createBaseCostume3DFilterCacheData(): Costume3DFilterCacheData {
-  return {
-    checkBoxFlagShowSettingPossibleUse: false,
-    checkBoxFlagShowSettingMonthly: false,
-    checkBoxFlagShowSettingFavorite: false,
-    characterList: [],
-  };
-}
-
-export const Costume3DFilterCacheData: MessageFns<Costume3DFilterCacheData> = {
-  encode(message: Costume3DFilterCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.checkBoxFlagShowSettingPossibleUse !== false) {
-      writer.uint32(8).bool(message.checkBoxFlagShowSettingPossibleUse);
-    }
-    if (message.checkBoxFlagShowSettingMonthly !== false) {
-      writer.uint32(16).bool(message.checkBoxFlagShowSettingMonthly);
-    }
-    if (message.checkBoxFlagShowSettingFavorite !== false) {
-      writer.uint32(24).bool(message.checkBoxFlagShowSettingFavorite);
-    }
-    writer.uint32(34).fork();
-    for (const v of message.characterList) {
-      writer.uint32(v);
-    }
-    writer.join();
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Costume3DFilterCacheData {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostume3DFilterCacheData();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingPossibleUse = reader.bool();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingMonthly = reader.bool();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingFavorite = reader.bool();
-          continue;
-        }
-        case 4: {
-          if (tag === 32) {
-            message.characterList.push(reader.uint32());
-
-            continue;
-          }
-
-          if (tag === 34) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.characterList.push(reader.uint32());
-            }
-
-            continue;
-          }
-
-          break;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Costume3DFilterCacheData {
-    return {
-      checkBoxFlagShowSettingPossibleUse: isSet(object.checkBoxFlagShowSettingPossibleUse)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingPossibleUse)
-        : false,
-      checkBoxFlagShowSettingMonthly: isSet(object.checkBoxFlagShowSettingMonthly)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingMonthly)
-        : false,
-      checkBoxFlagShowSettingFavorite: isSet(object.checkBoxFlagShowSettingFavorite)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingFavorite)
-        : false,
-      characterList: globalThis.Array.isArray(object?.characterList)
-        ? object.characterList.map((e: any) => globalThis.Number(e))
-        : [],
-    };
-  },
-
-  toJSON(message: Costume3DFilterCacheData): unknown {
-    const obj: any = {};
-    if (message.checkBoxFlagShowSettingPossibleUse !== false) {
-      obj.checkBoxFlagShowSettingPossibleUse = message.checkBoxFlagShowSettingPossibleUse;
-    }
-    if (message.checkBoxFlagShowSettingMonthly !== false) {
-      obj.checkBoxFlagShowSettingMonthly = message.checkBoxFlagShowSettingMonthly;
-    }
-    if (message.checkBoxFlagShowSettingFavorite !== false) {
-      obj.checkBoxFlagShowSettingFavorite = message.checkBoxFlagShowSettingFavorite;
-    }
-    if (message.characterList?.length) {
-      obj.characterList = message.characterList.map((e) => Math.round(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Costume3DFilterCacheData>, I>>(base?: I): Costume3DFilterCacheData {
-    return Costume3DFilterCacheData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Costume3DFilterCacheData>, I>>(object: I): Costume3DFilterCacheData {
-    const message = createBaseCostume3DFilterCacheData();
-    message.checkBoxFlagShowSettingPossibleUse = object.checkBoxFlagShowSettingPossibleUse ?? false;
-    message.checkBoxFlagShowSettingMonthly = object.checkBoxFlagShowSettingMonthly ?? false;
-    message.checkBoxFlagShowSettingFavorite = object.checkBoxFlagShowSettingFavorite ?? false;
-    message.characterList = object.characterList?.map((e) => e) || [];
-    return message;
-  },
-};
-
-function createBaseCostume3DFilterCacheDataMap(): Costume3DFilterCacheDataMap {
-  return { costume3DDressFilterCacheDataMap: {}, costume3DHairstyleFilterCacheDataMap: {} };
-}
-
-export const Costume3DFilterCacheDataMap: MessageFns<Costume3DFilterCacheDataMap> = {
-  encode(message: Costume3DFilterCacheDataMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.costume3DDressFilterCacheDataMap).forEach(
-      ([key, value]: [string, Costume3DFilterCacheData]) => {
-        Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry.encode(
-          { key: key as any, value },
-          writer.uint32(10).fork(),
-        ).join();
-      },
-    );
-    globalThis.Object.entries(message.costume3DHairstyleFilterCacheDataMap).forEach(
-      ([key, value]: [string, Costume3DFilterCacheData]) => {
-        Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry.encode(
-          { key: key as any, value },
-          writer.uint32(18).fork(),
-        ).join();
-      },
-    );
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Costume3DFilterCacheDataMap {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostume3DFilterCacheDataMap();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry.decode(
-            reader,
-            reader.uint32(),
-          );
-          if (entry1.value !== undefined) {
-            message.costume3DDressFilterCacheDataMap[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          const entry2 = Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry.decode(
-            reader,
-            reader.uint32(),
-          );
-          if (entry2.value !== undefined) {
-            message.costume3DHairstyleFilterCacheDataMap[entry2.key] = entry2.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Costume3DFilterCacheDataMap {
-    return {
-      costume3DDressFilterCacheDataMap: isObject(object.costume3DDressFilterCacheDataMap)
-        ? (globalThis.Object.entries(object.costume3DDressFilterCacheDataMap) as [string, any][]).reduce(
-          (acc: { [key: number]: Costume3DFilterCacheData }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = Costume3DFilterCacheData.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-      costume3DHairstyleFilterCacheDataMap: isObject(object.costume3DHairstyleFilterCacheDataMap)
-        ? (globalThis.Object.entries(object.costume3DHairstyleFilterCacheDataMap) as [string, any][]).reduce(
-          (acc: { [key: number]: Costume3DFilterCacheData }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = Costume3DFilterCacheData.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: Costume3DFilterCacheDataMap): unknown {
-    const obj: any = {};
-    if (message.costume3DDressFilterCacheDataMap) {
-      const entries = globalThis.Object.entries(message.costume3DDressFilterCacheDataMap) as [
-        string,
-        Costume3DFilterCacheData,
-      ][];
-      if (entries.length > 0) {
-        obj.costume3DDressFilterCacheDataMap = {};
-        entries.forEach(([k, v]) => {
-          obj.costume3DDressFilterCacheDataMap[k] = Costume3DFilterCacheData.toJSON(v);
-        });
-      }
-    }
-    if (message.costume3DHairstyleFilterCacheDataMap) {
-      const entries = globalThis.Object.entries(message.costume3DHairstyleFilterCacheDataMap) as [
-        string,
-        Costume3DFilterCacheData,
-      ][];
-      if (entries.length > 0) {
-        obj.costume3DHairstyleFilterCacheDataMap = {};
-        entries.forEach(([k, v]) => {
-          obj.costume3DHairstyleFilterCacheDataMap[k] = Costume3DFilterCacheData.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap>, I>>(base?: I): Costume3DFilterCacheDataMap {
-    return Costume3DFilterCacheDataMap.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap>, I>>(object: I): Costume3DFilterCacheDataMap {
-    const message = createBaseCostume3DFilterCacheDataMap();
-    message.costume3DDressFilterCacheDataMap =
-      (globalThis.Object.entries(object.costume3DDressFilterCacheDataMap ?? {}) as [string, Costume3DFilterCacheData][])
-        .reduce(
-          (acc: { [key: number]: Costume3DFilterCacheData }, [key, value]: [string, Costume3DFilterCacheData]) => {
-            if (value !== undefined) {
-              acc[globalThis.Number(key)] = Costume3DFilterCacheData.fromPartial(value);
-            }
-            return acc;
-          },
-          {},
-        );
-    message.costume3DHairstyleFilterCacheDataMap =
-      (globalThis.Object.entries(object.costume3DHairstyleFilterCacheDataMap ?? {}) as [
-        string,
-        Costume3DFilterCacheData,
-      ][]).reduce(
-        (acc: { [key: number]: Costume3DFilterCacheData }, [key, value]: [string, Costume3DFilterCacheData]) => {
-          if (value !== undefined) {
-            acc[globalThis.Number(key)] = Costume3DFilterCacheData.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseCostume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry(): Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-  return { key: 0, value: undefined };
-}
-
-export const Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry: MessageFns<
-  Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry
-> = {
-  encode(
-    message: Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== 0) {
-      writer.uint32(8).uint32(message.key);
-    }
-    if (message.value !== undefined) {
-      Costume3DFilterCacheData.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(
-    input: BinaryReader | Uint8Array,
-    length?: number,
-  ): Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = Costume3DFilterCacheData.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-    return {
-      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-      value: isSet(object.value) ? Costume3DFilterCacheData.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry): unknown {
-    const obj: any = {};
-    if (message.key !== 0) {
-      obj.key = Math.round(message.key);
-    }
-    if (message.value !== undefined) {
-      obj.value = Costume3DFilterCacheData.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry>, I>>(
-    base?: I,
-  ): Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-    return Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry>, I>>(
-    object: I,
-  ): Costume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry {
-    const message = createBaseCostume3DFilterCacheDataMap_Costume3DDressFilterCacheDataMapEntry();
-    message.key = object.key ?? 0;
-    message.value = (object.value !== undefined && object.value !== null)
-      ? Costume3DFilterCacheData.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseCostume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry(): Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-  return { key: 0, value: undefined };
-}
-
-export const Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry: MessageFns<
-  Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry
-> = {
-  encode(
-    message: Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== 0) {
-      writer.uint32(8).uint32(message.key);
-    }
-    if (message.value !== undefined) {
-      Costume3DFilterCacheData.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(
-    input: BinaryReader | Uint8Array,
-    length?: number,
-  ): Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = Costume3DFilterCacheData.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-    return {
-      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-      value: isSet(object.value) ? Costume3DFilterCacheData.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry): unknown {
-    const obj: any = {};
-    if (message.key !== 0) {
-      obj.key = Math.round(message.key);
-    }
-    if (message.value !== undefined) {
-      obj.value = Costume3DFilterCacheData.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry>, I>>(
-    base?: I,
-  ): Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-    return Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry>, I>>(
-    object: I,
-  ): Costume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry {
-    const message = createBaseCostume3DFilterCacheDataMap_Costume3DHairstyleFilterCacheDataMapEntry();
-    message.key = object.key ?? 0;
-    message.value = (object.value !== undefined && object.value !== null)
-      ? Costume3DFilterCacheData.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseCostumeLive2DFilterCacheData(): CostumeLive2DFilterCacheData {
-  return {
-    checkBoxFlagShowSettingSituationRarityStarOther: false,
-    checkBoxFlagShowSettingSituationRarityStar2: false,
-    checkBoxFlagShowSettingSituationRarityStar3: false,
-    checkBoxFlagShowSettingSituationRarityStar4: false,
-    checkBoxFlagShowSettingSituationRarityStar5: false,
-  };
-}
-
-export const CostumeLive2DFilterCacheData: MessageFns<CostumeLive2DFilterCacheData> = {
-  encode(message: CostumeLive2DFilterCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.checkBoxFlagShowSettingSituationRarityStarOther !== false) {
-      writer.uint32(8).bool(message.checkBoxFlagShowSettingSituationRarityStarOther);
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar2 !== false) {
-      writer.uint32(16).bool(message.checkBoxFlagShowSettingSituationRarityStar2);
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar3 !== false) {
-      writer.uint32(24).bool(message.checkBoxFlagShowSettingSituationRarityStar3);
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar4 !== false) {
-      writer.uint32(32).bool(message.checkBoxFlagShowSettingSituationRarityStar4);
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar5 !== false) {
-      writer.uint32(40).bool(message.checkBoxFlagShowSettingSituationRarityStar5);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CostumeLive2DFilterCacheData {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostumeLive2DFilterCacheData();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingSituationRarityStarOther = reader.bool();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingSituationRarityStar2 = reader.bool();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingSituationRarityStar3 = reader.bool();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingSituationRarityStar4 = reader.bool();
-          continue;
-        }
-        case 5: {
-          if (tag !== 40) {
-            break;
-          }
-
-          message.checkBoxFlagShowSettingSituationRarityStar5 = reader.bool();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): CostumeLive2DFilterCacheData {
-    return {
-      checkBoxFlagShowSettingSituationRarityStarOther: isSet(object.checkBoxFlagShowSettingSituationRarityStarOther)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingSituationRarityStarOther)
-        : false,
-      checkBoxFlagShowSettingSituationRarityStar2: isSet(object.checkBoxFlagShowSettingSituationRarityStar2)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingSituationRarityStar2)
-        : false,
-      checkBoxFlagShowSettingSituationRarityStar3: isSet(object.checkBoxFlagShowSettingSituationRarityStar3)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingSituationRarityStar3)
-        : false,
-      checkBoxFlagShowSettingSituationRarityStar4: isSet(object.checkBoxFlagShowSettingSituationRarityStar4)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingSituationRarityStar4)
-        : false,
-      checkBoxFlagShowSettingSituationRarityStar5: isSet(object.checkBoxFlagShowSettingSituationRarityStar5)
-        ? globalThis.Boolean(object.checkBoxFlagShowSettingSituationRarityStar5)
-        : false,
-    };
-  },
-
-  toJSON(message: CostumeLive2DFilterCacheData): unknown {
-    const obj: any = {};
-    if (message.checkBoxFlagShowSettingSituationRarityStarOther !== false) {
-      obj.checkBoxFlagShowSettingSituationRarityStarOther = message.checkBoxFlagShowSettingSituationRarityStarOther;
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar2 !== false) {
-      obj.checkBoxFlagShowSettingSituationRarityStar2 = message.checkBoxFlagShowSettingSituationRarityStar2;
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar3 !== false) {
-      obj.checkBoxFlagShowSettingSituationRarityStar3 = message.checkBoxFlagShowSettingSituationRarityStar3;
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar4 !== false) {
-      obj.checkBoxFlagShowSettingSituationRarityStar4 = message.checkBoxFlagShowSettingSituationRarityStar4;
-    }
-    if (message.checkBoxFlagShowSettingSituationRarityStar5 !== false) {
-      obj.checkBoxFlagShowSettingSituationRarityStar5 = message.checkBoxFlagShowSettingSituationRarityStar5;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CostumeLive2DFilterCacheData>, I>>(base?: I): CostumeLive2DFilterCacheData {
-    return CostumeLive2DFilterCacheData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CostumeLive2DFilterCacheData>, I>>(object: I): CostumeLive2DFilterCacheData {
-    const message = createBaseCostumeLive2DFilterCacheData();
-    message.checkBoxFlagShowSettingSituationRarityStarOther = object.checkBoxFlagShowSettingSituationRarityStarOther ??
-      false;
-    message.checkBoxFlagShowSettingSituationRarityStar2 = object.checkBoxFlagShowSettingSituationRarityStar2 ?? false;
-    message.checkBoxFlagShowSettingSituationRarityStar3 = object.checkBoxFlagShowSettingSituationRarityStar3 ?? false;
-    message.checkBoxFlagShowSettingSituationRarityStar4 = object.checkBoxFlagShowSettingSituationRarityStar4 ?? false;
-    message.checkBoxFlagShowSettingSituationRarityStar5 = object.checkBoxFlagShowSettingSituationRarityStar5 ?? false;
-    return message;
-  },
-};
-
-function createBaseCostumeLive2DFilterCacheDataMap(): CostumeLive2DFilterCacheDataMap {
-  return { costumeLive2DFilterCacheDataMap: {} };
-}
-
-export const CostumeLive2DFilterCacheDataMap: MessageFns<CostumeLive2DFilterCacheDataMap> = {
-  encode(message: CostumeLive2DFilterCacheDataMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.costumeLive2DFilterCacheDataMap).forEach(
-      ([key, value]: [string, CostumeLive2DFilterCacheData]) => {
-        CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry.encode(
-          { key: key as any, value },
-          writer.uint32(10).fork(),
-        ).join();
-      },
-    );
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CostumeLive2DFilterCacheDataMap {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostumeLive2DFilterCacheDataMap();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry.decode(
-            reader,
-            reader.uint32(),
-          );
-          if (entry1.value !== undefined) {
-            message.costumeLive2DFilterCacheDataMap[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): CostumeLive2DFilterCacheDataMap {
-    return {
-      costumeLive2DFilterCacheDataMap: isObject(object.costumeLive2DFilterCacheDataMap)
-        ? (globalThis.Object.entries(object.costumeLive2DFilterCacheDataMap) as [string, any][]).reduce(
-          (acc: { [key: number]: CostumeLive2DFilterCacheData }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = CostumeLive2DFilterCacheData.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: CostumeLive2DFilterCacheDataMap): unknown {
-    const obj: any = {};
-    if (message.costumeLive2DFilterCacheDataMap) {
-      const entries = globalThis.Object.entries(message.costumeLive2DFilterCacheDataMap) as [
-        string,
-        CostumeLive2DFilterCacheData,
-      ][];
-      if (entries.length > 0) {
-        obj.costumeLive2DFilterCacheDataMap = {};
-        entries.forEach(([k, v]) => {
-          obj.costumeLive2DFilterCacheDataMap[k] = CostumeLive2DFilterCacheData.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CostumeLive2DFilterCacheDataMap>, I>>(base?: I): CostumeLive2DFilterCacheDataMap {
-    return CostumeLive2DFilterCacheDataMap.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CostumeLive2DFilterCacheDataMap>, I>>(
-    object: I,
-  ): CostumeLive2DFilterCacheDataMap {
-    const message = createBaseCostumeLive2DFilterCacheDataMap();
-    message.costumeLive2DFilterCacheDataMap =
-      (globalThis.Object.entries(object.costumeLive2DFilterCacheDataMap ?? {}) as [
-        string,
-        CostumeLive2DFilterCacheData,
-      ][]).reduce(
-        (
-          acc: { [key: number]: CostumeLive2DFilterCacheData },
-          [key, value]: [string, CostumeLive2DFilterCacheData],
-        ) => {
-          if (value !== undefined) {
-            acc[globalThis.Number(key)] = CostumeLive2DFilterCacheData.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseCostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry(): CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-  return { key: 0, value: undefined };
-}
-
-export const CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry: MessageFns<
-  CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry
-> = {
-  encode(
-    message: CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== 0) {
-      writer.uint32(8).uint32(message.key);
-    }
-    if (message.value !== undefined) {
-      CostumeLive2DFilterCacheData.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(
-    input: BinaryReader | Uint8Array,
-    length?: number,
-  ): CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = CostumeLive2DFilterCacheData.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-    return {
-      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-      value: isSet(object.value) ? CostumeLive2DFilterCacheData.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry): unknown {
-    const obj: any = {};
-    if (message.key !== 0) {
-      obj.key = Math.round(message.key);
-    }
-    if (message.value !== undefined) {
-      obj.value = CostumeLive2DFilterCacheData.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry>, I>>(
-    base?: I,
-  ): CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-    return CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry>, I>>(
-    object: I,
-  ): CostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry {
-    const message = createBaseCostumeLive2DFilterCacheDataMap_CostumeLive2DFilterCacheDataMapEntry();
-    message.key = object.key ?? 0;
-    message.value = (object.value !== undefined && object.value !== null)
-      ? CostumeLive2DFilterCacheData.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
 function createBaseCountDownLiveData(): CountDownLiveData {
   return { checkBoxNoMoreShowBandRoomInfoEventId: 0, forceBandRoomSelectedEventId: 0 };
 }
@@ -24980,16 +25931,13 @@ export const DebugUserPostResponse: MessageFns<DebugUserPostResponse> = {
 };
 
 function createBaseDeckSortFilterFoldingData(): DeckSortFilterFoldingData {
-  return { IsDetailConditionFolding: false, IsCharacterFolding: false };
+  return { IsDetailConditionFolding: false };
 }
 
 export const DeckSortFilterFoldingData: MessageFns<DeckSortFilterFoldingData> = {
   encode(message: DeckSortFilterFoldingData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.IsDetailConditionFolding !== false) {
       writer.uint32(8).bool(message.IsDetailConditionFolding);
-    }
-    if (message.IsCharacterFolding !== false) {
-      writer.uint32(16).bool(message.IsCharacterFolding);
     }
     return writer;
   },
@@ -25009,14 +25957,6 @@ export const DeckSortFilterFoldingData: MessageFns<DeckSortFilterFoldingData> = 
           message.IsDetailConditionFolding = reader.bool();
           continue;
         }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.IsCharacterFolding = reader.bool();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -25031,7 +25971,6 @@ export const DeckSortFilterFoldingData: MessageFns<DeckSortFilterFoldingData> = 
       IsDetailConditionFolding: isSet(object.IsDetailConditionFolding)
         ? globalThis.Boolean(object.IsDetailConditionFolding)
         : false,
-      IsCharacterFolding: isSet(object.IsCharacterFolding) ? globalThis.Boolean(object.IsCharacterFolding) : false,
     };
   },
 
@@ -25039,9 +25978,6 @@ export const DeckSortFilterFoldingData: MessageFns<DeckSortFilterFoldingData> = 
     const obj: any = {};
     if (message.IsDetailConditionFolding !== false) {
       obj.IsDetailConditionFolding = message.IsDetailConditionFolding;
-    }
-    if (message.IsCharacterFolding !== false) {
-      obj.IsCharacterFolding = message.IsCharacterFolding;
     }
     return obj;
   },
@@ -25052,7 +25988,6 @@ export const DeckSortFilterFoldingData: MessageFns<DeckSortFilterFoldingData> = 
   fromPartial<I extends Exact<DeepPartial<DeckSortFilterFoldingData>, I>>(object: I): DeckSortFilterFoldingData {
     const message = createBaseDeckSortFilterFoldingData();
     message.IsDetailConditionFolding = object.IsDetailConditionFolding ?? false;
-    message.IsCharacterFolding = object.IsCharacterFolding ?? false;
     return message;
   },
 };
@@ -25117,6 +26052,114 @@ export const DecoFramePinsResponse: MessageFns<DecoFramePinsResponse> = {
     message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
       ? SuiteUserGetResponse.fromPartial(object.updateResources)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseDeviceAccMotionLog(): DeviceAccMotionLog {
+  return { timestamp: "0", x: 0, y: 0, z: 0 };
+}
+
+export const DeviceAccMotionLog: MessageFns<DeviceAccMotionLog> = {
+  encode(message: DeviceAccMotionLog, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.timestamp !== "0") {
+      writer.uint32(8).int64(message.timestamp);
+    }
+    if (message.x !== 0) {
+      writer.uint32(21).float(message.x);
+    }
+    if (message.y !== 0) {
+      writer.uint32(29).float(message.y);
+    }
+    if (message.z !== 0) {
+      writer.uint32(37).float(message.z);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeviceAccMotionLog {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeviceAccMotionLog();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.timestamp = reader.int64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 21) {
+            break;
+          }
+
+          message.x = reader.float();
+          continue;
+        }
+        case 3: {
+          if (tag !== 29) {
+            break;
+          }
+
+          message.y = reader.float();
+          continue;
+        }
+        case 4: {
+          if (tag !== 37) {
+            break;
+          }
+
+          message.z = reader.float();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeviceAccMotionLog {
+    return {
+      timestamp: isSet(object.timestamp) ? globalThis.String(object.timestamp) : "0",
+      x: isSet(object.x) ? globalThis.Number(object.x) : 0,
+      y: isSet(object.y) ? globalThis.Number(object.y) : 0,
+      z: isSet(object.z) ? globalThis.Number(object.z) : 0,
+    };
+  },
+
+  toJSON(message: DeviceAccMotionLog): unknown {
+    const obj: any = {};
+    if (message.timestamp !== "0") {
+      obj.timestamp = message.timestamp;
+    }
+    if (message.x !== 0) {
+      obj.x = message.x;
+    }
+    if (message.y !== 0) {
+      obj.y = message.y;
+    }
+    if (message.z !== 0) {
+      obj.z = message.z;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeviceAccMotionLog>, I>>(base?: I): DeviceAccMotionLog {
+    return DeviceAccMotionLog.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeviceAccMotionLog>, I>>(object: I): DeviceAccMotionLog {
+    const message = createBaseDeviceAccMotionLog();
+    message.timestamp = object.timestamp ?? "0";
+    message.x = object.x ?? 0;
+    message.y = object.y ?? 0;
+    message.z = object.z ?? 0;
     return message;
   },
 };
@@ -25193,6 +26236,258 @@ export const DeviceInfoUpdateRequest: MessageFns<DeviceInfoUpdateRequest> = {
     const message = createBaseDeviceInfoUpdateRequest();
     message.deviceModel = object.deviceModel ?? "";
     message.operatingSystem = object.operatingSystem ?? "";
+    return message;
+  },
+};
+
+function createBaseDeviceMonitorData(): DeviceMonitorData {
+  return { triggerType: "", listTouchLog: [], listAccMotionLog: [], batteryPower: "", screenInfo: "" };
+}
+
+export const DeviceMonitorData: MessageFns<DeviceMonitorData> = {
+  encode(message: DeviceMonitorData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.triggerType !== "") {
+      writer.uint32(10).string(message.triggerType);
+    }
+    for (const v of message.listTouchLog) {
+      DeviceTouchLog.encode(v!, writer.uint32(18).fork()).join();
+    }
+    for (const v of message.listAccMotionLog) {
+      DeviceAccMotionLog.encode(v!, writer.uint32(26).fork()).join();
+    }
+    if (message.batteryPower !== "") {
+      writer.uint32(34).string(message.batteryPower);
+    }
+    if (message.screenInfo !== "") {
+      writer.uint32(42).string(message.screenInfo);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeviceMonitorData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeviceMonitorData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.triggerType = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.listTouchLog.push(DeviceTouchLog.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.listAccMotionLog.push(DeviceAccMotionLog.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.batteryPower = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.screenInfo = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeviceMonitorData {
+    return {
+      triggerType: isSet(object.triggerType) ? globalThis.String(object.triggerType) : "",
+      listTouchLog: globalThis.Array.isArray(object?.listTouchLog)
+        ? object.listTouchLog.map((e: any) => DeviceTouchLog.fromJSON(e))
+        : [],
+      listAccMotionLog: globalThis.Array.isArray(object?.listAccMotionLog)
+        ? object.listAccMotionLog.map((e: any) => DeviceAccMotionLog.fromJSON(e))
+        : [],
+      batteryPower: isSet(object.batteryPower) ? globalThis.String(object.batteryPower) : "",
+      screenInfo: isSet(object.screenInfo) ? globalThis.String(object.screenInfo) : "",
+    };
+  },
+
+  toJSON(message: DeviceMonitorData): unknown {
+    const obj: any = {};
+    if (message.triggerType !== "") {
+      obj.triggerType = message.triggerType;
+    }
+    if (message.listTouchLog?.length) {
+      obj.listTouchLog = message.listTouchLog.map((e) => DeviceTouchLog.toJSON(e));
+    }
+    if (message.listAccMotionLog?.length) {
+      obj.listAccMotionLog = message.listAccMotionLog.map((e) => DeviceAccMotionLog.toJSON(e));
+    }
+    if (message.batteryPower !== "") {
+      obj.batteryPower = message.batteryPower;
+    }
+    if (message.screenInfo !== "") {
+      obj.screenInfo = message.screenInfo;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeviceMonitorData>, I>>(base?: I): DeviceMonitorData {
+    return DeviceMonitorData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeviceMonitorData>, I>>(object: I): DeviceMonitorData {
+    const message = createBaseDeviceMonitorData();
+    message.triggerType = object.triggerType ?? "";
+    message.listTouchLog = object.listTouchLog?.map((e) => DeviceTouchLog.fromPartial(e)) || [];
+    message.listAccMotionLog = object.listAccMotionLog?.map((e) => DeviceAccMotionLog.fromPartial(e)) || [];
+    message.batteryPower = object.batteryPower ?? "";
+    message.screenInfo = object.screenInfo ?? "";
+    return message;
+  },
+};
+
+function createBaseDeviceTouchLog(): DeviceTouchLog {
+  return { timestamp: "0", x: 0, y: 0, eventType: "", touchID: 0 };
+}
+
+export const DeviceTouchLog: MessageFns<DeviceTouchLog> = {
+  encode(message: DeviceTouchLog, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.timestamp !== "0") {
+      writer.uint32(8).int64(message.timestamp);
+    }
+    if (message.x !== 0) {
+      writer.uint32(21).float(message.x);
+    }
+    if (message.y !== 0) {
+      writer.uint32(29).float(message.y);
+    }
+    if (message.eventType !== "") {
+      writer.uint32(34).string(message.eventType);
+    }
+    if (message.touchID !== 0) {
+      writer.uint32(40).int32(message.touchID);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeviceTouchLog {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeviceTouchLog();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.timestamp = reader.int64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 21) {
+            break;
+          }
+
+          message.x = reader.float();
+          continue;
+        }
+        case 3: {
+          if (tag !== 29) {
+            break;
+          }
+
+          message.y = reader.float();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.eventType = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.touchID = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeviceTouchLog {
+    return {
+      timestamp: isSet(object.timestamp) ? globalThis.String(object.timestamp) : "0",
+      x: isSet(object.x) ? globalThis.Number(object.x) : 0,
+      y: isSet(object.y) ? globalThis.Number(object.y) : 0,
+      eventType: isSet(object.eventType) ? globalThis.String(object.eventType) : "",
+      touchID: isSet(object.touchID) ? globalThis.Number(object.touchID) : 0,
+    };
+  },
+
+  toJSON(message: DeviceTouchLog): unknown {
+    const obj: any = {};
+    if (message.timestamp !== "0") {
+      obj.timestamp = message.timestamp;
+    }
+    if (message.x !== 0) {
+      obj.x = message.x;
+    }
+    if (message.y !== 0) {
+      obj.y = message.y;
+    }
+    if (message.eventType !== "") {
+      obj.eventType = message.eventType;
+    }
+    if (message.touchID !== 0) {
+      obj.touchID = Math.round(message.touchID);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeviceTouchLog>, I>>(base?: I): DeviceTouchLog {
+    return DeviceTouchLog.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeviceTouchLog>, I>>(object: I): DeviceTouchLog {
+    const message = createBaseDeviceTouchLog();
+    message.timestamp = object.timestamp ?? "0";
+    message.x = object.x ?? 0;
+    message.y = object.y ?? 0;
+    message.eventType = object.eventType ?? "";
+    message.touchID = object.touchID ?? 0;
     return message;
   },
 };
@@ -27679,6 +28974,156 @@ export const FestivalTeamSelectRequest: MessageFns<FestivalTeamSelectRequest> = 
   },
 };
 
+function createBaseFindMatchServer(): FindMatchServer {
+  return { queueName: "" };
+}
+
+export const FindMatchServer: MessageFns<FindMatchServer> = {
+  encode(message: FindMatchServer, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.queueName !== "") {
+      writer.uint32(10).string(message.queueName);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): FindMatchServer {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindMatchServer();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.queueName = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindMatchServer {
+    return { queueName: isSet(object.queueName) ? globalThis.String(object.queueName) : "" };
+  },
+
+  toJSON(message: FindMatchServer): unknown {
+    const obj: any = {};
+    if (message.queueName !== "") {
+      obj.queueName = message.queueName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<FindMatchServer>, I>>(base?: I): FindMatchServer {
+    return FindMatchServer.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<FindMatchServer>, I>>(object: I): FindMatchServer {
+    const message = createBaseFindMatchServer();
+    message.queueName = object.queueName ?? "";
+    return message;
+  },
+};
+
+function createBaseFindMatchServerResult(): FindMatchServerResult {
+  return { url: "", port: 0, token: "" };
+}
+
+export const FindMatchServerResult: MessageFns<FindMatchServerResult> = {
+  encode(message: FindMatchServerResult, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.url !== "") {
+      writer.uint32(10).string(message.url);
+    }
+    if (message.port !== 0) {
+      writer.uint32(16).uint32(message.port);
+    }
+    if (message.token !== "") {
+      writer.uint32(26).string(message.token);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): FindMatchServerResult {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindMatchServerResult();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.url = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.port = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.token = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindMatchServerResult {
+    return {
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+      port: isSet(object.port) ? globalThis.Number(object.port) : 0,
+      token: isSet(object.token) ? globalThis.String(object.token) : "",
+    };
+  },
+
+  toJSON(message: FindMatchServerResult): unknown {
+    const obj: any = {};
+    if (message.url !== "") {
+      obj.url = message.url;
+    }
+    if (message.port !== 0) {
+      obj.port = Math.round(message.port);
+    }
+    if (message.token !== "") {
+      obj.token = message.token;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<FindMatchServerResult>, I>>(base?: I): FindMatchServerResult {
+    return FindMatchServerResult.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<FindMatchServerResult>, I>>(object: I): FindMatchServerResult {
+    const message = createBaseFindMatchServerResult();
+    message.url = object.url ?? "";
+    message.port = object.port ?? 0;
+    message.token = object.token ?? "";
+    return message;
+  },
+};
+
 function createBaseFourFrameCartoonIdList(): FourFrameCartoonIdList {
   return { entries: [] };
 }
@@ -28305,7 +29750,7 @@ function createBaseGameNoticeData(): GameNoticeData {
     checkedLastEventMissionIds: [],
     checkedLastMonthlyMissionTime: "0",
     friendInviteCheckedData: undefined,
-    comebackInviteCheckedData: undefined,
+    checkedBiliLimitedMissionIds: [],
   };
 }
 
@@ -28387,9 +29832,11 @@ export const GameNoticeData: MessageFns<GameNoticeData> = {
     if (message.friendInviteCheckedData !== undefined) {
       FriendInviteCheckedData.encode(message.friendInviteCheckedData, writer.uint32(154).fork()).join();
     }
-    if (message.comebackInviteCheckedData !== undefined) {
-      ComebackInviteCheckedData.encode(message.comebackInviteCheckedData, writer.uint32(162).fork()).join();
+    writer.uint32(8010).fork();
+    for (const v of message.checkedBiliLimitedMissionIds) {
+      writer.uint32(v);
     }
+    writer.join();
     return writer;
   },
 
@@ -28620,13 +30067,23 @@ export const GameNoticeData: MessageFns<GameNoticeData> = {
           message.friendInviteCheckedData = FriendInviteCheckedData.decode(reader, reader.uint32());
           continue;
         }
-        case 20: {
-          if (tag !== 162) {
-            break;
+        case 1001: {
+          if (tag === 8008) {
+            message.checkedBiliLimitedMissionIds.push(reader.uint32());
+
+            continue;
           }
 
-          message.comebackInviteCheckedData = ComebackInviteCheckedData.decode(reader, reader.uint32());
-          continue;
+          if (tag === 8010) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.checkedBiliLimitedMissionIds.push(reader.uint32());
+            }
+
+            continue;
+          }
+
+          break;
         }
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -28730,9 +30187,9 @@ export const GameNoticeData: MessageFns<GameNoticeData> = {
       friendInviteCheckedData: isSet(object.friendInviteCheckedData)
         ? FriendInviteCheckedData.fromJSON(object.friendInviteCheckedData)
         : undefined,
-      comebackInviteCheckedData: isSet(object.comebackInviteCheckedData)
-        ? ComebackInviteCheckedData.fromJSON(object.comebackInviteCheckedData)
-        : undefined,
+      checkedBiliLimitedMissionIds: globalThis.Array.isArray(object?.checkedBiliLimitedMissionIds)
+        ? object.checkedBiliLimitedMissionIds.map((e: any) => globalThis.Number(e))
+        : [],
     };
   },
 
@@ -28831,8 +30288,8 @@ export const GameNoticeData: MessageFns<GameNoticeData> = {
     if (message.friendInviteCheckedData !== undefined) {
       obj.friendInviteCheckedData = FriendInviteCheckedData.toJSON(message.friendInviteCheckedData);
     }
-    if (message.comebackInviteCheckedData !== undefined) {
-      obj.comebackInviteCheckedData = ComebackInviteCheckedData.toJSON(message.comebackInviteCheckedData);
+    if (message.checkedBiliLimitedMissionIds?.length) {
+      obj.checkedBiliLimitedMissionIds = message.checkedBiliLimitedMissionIds.map((e) => Math.round(e));
     }
     return obj;
   },
@@ -28920,10 +30377,7 @@ export const GameNoticeData: MessageFns<GameNoticeData> = {
       (object.friendInviteCheckedData !== undefined && object.friendInviteCheckedData !== null)
         ? FriendInviteCheckedData.fromPartial(object.friendInviteCheckedData)
         : undefined;
-    message.comebackInviteCheckedData =
-      (object.comebackInviteCheckedData !== undefined && object.comebackInviteCheckedData !== null)
-        ? ComebackInviteCheckedData.fromPartial(object.comebackInviteCheckedData)
-        : undefined;
+    message.checkedBiliLimitedMissionIds = object.checkedBiliLimitedMissionIds?.map((e) => e) || [];
     return message;
   },
 };
@@ -29746,6 +31200,64 @@ export const GeneralElectionLocalData: MessageFns<GeneralElectionLocalData> = {
   },
 };
 
+function createBaseGetConsumptionGiftRequeset(): GetConsumptionGiftRequeset {
+  return { id: 0 };
+}
+
+export const GetConsumptionGiftRequeset: MessageFns<GetConsumptionGiftRequeset> = {
+  encode(message: GetConsumptionGiftRequeset, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.id !== 0) {
+      writer.uint32(8).uint32(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetConsumptionGiftRequeset {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetConsumptionGiftRequeset();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.id = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetConsumptionGiftRequeset {
+    return { id: isSet(object.id) ? globalThis.Number(object.id) : 0 };
+  },
+
+  toJSON(message: GetConsumptionGiftRequeset): unknown {
+    const obj: any = {};
+    if (message.id !== 0) {
+      obj.id = Math.round(message.id);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetConsumptionGiftRequeset>, I>>(base?: I): GetConsumptionGiftRequeset {
+    return GetConsumptionGiftRequeset.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetConsumptionGiftRequeset>, I>>(object: I): GetConsumptionGiftRequeset {
+    const message = createBaseGetConsumptionGiftRequeset();
+    message.id = object.id ?? 0;
+    return message;
+  },
+};
+
 function createBaseGoogleConsume(): GoogleConsume {
   return {
     orderId: "",
@@ -29757,7 +31269,7 @@ function createBaseGoogleConsume(): GoogleConsume {
     purchaseToken: "",
     signature: "",
     originalJson: "",
-    billingId: "0",
+    billingId: "",
   };
 }
 
@@ -29790,8 +31302,8 @@ export const GoogleConsume: MessageFns<GoogleConsume> = {
     if (message.originalJson !== "") {
       writer.uint32(74).string(message.originalJson);
     }
-    if (message.billingId !== "0") {
-      writer.uint32(80).uint64(message.billingId);
+    if (message.billingId !== "") {
+      writer.uint32(82).string(message.billingId);
     }
     return writer;
   },
@@ -29876,11 +31388,11 @@ export const GoogleConsume: MessageFns<GoogleConsume> = {
           continue;
         }
         case 10: {
-          if (tag !== 80) {
+          if (tag !== 82) {
             break;
           }
 
-          message.billingId = reader.uint64().toString();
+          message.billingId = reader.string();
           continue;
         }
       }
@@ -29903,7 +31415,7 @@ export const GoogleConsume: MessageFns<GoogleConsume> = {
       purchaseToken: isSet(object.purchaseToken) ? globalThis.String(object.purchaseToken) : "",
       signature: isSet(object.signature) ? globalThis.String(object.signature) : "",
       originalJson: isSet(object.originalJson) ? globalThis.String(object.originalJson) : "",
-      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "0",
+      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "",
     };
   },
 
@@ -29936,7 +31448,7 @@ export const GoogleConsume: MessageFns<GoogleConsume> = {
     if (message.originalJson !== "") {
       obj.originalJson = message.originalJson;
     }
-    if (message.billingId !== "0") {
+    if (message.billingId !== "") {
       obj.billingId = message.billingId;
     }
     return obj;
@@ -29956,7 +31468,7 @@ export const GoogleConsume: MessageFns<GoogleConsume> = {
     message.purchaseToken = object.purchaseToken ?? "";
     message.signature = object.signature ?? "";
     message.originalJson = object.originalJson ?? "";
-    message.billingId = object.billingId ?? "0";
+    message.billingId = object.billingId ?? "";
     return message;
   },
 };
@@ -30155,6 +31667,11 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     checkBoxFlagShowSettingAttributeCool: false,
     checkBoxFlagShowSettingAttributePure: false,
     checkBoxFlagShowSettingAttributeHappy: false,
+    checkBoxFlagShowSettingBandPoppinParty: false,
+    checkBoxFlagShowSettingBandAfterglow: false,
+    checkBoxFlagShowSettingBandPastelPalettes: false,
+    checkBoxFlagShowSettingBandRoselia: false,
+    checkBoxFlagShowSettingBandHelloHappyWorld: false,
     radioButtonSortIndex: 0,
     sortingOrder: 0,
     lastSelectedSoloPlayMusicId: "",
@@ -30204,6 +31721,8 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     isNeverShowGachaSealRuleSlide: false,
     neverShowBandSelectGachaRuleSlideGachaId: 0,
     lastHomeInitializedTimestamp: "0",
+    checkBoxFlagShowSettingBandMorfonica: 0,
+    checkBoxFlagShowSettingBandRaiseASuilen: 0,
     checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: 0,
     radioButtonAnimationEpisodeFilterIndex: 0,
     checkBoxFlagShowSettingSkillConditionalScoreUpWithNeverDie: 0,
@@ -30225,6 +31744,7 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     qualifyLiveLastSettingCategoryMap: {},
     qualifyLiveLastSettingCategoryMusicMap: {},
     qualifyLiveLastSettingMiddleCategoryAllMusicMap: {},
+    checkBoxFlagShowSettingBandMyGO: 0,
     appealLastSettingCategoryMusicMap: {},
     appealLastSettingCategoryMap: {},
     appealLastSettingMiddleCategoryAllMusicMap: {},
@@ -30237,6 +31757,12 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     checkBoxTrainingFlagShowSettingAttributeCool: false,
     checkBoxTrainingFlagShowSettingAttributePure: false,
     checkBoxTrainingFlagShowSettingAttributeHappy: false,
+    checkBoxTrainingFlagShowSettingBandPoppinParty: false,
+    checkBoxTrainingFlagShowSettingBandAfterglow: false,
+    checkBoxTrainingFlagShowSettingBandPastelPalettes: false,
+    checkBoxTrainingFlagShowSettingBandRoselia: false,
+    checkBoxTrainingFlagShowSettingBandHelloHappyWorld: false,
+    checkBoxTrainingFlagShowSettingBandMyGO: 0,
     checkBoxTrainingFlagShowSettingSkillScoreUp: 0,
     checkBoxTrainingFlagShowSettingSkillConditionedScoreUp: 0,
     checkBoxTrainingFlagShowSettingSkillJudgementWithScoreUp: 0,
@@ -30248,14 +31774,24 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     checkBoxWaitingRoomFlagShowSettingAttributeCool: false,
     checkBoxWaitingRoomFlagShowSettingAttributePure: false,
     checkBoxWaitingRoomFlagShowSettingAttributeHappy: false,
+    checkBoxWaitingRoomFlagShowSettingBandPoppinParty: false,
+    checkBoxWaitingRoomFlagShowSettingBandAfterglow: false,
+    checkBoxWaitingRoomFlagShowSettingBandPastelPalettes: false,
+    checkBoxWaitingRoomFlagShowSettingBandRoselia: false,
+    checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld: false,
+    checkBoxWaitingRoomFlagShowSettingBandMyGO: 0,
     checkBoxWaitingRoomFlagShowSettingSkillScoreUp: 0,
     checkBoxWaitingRoomFlagShowSettingSkillConditionedScoreUp: 0,
     checkBoxWaitingRoomFlagShowSettingSkillJudgementWithScoreUp: 0,
     checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp: 0,
+    checkBoxWaitingRoomFlagShowSettingBandMorfonica: 0,
+    checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen: 0,
     checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp: 0,
     checkBoxWaitingRoomFlagShowSettingSkillDamageGuardWithScoreUp: 0,
     checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: 0,
     checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie: 0,
+    checkBoxTrainingFlagShowSettingBandMorfonica: 0,
+    checkBoxTrainingFlagShowSettingBandRaiseASuilen: 0,
     checkBoxTrainingFlagShowSettingSkillHealOrScoreUp: 0,
     checkBoxTrainingFlagShowSettingSkillDamageGuardWithScoreUp: 0,
     checkBoxTrainingFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: 0,
@@ -30271,10 +31807,18 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     checkBoxDefaultFlagShowSettingAttributeCool: false,
     checkBoxDefaultFlagShowSettingAttributePure: false,
     checkBoxDefaultFlagShowSettingAttributeHappy: false,
+    checkBoxDefaultFlagShowSettingBandPoppinParty: false,
+    checkBoxDefaultFlagShowSettingBandAfterglow: false,
+    checkBoxDefaultFlagShowSettingBandPastelPalettes: false,
+    checkBoxDefaultFlagShowSettingBandRoselia: false,
+    checkBoxDefaultFlagShowSettingBandHelloHappyWorld: false,
+    checkBoxDefaultFlagShowSettingBandMyGO: 0,
     checkBoxDefaultFlagShowSettingSkillScoreUp: 0,
     checkBoxDefaultFlagShowSettingSkillConditionedScoreUp: 0,
     checkBoxDefaultFlagShowSettingSkillJudgementWithScoreUp: 0,
     checkBoxDefaultFlagShowSettingSkillHealWithScoreUp: 0,
+    checkBoxDefaultFlagShowSettingBandMorfonica: 0,
+    checkBoxDefaultFlagShowSettingBandRaiseASuilen: 0,
     checkBoxDefaultFlagShowSettingSkillHealOrScoreUp: 0,
     checkBoxDefaultFlagShowSettingSkillDamageGuardWithScoreUp: 0,
     checkBoxDefaultFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: 0,
@@ -30287,10 +31831,18 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     checkBoxSkillPracticeFlagShowSettingAttributeCool: false,
     checkBoxSkillPracticeFlagShowSettingAttributePure: false,
     checkBoxSkillPracticeFlagShowSettingAttributeHappy: false,
+    checkBoxSkillPracticeFlagShowSettingBandPoppinParty: false,
+    checkBoxSkillPracticeFlagShowSettingBandAfterglow: false,
+    checkBoxSkillPracticeFlagShowSettingBandPastelPalettes: false,
+    checkBoxSkillPracticeFlagShowSettingBandRoselia: false,
+    checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld: false,
+    checkBoxSkillPracticeFlagShowSettingBandMyGO: 0,
     checkBoxSkillPracticeFlagShowSettingSkillScoreUp: 0,
     checkBoxSkillPracticeFlagShowSettingSkillConditionedScoreUp: 0,
     checkBoxSkillPracticeFlagShowSettingSkillJudgementWithScoreUp: 0,
     checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp: 0,
+    checkBoxSkillPracticeFlagShowSettingBandMorfonica: 0,
+    checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen: 0,
     checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp: 0,
     checkBoxSkillPracticeFlagShowSettingSkillDamageGuardWithScoreUp: 0,
     checkBoxSkillPracticeFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard: 0,
@@ -30298,12 +31850,6 @@ function createBaseInAppCacheProtoData(): InAppCacheProtoData {
     skillPracticeRadioButtonSortIndex: 0,
     skillPracticeSortingOrder: 0,
     radioButtonSkillPracticeSortIndexWithEventBonus: 0,
-    lastSelectedStageChallengeId: 0,
-    isNeverShowHabahiroDialogMusicIds: [],
-    isSituationCharacterFilterInitFlag: false,
-    isNfoFirstTransitioned: false,
-    selecteNfoLevelId: 0,
-    selectNfoCharacterId: 0,
   };
 }
 
@@ -30326,6 +31872,21 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxFlagShowSettingAttributeHappy !== false) {
       writer.uint32(48).bool(message.checkBoxFlagShowSettingAttributeHappy);
+    }
+    if (message.checkBoxFlagShowSettingBandPoppinParty !== false) {
+      writer.uint32(56).bool(message.checkBoxFlagShowSettingBandPoppinParty);
+    }
+    if (message.checkBoxFlagShowSettingBandAfterglow !== false) {
+      writer.uint32(64).bool(message.checkBoxFlagShowSettingBandAfterglow);
+    }
+    if (message.checkBoxFlagShowSettingBandPastelPalettes !== false) {
+      writer.uint32(72).bool(message.checkBoxFlagShowSettingBandPastelPalettes);
+    }
+    if (message.checkBoxFlagShowSettingBandRoselia !== false) {
+      writer.uint32(80).bool(message.checkBoxFlagShowSettingBandRoselia);
+    }
+    if (message.checkBoxFlagShowSettingBandHelloHappyWorld !== false) {
+      writer.uint32(88).bool(message.checkBoxFlagShowSettingBandHelloHappyWorld);
     }
     if (message.radioButtonSortIndex !== 0) {
       writer.uint32(96).uint32(message.radioButtonSortIndex);
@@ -30478,6 +32039,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.lastHomeInitializedTimestamp !== "0") {
       writer.uint32(496).uint64(message.lastHomeInitializedTimestamp);
     }
+    if (message.checkBoxFlagShowSettingBandMorfonica !== 0) {
+      writer.uint32(504).int32(message.checkBoxFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxFlagShowSettingBandRaiseASuilen !== 0) {
+      writer.uint32(512).int32(message.checkBoxFlagShowSettingBandRaiseASuilen);
+    }
     if (message.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard !== 0) {
       writer.uint32(520).int32(message.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard);
     }
@@ -30576,6 +32143,9 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         ).join();
       },
     );
+    if (message.checkBoxFlagShowSettingBandMyGO !== 0) {
+      writer.uint32(688).int32(message.checkBoxFlagShowSettingBandMyGO);
+    }
     globalThis.Object.entries(message.appealLastSettingCategoryMusicMap).forEach(([key, value]: [string, string]) => {
       InAppCacheProtoData_AppealLastSettingCategoryMusicMapEntry.encode(
         { key: key as any, value },
@@ -30623,6 +32193,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxTrainingFlagShowSettingAttributeHappy !== false) {
       writer.uint32(784).bool(message.checkBoxTrainingFlagShowSettingAttributeHappy);
     }
+    if (message.checkBoxTrainingFlagShowSettingBandPoppinParty !== false) {
+      writer.uint32(792).bool(message.checkBoxTrainingFlagShowSettingBandPoppinParty);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandAfterglow !== false) {
+      writer.uint32(800).bool(message.checkBoxTrainingFlagShowSettingBandAfterglow);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandPastelPalettes !== false) {
+      writer.uint32(808).bool(message.checkBoxTrainingFlagShowSettingBandPastelPalettes);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandRoselia !== false) {
+      writer.uint32(816).bool(message.checkBoxTrainingFlagShowSettingBandRoselia);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld !== false) {
+      writer.uint32(824).bool(message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandMyGO !== 0) {
+      writer.uint32(832).int32(message.checkBoxTrainingFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxTrainingFlagShowSettingSkillScoreUp !== 0) {
       writer.uint32(840).int32(message.checkBoxTrainingFlagShowSettingSkillScoreUp);
     }
@@ -30656,6 +32244,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxWaitingRoomFlagShowSettingAttributeHappy !== false) {
       writer.uint32(920).bool(message.checkBoxWaitingRoomFlagShowSettingAttributeHappy);
     }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty !== false) {
+      writer.uint32(928).bool(message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandAfterglow !== false) {
+      writer.uint32(936).bool(message.checkBoxWaitingRoomFlagShowSettingBandAfterglow);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes !== false) {
+      writer.uint32(944).bool(message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandRoselia !== false) {
+      writer.uint32(952).bool(message.checkBoxWaitingRoomFlagShowSettingBandRoselia);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld !== false) {
+      writer.uint32(960).bool(message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandMyGO !== 0) {
+      writer.uint32(968).int32(message.checkBoxWaitingRoomFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillScoreUp !== 0) {
       writer.uint32(976).int32(message.checkBoxWaitingRoomFlagShowSettingSkillScoreUp);
     }
@@ -30667,6 +32273,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp !== 0) {
       writer.uint32(1000).int32(message.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandMorfonica !== 0) {
+      writer.uint32(1008).int32(message.checkBoxWaitingRoomFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen !== 0) {
+      writer.uint32(1016).int32(message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen);
     }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp !== 0) {
       writer.uint32(1024).int32(message.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp);
@@ -30681,6 +32293,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie !== 0) {
       writer.uint32(1048).int32(message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandMorfonica !== 0) {
+      writer.uint32(1056).int32(message.checkBoxTrainingFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandRaiseASuilen !== 0) {
+      writer.uint32(1064).int32(message.checkBoxTrainingFlagShowSettingBandRaiseASuilen);
     }
     if (message.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp !== 0) {
       writer.uint32(1072).int32(message.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp);
@@ -30727,6 +32345,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxDefaultFlagShowSettingAttributeHappy !== false) {
       writer.uint32(1184).bool(message.checkBoxDefaultFlagShowSettingAttributeHappy);
     }
+    if (message.checkBoxDefaultFlagShowSettingBandPoppinParty !== false) {
+      writer.uint32(1192).bool(message.checkBoxDefaultFlagShowSettingBandPoppinParty);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandAfterglow !== false) {
+      writer.uint32(1200).bool(message.checkBoxDefaultFlagShowSettingBandAfterglow);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandPastelPalettes !== false) {
+      writer.uint32(1208).bool(message.checkBoxDefaultFlagShowSettingBandPastelPalettes);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandRoselia !== false) {
+      writer.uint32(1216).bool(message.checkBoxDefaultFlagShowSettingBandRoselia);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld !== false) {
+      writer.uint32(1224).bool(message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandMyGO !== 0) {
+      writer.uint32(1232).int32(message.checkBoxDefaultFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxDefaultFlagShowSettingSkillScoreUp !== 0) {
       writer.uint32(1240).int32(message.checkBoxDefaultFlagShowSettingSkillScoreUp);
     }
@@ -30738,6 +32374,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp !== 0) {
       writer.uint32(1264).int32(message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandMorfonica !== 0) {
+      writer.uint32(1272).int32(message.checkBoxDefaultFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandRaiseASuilen !== 0) {
+      writer.uint32(1280).int32(message.checkBoxDefaultFlagShowSettingBandRaiseASuilen);
     }
     if (message.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp !== 0) {
       writer.uint32(1288).int32(message.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp);
@@ -30775,6 +32417,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxSkillPracticeFlagShowSettingAttributeHappy !== false) {
       writer.uint32(1376).bool(message.checkBoxSkillPracticeFlagShowSettingAttributeHappy);
     }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty !== false) {
+      writer.uint32(1384).bool(message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandAfterglow !== false) {
+      writer.uint32(1392).bool(message.checkBoxSkillPracticeFlagShowSettingBandAfterglow);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes !== false) {
+      writer.uint32(1400).bool(message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandRoselia !== false) {
+      writer.uint32(1408).bool(message.checkBoxSkillPracticeFlagShowSettingBandRoselia);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld !== false) {
+      writer.uint32(1416).bool(message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandMyGO !== 0) {
+      writer.uint32(1424).int32(message.checkBoxSkillPracticeFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxSkillPracticeFlagShowSettingSkillScoreUp !== 0) {
       writer.uint32(1432).int32(message.checkBoxSkillPracticeFlagShowSettingSkillScoreUp);
     }
@@ -30786,6 +32446,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp !== 0) {
       writer.uint32(1456).int32(message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandMorfonica !== 0) {
+      writer.uint32(1464).int32(message.checkBoxSkillPracticeFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen !== 0) {
+      writer.uint32(1472).int32(message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen);
     }
     if (message.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp !== 0) {
       writer.uint32(1480).int32(message.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp);
@@ -30809,26 +32475,6 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.radioButtonSkillPracticeSortIndexWithEventBonus !== 0) {
       writer.uint32(1528).uint32(message.radioButtonSkillPracticeSortIndexWithEventBonus);
-    }
-    if (message.lastSelectedStageChallengeId !== 0) {
-      writer.uint32(1536).uint32(message.lastSelectedStageChallengeId);
-    }
-    writer.uint32(1546).fork();
-    for (const v of message.isNeverShowHabahiroDialogMusicIds) {
-      writer.uint32(v);
-    }
-    writer.join();
-    if (message.isSituationCharacterFilterInitFlag !== false) {
-      writer.uint32(1552).bool(message.isSituationCharacterFilterInitFlag);
-    }
-    if (message.isNfoFirstTransitioned !== false) {
-      writer.uint32(1560).bool(message.isNfoFirstTransitioned);
-    }
-    if (message.selecteNfoLevelId !== 0) {
-      writer.uint32(1568).int32(message.selecteNfoLevelId);
-    }
-    if (message.selectNfoCharacterId !== 0) {
-      writer.uint32(1576).int32(message.selectNfoCharacterId);
     }
     return writer;
   },
@@ -30886,6 +32532,46 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
 
           message.checkBoxFlagShowSettingAttributeHappy = reader.bool();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandPoppinParty = reader.bool();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandAfterglow = reader.bool();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandPastelPalettes = reader.bool();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandRoselia = reader.bool();
+          continue;
+        }
+        case 11: {
+          if (tag !== 88) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandHelloHappyWorld = reader.bool();
           continue;
         }
         case 12: {
@@ -31303,6 +32989,22 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.lastHomeInitializedTimestamp = reader.uint64().toString();
           continue;
         }
+        case 63: {
+          if (tag !== 504) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandMorfonica = reader.int32();
+          continue;
+        }
+        case 64: {
+          if (tag !== 512) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandRaiseASuilen = reader.int32();
+          continue;
+        }
         case 65: {
           if (tag !== 520) {
             break;
@@ -31537,6 +33239,14 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
           continue;
         }
+        case 86: {
+          if (tag !== 688) {
+            break;
+          }
+
+          message.checkBoxFlagShowSettingBandMyGO = reader.int32();
+          continue;
+        }
         case 87: {
           if (tag !== 698) {
             break;
@@ -31645,6 +33355,54 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.checkBoxTrainingFlagShowSettingAttributeHappy = reader.bool();
           continue;
         }
+        case 99: {
+          if (tag !== 792) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandPoppinParty = reader.bool();
+          continue;
+        }
+        case 100: {
+          if (tag !== 800) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandAfterglow = reader.bool();
+          continue;
+        }
+        case 101: {
+          if (tag !== 808) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandPastelPalettes = reader.bool();
+          continue;
+        }
+        case 102: {
+          if (tag !== 816) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandRoselia = reader.bool();
+          continue;
+        }
+        case 103: {
+          if (tag !== 824) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld = reader.bool();
+          continue;
+        }
+        case 104: {
+          if (tag !== 832) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandMyGO = reader.int32();
+          continue;
+        }
         case 105: {
           if (tag !== 840) {
             break;
@@ -31733,6 +33491,54 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.checkBoxWaitingRoomFlagShowSettingAttributeHappy = reader.bool();
           continue;
         }
+        case 116: {
+          if (tag !== 928) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty = reader.bool();
+          continue;
+        }
+        case 117: {
+          if (tag !== 936) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandAfterglow = reader.bool();
+          continue;
+        }
+        case 118: {
+          if (tag !== 944) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes = reader.bool();
+          continue;
+        }
+        case 119: {
+          if (tag !== 952) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandRoselia = reader.bool();
+          continue;
+        }
+        case 120: {
+          if (tag !== 960) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld = reader.bool();
+          continue;
+        }
+        case 121: {
+          if (tag !== 968) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandMyGO = reader.int32();
+          continue;
+        }
         case 122: {
           if (tag !== 976) {
             break;
@@ -31765,6 +33571,22 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp = reader.int32();
           continue;
         }
+        case 126: {
+          if (tag !== 1008) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandMorfonica = reader.int32();
+          continue;
+        }
+        case 127: {
+          if (tag !== 1016) {
+            break;
+          }
+
+          message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen = reader.int32();
+          continue;
+        }
         case 128: {
           if (tag !== 1024) {
             break;
@@ -31795,6 +33617,22 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
 
           message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie = reader.int32();
+          continue;
+        }
+        case 132: {
+          if (tag !== 1056) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandMorfonica = reader.int32();
+          continue;
+        }
+        case 133: {
+          if (tag !== 1064) {
+            break;
+          }
+
+          message.checkBoxTrainingFlagShowSettingBandRaiseASuilen = reader.int32();
           continue;
         }
         case 134: {
@@ -31917,6 +33755,54 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.checkBoxDefaultFlagShowSettingAttributeHappy = reader.bool();
           continue;
         }
+        case 149: {
+          if (tag !== 1192) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandPoppinParty = reader.bool();
+          continue;
+        }
+        case 150: {
+          if (tag !== 1200) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandAfterglow = reader.bool();
+          continue;
+        }
+        case 151: {
+          if (tag !== 1208) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandPastelPalettes = reader.bool();
+          continue;
+        }
+        case 152: {
+          if (tag !== 1216) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandRoselia = reader.bool();
+          continue;
+        }
+        case 153: {
+          if (tag !== 1224) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld = reader.bool();
+          continue;
+        }
+        case 154: {
+          if (tag !== 1232) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandMyGO = reader.int32();
+          continue;
+        }
         case 155: {
           if (tag !== 1240) {
             break;
@@ -31947,6 +33833,22 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
 
           message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp = reader.int32();
+          continue;
+        }
+        case 159: {
+          if (tag !== 1272) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandMorfonica = reader.int32();
+          continue;
+        }
+        case 160: {
+          if (tag !== 1280) {
+            break;
+          }
+
+          message.checkBoxDefaultFlagShowSettingBandRaiseASuilen = reader.int32();
           continue;
         }
         case 161: {
@@ -32045,6 +33947,54 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.checkBoxSkillPracticeFlagShowSettingAttributeHappy = reader.bool();
           continue;
         }
+        case 173: {
+          if (tag !== 1384) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty = reader.bool();
+          continue;
+        }
+        case 174: {
+          if (tag !== 1392) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandAfterglow = reader.bool();
+          continue;
+        }
+        case 175: {
+          if (tag !== 1400) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes = reader.bool();
+          continue;
+        }
+        case 176: {
+          if (tag !== 1408) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandRoselia = reader.bool();
+          continue;
+        }
+        case 177: {
+          if (tag !== 1416) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld = reader.bool();
+          continue;
+        }
+        case 178: {
+          if (tag !== 1424) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandMyGO = reader.int32();
+          continue;
+        }
         case 179: {
           if (tag !== 1432) {
             break;
@@ -32075,6 +34025,22 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
 
           message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp = reader.int32();
+          continue;
+        }
+        case 183: {
+          if (tag !== 1464) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandMorfonica = reader.int32();
+          continue;
+        }
+        case 184: {
+          if (tag !== 1472) {
+            break;
+          }
+
+          message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen = reader.int32();
           continue;
         }
         case 185: {
@@ -32133,64 +34099,6 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           message.radioButtonSkillPracticeSortIndexWithEventBonus = reader.uint32();
           continue;
         }
-        case 192: {
-          if (tag !== 1536) {
-            break;
-          }
-
-          message.lastSelectedStageChallengeId = reader.uint32();
-          continue;
-        }
-        case 193: {
-          if (tag === 1544) {
-            message.isNeverShowHabahiroDialogMusicIds.push(reader.uint32());
-
-            continue;
-          }
-
-          if (tag === 1546) {
-            const end2 = reader.uint32() + reader.pos;
-            while (reader.pos < end2) {
-              message.isNeverShowHabahiroDialogMusicIds.push(reader.uint32());
-            }
-
-            continue;
-          }
-
-          break;
-        }
-        case 194: {
-          if (tag !== 1552) {
-            break;
-          }
-
-          message.isSituationCharacterFilterInitFlag = reader.bool();
-          continue;
-        }
-        case 195: {
-          if (tag !== 1560) {
-            break;
-          }
-
-          message.isNfoFirstTransitioned = reader.bool();
-          continue;
-        }
-        case 196: {
-          if (tag !== 1568) {
-            break;
-          }
-
-          message.selecteNfoLevelId = reader.int32();
-          continue;
-        }
-        case 197: {
-          if (tag !== 1576) {
-            break;
-          }
-
-          message.selectNfoCharacterId = reader.int32();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -32217,6 +34125,21 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         : false,
       checkBoxFlagShowSettingAttributeHappy: isSet(object.checkBoxFlagShowSettingAttributeHappy)
         ? globalThis.Boolean(object.checkBoxFlagShowSettingAttributeHappy)
+        : false,
+      checkBoxFlagShowSettingBandPoppinParty: isSet(object.checkBoxFlagShowSettingBandPoppinParty)
+        ? globalThis.Boolean(object.checkBoxFlagShowSettingBandPoppinParty)
+        : false,
+      checkBoxFlagShowSettingBandAfterglow: isSet(object.checkBoxFlagShowSettingBandAfterglow)
+        ? globalThis.Boolean(object.checkBoxFlagShowSettingBandAfterglow)
+        : false,
+      checkBoxFlagShowSettingBandPastelPalettes: isSet(object.checkBoxFlagShowSettingBandPastelPalettes)
+        ? globalThis.Boolean(object.checkBoxFlagShowSettingBandPastelPalettes)
+        : false,
+      checkBoxFlagShowSettingBandRoselia: isSet(object.checkBoxFlagShowSettingBandRoselia)
+        ? globalThis.Boolean(object.checkBoxFlagShowSettingBandRoselia)
+        : false,
+      checkBoxFlagShowSettingBandHelloHappyWorld: isSet(object.checkBoxFlagShowSettingBandHelloHappyWorld)
+        ? globalThis.Boolean(object.checkBoxFlagShowSettingBandHelloHappyWorld)
         : false,
       radioButtonSortIndex: isSet(object.radioButtonSortIndex) ? globalThis.Number(object.radioButtonSortIndex) : 0,
       sortingOrder: isSet(object.sortingOrder) ? globalThis.Number(object.sortingOrder) : 0,
@@ -32352,6 +34275,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       lastHomeInitializedTimestamp: isSet(object.lastHomeInitializedTimestamp)
         ? globalThis.String(object.lastHomeInitializedTimestamp)
         : "0",
+      checkBoxFlagShowSettingBandMorfonica: isSet(object.checkBoxFlagShowSettingBandMorfonica)
+        ? globalThis.Number(object.checkBoxFlagShowSettingBandMorfonica)
+        : 0,
+      checkBoxFlagShowSettingBandRaiseASuilen: isSet(object.checkBoxFlagShowSettingBandRaiseASuilen)
+        ? globalThis.Number(object.checkBoxFlagShowSettingBandRaiseASuilen)
+        : 0,
       checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard:
         isSet(object.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard)
           ? globalThis.Number(object.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard)
@@ -32469,6 +34398,9 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           {},
         )
         : {},
+      checkBoxFlagShowSettingBandMyGO: isSet(object.checkBoxFlagShowSettingBandMyGO)
+        ? globalThis.Number(object.checkBoxFlagShowSettingBandMyGO)
+        : 0,
       appealLastSettingCategoryMusicMap: isObject(object.appealLastSettingCategoryMusicMap)
         ? (globalThis.Object.entries(object.appealLastSettingCategoryMusicMap) as [string, any][]).reduce(
           (acc: { [key: number]: string }, [key, value]: [string, any]) => {
@@ -32523,6 +34455,25 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       checkBoxTrainingFlagShowSettingAttributeHappy: isSet(object.checkBoxTrainingFlagShowSettingAttributeHappy)
         ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingAttributeHappy)
         : false,
+      checkBoxTrainingFlagShowSettingBandPoppinParty: isSet(object.checkBoxTrainingFlagShowSettingBandPoppinParty)
+        ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingBandPoppinParty)
+        : false,
+      checkBoxTrainingFlagShowSettingBandAfterglow: isSet(object.checkBoxTrainingFlagShowSettingBandAfterglow)
+        ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingBandAfterglow)
+        : false,
+      checkBoxTrainingFlagShowSettingBandPastelPalettes: isSet(object.checkBoxTrainingFlagShowSettingBandPastelPalettes)
+        ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingBandPastelPalettes)
+        : false,
+      checkBoxTrainingFlagShowSettingBandRoselia: isSet(object.checkBoxTrainingFlagShowSettingBandRoselia)
+        ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingBandRoselia)
+        : false,
+      checkBoxTrainingFlagShowSettingBandHelloHappyWorld:
+        isSet(object.checkBoxTrainingFlagShowSettingBandHelloHappyWorld)
+          ? globalThis.Boolean(object.checkBoxTrainingFlagShowSettingBandHelloHappyWorld)
+          : false,
+      checkBoxTrainingFlagShowSettingBandMyGO: isSet(object.checkBoxTrainingFlagShowSettingBandMyGO)
+        ? globalThis.Number(object.checkBoxTrainingFlagShowSettingBandMyGO)
+        : 0,
       checkBoxTrainingFlagShowSettingSkillScoreUp: isSet(object.checkBoxTrainingFlagShowSettingSkillScoreUp)
         ? globalThis.Number(object.checkBoxTrainingFlagShowSettingSkillScoreUp)
         : 0,
@@ -32560,6 +34511,26 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       checkBoxWaitingRoomFlagShowSettingAttributeHappy: isSet(object.checkBoxWaitingRoomFlagShowSettingAttributeHappy)
         ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingAttributeHappy)
         : false,
+      checkBoxWaitingRoomFlagShowSettingBandPoppinParty: isSet(object.checkBoxWaitingRoomFlagShowSettingBandPoppinParty)
+        ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingBandPoppinParty)
+        : false,
+      checkBoxWaitingRoomFlagShowSettingBandAfterglow: isSet(object.checkBoxWaitingRoomFlagShowSettingBandAfterglow)
+        ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingBandAfterglow)
+        : false,
+      checkBoxWaitingRoomFlagShowSettingBandPastelPalettes:
+        isSet(object.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes)
+          ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes)
+          : false,
+      checkBoxWaitingRoomFlagShowSettingBandRoselia: isSet(object.checkBoxWaitingRoomFlagShowSettingBandRoselia)
+        ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingBandRoselia)
+        : false,
+      checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld:
+        isSet(object.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld)
+          ? globalThis.Boolean(object.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld)
+          : false,
+      checkBoxWaitingRoomFlagShowSettingBandMyGO: isSet(object.checkBoxWaitingRoomFlagShowSettingBandMyGO)
+        ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingBandMyGO)
+        : 0,
       checkBoxWaitingRoomFlagShowSettingSkillScoreUp: isSet(object.checkBoxWaitingRoomFlagShowSettingSkillScoreUp)
         ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingSkillScoreUp)
         : 0,
@@ -32574,6 +34545,13 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp:
         isSet(object.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp)
           ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp)
+          : 0,
+      checkBoxWaitingRoomFlagShowSettingBandMorfonica: isSet(object.checkBoxWaitingRoomFlagShowSettingBandMorfonica)
+        ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingBandMorfonica)
+        : 0,
+      checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen:
+        isSet(object.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen)
+          ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen)
           : 0,
       checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp:
         isSet(object.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp)
@@ -32591,6 +34569,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         isSet(object.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie)
           ? globalThis.Number(object.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie)
           : 0,
+      checkBoxTrainingFlagShowSettingBandMorfonica: isSet(object.checkBoxTrainingFlagShowSettingBandMorfonica)
+        ? globalThis.Number(object.checkBoxTrainingFlagShowSettingBandMorfonica)
+        : 0,
+      checkBoxTrainingFlagShowSettingBandRaiseASuilen: isSet(object.checkBoxTrainingFlagShowSettingBandRaiseASuilen)
+        ? globalThis.Number(object.checkBoxTrainingFlagShowSettingBandRaiseASuilen)
+        : 0,
       checkBoxTrainingFlagShowSettingSkillHealOrScoreUp: isSet(object.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp)
         ? globalThis.Number(object.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp)
         : 0,
@@ -32637,6 +34621,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       checkBoxDefaultFlagShowSettingAttributeHappy: isSet(object.checkBoxDefaultFlagShowSettingAttributeHappy)
         ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingAttributeHappy)
         : false,
+      checkBoxDefaultFlagShowSettingBandPoppinParty: isSet(object.checkBoxDefaultFlagShowSettingBandPoppinParty)
+        ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingBandPoppinParty)
+        : false,
+      checkBoxDefaultFlagShowSettingBandAfterglow: isSet(object.checkBoxDefaultFlagShowSettingBandAfterglow)
+        ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingBandAfterglow)
+        : false,
+      checkBoxDefaultFlagShowSettingBandPastelPalettes: isSet(object.checkBoxDefaultFlagShowSettingBandPastelPalettes)
+        ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingBandPastelPalettes)
+        : false,
+      checkBoxDefaultFlagShowSettingBandRoselia: isSet(object.checkBoxDefaultFlagShowSettingBandRoselia)
+        ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingBandRoselia)
+        : false,
+      checkBoxDefaultFlagShowSettingBandHelloHappyWorld: isSet(object.checkBoxDefaultFlagShowSettingBandHelloHappyWorld)
+        ? globalThis.Boolean(object.checkBoxDefaultFlagShowSettingBandHelloHappyWorld)
+        : false,
+      checkBoxDefaultFlagShowSettingBandMyGO: isSet(object.checkBoxDefaultFlagShowSettingBandMyGO)
+        ? globalThis.Number(object.checkBoxDefaultFlagShowSettingBandMyGO)
+        : 0,
       checkBoxDefaultFlagShowSettingSkillScoreUp: isSet(object.checkBoxDefaultFlagShowSettingSkillScoreUp)
         ? globalThis.Number(object.checkBoxDefaultFlagShowSettingSkillScoreUp)
         : 0,
@@ -32652,6 +34654,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         isSet(object.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp)
           ? globalThis.Number(object.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp)
           : 0,
+      checkBoxDefaultFlagShowSettingBandMorfonica: isSet(object.checkBoxDefaultFlagShowSettingBandMorfonica)
+        ? globalThis.Number(object.checkBoxDefaultFlagShowSettingBandMorfonica)
+        : 0,
+      checkBoxDefaultFlagShowSettingBandRaiseASuilen: isSet(object.checkBoxDefaultFlagShowSettingBandRaiseASuilen)
+        ? globalThis.Number(object.checkBoxDefaultFlagShowSettingBandRaiseASuilen)
+        : 0,
       checkBoxDefaultFlagShowSettingSkillHealOrScoreUp: isSet(object.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp)
         ? globalThis.Number(object.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp)
         : 0,
@@ -32692,6 +34700,27 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         isSet(object.checkBoxSkillPracticeFlagShowSettingAttributeHappy)
           ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingAttributeHappy)
           : false,
+      checkBoxSkillPracticeFlagShowSettingBandPoppinParty:
+        isSet(object.checkBoxSkillPracticeFlagShowSettingBandPoppinParty)
+          ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingBandPoppinParty)
+          : false,
+      checkBoxSkillPracticeFlagShowSettingBandAfterglow: isSet(object.checkBoxSkillPracticeFlagShowSettingBandAfterglow)
+        ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingBandAfterglow)
+        : false,
+      checkBoxSkillPracticeFlagShowSettingBandPastelPalettes:
+        isSet(object.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes)
+          ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes)
+          : false,
+      checkBoxSkillPracticeFlagShowSettingBandRoselia: isSet(object.checkBoxSkillPracticeFlagShowSettingBandRoselia)
+        ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingBandRoselia)
+        : false,
+      checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld:
+        isSet(object.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld)
+          ? globalThis.Boolean(object.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld)
+          : false,
+      checkBoxSkillPracticeFlagShowSettingBandMyGO: isSet(object.checkBoxSkillPracticeFlagShowSettingBandMyGO)
+        ? globalThis.Number(object.checkBoxSkillPracticeFlagShowSettingBandMyGO)
+        : 0,
       checkBoxSkillPracticeFlagShowSettingSkillScoreUp: isSet(object.checkBoxSkillPracticeFlagShowSettingSkillScoreUp)
         ? globalThis.Number(object.checkBoxSkillPracticeFlagShowSettingSkillScoreUp)
         : 0,
@@ -32706,6 +34735,13 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp:
         isSet(object.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp)
           ? globalThis.Number(object.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp)
+          : 0,
+      checkBoxSkillPracticeFlagShowSettingBandMorfonica: isSet(object.checkBoxSkillPracticeFlagShowSettingBandMorfonica)
+        ? globalThis.Number(object.checkBoxSkillPracticeFlagShowSettingBandMorfonica)
+        : 0,
+      checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen:
+        isSet(object.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen)
+          ? globalThis.Number(object.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen)
           : 0,
       checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp:
         isSet(object.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp)
@@ -32732,20 +34768,6 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       radioButtonSkillPracticeSortIndexWithEventBonus: isSet(object.radioButtonSkillPracticeSortIndexWithEventBonus)
         ? globalThis.Number(object.radioButtonSkillPracticeSortIndexWithEventBonus)
         : 0,
-      lastSelectedStageChallengeId: isSet(object.lastSelectedStageChallengeId)
-        ? globalThis.Number(object.lastSelectedStageChallengeId)
-        : 0,
-      isNeverShowHabahiroDialogMusicIds: globalThis.Array.isArray(object?.isNeverShowHabahiroDialogMusicIds)
-        ? object.isNeverShowHabahiroDialogMusicIds.map((e: any) => globalThis.Number(e))
-        : [],
-      isSituationCharacterFilterInitFlag: isSet(object.isSituationCharacterFilterInitFlag)
-        ? globalThis.Boolean(object.isSituationCharacterFilterInitFlag)
-        : false,
-      isNfoFirstTransitioned: isSet(object.isNfoFirstTransitioned)
-        ? globalThis.Boolean(object.isNfoFirstTransitioned)
-        : false,
-      selecteNfoLevelId: isSet(object.selecteNfoLevelId) ? globalThis.Number(object.selecteNfoLevelId) : 0,
-      selectNfoCharacterId: isSet(object.selectNfoCharacterId) ? globalThis.Number(object.selectNfoCharacterId) : 0,
     };
   },
 
@@ -32768,6 +34790,21 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     }
     if (message.checkBoxFlagShowSettingAttributeHappy !== false) {
       obj.checkBoxFlagShowSettingAttributeHappy = message.checkBoxFlagShowSettingAttributeHappy;
+    }
+    if (message.checkBoxFlagShowSettingBandPoppinParty !== false) {
+      obj.checkBoxFlagShowSettingBandPoppinParty = message.checkBoxFlagShowSettingBandPoppinParty;
+    }
+    if (message.checkBoxFlagShowSettingBandAfterglow !== false) {
+      obj.checkBoxFlagShowSettingBandAfterglow = message.checkBoxFlagShowSettingBandAfterglow;
+    }
+    if (message.checkBoxFlagShowSettingBandPastelPalettes !== false) {
+      obj.checkBoxFlagShowSettingBandPastelPalettes = message.checkBoxFlagShowSettingBandPastelPalettes;
+    }
+    if (message.checkBoxFlagShowSettingBandRoselia !== false) {
+      obj.checkBoxFlagShowSettingBandRoselia = message.checkBoxFlagShowSettingBandRoselia;
+    }
+    if (message.checkBoxFlagShowSettingBandHelloHappyWorld !== false) {
+      obj.checkBoxFlagShowSettingBandHelloHappyWorld = message.checkBoxFlagShowSettingBandHelloHappyWorld;
     }
     if (message.radioButtonSortIndex !== 0) {
       obj.radioButtonSortIndex = Math.round(message.radioButtonSortIndex);
@@ -32928,6 +34965,12 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.lastHomeInitializedTimestamp !== "0") {
       obj.lastHomeInitializedTimestamp = message.lastHomeInitializedTimestamp;
     }
+    if (message.checkBoxFlagShowSettingBandMorfonica !== 0) {
+      obj.checkBoxFlagShowSettingBandMorfonica = Math.round(message.checkBoxFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxFlagShowSettingBandRaiseASuilen !== 0) {
+      obj.checkBoxFlagShowSettingBandRaiseASuilen = Math.round(message.checkBoxFlagShowSettingBandRaiseASuilen);
+    }
     if (message.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard !== 0) {
       obj.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard = Math.round(
         message.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard,
@@ -33055,6 +35098,9 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         });
       }
     }
+    if (message.checkBoxFlagShowSettingBandMyGO !== 0) {
+      obj.checkBoxFlagShowSettingBandMyGO = Math.round(message.checkBoxFlagShowSettingBandMyGO);
+    }
     if (message.appealLastSettingCategoryMusicMap) {
       const entries = globalThis.Object.entries(message.appealLastSettingCategoryMusicMap) as [string, string][];
       if (entries.length > 0) {
@@ -33114,6 +35160,25 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxTrainingFlagShowSettingAttributeHappy !== false) {
       obj.checkBoxTrainingFlagShowSettingAttributeHappy = message.checkBoxTrainingFlagShowSettingAttributeHappy;
     }
+    if (message.checkBoxTrainingFlagShowSettingBandPoppinParty !== false) {
+      obj.checkBoxTrainingFlagShowSettingBandPoppinParty = message.checkBoxTrainingFlagShowSettingBandPoppinParty;
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandAfterglow !== false) {
+      obj.checkBoxTrainingFlagShowSettingBandAfterglow = message.checkBoxTrainingFlagShowSettingBandAfterglow;
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandPastelPalettes !== false) {
+      obj.checkBoxTrainingFlagShowSettingBandPastelPalettes = message.checkBoxTrainingFlagShowSettingBandPastelPalettes;
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandRoselia !== false) {
+      obj.checkBoxTrainingFlagShowSettingBandRoselia = message.checkBoxTrainingFlagShowSettingBandRoselia;
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld !== false) {
+      obj.checkBoxTrainingFlagShowSettingBandHelloHappyWorld =
+        message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld;
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandMyGO !== 0) {
+      obj.checkBoxTrainingFlagShowSettingBandMyGO = Math.round(message.checkBoxTrainingFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxTrainingFlagShowSettingSkillScoreUp !== 0) {
       obj.checkBoxTrainingFlagShowSettingSkillScoreUp = Math.round(message.checkBoxTrainingFlagShowSettingSkillScoreUp);
     }
@@ -33158,6 +35223,26 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxWaitingRoomFlagShowSettingAttributeHappy !== false) {
       obj.checkBoxWaitingRoomFlagShowSettingAttributeHappy = message.checkBoxWaitingRoomFlagShowSettingAttributeHappy;
     }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty !== false) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandPoppinParty = message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty;
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandAfterglow !== false) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandAfterglow = message.checkBoxWaitingRoomFlagShowSettingBandAfterglow;
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes !== false) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes =
+        message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes;
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandRoselia !== false) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandRoselia = message.checkBoxWaitingRoomFlagShowSettingBandRoselia;
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld !== false) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld =
+        message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld;
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandMyGO !== 0) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandMyGO = Math.round(message.checkBoxWaitingRoomFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillScoreUp !== 0) {
       obj.checkBoxWaitingRoomFlagShowSettingSkillScoreUp = Math.round(
         message.checkBoxWaitingRoomFlagShowSettingSkillScoreUp,
@@ -33178,6 +35263,16 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         message.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp,
       );
     }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandMorfonica !== 0) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandMorfonica = Math.round(
+        message.checkBoxWaitingRoomFlagShowSettingBandMorfonica,
+      );
+    }
+    if (message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen !== 0) {
+      obj.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen = Math.round(
+        message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen,
+      );
+    }
     if (message.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp !== 0) {
       obj.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp = Math.round(
         message.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp,
@@ -33196,6 +35291,16 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie !== 0) {
       obj.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie = Math.round(
         message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie,
+      );
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandMorfonica !== 0) {
+      obj.checkBoxTrainingFlagShowSettingBandMorfonica = Math.round(
+        message.checkBoxTrainingFlagShowSettingBandMorfonica,
+      );
+    }
+    if (message.checkBoxTrainingFlagShowSettingBandRaiseASuilen !== 0) {
+      obj.checkBoxTrainingFlagShowSettingBandRaiseASuilen = Math.round(
+        message.checkBoxTrainingFlagShowSettingBandRaiseASuilen,
       );
     }
     if (message.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp !== 0) {
@@ -33253,6 +35358,24 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxDefaultFlagShowSettingAttributeHappy !== false) {
       obj.checkBoxDefaultFlagShowSettingAttributeHappy = message.checkBoxDefaultFlagShowSettingAttributeHappy;
     }
+    if (message.checkBoxDefaultFlagShowSettingBandPoppinParty !== false) {
+      obj.checkBoxDefaultFlagShowSettingBandPoppinParty = message.checkBoxDefaultFlagShowSettingBandPoppinParty;
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandAfterglow !== false) {
+      obj.checkBoxDefaultFlagShowSettingBandAfterglow = message.checkBoxDefaultFlagShowSettingBandAfterglow;
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandPastelPalettes !== false) {
+      obj.checkBoxDefaultFlagShowSettingBandPastelPalettes = message.checkBoxDefaultFlagShowSettingBandPastelPalettes;
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandRoselia !== false) {
+      obj.checkBoxDefaultFlagShowSettingBandRoselia = message.checkBoxDefaultFlagShowSettingBandRoselia;
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld !== false) {
+      obj.checkBoxDefaultFlagShowSettingBandHelloHappyWorld = message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld;
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandMyGO !== 0) {
+      obj.checkBoxDefaultFlagShowSettingBandMyGO = Math.round(message.checkBoxDefaultFlagShowSettingBandMyGO);
+    }
     if (message.checkBoxDefaultFlagShowSettingSkillScoreUp !== 0) {
       obj.checkBoxDefaultFlagShowSettingSkillScoreUp = Math.round(message.checkBoxDefaultFlagShowSettingSkillScoreUp);
     }
@@ -33269,6 +35392,14 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp !== 0) {
       obj.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp = Math.round(
         message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp,
+      );
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandMorfonica !== 0) {
+      obj.checkBoxDefaultFlagShowSettingBandMorfonica = Math.round(message.checkBoxDefaultFlagShowSettingBandMorfonica);
+    }
+    if (message.checkBoxDefaultFlagShowSettingBandRaiseASuilen !== 0) {
+      obj.checkBoxDefaultFlagShowSettingBandRaiseASuilen = Math.round(
+        message.checkBoxDefaultFlagShowSettingBandRaiseASuilen,
       );
     }
     if (message.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp !== 0) {
@@ -33319,6 +35450,29 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       obj.checkBoxSkillPracticeFlagShowSettingAttributeHappy =
         message.checkBoxSkillPracticeFlagShowSettingAttributeHappy;
     }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty !== false) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandPoppinParty =
+        message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty;
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandAfterglow !== false) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandAfterglow = message.checkBoxSkillPracticeFlagShowSettingBandAfterglow;
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes !== false) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes =
+        message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes;
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandRoselia !== false) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandRoselia = message.checkBoxSkillPracticeFlagShowSettingBandRoselia;
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld !== false) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld =
+        message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld;
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandMyGO !== 0) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandMyGO = Math.round(
+        message.checkBoxSkillPracticeFlagShowSettingBandMyGO,
+      );
+    }
     if (message.checkBoxSkillPracticeFlagShowSettingSkillScoreUp !== 0) {
       obj.checkBoxSkillPracticeFlagShowSettingSkillScoreUp = Math.round(
         message.checkBoxSkillPracticeFlagShowSettingSkillScoreUp,
@@ -33337,6 +35491,16 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     if (message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp !== 0) {
       obj.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp = Math.round(
         message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp,
+      );
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandMorfonica !== 0) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandMorfonica = Math.round(
+        message.checkBoxSkillPracticeFlagShowSettingBandMorfonica,
+      );
+    }
+    if (message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen !== 0) {
+      obj.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen = Math.round(
+        message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen,
       );
     }
     if (message.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp !== 0) {
@@ -33370,24 +35534,6 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
         message.radioButtonSkillPracticeSortIndexWithEventBonus,
       );
     }
-    if (message.lastSelectedStageChallengeId !== 0) {
-      obj.lastSelectedStageChallengeId = Math.round(message.lastSelectedStageChallengeId);
-    }
-    if (message.isNeverShowHabahiroDialogMusicIds?.length) {
-      obj.isNeverShowHabahiroDialogMusicIds = message.isNeverShowHabahiroDialogMusicIds.map((e) => Math.round(e));
-    }
-    if (message.isSituationCharacterFilterInitFlag !== false) {
-      obj.isSituationCharacterFilterInitFlag = message.isSituationCharacterFilterInitFlag;
-    }
-    if (message.isNfoFirstTransitioned !== false) {
-      obj.isNfoFirstTransitioned = message.isNfoFirstTransitioned;
-    }
-    if (message.selecteNfoLevelId !== 0) {
-      obj.selecteNfoLevelId = Math.round(message.selecteNfoLevelId);
-    }
-    if (message.selectNfoCharacterId !== 0) {
-      obj.selectNfoCharacterId = Math.round(message.selectNfoCharacterId);
-    }
     return obj;
   },
 
@@ -33402,6 +35548,11 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     message.checkBoxFlagShowSettingAttributeCool = object.checkBoxFlagShowSettingAttributeCool ?? false;
     message.checkBoxFlagShowSettingAttributePure = object.checkBoxFlagShowSettingAttributePure ?? false;
     message.checkBoxFlagShowSettingAttributeHappy = object.checkBoxFlagShowSettingAttributeHappy ?? false;
+    message.checkBoxFlagShowSettingBandPoppinParty = object.checkBoxFlagShowSettingBandPoppinParty ?? false;
+    message.checkBoxFlagShowSettingBandAfterglow = object.checkBoxFlagShowSettingBandAfterglow ?? false;
+    message.checkBoxFlagShowSettingBandPastelPalettes = object.checkBoxFlagShowSettingBandPastelPalettes ?? false;
+    message.checkBoxFlagShowSettingBandRoselia = object.checkBoxFlagShowSettingBandRoselia ?? false;
+    message.checkBoxFlagShowSettingBandHelloHappyWorld = object.checkBoxFlagShowSettingBandHelloHappyWorld ?? false;
     message.radioButtonSortIndex = object.radioButtonSortIndex ?? 0;
     message.sortingOrder = object.sortingOrder ?? 0;
     message.lastSelectedSoloPlayMusicId = object.lastSelectedSoloPlayMusicId ?? "";
@@ -33461,6 +35612,8 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     message.isNeverShowGachaSealRuleSlide = object.isNeverShowGachaSealRuleSlide ?? false;
     message.neverShowBandSelectGachaRuleSlideGachaId = object.neverShowBandSelectGachaRuleSlideGachaId ?? 0;
     message.lastHomeInitializedTimestamp = object.lastHomeInitializedTimestamp ?? "0";
+    message.checkBoxFlagShowSettingBandMorfonica = object.checkBoxFlagShowSettingBandMorfonica ?? 0;
+    message.checkBoxFlagShowSettingBandRaiseASuilen = object.checkBoxFlagShowSettingBandRaiseASuilen ?? 0;
     message.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard =
       object.checkBoxFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard ?? 0;
     message.radioButtonAnimationEpisodeFilterIndex = object.radioButtonAnimationEpisodeFilterIndex ?? 0;
@@ -33564,6 +35717,7 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
           }
           return acc;
         }, {});
+    message.checkBoxFlagShowSettingBandMyGO = object.checkBoxFlagShowSettingBandMyGO ?? 0;
     message.appealLastSettingCategoryMusicMap =
       (globalThis.Object.entries(object.appealLastSettingCategoryMusicMap ?? {}) as [string, string][]).reduce(
         (acc: { [key: number]: string }, [key, value]: [string, string]) => {
@@ -33605,6 +35759,15 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     message.checkBoxTrainingFlagShowSettingAttributePure = object.checkBoxTrainingFlagShowSettingAttributePure ?? false;
     message.checkBoxTrainingFlagShowSettingAttributeHappy = object.checkBoxTrainingFlagShowSettingAttributeHappy ??
       false;
+    message.checkBoxTrainingFlagShowSettingBandPoppinParty = object.checkBoxTrainingFlagShowSettingBandPoppinParty ??
+      false;
+    message.checkBoxTrainingFlagShowSettingBandAfterglow = object.checkBoxTrainingFlagShowSettingBandAfterglow ?? false;
+    message.checkBoxTrainingFlagShowSettingBandPastelPalettes =
+      object.checkBoxTrainingFlagShowSettingBandPastelPalettes ?? false;
+    message.checkBoxTrainingFlagShowSettingBandRoselia = object.checkBoxTrainingFlagShowSettingBandRoselia ?? false;
+    message.checkBoxTrainingFlagShowSettingBandHelloHappyWorld =
+      object.checkBoxTrainingFlagShowSettingBandHelloHappyWorld ?? false;
+    message.checkBoxTrainingFlagShowSettingBandMyGO = object.checkBoxTrainingFlagShowSettingBandMyGO ?? 0;
     message.checkBoxTrainingFlagShowSettingSkillScoreUp = object.checkBoxTrainingFlagShowSettingSkillScoreUp ?? 0;
     message.checkBoxTrainingFlagShowSettingSkillConditionedScoreUp =
       object.checkBoxTrainingFlagShowSettingSkillConditionedScoreUp ?? 0;
@@ -33624,6 +35787,17 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       false;
     message.checkBoxWaitingRoomFlagShowSettingAttributeHappy =
       object.checkBoxWaitingRoomFlagShowSettingAttributeHappy ?? false;
+    message.checkBoxWaitingRoomFlagShowSettingBandPoppinParty =
+      object.checkBoxWaitingRoomFlagShowSettingBandPoppinParty ?? false;
+    message.checkBoxWaitingRoomFlagShowSettingBandAfterglow = object.checkBoxWaitingRoomFlagShowSettingBandAfterglow ??
+      false;
+    message.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes =
+      object.checkBoxWaitingRoomFlagShowSettingBandPastelPalettes ?? false;
+    message.checkBoxWaitingRoomFlagShowSettingBandRoselia = object.checkBoxWaitingRoomFlagShowSettingBandRoselia ??
+      false;
+    message.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld =
+      object.checkBoxWaitingRoomFlagShowSettingBandHelloHappyWorld ?? false;
+    message.checkBoxWaitingRoomFlagShowSettingBandMyGO = object.checkBoxWaitingRoomFlagShowSettingBandMyGO ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillScoreUp = object.checkBoxWaitingRoomFlagShowSettingSkillScoreUp ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillConditionedScoreUp =
       object.checkBoxWaitingRoomFlagShowSettingSkillConditionedScoreUp ?? 0;
@@ -33631,6 +35805,10 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       object.checkBoxWaitingRoomFlagShowSettingSkillJudgementWithScoreUp ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp =
       object.checkBoxWaitingRoomFlagShowSettingSkillHealWithScoreUp ?? 0;
+    message.checkBoxWaitingRoomFlagShowSettingBandMorfonica = object.checkBoxWaitingRoomFlagShowSettingBandMorfonica ??
+      0;
+    message.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen =
+      object.checkBoxWaitingRoomFlagShowSettingBandRaiseASuilen ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp =
       object.checkBoxWaitingRoomFlagShowSettingSkillHealOrScoreUp ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillDamageGuardWithScoreUp =
@@ -33639,6 +35817,9 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       object.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithHealAndDamageGuard ?? 0;
     message.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie =
       object.checkBoxWaitingRoomFlagShowSettingSkillConditionalScoreUpWithNeverDie ?? 0;
+    message.checkBoxTrainingFlagShowSettingBandMorfonica = object.checkBoxTrainingFlagShowSettingBandMorfonica ?? 0;
+    message.checkBoxTrainingFlagShowSettingBandRaiseASuilen = object.checkBoxTrainingFlagShowSettingBandRaiseASuilen ??
+      0;
     message.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp =
       object.checkBoxTrainingFlagShowSettingSkillHealOrScoreUp ?? 0;
     message.checkBoxTrainingFlagShowSettingSkillDamageGuardWithScoreUp =
@@ -33659,6 +35840,15 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     message.checkBoxDefaultFlagShowSettingAttributeCool = object.checkBoxDefaultFlagShowSettingAttributeCool ?? false;
     message.checkBoxDefaultFlagShowSettingAttributePure = object.checkBoxDefaultFlagShowSettingAttributePure ?? false;
     message.checkBoxDefaultFlagShowSettingAttributeHappy = object.checkBoxDefaultFlagShowSettingAttributeHappy ?? false;
+    message.checkBoxDefaultFlagShowSettingBandPoppinParty = object.checkBoxDefaultFlagShowSettingBandPoppinParty ??
+      false;
+    message.checkBoxDefaultFlagShowSettingBandAfterglow = object.checkBoxDefaultFlagShowSettingBandAfterglow ?? false;
+    message.checkBoxDefaultFlagShowSettingBandPastelPalettes =
+      object.checkBoxDefaultFlagShowSettingBandPastelPalettes ?? false;
+    message.checkBoxDefaultFlagShowSettingBandRoselia = object.checkBoxDefaultFlagShowSettingBandRoselia ?? false;
+    message.checkBoxDefaultFlagShowSettingBandHelloHappyWorld =
+      object.checkBoxDefaultFlagShowSettingBandHelloHappyWorld ?? false;
+    message.checkBoxDefaultFlagShowSettingBandMyGO = object.checkBoxDefaultFlagShowSettingBandMyGO ?? 0;
     message.checkBoxDefaultFlagShowSettingSkillScoreUp = object.checkBoxDefaultFlagShowSettingSkillScoreUp ?? 0;
     message.checkBoxDefaultFlagShowSettingSkillConditionedScoreUp =
       object.checkBoxDefaultFlagShowSettingSkillConditionedScoreUp ?? 0;
@@ -33666,6 +35856,8 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       object.checkBoxDefaultFlagShowSettingSkillJudgementWithScoreUp ?? 0;
     message.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp =
       object.checkBoxDefaultFlagShowSettingSkillHealWithScoreUp ?? 0;
+    message.checkBoxDefaultFlagShowSettingBandMorfonica = object.checkBoxDefaultFlagShowSettingBandMorfonica ?? 0;
+    message.checkBoxDefaultFlagShowSettingBandRaiseASuilen = object.checkBoxDefaultFlagShowSettingBandRaiseASuilen ?? 0;
     message.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp =
       object.checkBoxDefaultFlagShowSettingSkillHealOrScoreUp ?? 0;
     message.checkBoxDefaultFlagShowSettingSkillDamageGuardWithScoreUp =
@@ -33687,6 +35879,17 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       object.checkBoxSkillPracticeFlagShowSettingAttributePure ?? false;
     message.checkBoxSkillPracticeFlagShowSettingAttributeHappy =
       object.checkBoxSkillPracticeFlagShowSettingAttributeHappy ?? false;
+    message.checkBoxSkillPracticeFlagShowSettingBandPoppinParty =
+      object.checkBoxSkillPracticeFlagShowSettingBandPoppinParty ?? false;
+    message.checkBoxSkillPracticeFlagShowSettingBandAfterglow =
+      object.checkBoxSkillPracticeFlagShowSettingBandAfterglow ?? false;
+    message.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes =
+      object.checkBoxSkillPracticeFlagShowSettingBandPastelPalettes ?? false;
+    message.checkBoxSkillPracticeFlagShowSettingBandRoselia = object.checkBoxSkillPracticeFlagShowSettingBandRoselia ??
+      false;
+    message.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld =
+      object.checkBoxSkillPracticeFlagShowSettingBandHelloHappyWorld ?? false;
+    message.checkBoxSkillPracticeFlagShowSettingBandMyGO = object.checkBoxSkillPracticeFlagShowSettingBandMyGO ?? 0;
     message.checkBoxSkillPracticeFlagShowSettingSkillScoreUp =
       object.checkBoxSkillPracticeFlagShowSettingSkillScoreUp ?? 0;
     message.checkBoxSkillPracticeFlagShowSettingSkillConditionedScoreUp =
@@ -33695,6 +35898,10 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
       object.checkBoxSkillPracticeFlagShowSettingSkillJudgementWithScoreUp ?? 0;
     message.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp =
       object.checkBoxSkillPracticeFlagShowSettingSkillHealWithScoreUp ?? 0;
+    message.checkBoxSkillPracticeFlagShowSettingBandMorfonica =
+      object.checkBoxSkillPracticeFlagShowSettingBandMorfonica ?? 0;
+    message.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen =
+      object.checkBoxSkillPracticeFlagShowSettingBandRaiseASuilen ?? 0;
     message.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp =
       object.checkBoxSkillPracticeFlagShowSettingSkillHealOrScoreUp ?? 0;
     message.checkBoxSkillPracticeFlagShowSettingSkillDamageGuardWithScoreUp =
@@ -33707,12 +35914,6 @@ export const InAppCacheProtoData: MessageFns<InAppCacheProtoData> = {
     message.skillPracticeSortingOrder = object.skillPracticeSortingOrder ?? 0;
     message.radioButtonSkillPracticeSortIndexWithEventBonus = object.radioButtonSkillPracticeSortIndexWithEventBonus ??
       0;
-    message.lastSelectedStageChallengeId = object.lastSelectedStageChallengeId ?? 0;
-    message.isNeverShowHabahiroDialogMusicIds = object.isNeverShowHabahiroDialogMusicIds?.map((e) => e) || [];
-    message.isSituationCharacterFilterInitFlag = object.isSituationCharacterFilterInitFlag ?? false;
-    message.isNfoFirstTransitioned = object.isNfoFirstTransitioned ?? false;
-    message.selecteNfoLevelId = object.selecteNfoLevelId ?? 0;
-    message.selectNfoCharacterId = object.selectNfoCharacterId ?? 0;
     return message;
   },
 };
@@ -36221,6 +38422,9 @@ function createBaseLiveCoreSettingsProtoData(): LiveCoreSettingsProtoData {
     migrateSettingVersion: 0,
     HighFrequencyMode: false,
     judgementAdjustValueB: 0,
+    customLightModeSituationId: 0,
+    customLightModeSituationIsAfterTraining: false,
+    customLightModeSpScreenId: 0,
   };
 }
 
@@ -36347,6 +38551,15 @@ export const LiveCoreSettingsProtoData: MessageFns<LiveCoreSettingsProtoData> = 
     }
     if (message.judgementAdjustValueB !== 0) {
       writer.uint32(288).int32(message.judgementAdjustValueB);
+    }
+    if (message.customLightModeSituationId !== 0) {
+      writer.uint32(8008).int32(message.customLightModeSituationId);
+    }
+    if (message.customLightModeSituationIsAfterTraining !== false) {
+      writer.uint32(8016).bool(message.customLightModeSituationIsAfterTraining);
+    }
+    if (message.customLightModeSpScreenId !== 0) {
+      writer.uint32(8024).int32(message.customLightModeSpScreenId);
     }
     return writer;
   },
@@ -36659,6 +38872,30 @@ export const LiveCoreSettingsProtoData: MessageFns<LiveCoreSettingsProtoData> = 
           message.judgementAdjustValueB = reader.int32();
           continue;
         }
+        case 1001: {
+          if (tag !== 8008) {
+            break;
+          }
+
+          message.customLightModeSituationId = reader.int32();
+          continue;
+        }
+        case 1002: {
+          if (tag !== 8016) {
+            break;
+          }
+
+          message.customLightModeSituationIsAfterTraining = reader.bool();
+          continue;
+        }
+        case 1003: {
+          if (tag !== 8024) {
+            break;
+          }
+
+          message.customLightModeSpScreenId = reader.int32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -36765,6 +39002,15 @@ export const LiveCoreSettingsProtoData: MessageFns<LiveCoreSettingsProtoData> = 
       migrateSettingVersion: isSet(object.migrateSettingVersion) ? globalThis.Number(object.migrateSettingVersion) : 0,
       HighFrequencyMode: isSet(object.HighFrequencyMode) ? globalThis.Boolean(object.HighFrequencyMode) : false,
       judgementAdjustValueB: isSet(object.judgementAdjustValueB) ? globalThis.Number(object.judgementAdjustValueB) : 0,
+      customLightModeSituationId: isSet(object.customLightModeSituationId)
+        ? globalThis.Number(object.customLightModeSituationId)
+        : 0,
+      customLightModeSituationIsAfterTraining: isSet(object.customLightModeSituationIsAfterTraining)
+        ? globalThis.Boolean(object.customLightModeSituationIsAfterTraining)
+        : false,
+      customLightModeSpScreenId: isSet(object.customLightModeSpScreenId)
+        ? globalThis.Number(object.customLightModeSpScreenId)
+        : 0,
     };
   },
 
@@ -36908,6 +39154,15 @@ export const LiveCoreSettingsProtoData: MessageFns<LiveCoreSettingsProtoData> = 
     if (message.judgementAdjustValueB !== 0) {
       obj.judgementAdjustValueB = Math.round(message.judgementAdjustValueB);
     }
+    if (message.customLightModeSituationId !== 0) {
+      obj.customLightModeSituationId = Math.round(message.customLightModeSituationId);
+    }
+    if (message.customLightModeSituationIsAfterTraining !== false) {
+      obj.customLightModeSituationIsAfterTraining = message.customLightModeSituationIsAfterTraining;
+    }
+    if (message.customLightModeSpScreenId !== 0) {
+      obj.customLightModeSpScreenId = Math.round(message.customLightModeSpScreenId);
+    }
     return obj;
   },
 
@@ -36993,6 +39248,9 @@ export const LiveCoreSettingsProtoData: MessageFns<LiveCoreSettingsProtoData> = 
     message.migrateSettingVersion = object.migrateSettingVersion ?? 0;
     message.HighFrequencyMode = object.HighFrequencyMode ?? false;
     message.judgementAdjustValueB = object.judgementAdjustValueB ?? 0;
+    message.customLightModeSituationId = object.customLightModeSituationId ?? 0;
+    message.customLightModeSituationIsAfterTraining = object.customLightModeSituationIsAfterTraining ?? false;
+    message.customLightModeSpScreenId = object.customLightModeSpScreenId ?? 0;
     return message;
   },
 };
@@ -37427,6 +39685,98 @@ export const LiveCoreSettingsProtoData_Star3DLiveViewerModeDictionaryEntry: Mess
     const message = createBaseLiveCoreSettingsProtoData_Star3DLiveViewerModeDictionaryEntry();
     message.key = object.key ?? 0;
     message.value = object.value ?? 0;
+    return message;
+  },
+};
+
+function createBaseLiveFeverSettingsData(): LiveFeverSettingsData {
+  return { eventId: 0, isTutorialCompleted: false, feverMode: 0 };
+}
+
+export const LiveFeverSettingsData: MessageFns<LiveFeverSettingsData> = {
+  encode(message: LiveFeverSettingsData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.eventId !== 0) {
+      writer.uint32(8).uint32(message.eventId);
+    }
+    if (message.isTutorialCompleted !== false) {
+      writer.uint32(16).bool(message.isTutorialCompleted);
+    }
+    if (message.feverMode !== 0) {
+      writer.uint32(24).int32(message.feverMode);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): LiveFeverSettingsData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseLiveFeverSettingsData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.eventId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.isTutorialCompleted = reader.bool();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.feverMode = reader.int32() as any;
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): LiveFeverSettingsData {
+    return {
+      eventId: isSet(object.eventId) ? globalThis.Number(object.eventId) : 0,
+      isTutorialCompleted: isSet(object.isTutorialCompleted) ? globalThis.Boolean(object.isTutorialCompleted) : false,
+      feverMode: isSet(object.feverMode) ? feverModeFromJSON(object.feverMode) : 0,
+    };
+  },
+
+  toJSON(message: LiveFeverSettingsData): unknown {
+    const obj: any = {};
+    if (message.eventId !== 0) {
+      obj.eventId = Math.round(message.eventId);
+    }
+    if (message.isTutorialCompleted !== false) {
+      obj.isTutorialCompleted = message.isTutorialCompleted;
+    }
+    if (message.feverMode !== 0) {
+      obj.feverMode = feverModeToJSON(message.feverMode);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<LiveFeverSettingsData>, I>>(base?: I): LiveFeverSettingsData {
+    return LiveFeverSettingsData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<LiveFeverSettingsData>, I>>(object: I): LiveFeverSettingsData {
+    const message = createBaseLiveFeverSettingsData();
+    message.eventId = object.eventId ?? 0;
+    message.isTutorialCompleted = object.isTutorialCompleted ?? false;
+    message.feverMode = object.feverMode ?? 0;
     return message;
   },
 };
@@ -40449,6 +42799,396 @@ export const MasterAnimationSituationList: MessageFns<MasterAnimationSituationLi
   fromPartial<I extends Exact<DeepPartial<MasterAnimationSituationList>, I>>(object: I): MasterAnimationSituationList {
     const message = createBaseMasterAnimationSituationList();
     message.entries = object.entries?.map((e) => MasterAnimationSituation.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterAprilFool2021Page(): MasterAprilFool2021Page {
+  return { aprilFool2021PageId: 0, assetBundleName: "", bgmFileName: "", startAt: "0", endAt: "0" };
+}
+
+export const MasterAprilFool2021Page: MessageFns<MasterAprilFool2021Page> = {
+  encode(message: MasterAprilFool2021Page, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.aprilFool2021PageId !== 0) {
+      writer.uint32(8).uint32(message.aprilFool2021PageId);
+    }
+    if (message.assetBundleName !== "") {
+      writer.uint32(18).string(message.assetBundleName);
+    }
+    if (message.bgmFileName !== "") {
+      writer.uint32(26).string(message.bgmFileName);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(32).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(40).uint64(message.endAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterAprilFool2021Page {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterAprilFool2021Page();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.aprilFool2021PageId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.assetBundleName = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.bgmFileName = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterAprilFool2021Page {
+    return {
+      aprilFool2021PageId: isSet(object.aprilFool2021PageId) ? globalThis.Number(object.aprilFool2021PageId) : 0,
+      assetBundleName: isSet(object.assetBundleName) ? globalThis.String(object.assetBundleName) : "",
+      bgmFileName: isSet(object.bgmFileName) ? globalThis.String(object.bgmFileName) : "",
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+    };
+  },
+
+  toJSON(message: MasterAprilFool2021Page): unknown {
+    const obj: any = {};
+    if (message.aprilFool2021PageId !== 0) {
+      obj.aprilFool2021PageId = Math.round(message.aprilFool2021PageId);
+    }
+    if (message.assetBundleName !== "") {
+      obj.assetBundleName = message.assetBundleName;
+    }
+    if (message.bgmFileName !== "") {
+      obj.bgmFileName = message.bgmFileName;
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterAprilFool2021Page>, I>>(base?: I): MasterAprilFool2021Page {
+    return MasterAprilFool2021Page.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterAprilFool2021Page>, I>>(object: I): MasterAprilFool2021Page {
+    const message = createBaseMasterAprilFool2021Page();
+    message.aprilFool2021PageId = object.aprilFool2021PageId ?? 0;
+    message.assetBundleName = object.assetBundleName ?? "";
+    message.bgmFileName = object.bgmFileName ?? "";
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseMasterAprilFool2021PageList(): MasterAprilFool2021PageList {
+  return { entries: [] };
+}
+
+export const MasterAprilFool2021PageList: MessageFns<MasterAprilFool2021PageList> = {
+  encode(message: MasterAprilFool2021PageList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterAprilFool2021Page.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterAprilFool2021PageList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterAprilFool2021PageList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterAprilFool2021Page.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterAprilFool2021PageList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterAprilFool2021Page.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterAprilFool2021PageList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterAprilFool2021Page.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterAprilFool2021PageList>, I>>(base?: I): MasterAprilFool2021PageList {
+    return MasterAprilFool2021PageList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterAprilFool2021PageList>, I>>(object: I): MasterAprilFool2021PageList {
+    const message = createBaseMasterAprilFool2021PageList();
+    message.entries = object.entries?.map((e) => MasterAprilFool2021Page.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterAprilFool2021Region(): MasterAprilFool2021Region {
+  return { aprilFool2021RegionId: 0, region: "", storyType: "", seq: 0, characterId: 0, genericStoryId: 0 };
+}
+
+export const MasterAprilFool2021Region: MessageFns<MasterAprilFool2021Region> = {
+  encode(message: MasterAprilFool2021Region, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.aprilFool2021RegionId !== 0) {
+      writer.uint32(8).uint32(message.aprilFool2021RegionId);
+    }
+    if (message.region !== "") {
+      writer.uint32(18).string(message.region);
+    }
+    if (message.storyType !== "") {
+      writer.uint32(26).string(message.storyType);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(32).uint32(message.seq);
+    }
+    if (message.characterId !== 0) {
+      writer.uint32(40).uint32(message.characterId);
+    }
+    if (message.genericStoryId !== 0) {
+      writer.uint32(48).uint32(message.genericStoryId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterAprilFool2021Region {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterAprilFool2021Region();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.aprilFool2021RegionId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.region = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.storyType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.characterId = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.genericStoryId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterAprilFool2021Region {
+    return {
+      aprilFool2021RegionId: isSet(object.aprilFool2021RegionId) ? globalThis.Number(object.aprilFool2021RegionId) : 0,
+      region: isSet(object.region) ? globalThis.String(object.region) : "",
+      storyType: isSet(object.storyType) ? globalThis.String(object.storyType) : "",
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      characterId: isSet(object.characterId) ? globalThis.Number(object.characterId) : 0,
+      genericStoryId: isSet(object.genericStoryId) ? globalThis.Number(object.genericStoryId) : 0,
+    };
+  },
+
+  toJSON(message: MasterAprilFool2021Region): unknown {
+    const obj: any = {};
+    if (message.aprilFool2021RegionId !== 0) {
+      obj.aprilFool2021RegionId = Math.round(message.aprilFool2021RegionId);
+    }
+    if (message.region !== "") {
+      obj.region = message.region;
+    }
+    if (message.storyType !== "") {
+      obj.storyType = message.storyType;
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.characterId !== 0) {
+      obj.characterId = Math.round(message.characterId);
+    }
+    if (message.genericStoryId !== 0) {
+      obj.genericStoryId = Math.round(message.genericStoryId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterAprilFool2021Region>, I>>(base?: I): MasterAprilFool2021Region {
+    return MasterAprilFool2021Region.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterAprilFool2021Region>, I>>(object: I): MasterAprilFool2021Region {
+    const message = createBaseMasterAprilFool2021Region();
+    message.aprilFool2021RegionId = object.aprilFool2021RegionId ?? 0;
+    message.region = object.region ?? "";
+    message.storyType = object.storyType ?? "";
+    message.seq = object.seq ?? 0;
+    message.characterId = object.characterId ?? 0;
+    message.genericStoryId = object.genericStoryId ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterAprilFool2021RegionList(): MasterAprilFool2021RegionList {
+  return { entries: [] };
+}
+
+export const MasterAprilFool2021RegionList: MessageFns<MasterAprilFool2021RegionList> = {
+  encode(message: MasterAprilFool2021RegionList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterAprilFool2021Region.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterAprilFool2021RegionList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterAprilFool2021RegionList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterAprilFool2021Region.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterAprilFool2021RegionList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterAprilFool2021Region.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterAprilFool2021RegionList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterAprilFool2021Region.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterAprilFool2021RegionList>, I>>(base?: I): MasterAprilFool2021RegionList {
+    return MasterAprilFool2021RegionList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterAprilFool2021RegionList>, I>>(
+    object: I,
+  ): MasterAprilFool2021RegionList {
+    const message = createBaseMasterAprilFool2021RegionList();
+    message.entries = object.entries?.map((e) => MasterAprilFool2021Region.fromPartial(e)) || [];
     return message;
   },
 };
@@ -46921,6 +49661,1666 @@ export const MasterBandStoryMap_EntriesEntry: MessageFns<MasterBandStoryMap_Entr
   },
 };
 
+function createBaseMasterBiliActivity(): MasterBiliActivity {
+  return { activityId: 0, activityName: "", seq: 0, startAt: "0", endAt: "0", upperLimit: 0, rewardList: undefined };
+}
+
+export const MasterBiliActivity: MessageFns<MasterBiliActivity> = {
+  encode(message: MasterBiliActivity, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.activityId !== 0) {
+      writer.uint32(8).uint32(message.activityId);
+    }
+    if (message.activityName !== "") {
+      writer.uint32(18).string(message.activityName);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(24).uint32(message.seq);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(32).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(40).uint64(message.endAt);
+    }
+    if (message.upperLimit !== 0) {
+      writer.uint32(48).uint32(message.upperLimit);
+    }
+    if (message.rewardList !== undefined) {
+      MasterBiliActivityRewardList.encode(message.rewardList, writer.uint32(58).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivity {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivity();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.activityId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.activityName = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.upperLimit = reader.uint32();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.rewardList = MasterBiliActivityRewardList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivity {
+    return {
+      activityId: isSet(object.activityId) ? globalThis.Number(object.activityId) : 0,
+      activityName: isSet(object.activityName) ? globalThis.String(object.activityName) : "",
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+      upperLimit: isSet(object.upperLimit) ? globalThis.Number(object.upperLimit) : 0,
+      rewardList: isSet(object.rewardList) ? MasterBiliActivityRewardList.fromJSON(object.rewardList) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliActivity): unknown {
+    const obj: any = {};
+    if (message.activityId !== 0) {
+      obj.activityId = Math.round(message.activityId);
+    }
+    if (message.activityName !== "") {
+      obj.activityName = message.activityName;
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    if (message.upperLimit !== 0) {
+      obj.upperLimit = Math.round(message.upperLimit);
+    }
+    if (message.rewardList !== undefined) {
+      obj.rewardList = MasterBiliActivityRewardList.toJSON(message.rewardList);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivity>, I>>(base?: I): MasterBiliActivity {
+    return MasterBiliActivity.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivity>, I>>(object: I): MasterBiliActivity {
+    const message = createBaseMasterBiliActivity();
+    message.activityId = object.activityId ?? 0;
+    message.activityName = object.activityName ?? "";
+    message.seq = object.seq ?? 0;
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    message.upperLimit = object.upperLimit ?? 0;
+    message.rewardList = (object.rewardList !== undefined && object.rewardList !== null)
+      ? MasterBiliActivityRewardList.fromPartial(object.rewardList)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityList(): MasterBiliActivityList {
+  return { entries: [] };
+}
+
+export const MasterBiliActivityList: MessageFns<MasterBiliActivityList> = {
+  encode(message: MasterBiliActivityList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliActivity.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliActivity.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliActivity.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliActivityList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliActivity.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityList>, I>>(base?: I): MasterBiliActivityList {
+    return MasterBiliActivityList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityList>, I>>(object: I): MasterBiliActivityList {
+    const message = createBaseMasterBiliActivityList();
+    message.entries = object.entries?.map((e) => MasterBiliActivity.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityMap(): MasterBiliActivityMap {
+  return { entries: {} };
+}
+
+export const MasterBiliActivityMap: MessageFns<MasterBiliActivityMap> = {
+  encode(message: MasterBiliActivityMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliActivity]) => {
+      MasterBiliActivityMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliActivityMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterBiliActivity }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterBiliActivity.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliActivityMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliActivity][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliActivity.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityMap>, I>>(base?: I): MasterBiliActivityMap {
+    return MasterBiliActivityMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityMap>, I>>(object: I): MasterBiliActivityMap {
+    const message = createBaseMasterBiliActivityMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliActivity][]).reduce(
+      (acc: { [key: number]: MasterBiliActivity }, [key, value]: [string, MasterBiliActivity]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = MasterBiliActivity.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityMap_EntriesEntry(): MasterBiliActivityMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MasterBiliActivityMap_EntriesEntry: MessageFns<MasterBiliActivityMap_EntriesEntry> = {
+  encode(message: MasterBiliActivityMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliActivity.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliActivity.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterBiliActivity.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliActivityMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliActivity.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliActivityMap_EntriesEntry {
+    return MasterBiliActivityMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliActivityMap_EntriesEntry {
+    const message = createBaseMasterBiliActivityMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliActivity.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityReward(): MasterBiliActivityReward {
+  return {
+    activityId: 0,
+    seq: 0,
+    activityRewardId: 0,
+    resourceType: "",
+    resourceId: 0,
+    quantity: 0,
+    rateResourceType: "",
+    rateResourceId: 0,
+    rate: 0,
+  };
+}
+
+export const MasterBiliActivityReward: MessageFns<MasterBiliActivityReward> = {
+  encode(message: MasterBiliActivityReward, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.activityId !== 0) {
+      writer.uint32(8).uint32(message.activityId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.activityRewardId !== 0) {
+      writer.uint32(24).uint32(message.activityRewardId);
+    }
+    if (message.resourceType !== "") {
+      writer.uint32(34).string(message.resourceType);
+    }
+    if (message.resourceId !== 0) {
+      writer.uint32(40).uint32(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(48).uint32(message.quantity);
+    }
+    if (message.rateResourceType !== "") {
+      writer.uint32(58).string(message.rateResourceType);
+    }
+    if (message.rateResourceId !== 0) {
+      writer.uint32(64).uint32(message.rateResourceId);
+    }
+    if (message.rate !== 0) {
+      writer.uint32(72).uint32(message.rate);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityReward {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityReward();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.activityId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.activityRewardId = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.resourceType = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.resourceId = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.quantity = reader.uint32();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.rateResourceType = reader.string();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.rateResourceId = reader.uint32();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.rate = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityReward {
+    return {
+      activityId: isSet(object.activityId) ? globalThis.Number(object.activityId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      activityRewardId: isSet(object.activityRewardId) ? globalThis.Number(object.activityRewardId) : 0,
+      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
+      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
+      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
+      rateResourceType: isSet(object.rateResourceType) ? globalThis.String(object.rateResourceType) : "",
+      rateResourceId: isSet(object.rateResourceId) ? globalThis.Number(object.rateResourceId) : 0,
+      rate: isSet(object.rate) ? globalThis.Number(object.rate) : 0,
+    };
+  },
+
+  toJSON(message: MasterBiliActivityReward): unknown {
+    const obj: any = {};
+    if (message.activityId !== 0) {
+      obj.activityId = Math.round(message.activityId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.activityRewardId !== 0) {
+      obj.activityRewardId = Math.round(message.activityRewardId);
+    }
+    if (message.resourceType !== "") {
+      obj.resourceType = message.resourceType;
+    }
+    if (message.resourceId !== 0) {
+      obj.resourceId = Math.round(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      obj.quantity = Math.round(message.quantity);
+    }
+    if (message.rateResourceType !== "") {
+      obj.rateResourceType = message.rateResourceType;
+    }
+    if (message.rateResourceId !== 0) {
+      obj.rateResourceId = Math.round(message.rateResourceId);
+    }
+    if (message.rate !== 0) {
+      obj.rate = Math.round(message.rate);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityReward>, I>>(base?: I): MasterBiliActivityReward {
+    return MasterBiliActivityReward.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityReward>, I>>(object: I): MasterBiliActivityReward {
+    const message = createBaseMasterBiliActivityReward();
+    message.activityId = object.activityId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.activityRewardId = object.activityRewardId ?? 0;
+    message.resourceType = object.resourceType ?? "";
+    message.resourceId = object.resourceId ?? 0;
+    message.quantity = object.quantity ?? 0;
+    message.rateResourceType = object.rateResourceType ?? "";
+    message.rateResourceId = object.rateResourceId ?? 0;
+    message.rate = object.rate ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityRewardList(): MasterBiliActivityRewardList {
+  return { entries: [] };
+}
+
+export const MasterBiliActivityRewardList: MessageFns<MasterBiliActivityRewardList> = {
+  encode(message: MasterBiliActivityRewardList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliActivityReward.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityRewardList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityRewardList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliActivityReward.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityRewardList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliActivityReward.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliActivityRewardList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliActivityReward.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityRewardList>, I>>(base?: I): MasterBiliActivityRewardList {
+    return MasterBiliActivityRewardList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityRewardList>, I>>(object: I): MasterBiliActivityRewardList {
+    const message = createBaseMasterBiliActivityRewardList();
+    message.entries = object.entries?.map((e) => MasterBiliActivityReward.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityRewardMap(): MasterBiliActivityRewardMap {
+  return { entries: {} };
+}
+
+export const MasterBiliActivityRewardMap: MessageFns<MasterBiliActivityRewardMap> = {
+  encode(message: MasterBiliActivityRewardMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliActivityRewardList]) => {
+      MasterBiliActivityRewardMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityRewardMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityRewardMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliActivityRewardMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityRewardMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterBiliActivityRewardList }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterBiliActivityRewardList.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliActivityRewardMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliActivityRewardList][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliActivityRewardList.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityRewardMap>, I>>(base?: I): MasterBiliActivityRewardMap {
+    return MasterBiliActivityRewardMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityRewardMap>, I>>(object: I): MasterBiliActivityRewardMap {
+    const message = createBaseMasterBiliActivityRewardMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliActivityRewardList][])
+      .reduce(
+        (
+          acc: { [key: number]: MasterBiliActivityRewardList },
+          [key, value]: [string, MasterBiliActivityRewardList],
+        ) => {
+          if (value !== undefined) {
+            acc[globalThis.Number(key)] = MasterBiliActivityRewardList.fromPartial(value);
+          }
+          return acc;
+        },
+        {},
+      );
+    return message;
+  },
+};
+
+function createBaseMasterBiliActivityRewardMap_EntriesEntry(): MasterBiliActivityRewardMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MasterBiliActivityRewardMap_EntriesEntry: MessageFns<MasterBiliActivityRewardMap_EntriesEntry> = {
+  encode(message: MasterBiliActivityRewardMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliActivityRewardList.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliActivityRewardMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliActivityRewardMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliActivityRewardList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliActivityRewardMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterBiliActivityRewardList.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliActivityRewardMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliActivityRewardList.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliActivityRewardMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliActivityRewardMap_EntriesEntry {
+    return MasterBiliActivityRewardMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliActivityRewardMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliActivityRewardMap_EntriesEntry {
+    const message = createBaseMasterBiliActivityRewardMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliActivityRewardList.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliDecoEffectDetail(): MasterBiliDecoEffectDetail {
+  return {
+    decoEffectId: 0,
+    forever: false,
+    showDisplay: false,
+    displayStartAt: "0",
+    displayEndAt: "0",
+    transitionMethod: "",
+    transitionId: 0,
+  };
+}
+
+export const MasterBiliDecoEffectDetail: MessageFns<MasterBiliDecoEffectDetail> = {
+  encode(message: MasterBiliDecoEffectDetail, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.decoEffectId !== 0) {
+      writer.uint32(8).uint32(message.decoEffectId);
+    }
+    if (message.forever !== false) {
+      writer.uint32(16).bool(message.forever);
+    }
+    if (message.showDisplay !== false) {
+      writer.uint32(24).bool(message.showDisplay);
+    }
+    if (message.displayStartAt !== "0") {
+      writer.uint32(32).uint64(message.displayStartAt);
+    }
+    if (message.displayEndAt !== "0") {
+      writer.uint32(40).uint64(message.displayEndAt);
+    }
+    if (message.transitionMethod !== "") {
+      writer.uint32(50).string(message.transitionMethod);
+    }
+    if (message.transitionId !== 0) {
+      writer.uint32(56).uint32(message.transitionId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliDecoEffectDetail {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliDecoEffectDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.decoEffectId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.forever = reader.bool();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.showDisplay = reader.bool();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.displayStartAt = reader.uint64().toString();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.displayEndAt = reader.uint64().toString();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.transitionMethod = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.transitionId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliDecoEffectDetail {
+    return {
+      decoEffectId: isSet(object.decoEffectId) ? globalThis.Number(object.decoEffectId) : 0,
+      forever: isSet(object.forever) ? globalThis.Boolean(object.forever) : false,
+      showDisplay: isSet(object.showDisplay) ? globalThis.Boolean(object.showDisplay) : false,
+      displayStartAt: isSet(object.displayStartAt) ? globalThis.String(object.displayStartAt) : "0",
+      displayEndAt: isSet(object.displayEndAt) ? globalThis.String(object.displayEndAt) : "0",
+      transitionMethod: isSet(object.transitionMethod) ? globalThis.String(object.transitionMethod) : "",
+      transitionId: isSet(object.transitionId) ? globalThis.Number(object.transitionId) : 0,
+    };
+  },
+
+  toJSON(message: MasterBiliDecoEffectDetail): unknown {
+    const obj: any = {};
+    if (message.decoEffectId !== 0) {
+      obj.decoEffectId = Math.round(message.decoEffectId);
+    }
+    if (message.forever !== false) {
+      obj.forever = message.forever;
+    }
+    if (message.showDisplay !== false) {
+      obj.showDisplay = message.showDisplay;
+    }
+    if (message.displayStartAt !== "0") {
+      obj.displayStartAt = message.displayStartAt;
+    }
+    if (message.displayEndAt !== "0") {
+      obj.displayEndAt = message.displayEndAt;
+    }
+    if (message.transitionMethod !== "") {
+      obj.transitionMethod = message.transitionMethod;
+    }
+    if (message.transitionId !== 0) {
+      obj.transitionId = Math.round(message.transitionId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliDecoEffectDetail>, I>>(base?: I): MasterBiliDecoEffectDetail {
+    return MasterBiliDecoEffectDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliDecoEffectDetail>, I>>(object: I): MasterBiliDecoEffectDetail {
+    const message = createBaseMasterBiliDecoEffectDetail();
+    message.decoEffectId = object.decoEffectId ?? 0;
+    message.forever = object.forever ?? false;
+    message.showDisplay = object.showDisplay ?? false;
+    message.displayStartAt = object.displayStartAt ?? "0";
+    message.displayEndAt = object.displayEndAt ?? "0";
+    message.transitionMethod = object.transitionMethod ?? "";
+    message.transitionId = object.transitionId ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterBiliDecoEffectDetailList(): MasterBiliDecoEffectDetailList {
+  return { entries: [] };
+}
+
+export const MasterBiliDecoEffectDetailList: MessageFns<MasterBiliDecoEffectDetailList> = {
+  encode(message: MasterBiliDecoEffectDetailList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliDecoEffectDetail.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliDecoEffectDetailList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliDecoEffectDetailList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliDecoEffectDetail.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliDecoEffectDetailList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliDecoEffectDetail.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliDecoEffectDetailList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliDecoEffectDetail.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliDecoEffectDetailList>, I>>(base?: I): MasterBiliDecoEffectDetailList {
+    return MasterBiliDecoEffectDetailList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliDecoEffectDetailList>, I>>(
+    object: I,
+  ): MasterBiliDecoEffectDetailList {
+    const message = createBaseMasterBiliDecoEffectDetailList();
+    message.entries = object.entries?.map((e) => MasterBiliDecoEffectDetail.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliDegreeEffect(): MasterBiliDegreeEffect {
+  return { degreeId: 0, seq: 0, degreeEffectType: "", assetBundleName: "", description: "", biliDegreeEffectId: 0 };
+}
+
+export const MasterBiliDegreeEffect: MessageFns<MasterBiliDegreeEffect> = {
+  encode(message: MasterBiliDegreeEffect, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.degreeId !== 0) {
+      writer.uint32(8).uint32(message.degreeId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.degreeEffectType !== "") {
+      writer.uint32(26).string(message.degreeEffectType);
+    }
+    if (message.assetBundleName !== "") {
+      writer.uint32(34).string(message.assetBundleName);
+    }
+    if (message.description !== "") {
+      writer.uint32(42).string(message.description);
+    }
+    if (message.biliDegreeEffectId !== 0) {
+      writer.uint32(48).uint32(message.biliDegreeEffectId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliDegreeEffect {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliDegreeEffect();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.degreeId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.degreeEffectType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.assetBundleName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.biliDegreeEffectId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliDegreeEffect {
+    return {
+      degreeId: isSet(object.degreeId) ? globalThis.Number(object.degreeId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      degreeEffectType: isSet(object.degreeEffectType) ? globalThis.String(object.degreeEffectType) : "",
+      assetBundleName: isSet(object.assetBundleName) ? globalThis.String(object.assetBundleName) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      biliDegreeEffectId: isSet(object.biliDegreeEffectId) ? globalThis.Number(object.biliDegreeEffectId) : 0,
+    };
+  },
+
+  toJSON(message: MasterBiliDegreeEffect): unknown {
+    const obj: any = {};
+    if (message.degreeId !== 0) {
+      obj.degreeId = Math.round(message.degreeId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.degreeEffectType !== "") {
+      obj.degreeEffectType = message.degreeEffectType;
+    }
+    if (message.assetBundleName !== "") {
+      obj.assetBundleName = message.assetBundleName;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    if (message.biliDegreeEffectId !== 0) {
+      obj.biliDegreeEffectId = Math.round(message.biliDegreeEffectId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliDegreeEffect>, I>>(base?: I): MasterBiliDegreeEffect {
+    return MasterBiliDegreeEffect.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliDegreeEffect>, I>>(object: I): MasterBiliDegreeEffect {
+    const message = createBaseMasterBiliDegreeEffect();
+    message.degreeId = object.degreeId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.degreeEffectType = object.degreeEffectType ?? "";
+    message.assetBundleName = object.assetBundleName ?? "";
+    message.description = object.description ?? "";
+    message.biliDegreeEffectId = object.biliDegreeEffectId ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterBiliDegreeEffectList(): MasterBiliDegreeEffectList {
+  return { entries: [] };
+}
+
+export const MasterBiliDegreeEffectList: MessageFns<MasterBiliDegreeEffectList> = {
+  encode(message: MasterBiliDegreeEffectList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliDegreeEffect.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliDegreeEffectList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliDegreeEffectList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliDegreeEffect.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliDegreeEffectList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliDegreeEffect.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliDegreeEffectList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliDegreeEffect.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliDegreeEffectList>, I>>(base?: I): MasterBiliDegreeEffectList {
+    return MasterBiliDegreeEffectList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliDegreeEffectList>, I>>(object: I): MasterBiliDegreeEffectList {
+    const message = createBaseMasterBiliDegreeEffectList();
+    message.entries = object.entries?.map((e) => MasterBiliDegreeEffect.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliGachaStepupDetail(): MasterBiliGachaStepupDetail {
+  return { gachaId: 0, stepNumber: 0, situationId: 0, characterId: 0, rarityIndex: 0, weight: 0, stepGachaFilterId: 0 };
+}
+
+export const MasterBiliGachaStepupDetail: MessageFns<MasterBiliGachaStepupDetail> = {
+  encode(message: MasterBiliGachaStepupDetail, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.gachaId !== 0) {
+      writer.uint32(8).uint32(message.gachaId);
+    }
+    if (message.stepNumber !== 0) {
+      writer.uint32(16).uint32(message.stepNumber);
+    }
+    if (message.situationId !== 0) {
+      writer.uint32(24).uint32(message.situationId);
+    }
+    if (message.characterId !== 0) {
+      writer.uint32(32).uint32(message.characterId);
+    }
+    if (message.rarityIndex !== 0) {
+      writer.uint32(40).uint32(message.rarityIndex);
+    }
+    if (message.weight !== 0) {
+      writer.uint32(48).uint32(message.weight);
+    }
+    if (message.stepGachaFilterId !== 0) {
+      writer.uint32(56).uint32(message.stepGachaFilterId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliGachaStepupDetail {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliGachaStepupDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.gachaId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.stepNumber = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.situationId = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.characterId = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.rarityIndex = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.weight = reader.uint32();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.stepGachaFilterId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliGachaStepupDetail {
+    return {
+      gachaId: isSet(object.gachaId) ? globalThis.Number(object.gachaId) : 0,
+      stepNumber: isSet(object.stepNumber) ? globalThis.Number(object.stepNumber) : 0,
+      situationId: isSet(object.situationId) ? globalThis.Number(object.situationId) : 0,
+      characterId: isSet(object.characterId) ? globalThis.Number(object.characterId) : 0,
+      rarityIndex: isSet(object.rarityIndex) ? globalThis.Number(object.rarityIndex) : 0,
+      weight: isSet(object.weight) ? globalThis.Number(object.weight) : 0,
+      stepGachaFilterId: isSet(object.stepGachaFilterId) ? globalThis.Number(object.stepGachaFilterId) : 0,
+    };
+  },
+
+  toJSON(message: MasterBiliGachaStepupDetail): unknown {
+    const obj: any = {};
+    if (message.gachaId !== 0) {
+      obj.gachaId = Math.round(message.gachaId);
+    }
+    if (message.stepNumber !== 0) {
+      obj.stepNumber = Math.round(message.stepNumber);
+    }
+    if (message.situationId !== 0) {
+      obj.situationId = Math.round(message.situationId);
+    }
+    if (message.characterId !== 0) {
+      obj.characterId = Math.round(message.characterId);
+    }
+    if (message.rarityIndex !== 0) {
+      obj.rarityIndex = Math.round(message.rarityIndex);
+    }
+    if (message.weight !== 0) {
+      obj.weight = Math.round(message.weight);
+    }
+    if (message.stepGachaFilterId !== 0) {
+      obj.stepGachaFilterId = Math.round(message.stepGachaFilterId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliGachaStepupDetail>, I>>(base?: I): MasterBiliGachaStepupDetail {
+    return MasterBiliGachaStepupDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliGachaStepupDetail>, I>>(object: I): MasterBiliGachaStepupDetail {
+    const message = createBaseMasterBiliGachaStepupDetail();
+    message.gachaId = object.gachaId ?? 0;
+    message.stepNumber = object.stepNumber ?? 0;
+    message.situationId = object.situationId ?? 0;
+    message.characterId = object.characterId ?? 0;
+    message.rarityIndex = object.rarityIndex ?? 0;
+    message.weight = object.weight ?? 0;
+    message.stepGachaFilterId = object.stepGachaFilterId ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterBiliGachaStepupDetailList(): MasterBiliGachaStepupDetailList {
+  return { entries: [] };
+}
+
+export const MasterBiliGachaStepupDetailList: MessageFns<MasterBiliGachaStepupDetailList> = {
+  encode(message: MasterBiliGachaStepupDetailList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliGachaStepupDetail.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliGachaStepupDetailList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliGachaStepupDetailList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliGachaStepupDetail.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliGachaStepupDetailList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliGachaStepupDetail.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliGachaStepupDetailList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliGachaStepupDetail.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliGachaStepupDetailList>, I>>(base?: I): MasterBiliGachaStepupDetailList {
+    return MasterBiliGachaStepupDetailList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliGachaStepupDetailList>, I>>(
+    object: I,
+  ): MasterBiliGachaStepupDetailList {
+    const message = createBaseMasterBiliGachaStepupDetailList();
+    message.entries = object.entries?.map((e) => MasterBiliGachaStepupDetail.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliGachaStepupRarityRate(): MasterBiliGachaStepupRarityRate {
+  return { gachaId: 0, stepNumber: 0, rarityIndex: 0, rate: 0, weightTotal: 0 };
+}
+
+export const MasterBiliGachaStepupRarityRate: MessageFns<MasterBiliGachaStepupRarityRate> = {
+  encode(message: MasterBiliGachaStepupRarityRate, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.gachaId !== 0) {
+      writer.uint32(8).uint32(message.gachaId);
+    }
+    if (message.stepNumber !== 0) {
+      writer.uint32(16).uint32(message.stepNumber);
+    }
+    if (message.rarityIndex !== 0) {
+      writer.uint32(24).uint32(message.rarityIndex);
+    }
+    if (message.rate !== 0) {
+      writer.uint32(37).float(message.rate);
+    }
+    if (message.weightTotal !== 0) {
+      writer.uint32(40).uint32(message.weightTotal);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliGachaStepupRarityRate {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliGachaStepupRarityRate();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.gachaId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.stepNumber = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.rarityIndex = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 37) {
+            break;
+          }
+
+          message.rate = reader.float();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.weightTotal = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliGachaStepupRarityRate {
+    return {
+      gachaId: isSet(object.gachaId) ? globalThis.Number(object.gachaId) : 0,
+      stepNumber: isSet(object.stepNumber) ? globalThis.Number(object.stepNumber) : 0,
+      rarityIndex: isSet(object.rarityIndex) ? globalThis.Number(object.rarityIndex) : 0,
+      rate: isSet(object.rate) ? globalThis.Number(object.rate) : 0,
+      weightTotal: isSet(object.weightTotal) ? globalThis.Number(object.weightTotal) : 0,
+    };
+  },
+
+  toJSON(message: MasterBiliGachaStepupRarityRate): unknown {
+    const obj: any = {};
+    if (message.gachaId !== 0) {
+      obj.gachaId = Math.round(message.gachaId);
+    }
+    if (message.stepNumber !== 0) {
+      obj.stepNumber = Math.round(message.stepNumber);
+    }
+    if (message.rarityIndex !== 0) {
+      obj.rarityIndex = Math.round(message.rarityIndex);
+    }
+    if (message.rate !== 0) {
+      obj.rate = message.rate;
+    }
+    if (message.weightTotal !== 0) {
+      obj.weightTotal = Math.round(message.weightTotal);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliGachaStepupRarityRate>, I>>(base?: I): MasterBiliGachaStepupRarityRate {
+    return MasterBiliGachaStepupRarityRate.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliGachaStepupRarityRate>, I>>(
+    object: I,
+  ): MasterBiliGachaStepupRarityRate {
+    const message = createBaseMasterBiliGachaStepupRarityRate();
+    message.gachaId = object.gachaId ?? 0;
+    message.stepNumber = object.stepNumber ?? 0;
+    message.rarityIndex = object.rarityIndex ?? 0;
+    message.rate = object.rate ?? 0;
+    message.weightTotal = object.weightTotal ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterBiliGachaStepupRarityRateList(): MasterBiliGachaStepupRarityRateList {
+  return { entries: [] };
+}
+
+export const MasterBiliGachaStepupRarityRateList: MessageFns<MasterBiliGachaStepupRarityRateList> = {
+  encode(message: MasterBiliGachaStepupRarityRateList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliGachaStepupRarityRate.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliGachaStepupRarityRateList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliGachaStepupRarityRateList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliGachaStepupRarityRate.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliGachaStepupRarityRateList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliGachaStepupRarityRate.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliGachaStepupRarityRateList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliGachaStepupRarityRate.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliGachaStepupRarityRateList>, I>>(
+    base?: I,
+  ): MasterBiliGachaStepupRarityRateList {
+    return MasterBiliGachaStepupRarityRateList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliGachaStepupRarityRateList>, I>>(
+    object: I,
+  ): MasterBiliGachaStepupRarityRateList {
+    const message = createBaseMasterBiliGachaStepupRarityRateList();
+    message.entries = object.entries?.map((e) => MasterBiliGachaStepupRarityRate.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 function createBaseMasterBiliNfoMission(): MasterBiliNfoMission {
   return {
     missionId: 0,
@@ -46933,7 +51333,8 @@ function createBaseMasterBiliNfoMission(): MasterBiliNfoMission {
     endAt: "0",
     rewardList: undefined,
     reason: "",
-    condList: undefined,
+    conditionList: undefined,
+    rewardIconSpriteName: "",
   };
 }
 
@@ -46969,8 +51370,11 @@ export const MasterBiliNfoMission: MessageFns<MasterBiliNfoMission> = {
     if (message.reason !== "") {
       writer.uint32(82).string(message.reason);
     }
-    if (message.condList !== undefined) {
-      MasterBiliNfoMissionConditionList.encode(message.condList, writer.uint32(90).fork()).join();
+    if (message.conditionList !== undefined) {
+      MasterBiliNfoMissionConditionList.encode(message.conditionList, writer.uint32(90).fork()).join();
+    }
+    if (message.rewardIconSpriteName !== "") {
+      writer.uint32(98).string(message.rewardIconSpriteName);
     }
     return writer;
   },
@@ -47067,7 +51471,15 @@ export const MasterBiliNfoMission: MessageFns<MasterBiliNfoMission> = {
             break;
           }
 
-          message.condList = MasterBiliNfoMissionConditionList.decode(reader, reader.uint32());
+          message.conditionList = MasterBiliNfoMissionConditionList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 12: {
+          if (tag !== 98) {
+            break;
+          }
+
+          message.rewardIconSpriteName = reader.string();
           continue;
         }
       }
@@ -47091,7 +51503,10 @@ export const MasterBiliNfoMission: MessageFns<MasterBiliNfoMission> = {
       endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
       rewardList: isSet(object.rewardList) ? MasterBiliNfoMissionRewardList.fromJSON(object.rewardList) : undefined,
       reason: isSet(object.reason) ? globalThis.String(object.reason) : "",
-      condList: isSet(object.condList) ? MasterBiliNfoMissionConditionList.fromJSON(object.condList) : undefined,
+      conditionList: isSet(object.conditionList)
+        ? MasterBiliNfoMissionConditionList.fromJSON(object.conditionList)
+        : undefined,
+      rewardIconSpriteName: isSet(object.rewardIconSpriteName) ? globalThis.String(object.rewardIconSpriteName) : "",
     };
   },
 
@@ -47127,8 +51542,11 @@ export const MasterBiliNfoMission: MessageFns<MasterBiliNfoMission> = {
     if (message.reason !== "") {
       obj.reason = message.reason;
     }
-    if (message.condList !== undefined) {
-      obj.condList = MasterBiliNfoMissionConditionList.toJSON(message.condList);
+    if (message.conditionList !== undefined) {
+      obj.conditionList = MasterBiliNfoMissionConditionList.toJSON(message.conditionList);
+    }
+    if (message.rewardIconSpriteName !== "") {
+      obj.rewardIconSpriteName = message.rewardIconSpriteName;
     }
     return obj;
   },
@@ -47150,36 +51568,37 @@ export const MasterBiliNfoMission: MessageFns<MasterBiliNfoMission> = {
       ? MasterBiliNfoMissionRewardList.fromPartial(object.rewardList)
       : undefined;
     message.reason = object.reason ?? "";
-    message.condList = (object.condList !== undefined && object.condList !== null)
-      ? MasterBiliNfoMissionConditionList.fromPartial(object.condList)
+    message.conditionList = (object.conditionList !== undefined && object.conditionList !== null)
+      ? MasterBiliNfoMissionConditionList.fromPartial(object.conditionList)
       : undefined;
+    message.rewardIconSpriteName = object.rewardIconSpriteName ?? "";
     return message;
   },
 };
 
 function createBaseMasterBiliNfoMissionCondition(): MasterBiliNfoMissionCondition {
-  return { missionId: 0, seq: 0, missionConditionType: "", condValue1: 0, condValue2: 0, condValue3: 0 };
+  return { missionConditionId: 0, missionId: 0, conditionType: "", param1: "", param2: "", param3: "" };
 }
 
 export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondition> = {
   encode(message: MasterBiliNfoMissionCondition, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.missionConditionId !== 0) {
+      writer.uint32(8).int32(message.missionConditionId);
+    }
     if (message.missionId !== 0) {
-      writer.uint32(8).int32(message.missionId);
+      writer.uint32(16).int32(message.missionId);
     }
-    if (message.seq !== 0) {
-      writer.uint32(16).int32(message.seq);
+    if (message.conditionType !== "") {
+      writer.uint32(26).string(message.conditionType);
     }
-    if (message.missionConditionType !== "") {
-      writer.uint32(26).string(message.missionConditionType);
+    if (message.param1 !== "") {
+      writer.uint32(34).string(message.param1);
     }
-    if (message.condValue1 !== 0) {
-      writer.uint32(32).int32(message.condValue1);
+    if (message.param2 !== "") {
+      writer.uint32(42).string(message.param2);
     }
-    if (message.condValue2 !== 0) {
-      writer.uint32(40).int32(message.condValue2);
-    }
-    if (message.condValue3 !== 0) {
-      writer.uint32(48).int32(message.condValue3);
+    if (message.param3 !== "") {
+      writer.uint32(50).string(message.param3);
     }
     return writer;
   },
@@ -47196,7 +51615,7 @@ export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondi
             break;
           }
 
-          message.missionId = reader.int32();
+          message.missionConditionId = reader.int32();
           continue;
         }
         case 2: {
@@ -47204,7 +51623,7 @@ export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondi
             break;
           }
 
-          message.seq = reader.int32();
+          message.missionId = reader.int32();
           continue;
         }
         case 3: {
@@ -47212,31 +51631,31 @@ export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondi
             break;
           }
 
-          message.missionConditionType = reader.string();
+          message.conditionType = reader.string();
           continue;
         }
         case 4: {
-          if (tag !== 32) {
+          if (tag !== 34) {
             break;
           }
 
-          message.condValue1 = reader.int32();
+          message.param1 = reader.string();
           continue;
         }
         case 5: {
-          if (tag !== 40) {
+          if (tag !== 42) {
             break;
           }
 
-          message.condValue2 = reader.int32();
+          message.param2 = reader.string();
           continue;
         }
         case 6: {
-          if (tag !== 48) {
+          if (tag !== 50) {
             break;
           }
 
-          message.condValue3 = reader.int32();
+          message.param3 = reader.string();
           continue;
         }
       }
@@ -47250,34 +51669,38 @@ export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondi
 
   fromJSON(object: any): MasterBiliNfoMissionCondition {
     return {
+      missionConditionId: isSet(object.missionConditionId)
+        ? globalThis.Number(object.missionConditionId)
+        : isSet(object.mission_condition_Id)
+        ? globalThis.Number(object.mission_condition_Id)
+        : 0,
       missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
-      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
-      missionConditionType: isSet(object.missionConditionType) ? globalThis.String(object.missionConditionType) : "",
-      condValue1: isSet(object.condValue1) ? globalThis.Number(object.condValue1) : 0,
-      condValue2: isSet(object.condValue2) ? globalThis.Number(object.condValue2) : 0,
-      condValue3: isSet(object.condValue3) ? globalThis.Number(object.condValue3) : 0,
+      conditionType: isSet(object.conditionType) ? globalThis.String(object.conditionType) : "",
+      param1: isSet(object.param1) ? globalThis.String(object.param1) : "",
+      param2: isSet(object.param2) ? globalThis.String(object.param2) : "",
+      param3: isSet(object.param3) ? globalThis.String(object.param3) : "",
     };
   },
 
   toJSON(message: MasterBiliNfoMissionCondition): unknown {
     const obj: any = {};
+    if (message.missionConditionId !== 0) {
+      obj.missionConditionId = Math.round(message.missionConditionId);
+    }
     if (message.missionId !== 0) {
       obj.missionId = Math.round(message.missionId);
     }
-    if (message.seq !== 0) {
-      obj.seq = Math.round(message.seq);
+    if (message.conditionType !== "") {
+      obj.conditionType = message.conditionType;
     }
-    if (message.missionConditionType !== "") {
-      obj.missionConditionType = message.missionConditionType;
+    if (message.param1 !== "") {
+      obj.param1 = message.param1;
     }
-    if (message.condValue1 !== 0) {
-      obj.condValue1 = Math.round(message.condValue1);
+    if (message.param2 !== "") {
+      obj.param2 = message.param2;
     }
-    if (message.condValue2 !== 0) {
-      obj.condValue2 = Math.round(message.condValue2);
-    }
-    if (message.condValue3 !== 0) {
-      obj.condValue3 = Math.round(message.condValue3);
+    if (message.param3 !== "") {
+      obj.param3 = message.param3;
     }
     return obj;
   },
@@ -47289,12 +51712,12 @@ export const MasterBiliNfoMissionCondition: MessageFns<MasterBiliNfoMissionCondi
     object: I,
   ): MasterBiliNfoMissionCondition {
     const message = createBaseMasterBiliNfoMissionCondition();
+    message.missionConditionId = object.missionConditionId ?? 0;
     message.missionId = object.missionId ?? 0;
-    message.seq = object.seq ?? 0;
-    message.missionConditionType = object.missionConditionType ?? "";
-    message.condValue1 = object.condValue1 ?? 0;
-    message.condValue2 = object.condValue2 ?? 0;
-    message.condValue3 = object.condValue3 ?? 0;
+    message.conditionType = object.conditionType ?? "";
+    message.param1 = object.param1 ?? "";
+    message.param2 = object.param2 ?? "";
+    message.param3 = object.param3 ?? "";
     return message;
   },
 };
@@ -47423,6 +51846,173 @@ export const MasterBiliNfoMissionList: MessageFns<MasterBiliNfoMissionList> = {
   fromPartial<I extends Exact<DeepPartial<MasterBiliNfoMissionList>, I>>(object: I): MasterBiliNfoMissionList {
     const message = createBaseMasterBiliNfoMissionList();
     message.entries = object.entries?.map((e) => MasterBiliNfoMission.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoMissionMap(): MasterBiliNfoMissionMap {
+  return { entries: {} };
+}
+
+export const MasterBiliNfoMissionMap: MessageFns<MasterBiliNfoMissionMap> = {
+  encode(message: MasterBiliNfoMissionMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliNfoMission]) => {
+      MasterBiliNfoMissionMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoMissionMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoMissionMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliNfoMissionMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoMissionMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterBiliNfoMission }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterBiliNfoMission.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliNfoMissionMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliNfoMission][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliNfoMission.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoMissionMap>, I>>(base?: I): MasterBiliNfoMissionMap {
+    return MasterBiliNfoMissionMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoMissionMap>, I>>(object: I): MasterBiliNfoMissionMap {
+    const message = createBaseMasterBiliNfoMissionMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliNfoMission][]).reduce(
+      (acc: { [key: number]: MasterBiliNfoMission }, [key, value]: [string, MasterBiliNfoMission]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = MasterBiliNfoMission.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoMissionMap_EntriesEntry(): MasterBiliNfoMissionMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MasterBiliNfoMissionMap_EntriesEntry: MessageFns<MasterBiliNfoMissionMap_EntriesEntry> = {
+  encode(message: MasterBiliNfoMissionMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).int32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliNfoMission.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoMissionMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoMissionMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliNfoMission.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoMissionMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterBiliNfoMission.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliNfoMissionMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliNfoMission.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoMissionMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliNfoMissionMap_EntriesEntry {
+    return MasterBiliNfoMissionMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoMissionMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliNfoMissionMap_EntriesEntry {
+    const message = createBaseMasterBiliNfoMissionMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliNfoMission.fromPartial(object.value)
+      : undefined;
     return message;
   },
 };
@@ -47627,6 +52217,1251 @@ export const MasterBiliNfoMissionRewardList: MessageFns<MasterBiliNfoMissionRewa
   ): MasterBiliNfoMissionRewardList {
     const message = createBaseMasterBiliNfoMissionRewardList();
     message.entries = object.entries?.map((e) => MasterBiliNfoMissionReward.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoMissionRewardMap(): MasterBiliNfoMissionRewardMap {
+  return { entries: {} };
+}
+
+export const MasterBiliNfoMissionRewardMap: MessageFns<MasterBiliNfoMissionRewardMap> = {
+  encode(message: MasterBiliNfoMissionRewardMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliNfoMissionReward]) => {
+      MasterBiliNfoMissionRewardMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoMissionRewardMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoMissionRewardMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliNfoMissionRewardMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoMissionRewardMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterBiliNfoMissionReward }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterBiliNfoMissionReward.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliNfoMissionRewardMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliNfoMissionReward][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliNfoMissionReward.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoMissionRewardMap>, I>>(base?: I): MasterBiliNfoMissionRewardMap {
+    return MasterBiliNfoMissionRewardMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoMissionRewardMap>, I>>(
+    object: I,
+  ): MasterBiliNfoMissionRewardMap {
+    const message = createBaseMasterBiliNfoMissionRewardMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliNfoMissionReward][])
+      .reduce(
+        (acc: { [key: number]: MasterBiliNfoMissionReward }, [key, value]: [string, MasterBiliNfoMissionReward]) => {
+          if (value !== undefined) {
+            acc[globalThis.Number(key)] = MasterBiliNfoMissionReward.fromPartial(value);
+          }
+          return acc;
+        },
+        {},
+      );
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoMissionRewardMap_EntriesEntry(): MasterBiliNfoMissionRewardMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MasterBiliNfoMissionRewardMap_EntriesEntry: MessageFns<MasterBiliNfoMissionRewardMap_EntriesEntry> = {
+  encode(message: MasterBiliNfoMissionRewardMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).int32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliNfoMissionReward.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoMissionRewardMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoMissionRewardMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliNfoMissionReward.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoMissionRewardMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterBiliNfoMissionReward.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliNfoMissionRewardMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliNfoMissionReward.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoMissionRewardMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliNfoMissionRewardMap_EntriesEntry {
+    return MasterBiliNfoMissionRewardMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoMissionRewardMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliNfoMissionRewardMap_EntriesEntry {
+    const message = createBaseMasterBiliNfoMissionRewardMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliNfoMissionReward.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoSkin(): MasterBiliNfoSkin {
+  return { skinID: 0, characterID: 0, skinType: "" };
+}
+
+export const MasterBiliNfoSkin: MessageFns<MasterBiliNfoSkin> = {
+  encode(message: MasterBiliNfoSkin, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.skinID !== 0) {
+      writer.uint32(8).int32(message.skinID);
+    }
+    if (message.characterID !== 0) {
+      writer.uint32(16).int32(message.characterID);
+    }
+    if (message.skinType !== "") {
+      writer.uint32(26).string(message.skinType);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoSkin {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoSkin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.skinID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.characterID = reader.int32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.skinType = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoSkin {
+    return {
+      skinID: isSet(object.skinID) ? globalThis.Number(object.skinID) : 0,
+      characterID: isSet(object.characterID) ? globalThis.Number(object.characterID) : 0,
+      skinType: isSet(object.skinType) ? globalThis.String(object.skinType) : "",
+    };
+  },
+
+  toJSON(message: MasterBiliNfoSkin): unknown {
+    const obj: any = {};
+    if (message.skinID !== 0) {
+      obj.skinID = Math.round(message.skinID);
+    }
+    if (message.characterID !== 0) {
+      obj.characterID = Math.round(message.characterID);
+    }
+    if (message.skinType !== "") {
+      obj.skinType = message.skinType;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoSkin>, I>>(base?: I): MasterBiliNfoSkin {
+    return MasterBiliNfoSkin.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoSkin>, I>>(object: I): MasterBiliNfoSkin {
+    const message = createBaseMasterBiliNfoSkin();
+    message.skinID = object.skinID ?? 0;
+    message.characterID = object.characterID ?? 0;
+    message.skinType = object.skinType ?? "";
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoSkinMap(): MasterBiliNfoSkinMap {
+  return { entries: {} };
+}
+
+export const MasterBiliNfoSkinMap: MessageFns<MasterBiliNfoSkinMap> = {
+  encode(message: MasterBiliNfoSkinMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliNfoSkin]) => {
+      MasterBiliNfoSkinMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoSkinMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoSkinMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliNfoSkinMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoSkinMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterBiliNfoSkin }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterBiliNfoSkin.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliNfoSkinMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliNfoSkin][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliNfoSkin.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoSkinMap>, I>>(base?: I): MasterBiliNfoSkinMap {
+    return MasterBiliNfoSkinMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoSkinMap>, I>>(object: I): MasterBiliNfoSkinMap {
+    const message = createBaseMasterBiliNfoSkinMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliNfoSkin][]).reduce(
+      (acc: { [key: number]: MasterBiliNfoSkin }, [key, value]: [string, MasterBiliNfoSkin]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = MasterBiliNfoSkin.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseMasterBiliNfoSkinMap_EntriesEntry(): MasterBiliNfoSkinMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MasterBiliNfoSkinMap_EntriesEntry: MessageFns<MasterBiliNfoSkinMap_EntriesEntry> = {
+  encode(message: MasterBiliNfoSkinMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliNfoSkin.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliNfoSkinMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliNfoSkinMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliNfoSkin.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliNfoSkinMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterBiliNfoSkin.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliNfoSkinMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliNfoSkin.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliNfoSkinMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliNfoSkinMap_EntriesEntry {
+    return MasterBiliNfoSkinMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliNfoSkinMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliNfoSkinMap_EntriesEntry {
+    const message = createBaseMasterBiliNfoSkinMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliNfoSkin.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliShippingActivity(): MasterBiliShippingActivity {
+  return {
+    shippingActivityId: 0,
+    seq: 0,
+    name: "",
+    shippingActivityType: "",
+    unlockParamId: 0,
+    publishedAt: "0",
+    closedAt: "0",
+    editStartAt: "0",
+    editEndAt: "0",
+    thumbnailAssetBundleName: "",
+    description: "",
+  };
+}
+
+export const MasterBiliShippingActivity: MessageFns<MasterBiliShippingActivity> = {
+  encode(message: MasterBiliShippingActivity, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.shippingActivityId !== 0) {
+      writer.uint32(8).uint32(message.shippingActivityId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.shippingActivityType !== "") {
+      writer.uint32(34).string(message.shippingActivityType);
+    }
+    if (message.unlockParamId !== 0) {
+      writer.uint32(40).uint32(message.unlockParamId);
+    }
+    if (message.publishedAt !== "0") {
+      writer.uint32(48).uint64(message.publishedAt);
+    }
+    if (message.closedAt !== "0") {
+      writer.uint32(56).uint64(message.closedAt);
+    }
+    if (message.editStartAt !== "0") {
+      writer.uint32(64).uint64(message.editStartAt);
+    }
+    if (message.editEndAt !== "0") {
+      writer.uint32(72).uint64(message.editEndAt);
+    }
+    if (message.thumbnailAssetBundleName !== "") {
+      writer.uint32(82).string(message.thumbnailAssetBundleName);
+    }
+    if (message.description !== "") {
+      writer.uint32(90).string(message.description);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliShippingActivity {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliShippingActivity();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.shippingActivityId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.shippingActivityType = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.unlockParamId = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.publishedAt = reader.uint64().toString();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.closedAt = reader.uint64().toString();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.editStartAt = reader.uint64().toString();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.editEndAt = reader.uint64().toString();
+          continue;
+        }
+        case 10: {
+          if (tag !== 82) {
+            break;
+          }
+
+          message.thumbnailAssetBundleName = reader.string();
+          continue;
+        }
+        case 11: {
+          if (tag !== 90) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliShippingActivity {
+    return {
+      shippingActivityId: isSet(object.shippingActivityId) ? globalThis.Number(object.shippingActivityId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      shippingActivityType: isSet(object.shippingActivityType) ? globalThis.String(object.shippingActivityType) : "",
+      unlockParamId: isSet(object.unlockParamId) ? globalThis.Number(object.unlockParamId) : 0,
+      publishedAt: isSet(object.publishedAt) ? globalThis.String(object.publishedAt) : "0",
+      closedAt: isSet(object.closedAt) ? globalThis.String(object.closedAt) : "0",
+      editStartAt: isSet(object.editStartAt) ? globalThis.String(object.editStartAt) : "0",
+      editEndAt: isSet(object.editEndAt) ? globalThis.String(object.editEndAt) : "0",
+      thumbnailAssetBundleName: isSet(object.thumbnailAssetBundleName)
+        ? globalThis.String(object.thumbnailAssetBundleName)
+        : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+    };
+  },
+
+  toJSON(message: MasterBiliShippingActivity): unknown {
+    const obj: any = {};
+    if (message.shippingActivityId !== 0) {
+      obj.shippingActivityId = Math.round(message.shippingActivityId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.shippingActivityType !== "") {
+      obj.shippingActivityType = message.shippingActivityType;
+    }
+    if (message.unlockParamId !== 0) {
+      obj.unlockParamId = Math.round(message.unlockParamId);
+    }
+    if (message.publishedAt !== "0") {
+      obj.publishedAt = message.publishedAt;
+    }
+    if (message.closedAt !== "0") {
+      obj.closedAt = message.closedAt;
+    }
+    if (message.editStartAt !== "0") {
+      obj.editStartAt = message.editStartAt;
+    }
+    if (message.editEndAt !== "0") {
+      obj.editEndAt = message.editEndAt;
+    }
+    if (message.thumbnailAssetBundleName !== "") {
+      obj.thumbnailAssetBundleName = message.thumbnailAssetBundleName;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliShippingActivity>, I>>(base?: I): MasterBiliShippingActivity {
+    return MasterBiliShippingActivity.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliShippingActivity>, I>>(object: I): MasterBiliShippingActivity {
+    const message = createBaseMasterBiliShippingActivity();
+    message.shippingActivityId = object.shippingActivityId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.name = object.name ?? "";
+    message.shippingActivityType = object.shippingActivityType ?? "";
+    message.unlockParamId = object.unlockParamId ?? 0;
+    message.publishedAt = object.publishedAt ?? "0";
+    message.closedAt = object.closedAt ?? "0";
+    message.editStartAt = object.editStartAt ?? "0";
+    message.editEndAt = object.editEndAt ?? "0";
+    message.thumbnailAssetBundleName = object.thumbnailAssetBundleName ?? "";
+    message.description = object.description ?? "";
+    return message;
+  },
+};
+
+function createBaseMasterBiliShippingActivityList(): MasterBiliShippingActivityList {
+  return { entries: [] };
+}
+
+export const MasterBiliShippingActivityList: MessageFns<MasterBiliShippingActivityList> = {
+  encode(message: MasterBiliShippingActivityList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliShippingActivity.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliShippingActivityList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliShippingActivityList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliShippingActivity.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliShippingActivityList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliShippingActivity.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliShippingActivityList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliShippingActivity.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliShippingActivityList>, I>>(base?: I): MasterBiliShippingActivityList {
+    return MasterBiliShippingActivityList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliShippingActivityList>, I>>(
+    object: I,
+  ): MasterBiliShippingActivityList {
+    const message = createBaseMasterBiliShippingActivityList();
+    message.entries = object.entries?.map((e) => MasterBiliShippingActivity.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterBiliShippingActivityMap(): MasterBiliShippingActivityMap {
+  return { entries: {} };
+}
+
+export const MasterBiliShippingActivityMap: MessageFns<MasterBiliShippingActivityMap> = {
+  encode(message: MasterBiliShippingActivityMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterBiliShippingActivityList]) => {
+      MasterBiliShippingActivityMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliShippingActivityMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliShippingActivityMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MasterBiliShippingActivityMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliShippingActivityMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: string]: MasterBiliShippingActivityList }, [key, value]: [string, any]) => {
+            acc[key] = MasterBiliShippingActivityList.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MasterBiliShippingActivityMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterBiliShippingActivityList][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterBiliShippingActivityList.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliShippingActivityMap>, I>>(base?: I): MasterBiliShippingActivityMap {
+    return MasterBiliShippingActivityMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliShippingActivityMap>, I>>(
+    object: I,
+  ): MasterBiliShippingActivityMap {
+    const message = createBaseMasterBiliShippingActivityMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterBiliShippingActivityList][])
+      .reduce(
+        (
+          acc: { [key: string]: MasterBiliShippingActivityList },
+          [key, value]: [string, MasterBiliShippingActivityList],
+        ) => {
+          if (value !== undefined) {
+            acc[key] = MasterBiliShippingActivityList.fromPartial(value);
+          }
+          return acc;
+        },
+        {},
+      );
+    return message;
+  },
+};
+
+function createBaseMasterBiliShippingActivityMap_EntriesEntry(): MasterBiliShippingActivityMap_EntriesEntry {
+  return { key: "", value: undefined };
+}
+
+export const MasterBiliShippingActivityMap_EntriesEntry: MessageFns<MasterBiliShippingActivityMap_EntriesEntry> = {
+  encode(message: MasterBiliShippingActivityMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterBiliShippingActivityList.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliShippingActivityMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliShippingActivityMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterBiliShippingActivityList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliShippingActivityMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? MasterBiliShippingActivityList.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MasterBiliShippingActivityMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterBiliShippingActivityList.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliShippingActivityMap_EntriesEntry>, I>>(
+    base?: I,
+  ): MasterBiliShippingActivityMap_EntriesEntry {
+    return MasterBiliShippingActivityMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliShippingActivityMap_EntriesEntry>, I>>(
+    object: I,
+  ): MasterBiliShippingActivityMap_EntriesEntry {
+    const message = createBaseMasterBiliShippingActivityMap_EntriesEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterBiliShippingActivityList.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterBiliSpecialScreen(): MasterBiliSpecialScreen {
+  return {
+    specialScreenId: 0,
+    seq: 0,
+    name: "",
+    startAt: "0",
+    endAt: "0",
+    enableFlg: false,
+    createAt: "0",
+    updateAt: "0",
+    offsetX: 0,
+    offsetY: 0,
+    addScaleRatio: 0,
+    obtainMethod: "",
+    texture: false,
+    type: "",
+  };
+}
+
+export const MasterBiliSpecialScreen: MessageFns<MasterBiliSpecialScreen> = {
+  encode(message: MasterBiliSpecialScreen, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.specialScreenId !== 0) {
+      writer.uint32(8).uint32(message.specialScreenId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(32).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(40).uint64(message.endAt);
+    }
+    if (message.enableFlg !== false) {
+      writer.uint32(48).bool(message.enableFlg);
+    }
+    if (message.createAt !== "0") {
+      writer.uint32(56).uint64(message.createAt);
+    }
+    if (message.updateAt !== "0") {
+      writer.uint32(64).uint64(message.updateAt);
+    }
+    if (message.offsetX !== 0) {
+      writer.uint32(72).int32(message.offsetX);
+    }
+    if (message.offsetY !== 0) {
+      writer.uint32(80).int32(message.offsetY);
+    }
+    if (message.addScaleRatio !== 0) {
+      writer.uint32(88).int32(message.addScaleRatio);
+    }
+    if (message.obtainMethod !== "") {
+      writer.uint32(98).string(message.obtainMethod);
+    }
+    if (message.texture !== false) {
+      writer.uint32(104).bool(message.texture);
+    }
+    if (message.type !== "") {
+      writer.uint32(114).string(message.type);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliSpecialScreen {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliSpecialScreen();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.specialScreenId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.enableFlg = reader.bool();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.createAt = reader.uint64().toString();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.updateAt = reader.uint64().toString();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.offsetX = reader.int32();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.offsetY = reader.int32();
+          continue;
+        }
+        case 11: {
+          if (tag !== 88) {
+            break;
+          }
+
+          message.addScaleRatio = reader.int32();
+          continue;
+        }
+        case 12: {
+          if (tag !== 98) {
+            break;
+          }
+
+          message.obtainMethod = reader.string();
+          continue;
+        }
+        case 13: {
+          if (tag !== 104) {
+            break;
+          }
+
+          message.texture = reader.bool();
+          continue;
+        }
+        case 14: {
+          if (tag !== 114) {
+            break;
+          }
+
+          message.type = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliSpecialScreen {
+    return {
+      specialScreenId: isSet(object.specialScreenId) ? globalThis.Number(object.specialScreenId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+      enableFlg: isSet(object.enableFlg) ? globalThis.Boolean(object.enableFlg) : false,
+      createAt: isSet(object.createAt) ? globalThis.String(object.createAt) : "0",
+      updateAt: isSet(object.updateAt) ? globalThis.String(object.updateAt) : "0",
+      offsetX: isSet(object.offsetX) ? globalThis.Number(object.offsetX) : 0,
+      offsetY: isSet(object.offsetY) ? globalThis.Number(object.offsetY) : 0,
+      addScaleRatio: isSet(object.addScaleRatio) ? globalThis.Number(object.addScaleRatio) : 0,
+      obtainMethod: isSet(object.obtainMethod) ? globalThis.String(object.obtainMethod) : "",
+      texture: isSet(object.texture) ? globalThis.Boolean(object.texture) : false,
+      type: isSet(object.type) ? globalThis.String(object.type) : "",
+    };
+  },
+
+  toJSON(message: MasterBiliSpecialScreen): unknown {
+    const obj: any = {};
+    if (message.specialScreenId !== 0) {
+      obj.specialScreenId = Math.round(message.specialScreenId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    if (message.enableFlg !== false) {
+      obj.enableFlg = message.enableFlg;
+    }
+    if (message.createAt !== "0") {
+      obj.createAt = message.createAt;
+    }
+    if (message.updateAt !== "0") {
+      obj.updateAt = message.updateAt;
+    }
+    if (message.offsetX !== 0) {
+      obj.offsetX = Math.round(message.offsetX);
+    }
+    if (message.offsetY !== 0) {
+      obj.offsetY = Math.round(message.offsetY);
+    }
+    if (message.addScaleRatio !== 0) {
+      obj.addScaleRatio = Math.round(message.addScaleRatio);
+    }
+    if (message.obtainMethod !== "") {
+      obj.obtainMethod = message.obtainMethod;
+    }
+    if (message.texture !== false) {
+      obj.texture = message.texture;
+    }
+    if (message.type !== "") {
+      obj.type = message.type;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliSpecialScreen>, I>>(base?: I): MasterBiliSpecialScreen {
+    return MasterBiliSpecialScreen.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliSpecialScreen>, I>>(object: I): MasterBiliSpecialScreen {
+    const message = createBaseMasterBiliSpecialScreen();
+    message.specialScreenId = object.specialScreenId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.name = object.name ?? "";
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    message.enableFlg = object.enableFlg ?? false;
+    message.createAt = object.createAt ?? "0";
+    message.updateAt = object.updateAt ?? "0";
+    message.offsetX = object.offsetX ?? 0;
+    message.offsetY = object.offsetY ?? 0;
+    message.addScaleRatio = object.addScaleRatio ?? 0;
+    message.obtainMethod = object.obtainMethod ?? "";
+    message.texture = object.texture ?? false;
+    message.type = object.type ?? "";
+    return message;
+  },
+};
+
+function createBaseMasterBiliSpecialScreenList(): MasterBiliSpecialScreenList {
+  return { entries: [] };
+}
+
+export const MasterBiliSpecialScreenList: MessageFns<MasterBiliSpecialScreenList> = {
+  encode(message: MasterBiliSpecialScreenList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterBiliSpecialScreen.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterBiliSpecialScreenList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterBiliSpecialScreenList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterBiliSpecialScreen.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterBiliSpecialScreenList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterBiliSpecialScreen.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterBiliSpecialScreenList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterBiliSpecialScreen.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterBiliSpecialScreenList>, I>>(base?: I): MasterBiliSpecialScreenList {
+    return MasterBiliSpecialScreenList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterBiliSpecialScreenList>, I>>(object: I): MasterBiliSpecialScreenList {
+    const message = createBaseMasterBiliSpecialScreenList();
+    message.entries = object.entries?.map((e) => MasterBiliSpecialScreen.fromPartial(e)) || [];
     return message;
   },
 };
@@ -56706,7 +62541,6 @@ function createBaseMasterCollaboOriginalMusicPage(): MasterCollaboOriginalMusicP
     labelColor: "",
     backgroundName: "",
     animationName: "",
-    isDisplaySpecialDifficulty: false,
   };
 }
 
@@ -56752,9 +62586,6 @@ export const MasterCollaboOriginalMusicPage: MessageFns<MasterCollaboOriginalMus
     }
     if (message.animationName !== "") {
       writer.uint32(106).string(message.animationName);
-    }
-    if (message.isDisplaySpecialDifficulty !== false) {
-      writer.uint32(112).bool(message.isDisplaySpecialDifficulty);
     }
     return writer;
   },
@@ -56880,14 +62711,6 @@ export const MasterCollaboOriginalMusicPage: MessageFns<MasterCollaboOriginalMus
           message.animationName = reader.string();
           continue;
         }
-        case 14: {
-          if (tag !== 112) {
-            break;
-          }
-
-          message.isDisplaySpecialDifficulty = reader.bool();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -56914,9 +62737,6 @@ export const MasterCollaboOriginalMusicPage: MessageFns<MasterCollaboOriginalMus
       labelColor: isSet(object.labelColor) ? globalThis.String(object.labelColor) : "",
       backgroundName: isSet(object.backgroundName) ? globalThis.String(object.backgroundName) : "",
       animationName: isSet(object.animationName) ? globalThis.String(object.animationName) : "",
-      isDisplaySpecialDifficulty: isSet(object.isDisplaySpecialDifficulty)
-        ? globalThis.Boolean(object.isDisplaySpecialDifficulty)
-        : false,
     };
   },
 
@@ -56961,9 +62781,6 @@ export const MasterCollaboOriginalMusicPage: MessageFns<MasterCollaboOriginalMus
     if (message.animationName !== "") {
       obj.animationName = message.animationName;
     }
-    if (message.isDisplaySpecialDifficulty !== false) {
-      obj.isDisplaySpecialDifficulty = message.isDisplaySpecialDifficulty;
-    }
     return obj;
   },
 
@@ -56987,7 +62804,6 @@ export const MasterCollaboOriginalMusicPage: MessageFns<MasterCollaboOriginalMus
     message.labelColor = object.labelColor ?? "";
     message.backgroundName = object.backgroundName ?? "";
     message.animationName = object.animationName ?? "";
-    message.isDisplaySpecialDifficulty = object.isDisplaySpecialDifficulty ?? false;
     return message;
   },
 };
@@ -57981,987 +63797,6 @@ export const MasterComebackBonusMap_EntriesEntry: MessageFns<MasterComebackBonus
     message.value = (object.value !== undefined && object.value !== null)
       ? MasterComebackBonus.fromPartial(object.value)
       : undefined;
-    return message;
-  },
-};
-
-function createBaseMasterComebackInvite(): MasterComebackInvite {
-  return { comebackInviteId: 0, startAt: "0", endAt: "0" };
-}
-
-export const MasterComebackInvite: MessageFns<MasterComebackInvite> = {
-  encode(message: MasterComebackInvite, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(8).uint32(message.comebackInviteId);
-    }
-    if (message.startAt !== "0") {
-      writer.uint32(16).uint64(message.startAt);
-    }
-    if (message.endAt !== "0") {
-      writer.uint32(24).uint64(message.endAt);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInvite {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInvite();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.startAt = reader.uint64().toString();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.endAt = reader.uint64().toString();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInvite {
-    return {
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
-      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
-    };
-  },
-
-  toJSON(message: MasterComebackInvite): unknown {
-    const obj: any = {};
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.startAt !== "0") {
-      obj.startAt = message.startAt;
-    }
-    if (message.endAt !== "0") {
-      obj.endAt = message.endAt;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInvite>, I>>(base?: I): MasterComebackInvite {
-    return MasterComebackInvite.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInvite>, I>>(object: I): MasterComebackInvite {
-    const message = createBaseMasterComebackInvite();
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.startAt = object.startAt ?? "0";
-    message.endAt = object.endAt ?? "0";
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteList(): MasterComebackInviteList {
-  return { entries: [] };
-}
-
-export const MasterComebackInviteList: MessageFns<MasterComebackInviteList> = {
-  encode(message: MasterComebackInviteList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.entries) {
-      MasterComebackInvite.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteList();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.entries.push(MasterComebackInvite.decode(reader, reader.uint32()));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteList {
-    return {
-      entries: globalThis.Array.isArray(object?.entries)
-        ? object.entries.map((e: any) => MasterComebackInvite.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: MasterComebackInviteList): unknown {
-    const obj: any = {};
-    if (message.entries?.length) {
-      obj.entries = message.entries.map((e) => MasterComebackInvite.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteList>, I>>(base?: I): MasterComebackInviteList {
-    return MasterComebackInviteList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteList>, I>>(object: I): MasterComebackInviteList {
-    const message = createBaseMasterComebackInviteList();
-    message.entries = object.entries?.map((e) => MasterComebackInvite.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMission(): MasterComebackInviteMission {
-  return {
-    missionId: 0,
-    comebackInviteId: 0,
-    comebackType: 0,
-    seq: 0,
-    title: "",
-    description: "",
-    missionType: "",
-    transitionMethod: "",
-    clearProgress: 0,
-    masterInviteMissionRewardList: undefined,
-  };
-}
-
-export const MasterComebackInviteMission: MessageFns<MasterComebackInviteMission> = {
-  encode(message: MasterComebackInviteMission, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.missionId !== 0) {
-      writer.uint32(8).uint32(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(16).uint32(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      writer.uint32(24).uint32(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      writer.uint32(32).uint32(message.seq);
-    }
-    if (message.title !== "") {
-      writer.uint32(42).string(message.title);
-    }
-    if (message.description !== "") {
-      writer.uint32(50).string(message.description);
-    }
-    if (message.missionType !== "") {
-      writer.uint32(58).string(message.missionType);
-    }
-    if (message.transitionMethod !== "") {
-      writer.uint32(66).string(message.transitionMethod);
-    }
-    if (message.clearProgress !== 0) {
-      writer.uint32(72).uint32(message.clearProgress);
-    }
-    if (message.masterInviteMissionRewardList !== undefined) {
-      MasterComebackInviteMissionRewardList.encode(message.masterInviteMissionRewardList, writer.uint32(82).fork())
-        .join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMission {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMission();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.missionId = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.comebackType = reader.uint32();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.seq = reader.uint32();
-          continue;
-        }
-        case 5: {
-          if (tag !== 42) {
-            break;
-          }
-
-          message.title = reader.string();
-          continue;
-        }
-        case 6: {
-          if (tag !== 50) {
-            break;
-          }
-
-          message.description = reader.string();
-          continue;
-        }
-        case 7: {
-          if (tag !== 58) {
-            break;
-          }
-
-          message.missionType = reader.string();
-          continue;
-        }
-        case 8: {
-          if (tag !== 66) {
-            break;
-          }
-
-          message.transitionMethod = reader.string();
-          continue;
-        }
-        case 9: {
-          if (tag !== 72) {
-            break;
-          }
-
-          message.clearProgress = reader.uint32();
-          continue;
-        }
-        case 10: {
-          if (tag !== 82) {
-            break;
-          }
-
-          message.masterInviteMissionRewardList = MasterComebackInviteMissionRewardList.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMission {
-    return {
-      missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      comebackType: isSet(object.comebackType) ? globalThis.Number(object.comebackType) : 0,
-      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
-      title: isSet(object.title) ? globalThis.String(object.title) : "",
-      description: isSet(object.description) ? globalThis.String(object.description) : "",
-      missionType: isSet(object.missionType) ? globalThis.String(object.missionType) : "",
-      transitionMethod: isSet(object.transitionMethod) ? globalThis.String(object.transitionMethod) : "",
-      clearProgress: isSet(object.clearProgress) ? globalThis.Number(object.clearProgress) : 0,
-      masterInviteMissionRewardList: isSet(object.masterInviteMissionRewardList)
-        ? MasterComebackInviteMissionRewardList.fromJSON(object.masterInviteMissionRewardList)
-        : undefined,
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMission): unknown {
-    const obj: any = {};
-    if (message.missionId !== 0) {
-      obj.missionId = Math.round(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      obj.comebackType = Math.round(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      obj.seq = Math.round(message.seq);
-    }
-    if (message.title !== "") {
-      obj.title = message.title;
-    }
-    if (message.description !== "") {
-      obj.description = message.description;
-    }
-    if (message.missionType !== "") {
-      obj.missionType = message.missionType;
-    }
-    if (message.transitionMethod !== "") {
-      obj.transitionMethod = message.transitionMethod;
-    }
-    if (message.clearProgress !== 0) {
-      obj.clearProgress = Math.round(message.clearProgress);
-    }
-    if (message.masterInviteMissionRewardList !== undefined) {
-      obj.masterInviteMissionRewardList = MasterComebackInviteMissionRewardList.toJSON(
-        message.masterInviteMissionRewardList,
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMission>, I>>(base?: I): MasterComebackInviteMission {
-    return MasterComebackInviteMission.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMission>, I>>(object: I): MasterComebackInviteMission {
-    const message = createBaseMasterComebackInviteMission();
-    message.missionId = object.missionId ?? 0;
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.comebackType = object.comebackType ?? 0;
-    message.seq = object.seq ?? 0;
-    message.title = object.title ?? "";
-    message.description = object.description ?? "";
-    message.missionType = object.missionType ?? "";
-    message.transitionMethod = object.transitionMethod ?? "";
-    message.clearProgress = object.clearProgress ?? 0;
-    message.masterInviteMissionRewardList =
-      (object.masterInviteMissionRewardList !== undefined && object.masterInviteMissionRewardList !== null)
-        ? MasterComebackInviteMissionRewardList.fromPartial(object.masterInviteMissionRewardList)
-        : undefined;
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionList(): MasterComebackInviteMissionList {
-  return { entries: [] };
-}
-
-export const MasterComebackInviteMissionList: MessageFns<MasterComebackInviteMissionList> = {
-  encode(message: MasterComebackInviteMissionList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.entries) {
-      MasterComebackInviteMission.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionList();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.entries.push(MasterComebackInviteMission.decode(reader, reader.uint32()));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionList {
-    return {
-      entries: globalThis.Array.isArray(object?.entries)
-        ? object.entries.map((e: any) => MasterComebackInviteMission.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionList): unknown {
-    const obj: any = {};
-    if (message.entries?.length) {
-      obj.entries = message.entries.map((e) => MasterComebackInviteMission.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionList>, I>>(base?: I): MasterComebackInviteMissionList {
-    return MasterComebackInviteMissionList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionList>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionList {
-    const message = createBaseMasterComebackInviteMissionList();
-    message.entries = object.entries?.map((e) => MasterComebackInviteMission.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionListMap(): MasterComebackInviteMissionListMap {
-  return { entries: {} };
-}
-
-export const MasterComebackInviteMissionListMap: MessageFns<MasterComebackInviteMissionListMap> = {
-  encode(message: MasterComebackInviteMissionListMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterComebackInviteMissionList]) => {
-      MasterComebackInviteMissionListMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork())
-        .join();
-    });
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionListMap {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionListMap();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = MasterComebackInviteMissionListMap_EntriesEntry.decode(reader, reader.uint32());
-          if (entry1.value !== undefined) {
-            message.entries[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionListMap {
-    return {
-      entries: isObject(object.entries)
-        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
-          (acc: { [key: number]: MasterComebackInviteMissionList }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = MasterComebackInviteMissionList.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionListMap): unknown {
-    const obj: any = {};
-    if (message.entries) {
-      const entries = globalThis.Object.entries(message.entries) as [string, MasterComebackInviteMissionList][];
-      if (entries.length > 0) {
-        obj.entries = {};
-        entries.forEach(([k, v]) => {
-          obj.entries[k] = MasterComebackInviteMissionList.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionListMap>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionListMap {
-    return MasterComebackInviteMissionListMap.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionListMap>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionListMap {
-    const message = createBaseMasterComebackInviteMissionListMap();
-    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterComebackInviteMissionList][])
-      .reduce(
-        (
-          acc: { [key: number]: MasterComebackInviteMissionList },
-          [key, value]: [string, MasterComebackInviteMissionList],
-        ) => {
-          if (value !== undefined) {
-            acc[globalThis.Number(key)] = MasterComebackInviteMissionList.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionListMap_EntriesEntry(): MasterComebackInviteMissionListMap_EntriesEntry {
-  return { key: 0, value: undefined };
-}
-
-export const MasterComebackInviteMissionListMap_EntriesEntry: MessageFns<
-  MasterComebackInviteMissionListMap_EntriesEntry
-> = {
-  encode(
-    message: MasterComebackInviteMissionListMap_EntriesEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== 0) {
-      writer.uint32(8).uint32(message.key);
-    }
-    if (message.value !== undefined) {
-      MasterComebackInviteMissionList.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionListMap_EntriesEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionListMap_EntriesEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = MasterComebackInviteMissionList.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionListMap_EntriesEntry {
-    return {
-      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-      value: isSet(object.value) ? MasterComebackInviteMissionList.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionListMap_EntriesEntry): unknown {
-    const obj: any = {};
-    if (message.key !== 0) {
-      obj.key = Math.round(message.key);
-    }
-    if (message.value !== undefined) {
-      obj.value = MasterComebackInviteMissionList.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionListMap_EntriesEntry>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionListMap_EntriesEntry {
-    return MasterComebackInviteMissionListMap_EntriesEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionListMap_EntriesEntry>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionListMap_EntriesEntry {
-    const message = createBaseMasterComebackInviteMissionListMap_EntriesEntry();
-    message.key = object.key ?? 0;
-    message.value = (object.value !== undefined && object.value !== null)
-      ? MasterComebackInviteMissionList.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionListMaps(): MasterComebackInviteMissionListMaps {
-  return { entries: {} };
-}
-
-export const MasterComebackInviteMissionListMaps: MessageFns<MasterComebackInviteMissionListMaps> = {
-  encode(message: MasterComebackInviteMissionListMaps, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterComebackInviteMissionListMap]) => {
-      MasterComebackInviteMissionListMaps_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork())
-        .join();
-    });
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionListMaps {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionListMaps();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = MasterComebackInviteMissionListMaps_EntriesEntry.decode(reader, reader.uint32());
-          if (entry1.value !== undefined) {
-            message.entries[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionListMaps {
-    return {
-      entries: isObject(object.entries)
-        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
-          (acc: { [key: number]: MasterComebackInviteMissionListMap }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = MasterComebackInviteMissionListMap.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionListMaps): unknown {
-    const obj: any = {};
-    if (message.entries) {
-      const entries = globalThis.Object.entries(message.entries) as [string, MasterComebackInviteMissionListMap][];
-      if (entries.length > 0) {
-        obj.entries = {};
-        entries.forEach(([k, v]) => {
-          obj.entries[k] = MasterComebackInviteMissionListMap.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionListMaps>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionListMaps {
-    return MasterComebackInviteMissionListMaps.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionListMaps>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionListMaps {
-    const message = createBaseMasterComebackInviteMissionListMaps();
-    message.entries =
-      (globalThis.Object.entries(object.entries ?? {}) as [string, MasterComebackInviteMissionListMap][]).reduce(
-        (
-          acc: { [key: number]: MasterComebackInviteMissionListMap },
-          [key, value]: [string, MasterComebackInviteMissionListMap],
-        ) => {
-          if (value !== undefined) {
-            acc[globalThis.Number(key)] = MasterComebackInviteMissionListMap.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionListMaps_EntriesEntry(): MasterComebackInviteMissionListMaps_EntriesEntry {
-  return { key: 0, value: undefined };
-}
-
-export const MasterComebackInviteMissionListMaps_EntriesEntry: MessageFns<
-  MasterComebackInviteMissionListMaps_EntriesEntry
-> = {
-  encode(
-    message: MasterComebackInviteMissionListMaps_EntriesEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== 0) {
-      writer.uint32(8).uint32(message.key);
-    }
-    if (message.value !== undefined) {
-      MasterComebackInviteMissionListMap.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionListMaps_EntriesEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionListMaps_EntriesEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = MasterComebackInviteMissionListMap.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionListMaps_EntriesEntry {
-    return {
-      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-      value: isSet(object.value) ? MasterComebackInviteMissionListMap.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionListMaps_EntriesEntry): unknown {
-    const obj: any = {};
-    if (message.key !== 0) {
-      obj.key = Math.round(message.key);
-    }
-    if (message.value !== undefined) {
-      obj.value = MasterComebackInviteMissionListMap.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionListMaps_EntriesEntry>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionListMaps_EntriesEntry {
-    return MasterComebackInviteMissionListMaps_EntriesEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionListMaps_EntriesEntry>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionListMaps_EntriesEntry {
-    const message = createBaseMasterComebackInviteMissionListMaps_EntriesEntry();
-    message.key = object.key ?? 0;
-    message.value = (object.value !== undefined && object.value !== null)
-      ? MasterComebackInviteMissionListMap.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionReward(): MasterComebackInviteMissionReward {
-  return { rewardSeq: 0, resourceType: "", resourceId: 0, quantity: 0 };
-}
-
-export const MasterComebackInviteMissionReward: MessageFns<MasterComebackInviteMissionReward> = {
-  encode(message: MasterComebackInviteMissionReward, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.rewardSeq !== 0) {
-      writer.uint32(8).uint32(message.rewardSeq);
-    }
-    if (message.resourceType !== "") {
-      writer.uint32(18).string(message.resourceType);
-    }
-    if (message.resourceId !== 0) {
-      writer.uint32(24).uint32(message.resourceId);
-    }
-    if (message.quantity !== 0) {
-      writer.uint32(32).uint32(message.quantity);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionReward {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionReward();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.rewardSeq = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.resourceType = reader.string();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.resourceId = reader.uint32();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.quantity = reader.uint32();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionReward {
-    return {
-      rewardSeq: isSet(object.rewardSeq) ? globalThis.Number(object.rewardSeq) : 0,
-      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
-      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
-      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionReward): unknown {
-    const obj: any = {};
-    if (message.rewardSeq !== 0) {
-      obj.rewardSeq = Math.round(message.rewardSeq);
-    }
-    if (message.resourceType !== "") {
-      obj.resourceType = message.resourceType;
-    }
-    if (message.resourceId !== 0) {
-      obj.resourceId = Math.round(message.resourceId);
-    }
-    if (message.quantity !== 0) {
-      obj.quantity = Math.round(message.quantity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionReward>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionReward {
-    return MasterComebackInviteMissionReward.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionReward>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionReward {
-    const message = createBaseMasterComebackInviteMissionReward();
-    message.rewardSeq = object.rewardSeq ?? 0;
-    message.resourceType = object.resourceType ?? "";
-    message.resourceId = object.resourceId ?? 0;
-    message.quantity = object.quantity ?? 0;
-    return message;
-  },
-};
-
-function createBaseMasterComebackInviteMissionRewardList(): MasterComebackInviteMissionRewardList {
-  return { entries: [] };
-}
-
-export const MasterComebackInviteMissionRewardList: MessageFns<MasterComebackInviteMissionRewardList> = {
-  encode(message: MasterComebackInviteMissionRewardList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.entries) {
-      MasterComebackInviteMissionReward.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MasterComebackInviteMissionRewardList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMasterComebackInviteMissionRewardList();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.entries.push(MasterComebackInviteMissionReward.decode(reader, reader.uint32()));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MasterComebackInviteMissionRewardList {
-    return {
-      entries: globalThis.Array.isArray(object?.entries)
-        ? object.entries.map((e: any) => MasterComebackInviteMissionReward.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: MasterComebackInviteMissionRewardList): unknown {
-    const obj: any = {};
-    if (message.entries?.length) {
-      obj.entries = message.entries.map((e) => MasterComebackInviteMissionReward.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MasterComebackInviteMissionRewardList>, I>>(
-    base?: I,
-  ): MasterComebackInviteMissionRewardList {
-    return MasterComebackInviteMissionRewardList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MasterComebackInviteMissionRewardList>, I>>(
-    object: I,
-  ): MasterComebackInviteMissionRewardList {
-    const message = createBaseMasterComebackInviteMissionRewardList();
-    message.entries = object.entries?.map((e) => MasterComebackInviteMissionReward.fromPartial(e)) || [];
     return message;
   },
 };
@@ -60033,6 +64868,364 @@ export const MasterConfigInitializeTutorialMap_EntriesEntry: MessageFns<
     message.value = (object.value !== undefined && object.value !== null)
       ? MasterConfigInitializeTutorial.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterConsumptionGift(): MasterConsumptionGift {
+  return { id: 0, giftId: 0, startAt: "0", endAt: "0" };
+}
+
+export const MasterConsumptionGift: MessageFns<MasterConsumptionGift> = {
+  encode(message: MasterConsumptionGift, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.id !== 0) {
+      writer.uint32(8).uint32(message.id);
+    }
+    if (message.giftId !== 0) {
+      writer.uint32(16).uint32(message.giftId);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(24).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(32).uint64(message.endAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterConsumptionGift {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterConsumptionGift();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.id = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.giftId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterConsumptionGift {
+    return {
+      id: isSet(object.id) ? globalThis.Number(object.id) : 0,
+      giftId: isSet(object.giftId) ? globalThis.Number(object.giftId) : 0,
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+    };
+  },
+
+  toJSON(message: MasterConsumptionGift): unknown {
+    const obj: any = {};
+    if (message.id !== 0) {
+      obj.id = Math.round(message.id);
+    }
+    if (message.giftId !== 0) {
+      obj.giftId = Math.round(message.giftId);
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterConsumptionGift>, I>>(base?: I): MasterConsumptionGift {
+    return MasterConsumptionGift.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterConsumptionGift>, I>>(object: I): MasterConsumptionGift {
+    const message = createBaseMasterConsumptionGift();
+    message.id = object.id ?? 0;
+    message.giftId = object.giftId ?? 0;
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseMasterConsumptionGiftDetail(): MasterConsumptionGiftDetail {
+  return { giftId: 0, seq: 0, resourceType: "", resourceId: 0, quantity: 0 };
+}
+
+export const MasterConsumptionGiftDetail: MessageFns<MasterConsumptionGiftDetail> = {
+  encode(message: MasterConsumptionGiftDetail, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.giftId !== 0) {
+      writer.uint32(8).uint32(message.giftId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.resourceType !== "") {
+      writer.uint32(26).string(message.resourceType);
+    }
+    if (message.resourceId !== 0) {
+      writer.uint32(32).uint32(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(40).uint32(message.quantity);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterConsumptionGiftDetail {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterConsumptionGiftDetail();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.giftId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.resourceType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.resourceId = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.quantity = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterConsumptionGiftDetail {
+    return {
+      giftId: isSet(object.giftId) ? globalThis.Number(object.giftId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
+      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
+      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
+    };
+  },
+
+  toJSON(message: MasterConsumptionGiftDetail): unknown {
+    const obj: any = {};
+    if (message.giftId !== 0) {
+      obj.giftId = Math.round(message.giftId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.resourceType !== "") {
+      obj.resourceType = message.resourceType;
+    }
+    if (message.resourceId !== 0) {
+      obj.resourceId = Math.round(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      obj.quantity = Math.round(message.quantity);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterConsumptionGiftDetail>, I>>(base?: I): MasterConsumptionGiftDetail {
+    return MasterConsumptionGiftDetail.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterConsumptionGiftDetail>, I>>(object: I): MasterConsumptionGiftDetail {
+    const message = createBaseMasterConsumptionGiftDetail();
+    message.giftId = object.giftId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.resourceType = object.resourceType ?? "";
+    message.resourceId = object.resourceId ?? 0;
+    message.quantity = object.quantity ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterConsumptionGiftDetailList(): MasterConsumptionGiftDetailList {
+  return { entries: [] };
+}
+
+export const MasterConsumptionGiftDetailList: MessageFns<MasterConsumptionGiftDetailList> = {
+  encode(message: MasterConsumptionGiftDetailList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterConsumptionGiftDetail.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterConsumptionGiftDetailList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterConsumptionGiftDetailList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterConsumptionGiftDetail.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterConsumptionGiftDetailList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterConsumptionGiftDetail.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterConsumptionGiftDetailList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterConsumptionGiftDetail.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterConsumptionGiftDetailList>, I>>(base?: I): MasterConsumptionGiftDetailList {
+    return MasterConsumptionGiftDetailList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterConsumptionGiftDetailList>, I>>(
+    object: I,
+  ): MasterConsumptionGiftDetailList {
+    const message = createBaseMasterConsumptionGiftDetailList();
+    message.entries = object.entries?.map((e) => MasterConsumptionGiftDetail.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseMasterConsumptionGiftList(): MasterConsumptionGiftList {
+  return { entries: [] };
+}
+
+export const MasterConsumptionGiftList: MessageFns<MasterConsumptionGiftList> = {
+  encode(message: MasterConsumptionGiftList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterConsumptionGift.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterConsumptionGiftList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterConsumptionGiftList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterConsumptionGift.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterConsumptionGiftList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterConsumptionGift.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterConsumptionGiftList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterConsumptionGift.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterConsumptionGiftList>, I>>(base?: I): MasterConsumptionGiftList {
+    return MasterConsumptionGiftList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterConsumptionGiftList>, I>>(object: I): MasterConsumptionGiftList {
+    const message = createBaseMasterConsumptionGiftList();
+    message.entries = object.entries?.map((e) => MasterConsumptionGift.fromPartial(e)) || [];
     return message;
   },
 };
@@ -61259,7 +66452,6 @@ function createBaseMasterCostume3dGroup(): MasterCostume3dGroup {
     publishedAt: "0",
     situationId: 0,
     assetBundleName: "",
-    parentCostume3dGroup: 0,
   };
 }
 
@@ -61291,9 +66483,6 @@ export const MasterCostume3dGroup: MessageFns<MasterCostume3dGroup> = {
     }
     if (message.assetBundleName !== "") {
       writer.uint32(74).string(message.assetBundleName);
-    }
-    if (message.parentCostume3dGroup !== 0) {
-      writer.uint32(80).uint32(message.parentCostume3dGroup);
     }
     return writer;
   },
@@ -61377,14 +66566,6 @@ export const MasterCostume3dGroup: MessageFns<MasterCostume3dGroup> = {
           message.assetBundleName = reader.string();
           continue;
         }
-        case 10: {
-          if (tag !== 80) {
-            break;
-          }
-
-          message.parentCostume3dGroup = reader.uint32();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -61405,7 +66586,6 @@ export const MasterCostume3dGroup: MessageFns<MasterCostume3dGroup> = {
       publishedAt: isSet(object.publishedAt) ? globalThis.String(object.publishedAt) : "0",
       situationId: isSet(object.situationId) ? globalThis.Number(object.situationId) : 0,
       assetBundleName: isSet(object.assetBundleName) ? globalThis.String(object.assetBundleName) : "",
-      parentCostume3dGroup: isSet(object.parentCostume3dGroup) ? globalThis.Number(object.parentCostume3dGroup) : 0,
     };
   },
 
@@ -61438,9 +66618,6 @@ export const MasterCostume3dGroup: MessageFns<MasterCostume3dGroup> = {
     if (message.assetBundleName !== "") {
       obj.assetBundleName = message.assetBundleName;
     }
-    if (message.parentCostume3dGroup !== 0) {
-      obj.parentCostume3dGroup = Math.round(message.parentCostume3dGroup);
-    }
     return obj;
   },
 
@@ -61458,7 +66635,6 @@ export const MasterCostume3dGroup: MessageFns<MasterCostume3dGroup> = {
     message.publishedAt = object.publishedAt ?? "0";
     message.situationId = object.situationId ?? 0;
     message.assetBundleName = object.assetBundleName ?? "";
-    message.parentCostume3dGroup = object.parentCostume3dGroup ?? 0;
     return message;
   },
 };
@@ -93187,6 +98363,7 @@ function createBaseMasterGraphicalInformation(): MasterGraphicalInformation {
     targetUserType: "",
     transitionMethod2: "",
     transitionId2: 0,
+    url: "",
   };
 }
 
@@ -93218,6 +98395,9 @@ export const MasterGraphicalInformation: MessageFns<MasterGraphicalInformation> 
     }
     if (message.transitionId2 !== 0) {
       writer.uint32(72).uint32(message.transitionId2);
+    }
+    if (message.url !== "") {
+      writer.uint32(82).string(message.url);
     }
     return writer;
   },
@@ -93301,6 +98481,14 @@ export const MasterGraphicalInformation: MessageFns<MasterGraphicalInformation> 
           message.transitionId2 = reader.uint32();
           continue;
         }
+        case 10: {
+          if (tag !== 82) {
+            break;
+          }
+
+          message.url = reader.string();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -93323,6 +98511,7 @@ export const MasterGraphicalInformation: MessageFns<MasterGraphicalInformation> 
       targetUserType: isSet(object.targetUserType) ? globalThis.String(object.targetUserType) : "",
       transitionMethod2: isSet(object.transitionMethod2) ? globalThis.String(object.transitionMethod2) : "",
       transitionId2: isSet(object.transitionId2) ? globalThis.Number(object.transitionId2) : 0,
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
     };
   },
 
@@ -93355,6 +98544,9 @@ export const MasterGraphicalInformation: MessageFns<MasterGraphicalInformation> 
     if (message.transitionId2 !== 0) {
       obj.transitionId2 = Math.round(message.transitionId2);
     }
+    if (message.url !== "") {
+      obj.url = message.url;
+    }
     return obj;
   },
 
@@ -93372,6 +98564,7 @@ export const MasterGraphicalInformation: MessageFns<MasterGraphicalInformation> 
     message.targetUserType = object.targetUserType ?? "";
     message.transitionMethod2 = object.transitionMethod2 ?? "";
     message.transitionId2 = object.transitionId2 ?? 0;
+    message.url = object.url ?? "";
     return message;
   },
 };
@@ -101531,6 +106724,251 @@ export const MasterLiveBoostRecoveryItemMap_EntriesEntry: MessageFns<MasterLiveB
     message.value = (object.value !== undefined && object.value !== null)
       ? MasterLiveBoostRecoveryItem.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseMasterLiveFeverConfig(): MasterLiveFeverConfig {
+  return {
+    liveFeverId: 0,
+    feverType: "",
+    liveFeverLimitCount: 0,
+    liveFeverRewardRate: 0,
+    url: "",
+    challengeLimitLiveBoost: 0,
+    startAt: "0",
+    endAt: "0",
+  };
+}
+
+export const MasterLiveFeverConfig: MessageFns<MasterLiveFeverConfig> = {
+  encode(message: MasterLiveFeverConfig, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8).uint32(message.liveFeverId);
+    }
+    if (message.feverType !== "") {
+      writer.uint32(18).string(message.feverType);
+    }
+    if (message.liveFeverLimitCount !== 0) {
+      writer.uint32(24).uint32(message.liveFeverLimitCount);
+    }
+    if (message.liveFeverRewardRate !== 0) {
+      writer.uint32(32).uint32(message.liveFeverRewardRate);
+    }
+    if (message.url !== "") {
+      writer.uint32(42).string(message.url);
+    }
+    if (message.challengeLimitLiveBoost !== 0) {
+      writer.uint32(48).uint32(message.challengeLimitLiveBoost);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(56).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(64).uint64(message.endAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterLiveFeverConfig {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterLiveFeverConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.feverType = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.liveFeverLimitCount = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.liveFeverRewardRate = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.url = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.challengeLimitLiveBoost = reader.uint32();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterLiveFeverConfig {
+    return {
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
+      feverType: isSet(object.feverType) ? globalThis.String(object.feverType) : "",
+      liveFeverLimitCount: isSet(object.liveFeverLimitCount) ? globalThis.Number(object.liveFeverLimitCount) : 0,
+      liveFeverRewardRate: isSet(object.liveFeverRewardRate) ? globalThis.Number(object.liveFeverRewardRate) : 0,
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+      challengeLimitLiveBoost: isSet(object.challengeLimitLiveBoost)
+        ? globalThis.Number(object.challengeLimitLiveBoost)
+        : 0,
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+    };
+  },
+
+  toJSON(message: MasterLiveFeverConfig): unknown {
+    const obj: any = {};
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
+    if (message.feverType !== "") {
+      obj.feverType = message.feverType;
+    }
+    if (message.liveFeverLimitCount !== 0) {
+      obj.liveFeverLimitCount = Math.round(message.liveFeverLimitCount);
+    }
+    if (message.liveFeverRewardRate !== 0) {
+      obj.liveFeverRewardRate = Math.round(message.liveFeverRewardRate);
+    }
+    if (message.url !== "") {
+      obj.url = message.url;
+    }
+    if (message.challengeLimitLiveBoost !== 0) {
+      obj.challengeLimitLiveBoost = Math.round(message.challengeLimitLiveBoost);
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterLiveFeverConfig>, I>>(base?: I): MasterLiveFeverConfig {
+    return MasterLiveFeverConfig.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterLiveFeverConfig>, I>>(object: I): MasterLiveFeverConfig {
+    const message = createBaseMasterLiveFeverConfig();
+    message.liveFeverId = object.liveFeverId ?? 0;
+    message.feverType = object.feverType ?? "";
+    message.liveFeverLimitCount = object.liveFeverLimitCount ?? 0;
+    message.liveFeverRewardRate = object.liveFeverRewardRate ?? 0;
+    message.url = object.url ?? "";
+    message.challengeLimitLiveBoost = object.challengeLimitLiveBoost ?? 0;
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseMasterLiveFeverConfigList(): MasterLiveFeverConfigList {
+  return { entries: [] };
+}
+
+export const MasterLiveFeverConfigList: MessageFns<MasterLiveFeverConfigList> = {
+  encode(message: MasterLiveFeverConfigList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterLiveFeverConfig.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterLiveFeverConfigList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterLiveFeverConfigList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterLiveFeverConfig.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterLiveFeverConfigList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterLiveFeverConfig.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterLiveFeverConfigList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterLiveFeverConfig.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterLiveFeverConfigList>, I>>(base?: I): MasterLiveFeverConfigList {
+    return MasterLiveFeverConfigList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterLiveFeverConfigList>, I>>(object: I): MasterLiveFeverConfigList {
+    const message = createBaseMasterLiveFeverConfigList();
+    message.entries = object.entries?.map((e) => MasterLiveFeverConfig.fromPartial(e)) || [];
     return message;
   },
 };
@@ -111040,11 +116478,20 @@ export const MasterMissionPlatformOverviewList: MessageFns<MasterMissionPlatform
 };
 
 function createBaseMasterMissionReward(): MasterMissionReward {
-  return { resourceType: "", resourceId: 0, quantity: 0 };
+  return { missionId: 0, seq: 0, missionRewardId: 0, resourceType: "", resourceId: 0, quantity: 0 };
 }
 
 export const MasterMissionReward: MessageFns<MasterMissionReward> = {
   encode(message: MasterMissionReward, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.missionId !== 0) {
+      writer.uint32(8).uint32(message.missionId);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(16).uint32(message.seq);
+    }
+    if (message.missionRewardId !== 0) {
+      writer.uint32(24).uint32(message.missionRewardId);
+    }
     if (message.resourceType !== "") {
       writer.uint32(34).string(message.resourceType);
     }
@@ -111064,6 +116511,30 @@ export const MasterMissionReward: MessageFns<MasterMissionReward> = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.missionId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.missionRewardId = reader.uint32();
+          continue;
+        }
         case 4: {
           if (tag !== 34) {
             break;
@@ -111099,6 +116570,9 @@ export const MasterMissionReward: MessageFns<MasterMissionReward> = {
 
   fromJSON(object: any): MasterMissionReward {
     return {
+      missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      missionRewardId: isSet(object.missionRewardId) ? globalThis.Number(object.missionRewardId) : 0,
       resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
       resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
       quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
@@ -111107,6 +116581,15 @@ export const MasterMissionReward: MessageFns<MasterMissionReward> = {
 
   toJSON(message: MasterMissionReward): unknown {
     const obj: any = {};
+    if (message.missionId !== 0) {
+      obj.missionId = Math.round(message.missionId);
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.missionRewardId !== 0) {
+      obj.missionRewardId = Math.round(message.missionRewardId);
+    }
     if (message.resourceType !== "") {
       obj.resourceType = message.resourceType;
     }
@@ -111124,9 +116607,74 @@ export const MasterMissionReward: MessageFns<MasterMissionReward> = {
   },
   fromPartial<I extends Exact<DeepPartial<MasterMissionReward>, I>>(object: I): MasterMissionReward {
     const message = createBaseMasterMissionReward();
+    message.missionId = object.missionId ?? 0;
+    message.seq = object.seq ?? 0;
+    message.missionRewardId = object.missionRewardId ?? 0;
     message.resourceType = object.resourceType ?? "";
     message.resourceId = object.resourceId ?? 0;
     message.quantity = object.quantity ?? 0;
+    return message;
+  },
+};
+
+function createBaseMasterMissionRewardList(): MasterMissionRewardList {
+  return { entries: [] };
+}
+
+export const MasterMissionRewardList: MessageFns<MasterMissionRewardList> = {
+  encode(message: MasterMissionRewardList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      MasterMissionReward.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MasterMissionRewardList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMasterMissionRewardList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(MasterMissionReward.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MasterMissionRewardList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => MasterMissionReward.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: MasterMissionRewardList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => MasterMissionReward.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MasterMissionRewardList>, I>>(base?: I): MasterMissionRewardList {
+    return MasterMissionRewardList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MasterMissionRewardList>, I>>(object: I): MasterMissionRewardList {
+    const message = createBaseMasterMissionRewardList();
+    message.entries = object.entries?.map((e) => MasterMissionReward.fromPartial(e)) || [];
     return message;
   },
 };
@@ -148577,16 +154125,13 @@ export const MedleyPlayMusic: MessageFns<MedleyPlayMusic> = {
 };
 
 function createBaseMemberListCacheData(): MemberListCacheData {
-  return { IsCheckedSpecialTrainingFilter: false, IsCheckedSkillPracticeFilter: false };
+  return { IsCheckedSpecialTrainingFilter: false };
 }
 
 export const MemberListCacheData: MessageFns<MemberListCacheData> = {
   encode(message: MemberListCacheData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.IsCheckedSpecialTrainingFilter !== false) {
       writer.uint32(8).bool(message.IsCheckedSpecialTrainingFilter);
-    }
-    if (message.IsCheckedSkillPracticeFilter !== false) {
-      writer.uint32(16).bool(message.IsCheckedSkillPracticeFilter);
     }
     return writer;
   },
@@ -148606,14 +154151,6 @@ export const MemberListCacheData: MessageFns<MemberListCacheData> = {
           message.IsCheckedSpecialTrainingFilter = reader.bool();
           continue;
         }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.IsCheckedSkillPracticeFilter = reader.bool();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -148628,9 +154165,6 @@ export const MemberListCacheData: MessageFns<MemberListCacheData> = {
       IsCheckedSpecialTrainingFilter: isSet(object.IsCheckedSpecialTrainingFilter)
         ? globalThis.Boolean(object.IsCheckedSpecialTrainingFilter)
         : false,
-      IsCheckedSkillPracticeFilter: isSet(object.IsCheckedSkillPracticeFilter)
-        ? globalThis.Boolean(object.IsCheckedSkillPracticeFilter)
-        : false,
     };
   },
 
@@ -148638,9 +154172,6 @@ export const MemberListCacheData: MessageFns<MemberListCacheData> = {
     const obj: any = {};
     if (message.IsCheckedSpecialTrainingFilter !== false) {
       obj.IsCheckedSpecialTrainingFilter = message.IsCheckedSpecialTrainingFilter;
-    }
-    if (message.IsCheckedSkillPracticeFilter !== false) {
-      obj.IsCheckedSkillPracticeFilter = message.IsCheckedSkillPracticeFilter;
     }
     return obj;
   },
@@ -148651,7 +154182,6 @@ export const MemberListCacheData: MessageFns<MemberListCacheData> = {
   fromPartial<I extends Exact<DeepPartial<MemberListCacheData>, I>>(object: I): MemberListCacheData {
     const message = createBaseMemberListCacheData();
     message.IsCheckedSpecialTrainingFilter = object.IsCheckedSpecialTrainingFilter ?? false;
-    message.IsCheckedSkillPracticeFilter = object.IsCheckedSkillPracticeFilter ?? false;
     return message;
   },
 };
@@ -148939,6 +154469,171 @@ export const MissionReward: MessageFns<MissionReward> = {
       : undefined;
     message.missionRewardList = (object.missionRewardList !== undefined && object.missionRewardList !== null)
       ? PlayerResourceList.fromPartial(object.missionRewardList)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMissionRewardMap(): MissionRewardMap {
+  return { entries: {} };
+}
+
+export const MissionRewardMap: MessageFns<MissionRewardMap> = {
+  encode(message: MissionRewardMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, MasterMissionRewardList]) => {
+      MissionRewardMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MissionRewardMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMissionRewardMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = MissionRewardMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MissionRewardMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: MasterMissionRewardList }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = MasterMissionRewardList.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: MissionRewardMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, MasterMissionRewardList][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = MasterMissionRewardList.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MissionRewardMap>, I>>(base?: I): MissionRewardMap {
+    return MissionRewardMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MissionRewardMap>, I>>(object: I): MissionRewardMap {
+    const message = createBaseMissionRewardMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, MasterMissionRewardList][]).reduce(
+      (acc: { [key: number]: MasterMissionRewardList }, [key, value]: [string, MasterMissionRewardList]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = MasterMissionRewardList.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseMissionRewardMap_EntriesEntry(): MissionRewardMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const MissionRewardMap_EntriesEntry: MessageFns<MissionRewardMap_EntriesEntry> = {
+  encode(message: MissionRewardMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      MasterMissionRewardList.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MissionRewardMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMissionRewardMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = MasterMissionRewardList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MissionRewardMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? MasterMissionRewardList.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: MissionRewardMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = MasterMissionRewardList.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MissionRewardMap_EntriesEntry>, I>>(base?: I): MissionRewardMap_EntriesEntry {
+    return MissionRewardMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MissionRewardMap_EntriesEntry>, I>>(
+    object: I,
+  ): MissionRewardMap_EntriesEntry {
+    const message = createBaseMissionRewardMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? MasterMissionRewardList.fromPartial(object.value)
       : undefined;
     return message;
   },
@@ -150750,6 +156445,624 @@ export const MusicSortCacheData: MessageFns<MusicSortCacheData> = {
   },
 };
 
+function createBaseNFOBILog(): NFOBILog {
+  return { biEventType: "", biLogData: "" };
+}
+
+export const NFOBILog: MessageFns<NFOBILog> = {
+  encode(message: NFOBILog, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.biEventType !== "") {
+      writer.uint32(10).string(message.biEventType);
+    }
+    if (message.biLogData !== "") {
+      writer.uint32(18).string(message.biLogData);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOBILog {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOBILog();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.biEventType = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.biLogData = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOBILog {
+    return {
+      biEventType: isSet(object.biEventType)
+        ? globalThis.String(object.biEventType)
+        : isSet(object.bi_event_type)
+        ? globalThis.String(object.bi_event_type)
+        : "",
+      biLogData: isSet(object.biLogData)
+        ? globalThis.String(object.biLogData)
+        : isSet(object.bi_log_data)
+        ? globalThis.String(object.bi_log_data)
+        : "",
+    };
+  },
+
+  toJSON(message: NFOBILog): unknown {
+    const obj: any = {};
+    if (message.biEventType !== "") {
+      obj.biEventType = message.biEventType;
+    }
+    if (message.biLogData !== "") {
+      obj.biLogData = message.biLogData;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOBILog>, I>>(base?: I): NFOBILog {
+    return NFOBILog.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOBILog>, I>>(object: I): NFOBILog {
+    const message = createBaseNFOBILog();
+    message.biEventType = object.biEventType ?? "";
+    message.biLogData = object.biLogData ?? "";
+    return message;
+  },
+};
+
+function createBaseNFOCharacterConfigData(): NFOCharacterConfigData {
+  return { characterID: 0, skinID: 0 };
+}
+
+export const NFOCharacterConfigData: MessageFns<NFOCharacterConfigData> = {
+  encode(message: NFOCharacterConfigData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.characterID !== 0) {
+      writer.uint32(8).int32(message.characterID);
+    }
+    if (message.skinID !== 0) {
+      writer.uint32(16).int32(message.skinID);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOCharacterConfigData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOCharacterConfigData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.characterID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.skinID = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOCharacterConfigData {
+    return {
+      characterID: isSet(object.characterID) ? globalThis.Number(object.characterID) : 0,
+      skinID: isSet(object.skinID) ? globalThis.Number(object.skinID) : 0,
+    };
+  },
+
+  toJSON(message: NFOCharacterConfigData): unknown {
+    const obj: any = {};
+    if (message.characterID !== 0) {
+      obj.characterID = Math.round(message.characterID);
+    }
+    if (message.skinID !== 0) {
+      obj.skinID = Math.round(message.skinID);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOCharacterConfigData>, I>>(base?: I): NFOCharacterConfigData {
+    return NFOCharacterConfigData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOCharacterConfigData>, I>>(object: I): NFOCharacterConfigData {
+    const message = createBaseNFOCharacterConfigData();
+    message.characterID = object.characterID ?? 0;
+    message.skinID = object.skinID ?? 0;
+    return message;
+  },
+};
+
+function createBaseNFOCharacterLogData(): NFOCharacterLogData {
+  return { characterID: 0, clearLevelIDs: [] };
+}
+
+export const NFOCharacterLogData: MessageFns<NFOCharacterLogData> = {
+  encode(message: NFOCharacterLogData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.characterID !== 0) {
+      writer.uint32(8).int32(message.characterID);
+    }
+    for (const v of message.clearLevelIDs) {
+      NFOLevelLogData.encode(v!, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOCharacterLogData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOCharacterLogData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.characterID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.clearLevelIDs.push(NFOLevelLogData.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOCharacterLogData {
+    return {
+      characterID: isSet(object.characterID) ? globalThis.Number(object.characterID) : 0,
+      clearLevelIDs: globalThis.Array.isArray(object?.clearLevelIDs)
+        ? object.clearLevelIDs.map((e: any) => NFOLevelLogData.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: NFOCharacterLogData): unknown {
+    const obj: any = {};
+    if (message.characterID !== 0) {
+      obj.characterID = Math.round(message.characterID);
+    }
+    if (message.clearLevelIDs?.length) {
+      obj.clearLevelIDs = message.clearLevelIDs.map((e) => NFOLevelLogData.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOCharacterLogData>, I>>(base?: I): NFOCharacterLogData {
+    return NFOCharacterLogData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOCharacterLogData>, I>>(object: I): NFOCharacterLogData {
+    const message = createBaseNFOCharacterLogData();
+    message.characterID = object.characterID ?? 0;
+    message.clearLevelIDs = object.clearLevelIDs?.map((e) => NFOLevelLogData.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseNFOEnemyLogData(): NFOEnemyLogData {
+  return { enemyID: 0, killCount: 0 };
+}
+
+export const NFOEnemyLogData: MessageFns<NFOEnemyLogData> = {
+  encode(message: NFOEnemyLogData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.enemyID !== 0) {
+      writer.uint32(8).int32(message.enemyID);
+    }
+    if (message.killCount !== 0) {
+      writer.uint32(16).int32(message.killCount);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOEnemyLogData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOEnemyLogData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.enemyID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.killCount = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOEnemyLogData {
+    return {
+      enemyID: isSet(object.enemyID) ? globalThis.Number(object.enemyID) : 0,
+      killCount: isSet(object.killCount) ? globalThis.Number(object.killCount) : 0,
+    };
+  },
+
+  toJSON(message: NFOEnemyLogData): unknown {
+    const obj: any = {};
+    if (message.enemyID !== 0) {
+      obj.enemyID = Math.round(message.enemyID);
+    }
+    if (message.killCount !== 0) {
+      obj.killCount = Math.round(message.killCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOEnemyLogData>, I>>(base?: I): NFOEnemyLogData {
+    return NFOEnemyLogData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOEnemyLogData>, I>>(object: I): NFOEnemyLogData {
+    const message = createBaseNFOEnemyLogData();
+    message.enemyID = object.enemyID ?? 0;
+    message.killCount = object.killCount ?? 0;
+    return message;
+  },
+};
+
+function createBaseNFOGetMultiplayServerInfo(): NFOGetMultiplayServerInfo {
+  return {};
+}
+
+export const NFOGetMultiplayServerInfo: MessageFns<NFOGetMultiplayServerInfo> = {
+  encode(_: NFOGetMultiplayServerInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOGetMultiplayServerInfo {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOGetMultiplayServerInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): NFOGetMultiplayServerInfo {
+    return {};
+  },
+
+  toJSON(_: NFOGetMultiplayServerInfo): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOGetMultiplayServerInfo>, I>>(base?: I): NFOGetMultiplayServerInfo {
+    return NFOGetMultiplayServerInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOGetMultiplayServerInfo>, I>>(_: I): NFOGetMultiplayServerInfo {
+    const message = createBaseNFOGetMultiplayServerInfo();
+    return message;
+  },
+};
+
+function createBaseNFOGetMultiplayServerInfoResponse(): NFOGetMultiplayServerInfoResponse {
+  return { address: "", port: 0, mantenance: 0, matchToken: "" };
+}
+
+export const NFOGetMultiplayServerInfoResponse: MessageFns<NFOGetMultiplayServerInfoResponse> = {
+  encode(message: NFOGetMultiplayServerInfoResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    if (message.port !== 0) {
+      writer.uint32(16).uint32(message.port);
+    }
+    if (message.mantenance !== 0) {
+      writer.uint32(24).uint32(message.mantenance);
+    }
+    if (message.matchToken !== "") {
+      writer.uint32(34).string(message.matchToken);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOGetMultiplayServerInfoResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOGetMultiplayServerInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.port = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.mantenance = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.matchToken = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOGetMultiplayServerInfoResponse {
+    return {
+      address: isSet(object.address) ? globalThis.String(object.address) : "",
+      port: isSet(object.port) ? globalThis.Number(object.port) : 0,
+      mantenance: isSet(object.mantenance) ? globalThis.Number(object.mantenance) : 0,
+      matchToken: isSet(object.matchToken) ? globalThis.String(object.matchToken) : "",
+    };
+  },
+
+  toJSON(message: NFOGetMultiplayServerInfoResponse): unknown {
+    const obj: any = {};
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.port !== 0) {
+      obj.port = Math.round(message.port);
+    }
+    if (message.mantenance !== 0) {
+      obj.mantenance = Math.round(message.mantenance);
+    }
+    if (message.matchToken !== "") {
+      obj.matchToken = message.matchToken;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOGetMultiplayServerInfoResponse>, I>>(
+    base?: I,
+  ): NFOGetMultiplayServerInfoResponse {
+    return NFOGetMultiplayServerInfoResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOGetMultiplayServerInfoResponse>, I>>(
+    object: I,
+  ): NFOGetMultiplayServerInfoResponse {
+    const message = createBaseNFOGetMultiplayServerInfoResponse();
+    message.address = object.address ?? "";
+    message.port = object.port ?? 0;
+    message.mantenance = object.mantenance ?? 0;
+    message.matchToken = object.matchToken ?? "";
+    return message;
+  },
+};
+
+function createBaseNFOLevelLogData(): NFOLevelLogData {
+  return {
+    levelID: 0,
+    maxSurvivedTime: 0,
+    clearCount: 0,
+    playCount: 0,
+    multiplayClearCount: 0,
+    multiplaySingleClearCount: 0,
+  };
+}
+
+export const NFOLevelLogData: MessageFns<NFOLevelLogData> = {
+  encode(message: NFOLevelLogData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.levelID !== 0) {
+      writer.uint32(8).int32(message.levelID);
+    }
+    if (message.maxSurvivedTime !== 0) {
+      writer.uint32(16).int32(message.maxSurvivedTime);
+    }
+    if (message.clearCount !== 0) {
+      writer.uint32(24).int32(message.clearCount);
+    }
+    if (message.playCount !== 0) {
+      writer.uint32(32).int32(message.playCount);
+    }
+    if (message.multiplayClearCount !== 0) {
+      writer.uint32(40).int32(message.multiplayClearCount);
+    }
+    if (message.multiplaySingleClearCount !== 0) {
+      writer.uint32(48).int32(message.multiplaySingleClearCount);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOLevelLogData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOLevelLogData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.levelID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.maxSurvivedTime = reader.int32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.clearCount = reader.int32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.playCount = reader.int32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.multiplayClearCount = reader.int32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.multiplaySingleClearCount = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOLevelLogData {
+    return {
+      levelID: isSet(object.levelID) ? globalThis.Number(object.levelID) : 0,
+      maxSurvivedTime: isSet(object.maxSurvivedTime) ? globalThis.Number(object.maxSurvivedTime) : 0,
+      clearCount: isSet(object.clearCount) ? globalThis.Number(object.clearCount) : 0,
+      playCount: isSet(object.playCount) ? globalThis.Number(object.playCount) : 0,
+      multiplayClearCount: isSet(object.multiplayClearCount) ? globalThis.Number(object.multiplayClearCount) : 0,
+      multiplaySingleClearCount: isSet(object.multiplaySingleClearCount)
+        ? globalThis.Number(object.multiplaySingleClearCount)
+        : 0,
+    };
+  },
+
+  toJSON(message: NFOLevelLogData): unknown {
+    const obj: any = {};
+    if (message.levelID !== 0) {
+      obj.levelID = Math.round(message.levelID);
+    }
+    if (message.maxSurvivedTime !== 0) {
+      obj.maxSurvivedTime = Math.round(message.maxSurvivedTime);
+    }
+    if (message.clearCount !== 0) {
+      obj.clearCount = Math.round(message.clearCount);
+    }
+    if (message.playCount !== 0) {
+      obj.playCount = Math.round(message.playCount);
+    }
+    if (message.multiplayClearCount !== 0) {
+      obj.multiplayClearCount = Math.round(message.multiplayClearCount);
+    }
+    if (message.multiplaySingleClearCount !== 0) {
+      obj.multiplaySingleClearCount = Math.round(message.multiplaySingleClearCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOLevelLogData>, I>>(base?: I): NFOLevelLogData {
+    return NFOLevelLogData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOLevelLogData>, I>>(object: I): NFOLevelLogData {
+    const message = createBaseNFOLevelLogData();
+    message.levelID = object.levelID ?? 0;
+    message.maxSurvivedTime = object.maxSurvivedTime ?? 0;
+    message.clearCount = object.clearCount ?? 0;
+    message.playCount = object.playCount ?? 0;
+    message.multiplayClearCount = object.multiplayClearCount ?? 0;
+    message.multiplaySingleClearCount = object.multiplaySingleClearCount ?? 0;
+    return message;
+  },
+};
+
 function createBaseNFOLoadResponse(): NFOLoadResponse {
   return { nfoSaveData: undefined, missionList: undefined };
 }
@@ -150830,17 +157143,276 @@ export const NFOLoadResponse: MessageFns<NFOLoadResponse> = {
   },
 };
 
+function createBaseNFOLoadSend(): NFOLoadSend {
+  return { biLogList: [] };
+}
+
+export const NFOLoadSend: MessageFns<NFOLoadSend> = {
+  encode(message: NFOLoadSend, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.biLogList) {
+      NFOBILog.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOLoadSend {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOLoadSend();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.biLogList.push(NFOBILog.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOLoadSend {
+    return {
+      biLogList: globalThis.Array.isArray(object?.biLogList)
+        ? object.biLogList.map((e: any) => NFOBILog.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: NFOLoadSend): unknown {
+    const obj: any = {};
+    if (message.biLogList?.length) {
+      obj.biLogList = message.biLogList.map((e) => NFOBILog.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOLoadSend>, I>>(base?: I): NFOLoadSend {
+    return NFOLoadSend.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOLoadSend>, I>>(object: I): NFOLoadSend {
+    const message = createBaseNFOLoadSend();
+    message.biLogList = object.biLogList?.map((e) => NFOBILog.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseNFOMultiplayLogData(): NFOMultiplayLogData {
+  return { levelID: 0, playTimeUTC: "0", teamMateUserID: "0", result: 0 };
+}
+
+export const NFOMultiplayLogData: MessageFns<NFOMultiplayLogData> = {
+  encode(message: NFOMultiplayLogData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.levelID !== 0) {
+      writer.uint32(8).int32(message.levelID);
+    }
+    if (message.playTimeUTC !== "0") {
+      writer.uint32(16).int64(message.playTimeUTC);
+    }
+    if (message.teamMateUserID !== "0") {
+      writer.uint32(24).uint64(message.teamMateUserID);
+    }
+    if (message.result !== 0) {
+      writer.uint32(32).int32(message.result);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOMultiplayLogData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOMultiplayLogData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.levelID = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.playTimeUTC = reader.int64().toString();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.teamMateUserID = reader.uint64().toString();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.result = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOMultiplayLogData {
+    return {
+      levelID: isSet(object.levelID) ? globalThis.Number(object.levelID) : 0,
+      playTimeUTC: isSet(object.playTimeUTC) ? globalThis.String(object.playTimeUTC) : "0",
+      teamMateUserID: isSet(object.teamMateUserID) ? globalThis.String(object.teamMateUserID) : "0",
+      result: isSet(object.result) ? globalThis.Number(object.result) : 0,
+    };
+  },
+
+  toJSON(message: NFOMultiplayLogData): unknown {
+    const obj: any = {};
+    if (message.levelID !== 0) {
+      obj.levelID = Math.round(message.levelID);
+    }
+    if (message.playTimeUTC !== "0") {
+      obj.playTimeUTC = message.playTimeUTC;
+    }
+    if (message.teamMateUserID !== "0") {
+      obj.teamMateUserID = message.teamMateUserID;
+    }
+    if (message.result !== 0) {
+      obj.result = Math.round(message.result);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOMultiplayLogData>, I>>(base?: I): NFOMultiplayLogData {
+    return NFOMultiplayLogData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOMultiplayLogData>, I>>(object: I): NFOMultiplayLogData {
+    const message = createBaseNFOMultiplayLogData();
+    message.levelID = object.levelID ?? 0;
+    message.playTimeUTC = object.playTimeUTC ?? "0";
+    message.teamMateUserID = object.teamMateUserID ?? "0";
+    message.result = object.result ?? 0;
+    return message;
+  },
+};
+
+function createBaseNFOOtherLogData(): NFOOtherLogData {
+  return { MaxReviveTimes: 0, MaxDamageDealt: 0, MaxHealedHP: 0 };
+}
+
+export const NFOOtherLogData: MessageFns<NFOOtherLogData> = {
+  encode(message: NFOOtherLogData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.MaxReviveTimes !== 0) {
+      writer.uint32(8).int32(message.MaxReviveTimes);
+    }
+    if (message.MaxDamageDealt !== 0) {
+      writer.uint32(16).int32(message.MaxDamageDealt);
+    }
+    if (message.MaxHealedHP !== 0) {
+      writer.uint32(24).int32(message.MaxHealedHP);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NFOOtherLogData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNFOOtherLogData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.MaxReviveTimes = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.MaxDamageDealt = reader.int32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.MaxHealedHP = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NFOOtherLogData {
+    return {
+      MaxReviveTimes: isSet(object.MaxReviveTimes) ? globalThis.Number(object.MaxReviveTimes) : 0,
+      MaxDamageDealt: isSet(object.MaxDamageDealt) ? globalThis.Number(object.MaxDamageDealt) : 0,
+      MaxHealedHP: isSet(object.MaxHealedHP) ? globalThis.Number(object.MaxHealedHP) : 0,
+    };
+  },
+
+  toJSON(message: NFOOtherLogData): unknown {
+    const obj: any = {};
+    if (message.MaxReviveTimes !== 0) {
+      obj.MaxReviveTimes = Math.round(message.MaxReviveTimes);
+    }
+    if (message.MaxDamageDealt !== 0) {
+      obj.MaxDamageDealt = Math.round(message.MaxDamageDealt);
+    }
+    if (message.MaxHealedHP !== 0) {
+      obj.MaxHealedHP = Math.round(message.MaxHealedHP);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NFOOtherLogData>, I>>(base?: I): NFOOtherLogData {
+    return NFOOtherLogData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NFOOtherLogData>, I>>(object: I): NFOOtherLogData {
+    const message = createBaseNFOOtherLogData();
+    message.MaxReviveTimes = object.MaxReviveTimes ?? 0;
+    message.MaxDamageDealt = object.MaxDamageDealt ?? 0;
+    message.MaxHealedHP = object.MaxHealedHP ?? 0;
+    return message;
+  },
+};
+
 function createBaseNFORewardResponse(): NFORewardResponse {
-  return { success: "", updateResources: undefined };
+  return { success: "" };
 }
 
 export const NFORewardResponse: MessageFns<NFORewardResponse> = {
   encode(message: NFORewardResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.success !== "") {
       writer.uint32(10).string(message.success);
-    }
-    if (message.updateResources !== undefined) {
-      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -150860,14 +157432,6 @@ export const NFORewardResponse: MessageFns<NFORewardResponse> = {
           message.success = reader.string();
           continue;
         }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -150878,21 +157442,13 @@ export const NFORewardResponse: MessageFns<NFORewardResponse> = {
   },
 
   fromJSON(object: any): NFORewardResponse {
-    return {
-      success: isSet(object.success) ? globalThis.String(object.success) : "",
-      updateResources: isSet(object.updateResources)
-        ? SuiteUserGetResponse.fromJSON(object.updateResources)
-        : undefined,
-    };
+    return { success: isSet(object.success) ? globalThis.String(object.success) : "" };
   },
 
   toJSON(message: NFORewardResponse): unknown {
     const obj: any = {};
     if (message.success !== "") {
       obj.success = message.success;
-    }
-    if (message.updateResources !== undefined) {
-      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
     }
     return obj;
   },
@@ -150903,9 +157459,6 @@ export const NFORewardResponse: MessageFns<NFORewardResponse> = {
   fromPartial<I extends Exact<DeepPartial<NFORewardResponse>, I>>(object: I): NFORewardResponse {
     const message = createBaseNFORewardResponse();
     message.success = object.success ?? "";
-    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
-      ? SuiteUserGetResponse.fromPartial(object.updateResources)
-      : undefined;
     return message;
   },
 };
@@ -150920,6 +157473,12 @@ function createBaseNFOSaveData(): NFOSaveData {
     gotWeapons: [],
     upgradeCoin: 0,
     paidGlobalUpgrade: [],
+    characterLogDatas: [],
+    enemyLogDatas: [],
+    multiplayLogDatas: [],
+    otherLogData: undefined,
+    unlockedSkins: [],
+    characterConfigDatas: [],
   };
 }
 
@@ -150963,6 +157522,26 @@ export const NFOSaveData: MessageFns<NFOSaveData> = {
       writer.int32(v);
     }
     writer.join();
+    for (const v of message.characterLogDatas) {
+      NFOCharacterLogData.encode(v!, writer.uint32(74).fork()).join();
+    }
+    for (const v of message.enemyLogDatas) {
+      NFOEnemyLogData.encode(v!, writer.uint32(82).fork()).join();
+    }
+    for (const v of message.multiplayLogDatas) {
+      NFOMultiplayLogData.encode(v!, writer.uint32(90).fork()).join();
+    }
+    if (message.otherLogData !== undefined) {
+      NFOOtherLogData.encode(message.otherLogData, writer.uint32(98).fork()).join();
+    }
+    writer.uint32(106).fork();
+    for (const v of message.unlockedSkins) {
+      writer.int32(v);
+    }
+    writer.join();
+    for (const v of message.characterConfigDatas) {
+      NFOCharacterConfigData.encode(v!, writer.uint32(114).fork()).join();
+    }
     return writer;
   },
 
@@ -151107,6 +157686,64 @@ export const NFOSaveData: MessageFns<NFOSaveData> = {
 
           break;
         }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.characterLogDatas.push(NFOCharacterLogData.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 10: {
+          if (tag !== 82) {
+            break;
+          }
+
+          message.enemyLogDatas.push(NFOEnemyLogData.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 11: {
+          if (tag !== 90) {
+            break;
+          }
+
+          message.multiplayLogDatas.push(NFOMultiplayLogData.decode(reader, reader.uint32()));
+          continue;
+        }
+        case 12: {
+          if (tag !== 98) {
+            break;
+          }
+
+          message.otherLogData = NFOOtherLogData.decode(reader, reader.uint32());
+          continue;
+        }
+        case 13: {
+          if (tag === 104) {
+            message.unlockedSkins.push(reader.int32());
+
+            continue;
+          }
+
+          if (tag === 106) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.unlockedSkins.push(reader.int32());
+            }
+
+            continue;
+          }
+
+          break;
+        }
+        case 14: {
+          if (tag !== 114) {
+            break;
+          }
+
+          message.characterConfigDatas.push(NFOCharacterConfigData.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -151140,6 +157777,22 @@ export const NFOSaveData: MessageFns<NFOSaveData> = {
       paidGlobalUpgrade: globalThis.Array.isArray(object?.paidGlobalUpgrade)
         ? object.paidGlobalUpgrade.map((e: any) => globalThis.Number(e))
         : [],
+      characterLogDatas: globalThis.Array.isArray(object?.characterLogDatas)
+        ? object.characterLogDatas.map((e: any) => NFOCharacterLogData.fromJSON(e))
+        : [],
+      enemyLogDatas: globalThis.Array.isArray(object?.enemyLogDatas)
+        ? object.enemyLogDatas.map((e: any) => NFOEnemyLogData.fromJSON(e))
+        : [],
+      multiplayLogDatas: globalThis.Array.isArray(object?.multiplayLogDatas)
+        ? object.multiplayLogDatas.map((e: any) => NFOMultiplayLogData.fromJSON(e))
+        : [],
+      otherLogData: isSet(object.otherLogData) ? NFOOtherLogData.fromJSON(object.otherLogData) : undefined,
+      unlockedSkins: globalThis.Array.isArray(object?.unlockedSkins)
+        ? object.unlockedSkins.map((e: any) => globalThis.Number(e))
+        : [],
+      characterConfigDatas: globalThis.Array.isArray(object?.characterConfigDatas)
+        ? object.characterConfigDatas.map((e: any) => NFOCharacterConfigData.fromJSON(e))
+        : [],
     };
   },
 
@@ -151169,6 +157822,24 @@ export const NFOSaveData: MessageFns<NFOSaveData> = {
     if (message.paidGlobalUpgrade?.length) {
       obj.paidGlobalUpgrade = message.paidGlobalUpgrade.map((e) => Math.round(e));
     }
+    if (message.characterLogDatas?.length) {
+      obj.characterLogDatas = message.characterLogDatas.map((e) => NFOCharacterLogData.toJSON(e));
+    }
+    if (message.enemyLogDatas?.length) {
+      obj.enemyLogDatas = message.enemyLogDatas.map((e) => NFOEnemyLogData.toJSON(e));
+    }
+    if (message.multiplayLogDatas?.length) {
+      obj.multiplayLogDatas = message.multiplayLogDatas.map((e) => NFOMultiplayLogData.toJSON(e));
+    }
+    if (message.otherLogData !== undefined) {
+      obj.otherLogData = NFOOtherLogData.toJSON(message.otherLogData);
+    }
+    if (message.unlockedSkins?.length) {
+      obj.unlockedSkins = message.unlockedSkins.map((e) => Math.round(e));
+    }
+    if (message.characterConfigDatas?.length) {
+      obj.characterConfigDatas = message.characterConfigDatas.map((e) => NFOCharacterConfigData.toJSON(e));
+    }
     return obj;
   },
 
@@ -151185,6 +157856,14 @@ export const NFOSaveData: MessageFns<NFOSaveData> = {
     message.gotWeapons = object.gotWeapons?.map((e) => e) || [];
     message.upgradeCoin = object.upgradeCoin ?? 0;
     message.paidGlobalUpgrade = object.paidGlobalUpgrade?.map((e) => e) || [];
+    message.characterLogDatas = object.characterLogDatas?.map((e) => NFOCharacterLogData.fromPartial(e)) || [];
+    message.enemyLogDatas = object.enemyLogDatas?.map((e) => NFOEnemyLogData.fromPartial(e)) || [];
+    message.multiplayLogDatas = object.multiplayLogDatas?.map((e) => NFOMultiplayLogData.fromPartial(e)) || [];
+    message.otherLogData = (object.otherLogData !== undefined && object.otherLogData !== null)
+      ? NFOOtherLogData.fromPartial(object.otherLogData)
+      : undefined;
+    message.unlockedSkins = object.unlockedSkins?.map((e) => e) || [];
+    message.characterConfigDatas = object.characterConfigDatas?.map((e) => NFOCharacterConfigData.fromPartial(e)) || [];
     return message;
   },
 };
@@ -151248,7 +157927,7 @@ export const NFOSaveResponse: MessageFns<NFOSaveResponse> = {
 };
 
 function createBaseNFOSaveSend(): NFOSaveSend {
-  return { nfoSaveData: undefined, missionList: undefined };
+  return { nfoSaveData: undefined, missionList: undefined, biLogList: [] };
 }
 
 export const NFOSaveSend: MessageFns<NFOSaveSend> = {
@@ -151258,6 +157937,9 @@ export const NFOSaveSend: MessageFns<NFOSaveSend> = {
     }
     if (message.missionList !== undefined) {
       UserBiliNfoMissionList.encode(message.missionList, writer.uint32(18).fork()).join();
+    }
+    for (const v of message.biLogList) {
+      NFOBILog.encode(v!, writer.uint32(26).fork()).join();
     }
     return writer;
   },
@@ -151285,6 +157967,14 @@ export const NFOSaveSend: MessageFns<NFOSaveSend> = {
           message.missionList = UserBiliNfoMissionList.decode(reader, reader.uint32());
           continue;
         }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.biLogList.push(NFOBILog.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -151298,6 +157988,9 @@ export const NFOSaveSend: MessageFns<NFOSaveSend> = {
     return {
       nfoSaveData: isSet(object.nfoSaveData) ? NFOSaveData.fromJSON(object.nfoSaveData) : undefined,
       missionList: isSet(object.missionList) ? UserBiliNfoMissionList.fromJSON(object.missionList) : undefined,
+      biLogList: globalThis.Array.isArray(object?.biLogList)
+        ? object.biLogList.map((e: any) => NFOBILog.fromJSON(e))
+        : [],
     };
   },
 
@@ -151308,6 +158001,9 @@ export const NFOSaveSend: MessageFns<NFOSaveSend> = {
     }
     if (message.missionList !== undefined) {
       obj.missionList = UserBiliNfoMissionList.toJSON(message.missionList);
+    }
+    if (message.biLogList?.length) {
+      obj.biLogList = message.biLogList.map((e) => NFOBILog.toJSON(e));
     }
     return obj;
   },
@@ -151323,6 +158019,7 @@ export const NFOSaveSend: MessageFns<NFOSaveSend> = {
     message.missionList = (object.missionList !== undefined && object.missionList !== null)
       ? UserBiliNfoMissionList.fromPartial(object.missionList)
       : undefined;
+    message.biLogList = object.biLogList?.map((e) => NFOBILog.fromPartial(e)) || [];
     return message;
   },
 };
@@ -156589,6 +163286,174 @@ export const RetryRequest: MessageFns<RetryRequest> = {
   },
 };
 
+function createBaseRoomCustomProperty(): RoomCustomProperty {
+  return { key: "", value: "" };
+}
+
+export const RoomCustomProperty: MessageFns<RoomCustomProperty> = {
+  encode(message: RoomCustomProperty, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== "") {
+      writer.uint32(18).string(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): RoomCustomProperty {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRoomCustomProperty();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RoomCustomProperty {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
+    };
+  },
+
+  toJSON(message: RoomCustomProperty): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== "") {
+      obj.value = message.value;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<RoomCustomProperty>, I>>(base?: I): RoomCustomProperty {
+    return RoomCustomProperty.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<RoomCustomProperty>, I>>(object: I): RoomCustomProperty {
+    const message = createBaseRoomCustomProperty();
+    message.key = object.key ?? "";
+    message.value = object.value ?? "";
+    return message;
+  },
+};
+
+function createBaseRoomMemberStatus(): RoomMemberStatus {
+  return { userId: "0", isConnected: false, score: 0 };
+}
+
+export const RoomMemberStatus: MessageFns<RoomMemberStatus> = {
+  encode(message: RoomMemberStatus, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.isConnected !== false) {
+      writer.uint32(16).bool(message.isConnected);
+    }
+    if (message.score !== 0) {
+      writer.uint32(24).uint32(message.score);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): RoomMemberStatus {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseRoomMemberStatus();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.isConnected = reader.bool();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.score = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RoomMemberStatus {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      isConnected: isSet(object.isConnected) ? globalThis.Boolean(object.isConnected) : false,
+      score: isSet(object.score) ? globalThis.Number(object.score) : 0,
+    };
+  },
+
+  toJSON(message: RoomMemberStatus): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.isConnected !== false) {
+      obj.isConnected = message.isConnected;
+    }
+    if (message.score !== 0) {
+      obj.score = Math.round(message.score);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<RoomMemberStatus>, I>>(base?: I): RoomMemberStatus {
+    return RoomMemberStatus.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<RoomMemberStatus>, I>>(object: I): RoomMemberStatus {
+    const message = createBaseRoomMemberStatus();
+    message.userId = object.userId ?? "0";
+    message.isConnected = object.isConnected ?? false;
+    message.score = object.score ?? 0;
+    return message;
+  },
+};
+
 function createBaseScenarioPlayModeData(): ScenarioPlayModeData {
   return { isAutoMode: false, isFullScreenAutoMode: false };
 }
@@ -156846,13 +163711,13 @@ export const SelectedMusicJacketCacheData_SelectedMusicJacketMapEntry: MessageFn
 };
 
 function createBaseSendBillingKpiRequest(): SendBillingKpiRequest {
-  return { billingId: "0", purchaseId: 0, provider: "", transactionId: "" };
+  return { billingId: "", purchaseId: 0, provider: "", transactionId: "" };
 }
 
 export const SendBillingKpiRequest: MessageFns<SendBillingKpiRequest> = {
   encode(message: SendBillingKpiRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.billingId !== "0") {
-      writer.uint32(8).uint64(message.billingId);
+    if (message.billingId !== "") {
+      writer.uint32(10).string(message.billingId);
     }
     if (message.purchaseId !== 0) {
       writer.uint32(16).uint32(message.purchaseId);
@@ -156874,11 +163739,11 @@ export const SendBillingKpiRequest: MessageFns<SendBillingKpiRequest> = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.billingId = reader.uint64().toString();
+          message.billingId = reader.string();
           continue;
         }
         case 2: {
@@ -156916,7 +163781,7 @@ export const SendBillingKpiRequest: MessageFns<SendBillingKpiRequest> = {
 
   fromJSON(object: any): SendBillingKpiRequest {
     return {
-      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "0",
+      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "",
       purchaseId: isSet(object.purchaseId) ? globalThis.Number(object.purchaseId) : 0,
       provider: isSet(object.provider) ? globalThis.String(object.provider) : "",
       transactionId: isSet(object.transactionId) ? globalThis.String(object.transactionId) : "",
@@ -156925,7 +163790,7 @@ export const SendBillingKpiRequest: MessageFns<SendBillingKpiRequest> = {
 
   toJSON(message: SendBillingKpiRequest): unknown {
     const obj: any = {};
-    if (message.billingId !== "0") {
+    if (message.billingId !== "") {
       obj.billingId = message.billingId;
     }
     if (message.purchaseId !== 0) {
@@ -156945,7 +163810,7 @@ export const SendBillingKpiRequest: MessageFns<SendBillingKpiRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<SendBillingKpiRequest>, I>>(object: I): SendBillingKpiRequest {
     const message = createBaseSendBillingKpiRequest();
-    message.billingId = object.billingId ?? "0";
+    message.billingId = object.billingId ?? "";
     message.purchaseId = object.purchaseId ?? 0;
     message.provider = object.provider ?? "";
     message.transactionId = object.transactionId ?? "";
@@ -157025,6 +163890,167 @@ export const ServerSystem: MessageFns<ServerSystem> = {
     const message = createBaseServerSystem();
     message.serverDate = object.serverDate ?? "0";
     message.timeZoneRawOffset = object.timeZoneRawOffset ?? 0;
+    return message;
+  },
+};
+
+function createBaseServerURLConfig(): ServerURLConfig {
+  return { configs: {} };
+}
+
+export const ServerURLConfig: MessageFns<ServerURLConfig> = {
+  encode(message: ServerURLConfig, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.configs).forEach(([key, value]: [string, string]) => {
+      ServerURLConfig_ConfigsEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ServerURLConfig {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseServerURLConfig();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = ServerURLConfig_ConfigsEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.configs[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ServerURLConfig {
+    return {
+      configs: isObject(object.configs)
+        ? (globalThis.Object.entries(object.configs) as [string, any][]).reduce(
+          (acc: { [key: string]: string }, [key, value]: [string, any]) => {
+            acc[key] = globalThis.String(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: ServerURLConfig): unknown {
+    const obj: any = {};
+    if (message.configs) {
+      const entries = globalThis.Object.entries(message.configs) as [string, string][];
+      if (entries.length > 0) {
+        obj.configs = {};
+        entries.forEach(([k, v]) => {
+          obj.configs[k] = v;
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ServerURLConfig>, I>>(base?: I): ServerURLConfig {
+    return ServerURLConfig.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ServerURLConfig>, I>>(object: I): ServerURLConfig {
+    const message = createBaseServerURLConfig();
+    message.configs = (globalThis.Object.entries(object.configs ?? {}) as [string, string][]).reduce(
+      (acc: { [key: string]: string }, [key, value]: [string, string]) => {
+        if (value !== undefined) {
+          acc[key] = globalThis.String(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseServerURLConfig_ConfigsEntry(): ServerURLConfig_ConfigsEntry {
+  return { key: "", value: "" };
+}
+
+export const ServerURLConfig_ConfigsEntry: MessageFns<ServerURLConfig_ConfigsEntry> = {
+  encode(message: ServerURLConfig_ConfigsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== "") {
+      writer.uint32(18).string(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ServerURLConfig_ConfigsEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseServerURLConfig_ConfigsEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ServerURLConfig_ConfigsEntry {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
+    };
+  },
+
+  toJSON(message: ServerURLConfig_ConfigsEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== "") {
+      obj.value = message.value;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ServerURLConfig_ConfigsEntry>, I>>(base?: I): ServerURLConfig_ConfigsEntry {
+    return ServerURLConfig_ConfigsEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ServerURLConfig_ConfigsEntry>, I>>(object: I): ServerURLConfig_ConfigsEntry {
+    const message = createBaseServerURLConfig_ConfigsEntry();
+    message.key = object.key ?? "";
+    message.value = object.value ?? "";
     return message;
   },
 };
@@ -159517,6 +166543,7 @@ function createBaseSuiteMasterGetResponse(): SuiteMasterGetResponse {
     masterEventFestivalTeamRewardMap: undefined,
     masterFestivalDisplayPointRateList: undefined,
     masterGachaSealExchangeList: undefined,
+    masterLiveFeverConfigList: undefined,
     masterDegreeSetList: undefined,
     masterDegreeSetDetailList: undefined,
     masterChangedStampList: undefined,
@@ -159613,9 +166640,17 @@ function createBaseSuiteMasterGetResponse(): SuiteMasterGetResponse {
     masterPhotoBackList: undefined,
     masterGachaSelfPickupSituationList: undefined,
     masterLimitedSkinMap: undefined,
-    masterComebackInviteMissionListMaps: undefined,
-    masterComebackInviteList: undefined,
-    masterBiliNfoMissionList: undefined,
+    masterBiliActivityMap: undefined,
+    masterBiliSpecialScreenList: undefined,
+    masterBiliNfoMissionMap: undefined,
+    masterConsumptionGiftList: undefined,
+    masterConsumptionGiftDetailList: undefined,
+    masterBiliDecoEffectDetailList: undefined,
+    masterBiliDegreeEffectList: undefined,
+    masterBiliGachaStepupDetailList: undefined,
+    masterBiliGachaStepupRarityRateList: undefined,
+    masterBiliShippingActivityList: undefined,
+    masterBiliNfoSkinMap: undefined,
   };
 }
 
@@ -160194,6 +167229,9 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
     if (message.masterGachaSealExchangeList !== undefined) {
       MasterGachaSealExchangeList.encode(message.masterGachaSealExchangeList, writer.uint32(7202).fork()).join();
     }
+    if (message.masterLiveFeverConfigList !== undefined) {
+      MasterLiveFeverConfigList.encode(message.masterLiveFeverConfigList, writer.uint32(7210).fork()).join();
+    }
     if (message.masterDegreeSetList !== undefined) {
       MasterDegreeSetList.encode(message.masterDegreeSetList, writer.uint32(8002).fork()).join();
     }
@@ -160538,17 +167576,43 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
     if (message.masterLimitedSkinMap !== undefined) {
       MasterLimitedSkinMap.encode(message.masterLimitedSkinMap, writer.uint32(16714).fork()).join();
     }
-    if (message.masterComebackInviteMissionListMaps !== undefined) {
-      MasterComebackInviteMissionListMaps.encode(
-        message.masterComebackInviteMissionListMaps,
-        writer.uint32(16722).fork(),
+    if (message.masterBiliActivityMap !== undefined) {
+      MasterBiliActivityMap.encode(message.masterBiliActivityMap, writer.uint32(79210).fork()).join();
+    }
+    if (message.masterBiliSpecialScreenList !== undefined) {
+      MasterBiliSpecialScreenList.encode(message.masterBiliSpecialScreenList, writer.uint32(79218).fork()).join();
+    }
+    if (message.masterBiliNfoMissionMap !== undefined) {
+      MasterBiliNfoMissionMap.encode(message.masterBiliNfoMissionMap, writer.uint32(79226).fork()).join();
+    }
+    if (message.masterConsumptionGiftList !== undefined) {
+      MasterConsumptionGiftList.encode(message.masterConsumptionGiftList, writer.uint32(79234).fork()).join();
+    }
+    if (message.masterConsumptionGiftDetailList !== undefined) {
+      MasterConsumptionGiftDetailList.encode(message.masterConsumptionGiftDetailList, writer.uint32(79242).fork())
+        .join();
+    }
+    if (message.masterBiliDecoEffectDetailList !== undefined) {
+      MasterBiliDecoEffectDetailList.encode(message.masterBiliDecoEffectDetailList, writer.uint32(79250).fork()).join();
+    }
+    if (message.masterBiliDegreeEffectList !== undefined) {
+      MasterBiliDegreeEffectList.encode(message.masterBiliDegreeEffectList, writer.uint32(79258).fork()).join();
+    }
+    if (message.masterBiliGachaStepupDetailList !== undefined) {
+      MasterBiliGachaStepupDetailList.encode(message.masterBiliGachaStepupDetailList, writer.uint32(79266).fork())
+        .join();
+    }
+    if (message.masterBiliGachaStepupRarityRateList !== undefined) {
+      MasterBiliGachaStepupRarityRateList.encode(
+        message.masterBiliGachaStepupRarityRateList,
+        writer.uint32(79274).fork(),
       ).join();
     }
-    if (message.masterComebackInviteList !== undefined) {
-      MasterComebackInviteList.encode(message.masterComebackInviteList, writer.uint32(16730).fork()).join();
+    if (message.masterBiliShippingActivityList !== undefined) {
+      MasterBiliShippingActivityList.encode(message.masterBiliShippingActivityList, writer.uint32(79282).fork()).join();
     }
-    if (message.masterBiliNfoMissionList !== undefined) {
-      MasterBiliNfoMissionList.encode(message.masterBiliNfoMissionList, writer.uint32(16738).fork()).join();
+    if (message.masterBiliNfoSkinMap !== undefined) {
+      MasterBiliNfoSkinMap.encode(message.masterBiliNfoSkinMap, writer.uint32(79290).fork()).join();
     }
     return writer;
   },
@@ -162003,6 +169067,14 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
           message.masterGachaSealExchangeList = MasterGachaSealExchangeList.decode(reader, reader.uint32());
           continue;
         }
+        case 901: {
+          if (tag !== 7210) {
+            break;
+          }
+
+          message.masterLiveFeverConfigList = MasterLiveFeverConfigList.decode(reader, reader.uint32());
+          continue;
+        }
         case 1000: {
           if (tag !== 8002) {
             break;
@@ -162817,31 +169889,95 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
           message.masterLimitedSkinMap = MasterLimitedSkinMap.decode(reader, reader.uint32());
           continue;
         }
-        case 2090: {
-          if (tag !== 16722) {
+        case 9901: {
+          if (tag !== 79210) {
             break;
           }
 
-          message.masterComebackInviteMissionListMaps = MasterComebackInviteMissionListMaps.decode(
+          message.masterBiliActivityMap = MasterBiliActivityMap.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9902: {
+          if (tag !== 79218) {
+            break;
+          }
+
+          message.masterBiliSpecialScreenList = MasterBiliSpecialScreenList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9903: {
+          if (tag !== 79226) {
+            break;
+          }
+
+          message.masterBiliNfoMissionMap = MasterBiliNfoMissionMap.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9904: {
+          if (tag !== 79234) {
+            break;
+          }
+
+          message.masterConsumptionGiftList = MasterConsumptionGiftList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9905: {
+          if (tag !== 79242) {
+            break;
+          }
+
+          message.masterConsumptionGiftDetailList = MasterConsumptionGiftDetailList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9906: {
+          if (tag !== 79250) {
+            break;
+          }
+
+          message.masterBiliDecoEffectDetailList = MasterBiliDecoEffectDetailList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9907: {
+          if (tag !== 79258) {
+            break;
+          }
+
+          message.masterBiliDegreeEffectList = MasterBiliDegreeEffectList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9908: {
+          if (tag !== 79266) {
+            break;
+          }
+
+          message.masterBiliGachaStepupDetailList = MasterBiliGachaStepupDetailList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9909: {
+          if (tag !== 79274) {
+            break;
+          }
+
+          message.masterBiliGachaStepupRarityRateList = MasterBiliGachaStepupRarityRateList.decode(
             reader,
             reader.uint32(),
           );
           continue;
         }
-        case 2091: {
-          if (tag !== 16730) {
+        case 9910: {
+          if (tag !== 79282) {
             break;
           }
 
-          message.masterComebackInviteList = MasterComebackInviteList.decode(reader, reader.uint32());
+          message.masterBiliShippingActivityList = MasterBiliShippingActivityList.decode(reader, reader.uint32());
           continue;
         }
-        case 2092: {
-          if (tag !== 16738) {
+        case 9911: {
+          if (tag !== 79290) {
             break;
           }
 
-          message.masterBiliNfoMissionList = MasterBiliNfoMissionList.decode(reader, reader.uint32());
+          message.masterBiliNfoSkinMap = MasterBiliNfoSkinMap.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -163349,6 +170485,9 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
       masterGachaSealExchangeList: isSet(object.masterGachaSealExchangeList)
         ? MasterGachaSealExchangeList.fromJSON(object.masterGachaSealExchangeList)
         : undefined,
+      masterLiveFeverConfigList: isSet(object.masterLiveFeverConfigList)
+        ? MasterLiveFeverConfigList.fromJSON(object.masterLiveFeverConfigList)
+        : undefined,
       masterDegreeSetList: isSet(object.masterDegreeSetList)
         ? MasterDegreeSetList.fromJSON(object.masterDegreeSetList)
         : undefined,
@@ -163635,14 +170774,38 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
       masterLimitedSkinMap: isSet(object.masterLimitedSkinMap)
         ? MasterLimitedSkinMap.fromJSON(object.masterLimitedSkinMap)
         : undefined,
-      masterComebackInviteMissionListMaps: isSet(object.masterComebackInviteMissionListMaps)
-        ? MasterComebackInviteMissionListMaps.fromJSON(object.masterComebackInviteMissionListMaps)
+      masterBiliActivityMap: isSet(object.masterBiliActivityMap)
+        ? MasterBiliActivityMap.fromJSON(object.masterBiliActivityMap)
         : undefined,
-      masterComebackInviteList: isSet(object.masterComebackInviteList)
-        ? MasterComebackInviteList.fromJSON(object.masterComebackInviteList)
+      masterBiliSpecialScreenList: isSet(object.masterBiliSpecialScreenList)
+        ? MasterBiliSpecialScreenList.fromJSON(object.masterBiliSpecialScreenList)
         : undefined,
-      masterBiliNfoMissionList: isSet(object.masterBiliNfoMissionList)
-        ? MasterBiliNfoMissionList.fromJSON(object.masterBiliNfoMissionList)
+      masterBiliNfoMissionMap: isSet(object.masterBiliNfoMissionMap)
+        ? MasterBiliNfoMissionMap.fromJSON(object.masterBiliNfoMissionMap)
+        : undefined,
+      masterConsumptionGiftList: isSet(object.masterConsumptionGiftList)
+        ? MasterConsumptionGiftList.fromJSON(object.masterConsumptionGiftList)
+        : undefined,
+      masterConsumptionGiftDetailList: isSet(object.masterConsumptionGiftDetailList)
+        ? MasterConsumptionGiftDetailList.fromJSON(object.masterConsumptionGiftDetailList)
+        : undefined,
+      masterBiliDecoEffectDetailList: isSet(object.masterBiliDecoEffectDetailList)
+        ? MasterBiliDecoEffectDetailList.fromJSON(object.masterBiliDecoEffectDetailList)
+        : undefined,
+      masterBiliDegreeEffectList: isSet(object.masterBiliDegreeEffectList)
+        ? MasterBiliDegreeEffectList.fromJSON(object.masterBiliDegreeEffectList)
+        : undefined,
+      masterBiliGachaStepupDetailList: isSet(object.masterBiliGachaStepupDetailList)
+        ? MasterBiliGachaStepupDetailList.fromJSON(object.masterBiliGachaStepupDetailList)
+        : undefined,
+      masterBiliGachaStepupRarityRateList: isSet(object.masterBiliGachaStepupRarityRateList)
+        ? MasterBiliGachaStepupRarityRateList.fromJSON(object.masterBiliGachaStepupRarityRateList)
+        : undefined,
+      masterBiliShippingActivityList: isSet(object.masterBiliShippingActivityList)
+        ? MasterBiliShippingActivityList.fromJSON(object.masterBiliShippingActivityList)
+        : undefined,
+      masterBiliNfoSkinMap: isSet(object.masterBiliNfoSkinMap)
+        ? MasterBiliNfoSkinMap.fromJSON(object.masterBiliNfoSkinMap)
         : undefined,
     };
   },
@@ -164249,6 +171412,9 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
     if (message.masterGachaSealExchangeList !== undefined) {
       obj.masterGachaSealExchangeList = MasterGachaSealExchangeList.toJSON(message.masterGachaSealExchangeList);
     }
+    if (message.masterLiveFeverConfigList !== undefined) {
+      obj.masterLiveFeverConfigList = MasterLiveFeverConfigList.toJSON(message.masterLiveFeverConfigList);
+    }
     if (message.masterDegreeSetList !== undefined) {
       obj.masterDegreeSetList = MasterDegreeSetList.toJSON(message.masterDegreeSetList);
     }
@@ -164613,16 +171779,48 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
     if (message.masterLimitedSkinMap !== undefined) {
       obj.masterLimitedSkinMap = MasterLimitedSkinMap.toJSON(message.masterLimitedSkinMap);
     }
-    if (message.masterComebackInviteMissionListMaps !== undefined) {
-      obj.masterComebackInviteMissionListMaps = MasterComebackInviteMissionListMaps.toJSON(
-        message.masterComebackInviteMissionListMaps,
+    if (message.masterBiliActivityMap !== undefined) {
+      obj.masterBiliActivityMap = MasterBiliActivityMap.toJSON(message.masterBiliActivityMap);
+    }
+    if (message.masterBiliSpecialScreenList !== undefined) {
+      obj.masterBiliSpecialScreenList = MasterBiliSpecialScreenList.toJSON(message.masterBiliSpecialScreenList);
+    }
+    if (message.masterBiliNfoMissionMap !== undefined) {
+      obj.masterBiliNfoMissionMap = MasterBiliNfoMissionMap.toJSON(message.masterBiliNfoMissionMap);
+    }
+    if (message.masterConsumptionGiftList !== undefined) {
+      obj.masterConsumptionGiftList = MasterConsumptionGiftList.toJSON(message.masterConsumptionGiftList);
+    }
+    if (message.masterConsumptionGiftDetailList !== undefined) {
+      obj.masterConsumptionGiftDetailList = MasterConsumptionGiftDetailList.toJSON(
+        message.masterConsumptionGiftDetailList,
       );
     }
-    if (message.masterComebackInviteList !== undefined) {
-      obj.masterComebackInviteList = MasterComebackInviteList.toJSON(message.masterComebackInviteList);
+    if (message.masterBiliDecoEffectDetailList !== undefined) {
+      obj.masterBiliDecoEffectDetailList = MasterBiliDecoEffectDetailList.toJSON(
+        message.masterBiliDecoEffectDetailList,
+      );
     }
-    if (message.masterBiliNfoMissionList !== undefined) {
-      obj.masterBiliNfoMissionList = MasterBiliNfoMissionList.toJSON(message.masterBiliNfoMissionList);
+    if (message.masterBiliDegreeEffectList !== undefined) {
+      obj.masterBiliDegreeEffectList = MasterBiliDegreeEffectList.toJSON(message.masterBiliDegreeEffectList);
+    }
+    if (message.masterBiliGachaStepupDetailList !== undefined) {
+      obj.masterBiliGachaStepupDetailList = MasterBiliGachaStepupDetailList.toJSON(
+        message.masterBiliGachaStepupDetailList,
+      );
+    }
+    if (message.masterBiliGachaStepupRarityRateList !== undefined) {
+      obj.masterBiliGachaStepupRarityRateList = MasterBiliGachaStepupRarityRateList.toJSON(
+        message.masterBiliGachaStepupRarityRateList,
+      );
+    }
+    if (message.masterBiliShippingActivityList !== undefined) {
+      obj.masterBiliShippingActivityList = MasterBiliShippingActivityList.toJSON(
+        message.masterBiliShippingActivityList,
+      );
+    }
+    if (message.masterBiliNfoSkinMap !== undefined) {
+      obj.masterBiliNfoSkinMap = MasterBiliNfoSkinMap.toJSON(message.masterBiliNfoSkinMap);
     }
     return obj;
   },
@@ -165295,6 +172493,10 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
       (object.masterGachaSealExchangeList !== undefined && object.masterGachaSealExchangeList !== null)
         ? MasterGachaSealExchangeList.fromPartial(object.masterGachaSealExchangeList)
         : undefined;
+    message.masterLiveFeverConfigList =
+      (object.masterLiveFeverConfigList !== undefined && object.masterLiveFeverConfigList !== null)
+        ? MasterLiveFeverConfigList.fromPartial(object.masterLiveFeverConfigList)
+        : undefined;
     message.masterDegreeSetList = (object.masterDegreeSetList !== undefined && object.masterDegreeSetList !== null)
       ? MasterDegreeSetList.fromPartial(object.masterDegreeSetList)
       : undefined;
@@ -165676,18 +172878,49 @@ export const SuiteMasterGetResponse: MessageFns<SuiteMasterGetResponse> = {
     message.masterLimitedSkinMap = (object.masterLimitedSkinMap !== undefined && object.masterLimitedSkinMap !== null)
       ? MasterLimitedSkinMap.fromPartial(object.masterLimitedSkinMap)
       : undefined;
-    message.masterComebackInviteMissionListMaps =
-      (object.masterComebackInviteMissionListMaps !== undefined && object.masterComebackInviteMissionListMaps !== null)
-        ? MasterComebackInviteMissionListMaps.fromPartial(object.masterComebackInviteMissionListMaps)
+    message.masterBiliActivityMap =
+      (object.masterBiliActivityMap !== undefined && object.masterBiliActivityMap !== null)
+        ? MasterBiliActivityMap.fromPartial(object.masterBiliActivityMap)
         : undefined;
-    message.masterComebackInviteList =
-      (object.masterComebackInviteList !== undefined && object.masterComebackInviteList !== null)
-        ? MasterComebackInviteList.fromPartial(object.masterComebackInviteList)
+    message.masterBiliSpecialScreenList =
+      (object.masterBiliSpecialScreenList !== undefined && object.masterBiliSpecialScreenList !== null)
+        ? MasterBiliSpecialScreenList.fromPartial(object.masterBiliSpecialScreenList)
         : undefined;
-    message.masterBiliNfoMissionList =
-      (object.masterBiliNfoMissionList !== undefined && object.masterBiliNfoMissionList !== null)
-        ? MasterBiliNfoMissionList.fromPartial(object.masterBiliNfoMissionList)
+    message.masterBiliNfoMissionMap =
+      (object.masterBiliNfoMissionMap !== undefined && object.masterBiliNfoMissionMap !== null)
+        ? MasterBiliNfoMissionMap.fromPartial(object.masterBiliNfoMissionMap)
         : undefined;
+    message.masterConsumptionGiftList =
+      (object.masterConsumptionGiftList !== undefined && object.masterConsumptionGiftList !== null)
+        ? MasterConsumptionGiftList.fromPartial(object.masterConsumptionGiftList)
+        : undefined;
+    message.masterConsumptionGiftDetailList =
+      (object.masterConsumptionGiftDetailList !== undefined && object.masterConsumptionGiftDetailList !== null)
+        ? MasterConsumptionGiftDetailList.fromPartial(object.masterConsumptionGiftDetailList)
+        : undefined;
+    message.masterBiliDecoEffectDetailList =
+      (object.masterBiliDecoEffectDetailList !== undefined && object.masterBiliDecoEffectDetailList !== null)
+        ? MasterBiliDecoEffectDetailList.fromPartial(object.masterBiliDecoEffectDetailList)
+        : undefined;
+    message.masterBiliDegreeEffectList =
+      (object.masterBiliDegreeEffectList !== undefined && object.masterBiliDegreeEffectList !== null)
+        ? MasterBiliDegreeEffectList.fromPartial(object.masterBiliDegreeEffectList)
+        : undefined;
+    message.masterBiliGachaStepupDetailList =
+      (object.masterBiliGachaStepupDetailList !== undefined && object.masterBiliGachaStepupDetailList !== null)
+        ? MasterBiliGachaStepupDetailList.fromPartial(object.masterBiliGachaStepupDetailList)
+        : undefined;
+    message.masterBiliGachaStepupRarityRateList =
+      (object.masterBiliGachaStepupRarityRateList !== undefined && object.masterBiliGachaStepupRarityRateList !== null)
+        ? MasterBiliGachaStepupRarityRateList.fromPartial(object.masterBiliGachaStepupRarityRateList)
+        : undefined;
+    message.masterBiliShippingActivityList =
+      (object.masterBiliShippingActivityList !== undefined && object.masterBiliShippingActivityList !== null)
+        ? MasterBiliShippingActivityList.fromPartial(object.masterBiliShippingActivityList)
+        : undefined;
+    message.masterBiliNfoSkinMap = (object.masterBiliNfoSkinMap !== undefined && object.masterBiliNfoSkinMap !== null)
+      ? MasterBiliNfoSkinMap.fromPartial(object.masterBiliNfoSkinMap)
+      : undefined;
     return message;
   },
 };
@@ -166744,431 +173977,6 @@ export const SuiteUserCharacterPotentialPracticeResponse: MessageFns<SuiteUserCh
       (object.updatedBandDeckRankList !== undefined && object.updatedBandDeckRankList !== null)
         ? UpdatedBandDeckRankList.fromPartial(object.updatedBandDeckRankList)
         : undefined;
-    return message;
-  },
-};
-
-function createBaseSuiteUserComebackInviteCreateCodeResponse(): SuiteUserComebackInviteCreateCodeResponse {
-  return { updateResources: undefined };
-}
-
-export const SuiteUserComebackInviteCreateCodeResponse: MessageFns<SuiteUserComebackInviteCreateCodeResponse> = {
-  encode(message: SuiteUserComebackInviteCreateCodeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.updateResources !== undefined) {
-      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): SuiteUserComebackInviteCreateCodeResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSuiteUserComebackInviteCreateCodeResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SuiteUserComebackInviteCreateCodeResponse {
-    return {
-      updateResources: isSet(object.updateResources)
-        ? SuiteUserGetResponse.fromJSON(object.updateResources)
-        : undefined,
-    };
-  },
-
-  toJSON(message: SuiteUserComebackInviteCreateCodeResponse): unknown {
-    const obj: any = {};
-    if (message.updateResources !== undefined) {
-      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SuiteUserComebackInviteCreateCodeResponse>, I>>(
-    base?: I,
-  ): SuiteUserComebackInviteCreateCodeResponse {
-    return SuiteUserComebackInviteCreateCodeResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SuiteUserComebackInviteCreateCodeResponse>, I>>(
-    object: I,
-  ): SuiteUserComebackInviteCreateCodeResponse {
-    const message = createBaseSuiteUserComebackInviteCreateCodeResponse();
-    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
-      ? SuiteUserGetResponse.fromPartial(object.updateResources)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseSuiteUserComebackInviteDeleteInfoResponse(): SuiteUserComebackInviteDeleteInfoResponse {
-  return { comebackInviteId: 0, invitationUserId: "0", acceptUserId: "0", deleteUserId: "0", deleteUserName: "" };
-}
-
-export const SuiteUserComebackInviteDeleteInfoResponse: MessageFns<SuiteUserComebackInviteDeleteInfoResponse> = {
-  encode(message: SuiteUserComebackInviteDeleteInfoResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(8).uint32(message.comebackInviteId);
-    }
-    if (message.invitationUserId !== "0") {
-      writer.uint32(16).uint64(message.invitationUserId);
-    }
-    if (message.acceptUserId !== "0") {
-      writer.uint32(24).uint64(message.acceptUserId);
-    }
-    if (message.deleteUserId !== "0") {
-      writer.uint32(32).uint64(message.deleteUserId);
-    }
-    if (message.deleteUserName !== "") {
-      writer.uint32(42).string(message.deleteUserName);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): SuiteUserComebackInviteDeleteInfoResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSuiteUserComebackInviteDeleteInfoResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.invitationUserId = reader.uint64().toString();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.acceptUserId = reader.uint64().toString();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.deleteUserId = reader.uint64().toString();
-          continue;
-        }
-        case 5: {
-          if (tag !== 42) {
-            break;
-          }
-
-          message.deleteUserName = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SuiteUserComebackInviteDeleteInfoResponse {
-    return {
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      invitationUserId: isSet(object.invitationUserId) ? globalThis.String(object.invitationUserId) : "0",
-      acceptUserId: isSet(object.acceptUserId) ? globalThis.String(object.acceptUserId) : "0",
-      deleteUserId: isSet(object.deleteUserId) ? globalThis.String(object.deleteUserId) : "0",
-      deleteUserName: isSet(object.deleteUserName) ? globalThis.String(object.deleteUserName) : "",
-    };
-  },
-
-  toJSON(message: SuiteUserComebackInviteDeleteInfoResponse): unknown {
-    const obj: any = {};
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.invitationUserId !== "0") {
-      obj.invitationUserId = message.invitationUserId;
-    }
-    if (message.acceptUserId !== "0") {
-      obj.acceptUserId = message.acceptUserId;
-    }
-    if (message.deleteUserId !== "0") {
-      obj.deleteUserId = message.deleteUserId;
-    }
-    if (message.deleteUserName !== "") {
-      obj.deleteUserName = message.deleteUserName;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SuiteUserComebackInviteDeleteInfoResponse>, I>>(
-    base?: I,
-  ): SuiteUserComebackInviteDeleteInfoResponse {
-    return SuiteUserComebackInviteDeleteInfoResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SuiteUserComebackInviteDeleteInfoResponse>, I>>(
-    object: I,
-  ): SuiteUserComebackInviteDeleteInfoResponse {
-    const message = createBaseSuiteUserComebackInviteDeleteInfoResponse();
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.invitationUserId = object.invitationUserId ?? "0";
-    message.acceptUserId = object.acceptUserId ?? "0";
-    message.deleteUserId = object.deleteUserId ?? "0";
-    message.deleteUserName = object.deleteUserName ?? "";
-    return message;
-  },
-};
-
-function createBaseSuiteUserComebackInviteMissionRewardRequest(): SuiteUserComebackInviteMissionRewardRequest {
-  return { missionId: 0, comebackInviteId: 0, seq: 0 };
-}
-
-export const SuiteUserComebackInviteMissionRewardRequest: MessageFns<SuiteUserComebackInviteMissionRewardRequest> = {
-  encode(
-    message: SuiteUserComebackInviteMissionRewardRequest,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.missionId !== 0) {
-      writer.uint32(8).uint32(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(16).uint32(message.comebackInviteId);
-    }
-    if (message.seq !== 0) {
-      writer.uint32(24).uint32(message.seq);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): SuiteUserComebackInviteMissionRewardRequest {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSuiteUserComebackInviteMissionRewardRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.missionId = reader.uint32();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.seq = reader.uint32();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SuiteUserComebackInviteMissionRewardRequest {
-    return {
-      missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
-    };
-  },
-
-  toJSON(message: SuiteUserComebackInviteMissionRewardRequest): unknown {
-    const obj: any = {};
-    if (message.missionId !== 0) {
-      obj.missionId = Math.round(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.seq !== 0) {
-      obj.seq = Math.round(message.seq);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SuiteUserComebackInviteMissionRewardRequest>, I>>(
-    base?: I,
-  ): SuiteUserComebackInviteMissionRewardRequest {
-    return SuiteUserComebackInviteMissionRewardRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SuiteUserComebackInviteMissionRewardRequest>, I>>(
-    object: I,
-  ): SuiteUserComebackInviteMissionRewardRequest {
-    const message = createBaseSuiteUserComebackInviteMissionRewardRequest();
-    message.missionId = object.missionId ?? 0;
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.seq = object.seq ?? 0;
-    return message;
-  },
-};
-
-function createBaseSuiteUserComebackInviteRegisterRequest(): SuiteUserComebackInviteRegisterRequest {
-  return { comebackInviteCode: "" };
-}
-
-export const SuiteUserComebackInviteRegisterRequest: MessageFns<SuiteUserComebackInviteRegisterRequest> = {
-  encode(message: SuiteUserComebackInviteRegisterRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.comebackInviteCode !== "") {
-      writer.uint32(10).string(message.comebackInviteCode);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): SuiteUserComebackInviteRegisterRequest {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSuiteUserComebackInviteRegisterRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.comebackInviteCode = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SuiteUserComebackInviteRegisterRequest {
-    return { comebackInviteCode: isSet(object.comebackInviteCode) ? globalThis.String(object.comebackInviteCode) : "" };
-  },
-
-  toJSON(message: SuiteUserComebackInviteRegisterRequest): unknown {
-    const obj: any = {};
-    if (message.comebackInviteCode !== "") {
-      obj.comebackInviteCode = message.comebackInviteCode;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SuiteUserComebackInviteRegisterRequest>, I>>(
-    base?: I,
-  ): SuiteUserComebackInviteRegisterRequest {
-    return SuiteUserComebackInviteRegisterRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SuiteUserComebackInviteRegisterRequest>, I>>(
-    object: I,
-  ): SuiteUserComebackInviteRegisterRequest {
-    const message = createBaseSuiteUserComebackInviteRegisterRequest();
-    message.comebackInviteCode = object.comebackInviteCode ?? "";
-    return message;
-  },
-};
-
-function createBaseSuiteUserComebackInviteRegisterResponse(): SuiteUserComebackInviteRegisterResponse {
-  return { updateResources: undefined };
-}
-
-export const SuiteUserComebackInviteRegisterResponse: MessageFns<SuiteUserComebackInviteRegisterResponse> = {
-  encode(message: SuiteUserComebackInviteRegisterResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.updateResources !== undefined) {
-      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): SuiteUserComebackInviteRegisterResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSuiteUserComebackInviteRegisterResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SuiteUserComebackInviteRegisterResponse {
-    return {
-      updateResources: isSet(object.updateResources)
-        ? SuiteUserGetResponse.fromJSON(object.updateResources)
-        : undefined,
-    };
-  },
-
-  toJSON(message: SuiteUserComebackInviteRegisterResponse): unknown {
-    const obj: any = {};
-    if (message.updateResources !== undefined) {
-      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SuiteUserComebackInviteRegisterResponse>, I>>(
-    base?: I,
-  ): SuiteUserComebackInviteRegisterResponse {
-    return SuiteUserComebackInviteRegisterResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SuiteUserComebackInviteRegisterResponse>, I>>(
-    object: I,
-  ): SuiteUserComebackInviteRegisterResponse {
-    const message = createBaseSuiteUserComebackInviteRegisterResponse();
-    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
-      ? SuiteUserGetResponse.fromPartial(object.updateResources)
-      : undefined;
     return message;
   },
 };
@@ -168916,7 +175724,7 @@ function createBaseSuiteUserGetResponse(): SuiteUserGetResponse {
     currentUserEventBoxGachaMap: undefined,
     userPremiumPassList: undefined,
     userMonthlyPurchaseMap: undefined,
-    userSubscriptionList: undefined,
+    userGarupaPass: undefined,
     userCommentBannerList: undefined,
     userEventBoxGachaSpinSettings: undefined,
     userMorfonicaStoryList: undefined,
@@ -168987,11 +175795,13 @@ function createBaseSuiteUserGetResponse(): SuiteUserGetResponse {
     userPhotoBackInventoryMap: undefined,
     userLimitedSkinInventoryMap: undefined,
     monthlyCumulativeAmount: 0,
-    userComebackInviteInfo: undefined,
-    userComebackInviteMissionListMap: undefined,
-    userComebackInviteMissionCountMap: undefined,
-    userComebackInviteMissionClearInformationList: undefined,
     userMusicClearCountDetailMap: undefined,
+    userLiveFeverData: undefined,
+    userBiliSpecialScreenList: undefined,
+    userBiliSpecialScreenSetting: undefined,
+    userConsumptionGiftList: undefined,
+    userBiliDegreeEffectMap: undefined,
+    userBiliShippingActivityMap: undefined,
   };
 }
 
@@ -169241,8 +176051,8 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
     if (message.userMonthlyPurchaseMap !== undefined) {
       UserMonthlyPurchaseMap.encode(message.userMonthlyPurchaseMap, writer.uint32(842).fork()).join();
     }
-    if (message.userSubscriptionList !== undefined) {
-      UserSubscriptionList.encode(message.userSubscriptionList, writer.uint32(850).fork()).join();
+    if (message.userGarupaPass !== undefined) {
+      UserGarupaPass.encode(message.userGarupaPass, writer.uint32(850).fork()).join();
     }
     if (message.userCommentBannerList !== undefined) {
       UserCommentBannerList.encode(message.userCommentBannerList, writer.uint32(866).fork()).join();
@@ -169478,25 +176288,26 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
     if (message.monthlyCumulativeAmount !== 0) {
       writer.uint32(3688).uint32(message.monthlyCumulativeAmount);
     }
-    if (message.userComebackInviteInfo !== undefined) {
-      UserComebackInviteInfo.encode(message.userComebackInviteInfo, writer.uint32(3698).fork()).join();
-    }
-    if (message.userComebackInviteMissionListMap !== undefined) {
-      UserComebackInviteMissionListMap.encode(message.userComebackInviteMissionListMap, writer.uint32(3706).fork())
-        .join();
-    }
-    if (message.userComebackInviteMissionCountMap !== undefined) {
-      UserComebackInviteMissionCountMap.encode(message.userComebackInviteMissionCountMap, writer.uint32(3714).fork())
-        .join();
-    }
-    if (message.userComebackInviteMissionClearInformationList !== undefined) {
-      UserComebackInviteMissionClearInformationList.encode(
-        message.userComebackInviteMissionClearInformationList,
-        writer.uint32(3722).fork(),
-      ).join();
-    }
     if (message.userMusicClearCountDetailMap !== undefined) {
       UserMusicClearCountDetailMap.encode(message.userMusicClearCountDetailMap, writer.uint32(3842).fork()).join();
+    }
+    if (message.userLiveFeverData !== undefined) {
+      UserLiveFeverData.encode(message.userLiveFeverData, writer.uint32(7210).fork()).join();
+    }
+    if (message.userBiliSpecialScreenList !== undefined) {
+      UserBiliSpecialScreenList.encode(message.userBiliSpecialScreenList, writer.uint32(7218).fork()).join();
+    }
+    if (message.userBiliSpecialScreenSetting !== undefined) {
+      UserSpecialScreenSetting.encode(message.userBiliSpecialScreenSetting, writer.uint32(7226).fork()).join();
+    }
+    if (message.userConsumptionGiftList !== undefined) {
+      UserConsumptionGiftList.encode(message.userConsumptionGiftList, writer.uint32(7234).fork()).join();
+    }
+    if (message.userBiliDegreeEffectMap !== undefined) {
+      UserBiliDegreeEffectMap.encode(message.userBiliDegreeEffectMap, writer.uint32(7242).fork()).join();
+    }
+    if (message.userBiliShippingActivityMap !== undefined) {
+      UserBiliShippingActivityMap.encode(message.userBiliShippingActivityMap, writer.uint32(7250).fork()).join();
     }
     return writer;
   },
@@ -170157,7 +176968,7 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
             break;
           }
 
-          message.userSubscriptionList = UserSubscriptionList.decode(reader, reader.uint32());
+          message.userGarupaPass = UserGarupaPass.decode(reader, reader.uint32());
           continue;
         }
         case 108: {
@@ -170744,47 +177555,60 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
           message.monthlyCumulativeAmount = reader.uint32();
           continue;
         }
-        case 462: {
-          if (tag !== 3698) {
-            break;
-          }
-
-          message.userComebackInviteInfo = UserComebackInviteInfo.decode(reader, reader.uint32());
-          continue;
-        }
-        case 463: {
-          if (tag !== 3706) {
-            break;
-          }
-
-          message.userComebackInviteMissionListMap = UserComebackInviteMissionListMap.decode(reader, reader.uint32());
-          continue;
-        }
-        case 464: {
-          if (tag !== 3714) {
-            break;
-          }
-
-          message.userComebackInviteMissionCountMap = UserComebackInviteMissionCountMap.decode(reader, reader.uint32());
-          continue;
-        }
-        case 465: {
-          if (tag !== 3722) {
-            break;
-          }
-
-          message.userComebackInviteMissionClearInformationList = UserComebackInviteMissionClearInformationList.decode(
-            reader,
-            reader.uint32(),
-          );
-          continue;
-        }
         case 480: {
           if (tag !== 3842) {
             break;
           }
 
           message.userMusicClearCountDetailMap = UserMusicClearCountDetailMap.decode(reader, reader.uint32());
+          continue;
+        }
+        case 901: {
+          if (tag !== 7210) {
+            break;
+          }
+
+          message.userLiveFeverData = UserLiveFeverData.decode(reader, reader.uint32());
+          continue;
+        }
+        case 902: {
+          if (tag !== 7218) {
+            break;
+          }
+
+          message.userBiliSpecialScreenList = UserBiliSpecialScreenList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 903: {
+          if (tag !== 7226) {
+            break;
+          }
+
+          message.userBiliSpecialScreenSetting = UserSpecialScreenSetting.decode(reader, reader.uint32());
+          continue;
+        }
+        case 904: {
+          if (tag !== 7234) {
+            break;
+          }
+
+          message.userConsumptionGiftList = UserConsumptionGiftList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 905: {
+          if (tag !== 7242) {
+            break;
+          }
+
+          message.userBiliDegreeEffectMap = UserBiliDegreeEffectMap.decode(reader, reader.uint32());
+          continue;
+        }
+        case 906: {
+          if (tag !== 7250) {
+            break;
+          }
+
+          message.userBiliShippingActivityMap = UserBiliShippingActivityMap.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -170993,9 +177817,7 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
       userMonthlyPurchaseMap: isSet(object.userMonthlyPurchaseMap)
         ? UserMonthlyPurchaseMap.fromJSON(object.userMonthlyPurchaseMap)
         : undefined,
-      userSubscriptionList: isSet(object.userSubscriptionList)
-        ? UserSubscriptionList.fromJSON(object.userSubscriptionList)
-        : undefined,
+      userGarupaPass: isSet(object.userGarupaPass) ? UserGarupaPass.fromJSON(object.userGarupaPass) : undefined,
       userCommentBannerList: isSet(object.userCommentBannerList)
         ? UserCommentBannerList.fromJSON(object.userCommentBannerList)
         : undefined,
@@ -171192,20 +178014,26 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
       monthlyCumulativeAmount: isSet(object.monthlyCumulativeAmount)
         ? globalThis.Number(object.monthlyCumulativeAmount)
         : 0,
-      userComebackInviteInfo: isSet(object.userComebackInviteInfo)
-        ? UserComebackInviteInfo.fromJSON(object.userComebackInviteInfo)
-        : undefined,
-      userComebackInviteMissionListMap: isSet(object.userComebackInviteMissionListMap)
-        ? UserComebackInviteMissionListMap.fromJSON(object.userComebackInviteMissionListMap)
-        : undefined,
-      userComebackInviteMissionCountMap: isSet(object.userComebackInviteMissionCountMap)
-        ? UserComebackInviteMissionCountMap.fromJSON(object.userComebackInviteMissionCountMap)
-        : undefined,
-      userComebackInviteMissionClearInformationList: isSet(object.userComebackInviteMissionClearInformationList)
-        ? UserComebackInviteMissionClearInformationList.fromJSON(object.userComebackInviteMissionClearInformationList)
-        : undefined,
       userMusicClearCountDetailMap: isSet(object.userMusicClearCountDetailMap)
         ? UserMusicClearCountDetailMap.fromJSON(object.userMusicClearCountDetailMap)
+        : undefined,
+      userLiveFeverData: isSet(object.userLiveFeverData)
+        ? UserLiveFeverData.fromJSON(object.userLiveFeverData)
+        : undefined,
+      userBiliSpecialScreenList: isSet(object.userBiliSpecialScreenList)
+        ? UserBiliSpecialScreenList.fromJSON(object.userBiliSpecialScreenList)
+        : undefined,
+      userBiliSpecialScreenSetting: isSet(object.userBiliSpecialScreenSetting)
+        ? UserSpecialScreenSetting.fromJSON(object.userBiliSpecialScreenSetting)
+        : undefined,
+      userConsumptionGiftList: isSet(object.userConsumptionGiftList)
+        ? UserConsumptionGiftList.fromJSON(object.userConsumptionGiftList)
+        : undefined,
+      userBiliDegreeEffectMap: isSet(object.userBiliDegreeEffectMap)
+        ? UserBiliDegreeEffectMap.fromJSON(object.userBiliDegreeEffectMap)
+        : undefined,
+      userBiliShippingActivityMap: isSet(object.userBiliShippingActivityMap)
+        ? UserBiliShippingActivityMap.fromJSON(object.userBiliShippingActivityMap)
         : undefined,
     };
   },
@@ -171463,8 +178291,8 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
     if (message.userMonthlyPurchaseMap !== undefined) {
       obj.userMonthlyPurchaseMap = UserMonthlyPurchaseMap.toJSON(message.userMonthlyPurchaseMap);
     }
-    if (message.userSubscriptionList !== undefined) {
-      obj.userSubscriptionList = UserSubscriptionList.toJSON(message.userSubscriptionList);
+    if (message.userGarupaPass !== undefined) {
+      obj.userGarupaPass = UserGarupaPass.toJSON(message.userGarupaPass);
     }
     if (message.userCommentBannerList !== undefined) {
       obj.userCommentBannerList = UserCommentBannerList.toJSON(message.userCommentBannerList);
@@ -171708,26 +178536,26 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
     if (message.monthlyCumulativeAmount !== 0) {
       obj.monthlyCumulativeAmount = Math.round(message.monthlyCumulativeAmount);
     }
-    if (message.userComebackInviteInfo !== undefined) {
-      obj.userComebackInviteInfo = UserComebackInviteInfo.toJSON(message.userComebackInviteInfo);
-    }
-    if (message.userComebackInviteMissionListMap !== undefined) {
-      obj.userComebackInviteMissionListMap = UserComebackInviteMissionListMap.toJSON(
-        message.userComebackInviteMissionListMap,
-      );
-    }
-    if (message.userComebackInviteMissionCountMap !== undefined) {
-      obj.userComebackInviteMissionCountMap = UserComebackInviteMissionCountMap.toJSON(
-        message.userComebackInviteMissionCountMap,
-      );
-    }
-    if (message.userComebackInviteMissionClearInformationList !== undefined) {
-      obj.userComebackInviteMissionClearInformationList = UserComebackInviteMissionClearInformationList.toJSON(
-        message.userComebackInviteMissionClearInformationList,
-      );
-    }
     if (message.userMusicClearCountDetailMap !== undefined) {
       obj.userMusicClearCountDetailMap = UserMusicClearCountDetailMap.toJSON(message.userMusicClearCountDetailMap);
+    }
+    if (message.userLiveFeverData !== undefined) {
+      obj.userLiveFeverData = UserLiveFeverData.toJSON(message.userLiveFeverData);
+    }
+    if (message.userBiliSpecialScreenList !== undefined) {
+      obj.userBiliSpecialScreenList = UserBiliSpecialScreenList.toJSON(message.userBiliSpecialScreenList);
+    }
+    if (message.userBiliSpecialScreenSetting !== undefined) {
+      obj.userBiliSpecialScreenSetting = UserSpecialScreenSetting.toJSON(message.userBiliSpecialScreenSetting);
+    }
+    if (message.userConsumptionGiftList !== undefined) {
+      obj.userConsumptionGiftList = UserConsumptionGiftList.toJSON(message.userConsumptionGiftList);
+    }
+    if (message.userBiliDegreeEffectMap !== undefined) {
+      obj.userBiliDegreeEffectMap = UserBiliDegreeEffectMap.toJSON(message.userBiliDegreeEffectMap);
+    }
+    if (message.userBiliShippingActivityMap !== undefined) {
+      obj.userBiliShippingActivityMap = UserBiliShippingActivityMap.toJSON(message.userBiliShippingActivityMap);
     }
     return obj;
   },
@@ -172013,8 +178841,8 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
       (object.userMonthlyPurchaseMap !== undefined && object.userMonthlyPurchaseMap !== null)
         ? UserMonthlyPurchaseMap.fromPartial(object.userMonthlyPurchaseMap)
         : undefined;
-    message.userSubscriptionList = (object.userSubscriptionList !== undefined && object.userSubscriptionList !== null)
-      ? UserSubscriptionList.fromPartial(object.userSubscriptionList)
+    message.userGarupaPass = (object.userGarupaPass !== undefined && object.userGarupaPass !== null)
+      ? UserGarupaPass.fromPartial(object.userGarupaPass)
       : undefined;
     message.userCommentBannerList =
       (object.userCommentBannerList !== undefined && object.userCommentBannerList !== null)
@@ -172278,28 +179106,32 @@ export const SuiteUserGetResponse: MessageFns<SuiteUserGetResponse> = {
         ? UserLimitedSkinInventoryMap.fromPartial(object.userLimitedSkinInventoryMap)
         : undefined;
     message.monthlyCumulativeAmount = object.monthlyCumulativeAmount ?? 0;
-    message.userComebackInviteInfo =
-      (object.userComebackInviteInfo !== undefined && object.userComebackInviteInfo !== null)
-        ? UserComebackInviteInfo.fromPartial(object.userComebackInviteInfo)
-        : undefined;
-    message.userComebackInviteMissionListMap =
-      (object.userComebackInviteMissionListMap !== undefined && object.userComebackInviteMissionListMap !== null)
-        ? UserComebackInviteMissionListMap.fromPartial(object.userComebackInviteMissionListMap)
-        : undefined;
-    message.userComebackInviteMissionCountMap =
-      (object.userComebackInviteMissionCountMap !== undefined && object.userComebackInviteMissionCountMap !== null)
-        ? UserComebackInviteMissionCountMap.fromPartial(object.userComebackInviteMissionCountMap)
-        : undefined;
-    message.userComebackInviteMissionClearInformationList =
-      (object.userComebackInviteMissionClearInformationList !== undefined &&
-          object.userComebackInviteMissionClearInformationList !== null)
-        ? UserComebackInviteMissionClearInformationList.fromPartial(
-          object.userComebackInviteMissionClearInformationList,
-        )
-        : undefined;
     message.userMusicClearCountDetailMap =
       (object.userMusicClearCountDetailMap !== undefined && object.userMusicClearCountDetailMap !== null)
         ? UserMusicClearCountDetailMap.fromPartial(object.userMusicClearCountDetailMap)
+        : undefined;
+    message.userLiveFeverData = (object.userLiveFeverData !== undefined && object.userLiveFeverData !== null)
+      ? UserLiveFeverData.fromPartial(object.userLiveFeverData)
+      : undefined;
+    message.userBiliSpecialScreenList =
+      (object.userBiliSpecialScreenList !== undefined && object.userBiliSpecialScreenList !== null)
+        ? UserBiliSpecialScreenList.fromPartial(object.userBiliSpecialScreenList)
+        : undefined;
+    message.userBiliSpecialScreenSetting =
+      (object.userBiliSpecialScreenSetting !== undefined && object.userBiliSpecialScreenSetting !== null)
+        ? UserSpecialScreenSetting.fromPartial(object.userBiliSpecialScreenSetting)
+        : undefined;
+    message.userConsumptionGiftList =
+      (object.userConsumptionGiftList !== undefined && object.userConsumptionGiftList !== null)
+        ? UserConsumptionGiftList.fromPartial(object.userConsumptionGiftList)
+        : undefined;
+    message.userBiliDegreeEffectMap =
+      (object.userBiliDegreeEffectMap !== undefined && object.userBiliDegreeEffectMap !== null)
+        ? UserBiliDegreeEffectMap.fromPartial(object.userBiliDegreeEffectMap)
+        : undefined;
+    message.userBiliShippingActivityMap =
+      (object.userBiliShippingActivityMap !== undefined && object.userBiliShippingActivityMap !== null)
+        ? UserBiliShippingActivityMap.fromPartial(object.userBiliShippingActivityMap)
         : undefined;
     return message;
   },
@@ -173759,6 +180591,7 @@ function createBaseSuiteUserMedleyMusic(): SuiteUserMedleyMusic {
     userAfterLiveTalkDeckId: 0,
     scoreMap: undefined,
     livePoint: 0,
+    liveFeverId: 0,
   };
 }
 
@@ -173811,6 +180644,9 @@ export const SuiteUserMedleyMusic: MessageFns<SuiteUserMedleyMusic> = {
     }
     if (message.livePoint !== 0) {
       writer.uint32(128).uint32(message.livePoint);
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8184).uint32(message.liveFeverId);
     }
     return writer;
   },
@@ -173950,6 +180786,14 @@ export const SuiteUserMedleyMusic: MessageFns<SuiteUserMedleyMusic> = {
           message.livePoint = reader.uint32();
           continue;
         }
+        case 1023: {
+          if (tag !== 8184) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -173995,6 +180839,7 @@ export const SuiteUserMedleyMusic: MessageFns<SuiteUserMedleyMusic> = {
         : 0,
       scoreMap: isSet(object.scoreMap) ? UserMedleyMusicScoreMap.fromJSON(object.scoreMap) : undefined,
       livePoint: isSet(object.livePoint) ? globalThis.Number(object.livePoint) : 0,
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
     };
   },
 
@@ -174048,6 +180893,9 @@ export const SuiteUserMedleyMusic: MessageFns<SuiteUserMedleyMusic> = {
     if (message.livePoint !== 0) {
       obj.livePoint = Math.round(message.livePoint);
     }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
     return obj;
   },
 
@@ -174094,6 +180942,7 @@ export const SuiteUserMedleyMusic: MessageFns<SuiteUserMedleyMusic> = {
       ? UserMedleyMusicScoreMap.fromPartial(object.scoreMap)
       : undefined;
     message.livePoint = object.livePoint ?? 0;
+    message.liveFeverId = object.liveFeverId ?? 0;
     return message;
   },
 };
@@ -174330,6 +181179,8 @@ function createBaseSuiteUserMultiRoom(): SuiteUserMultiRoom {
     livePoint: 0,
     userCharacterRankMap: undefined,
     grantCharacterRankRewardListMap: undefined,
+    liveFeverId: 0,
+    disconnectCompensationScore: 0,
   };
 }
 
@@ -174412,6 +181263,12 @@ export const SuiteUserMultiRoom: MessageFns<SuiteUserMultiRoom> = {
     }
     if (message.grantCharacterRankRewardListMap !== undefined) {
       UserCharacterRankRewardListMap.encode(message.grantCharacterRankRewardListMap, writer.uint32(218).fork()).join();
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8152).uint32(message.liveFeverId);
+    }
+    if (message.disconnectCompensationScore !== 0) {
+      writer.uint32(8160).uint32(message.disconnectCompensationScore);
     }
     return writer;
   },
@@ -174631,6 +181488,22 @@ export const SuiteUserMultiRoom: MessageFns<SuiteUserMultiRoom> = {
           message.grantCharacterRankRewardListMap = UserCharacterRankRewardListMap.decode(reader, reader.uint32());
           continue;
         }
+        case 1019: {
+          if (tag !== 8152) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
+        case 1020: {
+          if (tag !== 8160) {
+            break;
+          }
+
+          message.disconnectCompensationScore = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -174700,6 +181573,10 @@ export const SuiteUserMultiRoom: MessageFns<SuiteUserMultiRoom> = {
       grantCharacterRankRewardListMap: isSet(object.grantCharacterRankRewardListMap)
         ? UserCharacterRankRewardListMap.fromJSON(object.grantCharacterRankRewardListMap)
         : undefined,
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
+      disconnectCompensationScore: isSet(object.disconnectCompensationScore)
+        ? globalThis.Number(object.disconnectCompensationScore)
+        : 0,
     };
   },
 
@@ -174785,6 +181662,12 @@ export const SuiteUserMultiRoom: MessageFns<SuiteUserMultiRoom> = {
         message.grantCharacterRankRewardListMap,
       );
     }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
+    if (message.disconnectCompensationScore !== 0) {
+      obj.disconnectCompensationScore = Math.round(message.disconnectCompensationScore);
+    }
     return obj;
   },
 
@@ -174860,12 +181743,21 @@ export const SuiteUserMultiRoom: MessageFns<SuiteUserMultiRoom> = {
       (object.grantCharacterRankRewardListMap !== undefined && object.grantCharacterRankRewardListMap !== null)
         ? UserCharacterRankRewardListMap.fromPartial(object.grantCharacterRankRewardListMap)
         : undefined;
+    message.liveFeverId = object.liveFeverId ?? 0;
+    message.disconnectCompensationScore = object.disconnectCompensationScore ?? 0;
     return message;
   },
 };
 
 function createBaseSuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest(): SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest {
-  return { liveType: "", eventId: 0, liveBoostUseCount: 0, roomId: "", isFriendRecruitment: false };
+  return {
+    liveType: "",
+    eventId: 0,
+    liveBoostUseCount: 0,
+    roomId: "",
+    isFriendRecruitment: false,
+    liveFeverUseCount: 0,
+  };
 }
 
 export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: MessageFns<
@@ -174889,6 +181781,9 @@ export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: Message
     }
     if (message.isFriendRecruitment !== false) {
       writer.uint32(40).bool(message.isFriendRecruitment);
+    }
+    if (message.liveFeverUseCount !== 0) {
+      writer.uint32(8000).uint32(message.liveFeverUseCount);
     }
     return writer;
   },
@@ -174943,6 +181838,14 @@ export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: Message
           message.isFriendRecruitment = reader.bool();
           continue;
         }
+        case 1000: {
+          if (tag !== 8000) {
+            break;
+          }
+
+          message.liveFeverUseCount = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -174959,6 +181862,7 @@ export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: Message
       liveBoostUseCount: isSet(object.liveBoostUseCount) ? globalThis.Number(object.liveBoostUseCount) : 0,
       roomId: isSet(object.roomId) ? globalThis.String(object.roomId) : "",
       isFriendRecruitment: isSet(object.isFriendRecruitment) ? globalThis.Boolean(object.isFriendRecruitment) : false,
+      liveFeverUseCount: isSet(object.liveFeverUseCount) ? globalThis.Number(object.liveFeverUseCount) : 0,
     };
   },
 
@@ -174979,6 +181883,9 @@ export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: Message
     if (message.isFriendRecruitment !== false) {
       obj.isFriendRecruitment = message.isFriendRecruitment;
     }
+    if (message.liveFeverUseCount !== 0) {
+      obj.liveFeverUseCount = Math.round(message.liveFeverUseCount);
+    }
     return obj;
   },
 
@@ -174996,6 +181903,7 @@ export const SuiteUserMultiTeamLiveFestivalMusicReserveLiveBoostRequest: Message
     message.liveBoostUseCount = object.liveBoostUseCount ?? 0;
     message.roomId = object.roomId ?? "";
     message.isFriendRecruitment = object.isFriendRecruitment ?? false;
+    message.liveFeverUseCount = object.liveFeverUseCount ?? 0;
     return message;
   },
 };
@@ -175226,7 +182134,14 @@ export const SuiteUserMultiVersusLiveMusic: MessageFns<SuiteUserMultiVersusLiveM
 };
 
 function createBaseSuiteUserMultiVersusLiveMusicReserveLiveBoostRequest(): SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest {
-  return { liveType: "", eventId: 0, liveBoostUseCount: 0, roomId: "", isFriendRecruitment: false };
+  return {
+    liveType: "",
+    eventId: 0,
+    liveBoostUseCount: 0,
+    roomId: "",
+    isFriendRecruitment: false,
+    liveFeverUseCount: 0,
+  };
 }
 
 export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
@@ -175250,6 +182165,9 @@ export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
     }
     if (message.isFriendRecruitment !== false) {
       writer.uint32(40).bool(message.isFriendRecruitment);
+    }
+    if (message.liveFeverUseCount !== 0) {
+      writer.uint32(8000).uint32(message.liveFeverUseCount);
     }
     return writer;
   },
@@ -175301,6 +182219,14 @@ export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
           message.isFriendRecruitment = reader.bool();
           continue;
         }
+        case 1000: {
+          if (tag !== 8000) {
+            break;
+          }
+
+          message.liveFeverUseCount = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -175317,6 +182243,7 @@ export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
       liveBoostUseCount: isSet(object.liveBoostUseCount) ? globalThis.Number(object.liveBoostUseCount) : 0,
       roomId: isSet(object.roomId) ? globalThis.String(object.roomId) : "",
       isFriendRecruitment: isSet(object.isFriendRecruitment) ? globalThis.Boolean(object.isFriendRecruitment) : false,
+      liveFeverUseCount: isSet(object.liveFeverUseCount) ? globalThis.Number(object.liveFeverUseCount) : 0,
     };
   },
 
@@ -175337,6 +182264,9 @@ export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
     if (message.isFriendRecruitment !== false) {
       obj.isFriendRecruitment = message.isFriendRecruitment;
     }
+    if (message.liveFeverUseCount !== 0) {
+      obj.liveFeverUseCount = Math.round(message.liveFeverUseCount);
+    }
     return obj;
   },
 
@@ -175354,6 +182284,7 @@ export const SuiteUserMultiVersusLiveMusicReserveLiveBoostRequest: MessageFns<
     message.liveBoostUseCount = object.liveBoostUseCount ?? 0;
     message.roomId = object.roomId ?? "";
     message.isFriendRecruitment = object.isFriendRecruitment ?? false;
+    message.liveFeverUseCount = object.liveFeverUseCount ?? 0;
     return message;
   },
 };
@@ -175457,6 +182388,7 @@ function createBaseSuiteUserMusic(): SuiteUserMusic {
     grantCharacterRankRewardListMap: undefined,
     versusEventResponse: undefined,
     festivalEventResponse: undefined,
+    liveFeverId: 0,
   };
 }
 
@@ -175533,6 +182465,9 @@ export const SuiteUserMusic: MessageFns<SuiteUserMusic> = {
     }
     if (message.festivalEventResponse !== undefined) {
       UserFestivalLiveClearResponse.encode(message.festivalEventResponse, writer.uint32(202).fork()).join();
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8152).uint32(message.liveFeverId);
     }
     return writer;
   },
@@ -175736,6 +182671,14 @@ export const SuiteUserMusic: MessageFns<SuiteUserMusic> = {
           message.festivalEventResponse = UserFestivalLiveClearResponse.decode(reader, reader.uint32());
           continue;
         }
+        case 1019: {
+          if (tag !== 8152) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -175801,6 +182744,7 @@ export const SuiteUserMusic: MessageFns<SuiteUserMusic> = {
       festivalEventResponse: isSet(object.festivalEventResponse)
         ? UserFestivalLiveClearResponse.fromJSON(object.festivalEventResponse)
         : undefined,
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
     };
   },
 
@@ -175880,6 +182824,9 @@ export const SuiteUserMusic: MessageFns<SuiteUserMusic> = {
     if (message.festivalEventResponse !== undefined) {
       obj.festivalEventResponse = UserFestivalLiveClearResponse.toJSON(message.festivalEventResponse);
     }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
     return obj;
   },
 
@@ -175952,6 +182899,7 @@ export const SuiteUserMusic: MessageFns<SuiteUserMusic> = {
       (object.festivalEventResponse !== undefined && object.festivalEventResponse !== null)
         ? UserFestivalLiveClearResponse.fromPartial(object.festivalEventResponse)
         : undefined;
+    message.liveFeverId = object.liveFeverId ?? 0;
     return message;
   },
 };
@@ -178754,7 +185702,6 @@ function createBaseTutorialCacheProtoData(): TutorialCacheProtoData {
     isReadCharacterRank: false,
     isRead3DMode: false,
     isReadPhotoStudio: false,
-    isReadComebackInviteId: 0,
   };
 }
 
@@ -178874,9 +185821,6 @@ export const TutorialCacheProtoData: MessageFns<TutorialCacheProtoData> = {
     }
     if (message.isReadPhotoStudio !== false) {
       writer.uint32(328).bool(message.isReadPhotoStudio);
-    }
-    if (message.isReadComebackInviteId !== 0) {
-      writer.uint32(336).uint32(message.isReadComebackInviteId);
     }
     return writer;
   },
@@ -179180,14 +186124,6 @@ export const TutorialCacheProtoData: MessageFns<TutorialCacheProtoData> = {
           message.isReadPhotoStudio = reader.bool();
           continue;
         }
-        case 42: {
-          if (tag !== 336) {
-            break;
-          }
-
-          message.isReadComebackInviteId = reader.uint32();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -179298,9 +186234,6 @@ export const TutorialCacheProtoData: MessageFns<TutorialCacheProtoData> = {
       isReadCharacterRank: isSet(object.isReadCharacterRank) ? globalThis.Boolean(object.isReadCharacterRank) : false,
       isRead3DMode: isSet(object.isRead3DMode) ? globalThis.Boolean(object.isRead3DMode) : false,
       isReadPhotoStudio: isSet(object.isReadPhotoStudio) ? globalThis.Boolean(object.isReadPhotoStudio) : false,
-      isReadComebackInviteId: isSet(object.isReadComebackInviteId)
-        ? globalThis.Number(object.isReadComebackInviteId)
-        : 0,
     };
   },
 
@@ -179423,9 +186356,6 @@ export const TutorialCacheProtoData: MessageFns<TutorialCacheProtoData> = {
     if (message.isReadPhotoStudio !== false) {
       obj.isReadPhotoStudio = message.isReadPhotoStudio;
     }
-    if (message.isReadComebackInviteId !== 0) {
-      obj.isReadComebackInviteId = Math.round(message.isReadComebackInviteId);
-    }
     return obj;
   },
 
@@ -179487,7 +186417,6 @@ export const TutorialCacheProtoData: MessageFns<TutorialCacheProtoData> = {
     message.isReadCharacterRank = object.isReadCharacterRank ?? false;
     message.isRead3DMode = object.isRead3DMode ?? false;
     message.isReadPhotoStudio = object.isReadPhotoStudio ?? false;
-    message.isReadComebackInviteId = object.isReadComebackInviteId ?? 0;
     return message;
   },
 };
@@ -180338,6 +187267,187 @@ export const UsedLiveBoostRecoveryItemResponse: MessageFns<UsedLiveBoostRecovery
     message.liveBoost = object.liveBoost ?? 0;
     message.recoverAt = object.recoverAt ?? "0";
     message.recoverValue = object.recoverValue ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserAccountSelectData(): UserAccountSelectData {
+  return { userAccountPlatform: 0, bidLoginInfos: {} };
+}
+
+export const UserAccountSelectData: MessageFns<UserAccountSelectData> = {
+  encode(message: UserAccountSelectData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userAccountPlatform !== 0) {
+      writer.uint32(8).int32(message.userAccountPlatform);
+    }
+    globalThis.Object.entries(message.bidLoginInfos).forEach(([key, value]: [string, UserAccountPlatform]) => {
+      UserAccountSelectData_BidLoginInfosEntry.encode({ key: key as any, value }, writer.uint32(18).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserAccountSelectData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserAccountSelectData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userAccountPlatform = reader.int32() as any;
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          const entry2 = UserAccountSelectData_BidLoginInfosEntry.decode(reader, reader.uint32());
+          if (entry2.value !== undefined) {
+            message.bidLoginInfos[entry2.key] = entry2.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserAccountSelectData {
+    return {
+      userAccountPlatform: isSet(object.userAccountPlatform)
+        ? userAccountPlatformFromJSON(object.userAccountPlatform)
+        : 0,
+      bidLoginInfos: isObject(object.bidLoginInfos)
+        ? (globalThis.Object.entries(object.bidLoginInfos) as [string, any][]).reduce(
+          (acc: { [key: string]: UserAccountPlatform }, [key, value]: [string, any]) => {
+            acc[key] = userAccountPlatformFromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: UserAccountSelectData): unknown {
+    const obj: any = {};
+    if (message.userAccountPlatform !== 0) {
+      obj.userAccountPlatform = userAccountPlatformToJSON(message.userAccountPlatform);
+    }
+    if (message.bidLoginInfos) {
+      const entries = globalThis.Object.entries(message.bidLoginInfos) as [string, UserAccountPlatform][];
+      if (entries.length > 0) {
+        obj.bidLoginInfos = {};
+        entries.forEach(([k, v]) => {
+          obj.bidLoginInfos[k] = userAccountPlatformToJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserAccountSelectData>, I>>(base?: I): UserAccountSelectData {
+    return UserAccountSelectData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserAccountSelectData>, I>>(object: I): UserAccountSelectData {
+    const message = createBaseUserAccountSelectData();
+    message.userAccountPlatform = object.userAccountPlatform ?? 0;
+    message.bidLoginInfos = (globalThis.Object.entries(object.bidLoginInfos ?? {}) as [string, UserAccountPlatform][])
+      .reduce((acc: { [key: string]: UserAccountPlatform }, [key, value]: [string, UserAccountPlatform]) => {
+        if (value !== undefined) {
+          acc[key] = value as UserAccountPlatform;
+        }
+        return acc;
+      }, {});
+    return message;
+  },
+};
+
+function createBaseUserAccountSelectData_BidLoginInfosEntry(): UserAccountSelectData_BidLoginInfosEntry {
+  return { key: "", value: 0 };
+}
+
+export const UserAccountSelectData_BidLoginInfosEntry: MessageFns<UserAccountSelectData_BidLoginInfosEntry> = {
+  encode(message: UserAccountSelectData_BidLoginInfosEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== 0) {
+      writer.uint32(16).int32(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserAccountSelectData_BidLoginInfosEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserAccountSelectData_BidLoginInfosEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.value = reader.int32() as any;
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserAccountSelectData_BidLoginInfosEntry {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? userAccountPlatformFromJSON(object.value) : 0,
+    };
+  },
+
+  toJSON(message: UserAccountSelectData_BidLoginInfosEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== 0) {
+      obj.value = userAccountPlatformToJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserAccountSelectData_BidLoginInfosEntry>, I>>(
+    base?: I,
+  ): UserAccountSelectData_BidLoginInfosEntry {
+    return UserAccountSelectData_BidLoginInfosEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserAccountSelectData_BidLoginInfosEntry>, I>>(
+    object: I,
+  ): UserAccountSelectData_BidLoginInfosEntry {
+    const message = createBaseUserAccountSelectData_BidLoginInfosEntry();
+    message.key = object.key ?? "";
+    message.value = object.value ?? 0;
     return message;
   },
 };
@@ -181245,6 +188355,192 @@ export const UserActionSetMap_EntriesEntry: MessageFns<UserActionSetMap_EntriesE
     message.value = (object.value !== undefined && object.value !== null)
       ? UserActionSet.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseUserActivityItem(): UserActivityItem {
+  return { userId: "0", activityId: 0, resourceType: "", resourceId: 0, quantity: 0 };
+}
+
+export const UserActivityItem: MessageFns<UserActivityItem> = {
+  encode(message: UserActivityItem, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.activityId !== 0) {
+      writer.uint32(16).uint32(message.activityId);
+    }
+    if (message.resourceType !== "") {
+      writer.uint32(26).string(message.resourceType);
+    }
+    if (message.resourceId !== 0) {
+      writer.uint32(32).uint32(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(40).uint32(message.quantity);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserActivityItem {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserActivityItem();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.activityId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.resourceType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.resourceId = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.quantity = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserActivityItem {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      activityId: isSet(object.activityId) ? globalThis.Number(object.activityId) : 0,
+      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
+      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
+      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
+    };
+  },
+
+  toJSON(message: UserActivityItem): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.activityId !== 0) {
+      obj.activityId = Math.round(message.activityId);
+    }
+    if (message.resourceType !== "") {
+      obj.resourceType = message.resourceType;
+    }
+    if (message.resourceId !== 0) {
+      obj.resourceId = Math.round(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      obj.quantity = Math.round(message.quantity);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserActivityItem>, I>>(base?: I): UserActivityItem {
+    return UserActivityItem.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserActivityItem>, I>>(object: I): UserActivityItem {
+    const message = createBaseUserActivityItem();
+    message.userId = object.userId ?? "0";
+    message.activityId = object.activityId ?? 0;
+    message.resourceType = object.resourceType ?? "";
+    message.resourceId = object.resourceId ?? 0;
+    message.quantity = object.quantity ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserActivityItemList(): UserActivityItemList {
+  return { entries: [] };
+}
+
+export const UserActivityItemList: MessageFns<UserActivityItemList> = {
+  encode(message: UserActivityItemList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserActivityItem.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserActivityItemList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserActivityItemList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserActivityItem.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserActivityItemList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserActivityItem.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserActivityItemList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserActivityItem.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserActivityItemList>, I>>(base?: I): UserActivityItemList {
+    return UserActivityItemList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserActivityItemList>, I>>(object: I): UserActivityItemList {
+    const message = createBaseUserActivityItemList();
+    message.entries = object.entries?.map((e) => UserActivityItem.fromPartial(e)) || [];
     return message;
   },
 };
@@ -182168,6 +189464,90 @@ export const UserAppendParameterMap_EntriesEntry: MessageFns<UserAppendParameter
     message.key = object.key ?? 0;
     message.value = (object.value !== undefined && object.value !== null)
       ? UserAppendParameter.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserAprilFool2021StoryReleaseState(): UserAprilFool2021StoryReleaseState {
+  return { aprilFool2021localId: 0, userGenericStoryMap: undefined };
+}
+
+export const UserAprilFool2021StoryReleaseState: MessageFns<UserAprilFool2021StoryReleaseState> = {
+  encode(message: UserAprilFool2021StoryReleaseState, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.aprilFool2021localId !== 0) {
+      writer.uint32(8).uint32(message.aprilFool2021localId);
+    }
+    if (message.userGenericStoryMap !== undefined) {
+      UserGenericStoryMap.encode(message.userGenericStoryMap, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserAprilFool2021StoryReleaseState {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserAprilFool2021StoryReleaseState();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.aprilFool2021localId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userGenericStoryMap = UserGenericStoryMap.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserAprilFool2021StoryReleaseState {
+    return {
+      aprilFool2021localId: isSet(object.aprilFool2021localId) ? globalThis.Number(object.aprilFool2021localId) : 0,
+      userGenericStoryMap: isSet(object.userGenericStoryMap)
+        ? UserGenericStoryMap.fromJSON(object.userGenericStoryMap)
+        : undefined,
+    };
+  },
+
+  toJSON(message: UserAprilFool2021StoryReleaseState): unknown {
+    const obj: any = {};
+    if (message.aprilFool2021localId !== 0) {
+      obj.aprilFool2021localId = Math.round(message.aprilFool2021localId);
+    }
+    if (message.userGenericStoryMap !== undefined) {
+      obj.userGenericStoryMap = UserGenericStoryMap.toJSON(message.userGenericStoryMap);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserAprilFool2021StoryReleaseState>, I>>(
+    base?: I,
+  ): UserAprilFool2021StoryReleaseState {
+    return UserAprilFool2021StoryReleaseState.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserAprilFool2021StoryReleaseState>, I>>(
+    object: I,
+  ): UserAprilFool2021StoryReleaseState {
+    const message = createBaseUserAprilFool2021StoryReleaseState();
+    message.aprilFool2021localId = object.aprilFool2021localId ?? 0;
+    message.userGenericStoryMap = (object.userGenericStoryMap !== undefined && object.userGenericStoryMap !== null)
+      ? UserGenericStoryMap.fromPartial(object.userGenericStoryMap)
       : undefined;
     return message;
   },
@@ -185093,6 +192473,1395 @@ export const UserBandStoryList: MessageFns<UserBandStoryList> = {
   },
 };
 
+function createBaseUserBiliActivity(): UserBiliActivity {
+  return {
+    userId: "0",
+    activityId: 0,
+    activityName: "",
+    seq: 0,
+    startAt: "0",
+    endAt: "0",
+    upperLimit: 0,
+    bonusPoints: 0,
+    userUseActivityItemList: undefined,
+    userActivityItemList: undefined,
+  };
+}
+
+export const UserBiliActivity: MessageFns<UserBiliActivity> = {
+  encode(message: UserBiliActivity, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.activityId !== 0) {
+      writer.uint32(16).uint32(message.activityId);
+    }
+    if (message.activityName !== "") {
+      writer.uint32(26).string(message.activityName);
+    }
+    if (message.seq !== 0) {
+      writer.uint32(32).uint32(message.seq);
+    }
+    if (message.startAt !== "0") {
+      writer.uint32(40).uint64(message.startAt);
+    }
+    if (message.endAt !== "0") {
+      writer.uint32(48).uint64(message.endAt);
+    }
+    if (message.upperLimit !== 0) {
+      writer.uint32(56).uint32(message.upperLimit);
+    }
+    if (message.bonusPoints !== 0) {
+      writer.uint32(64).uint32(message.bonusPoints);
+    }
+    if (message.userUseActivityItemList !== undefined) {
+      UserUseActivityItemList.encode(message.userUseActivityItemList, writer.uint32(74).fork()).join();
+    }
+    if (message.userActivityItemList !== undefined) {
+      UserActivityItemList.encode(message.userActivityItemList, writer.uint32(82).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliActivity {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliActivity();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.activityId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.activityName = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.seq = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.startAt = reader.uint64().toString();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.endAt = reader.uint64().toString();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.upperLimit = reader.uint32();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.bonusPoints = reader.uint32();
+          continue;
+        }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.userUseActivityItemList = UserUseActivityItemList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 10: {
+          if (tag !== 82) {
+            break;
+          }
+
+          message.userActivityItemList = UserActivityItemList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliActivity {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      activityId: isSet(object.activityId) ? globalThis.Number(object.activityId) : 0,
+      activityName: isSet(object.activityName) ? globalThis.String(object.activityName) : "",
+      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
+      startAt: isSet(object.startAt) ? globalThis.String(object.startAt) : "0",
+      endAt: isSet(object.endAt) ? globalThis.String(object.endAt) : "0",
+      upperLimit: isSet(object.upperLimit) ? globalThis.Number(object.upperLimit) : 0,
+      bonusPoints: isSet(object.bonusPoints) ? globalThis.Number(object.bonusPoints) : 0,
+      userUseActivityItemList: isSet(object.userUseActivityItemList)
+        ? UserUseActivityItemList.fromJSON(object.userUseActivityItemList)
+        : undefined,
+      userActivityItemList: isSet(object.userActivityItemList)
+        ? UserActivityItemList.fromJSON(object.userActivityItemList)
+        : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliActivity): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.activityId !== 0) {
+      obj.activityId = Math.round(message.activityId);
+    }
+    if (message.activityName !== "") {
+      obj.activityName = message.activityName;
+    }
+    if (message.seq !== 0) {
+      obj.seq = Math.round(message.seq);
+    }
+    if (message.startAt !== "0") {
+      obj.startAt = message.startAt;
+    }
+    if (message.endAt !== "0") {
+      obj.endAt = message.endAt;
+    }
+    if (message.upperLimit !== 0) {
+      obj.upperLimit = Math.round(message.upperLimit);
+    }
+    if (message.bonusPoints !== 0) {
+      obj.bonusPoints = Math.round(message.bonusPoints);
+    }
+    if (message.userUseActivityItemList !== undefined) {
+      obj.userUseActivityItemList = UserUseActivityItemList.toJSON(message.userUseActivityItemList);
+    }
+    if (message.userActivityItemList !== undefined) {
+      obj.userActivityItemList = UserActivityItemList.toJSON(message.userActivityItemList);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliActivity>, I>>(base?: I): UserBiliActivity {
+    return UserBiliActivity.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliActivity>, I>>(object: I): UserBiliActivity {
+    const message = createBaseUserBiliActivity();
+    message.userId = object.userId ?? "0";
+    message.activityId = object.activityId ?? 0;
+    message.activityName = object.activityName ?? "";
+    message.seq = object.seq ?? 0;
+    message.startAt = object.startAt ?? "0";
+    message.endAt = object.endAt ?? "0";
+    message.upperLimit = object.upperLimit ?? 0;
+    message.bonusPoints = object.bonusPoints ?? 0;
+    message.userUseActivityItemList =
+      (object.userUseActivityItemList !== undefined && object.userUseActivityItemList !== null)
+        ? UserUseActivityItemList.fromPartial(object.userUseActivityItemList)
+        : undefined;
+    message.userActivityItemList = (object.userActivityItemList !== undefined && object.userActivityItemList !== null)
+      ? UserActivityItemList.fromPartial(object.userActivityItemList)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserBiliActivityList(): UserBiliActivityList {
+  return { entries: [] };
+}
+
+export const UserBiliActivityList: MessageFns<UserBiliActivityList> = {
+  encode(message: UserBiliActivityList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliActivity.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliActivityList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliActivityList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliActivity.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliActivityList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliActivity.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliActivityList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliActivity.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliActivityList>, I>>(base?: I): UserBiliActivityList {
+    return UserBiliActivityList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliActivityList>, I>>(object: I): UserBiliActivityList {
+    const message = createBaseUserBiliActivityList();
+    message.entries = object.entries?.map((e) => UserBiliActivity.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliActivityMap(): UserBiliActivityMap {
+  return { entries: {} };
+}
+
+export const UserBiliActivityMap: MessageFns<UserBiliActivityMap> = {
+  encode(message: UserBiliActivityMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserBiliActivity]) => {
+      UserBiliActivityMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliActivityMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliActivityMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = UserBiliActivityMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliActivityMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: UserBiliActivity }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = UserBiliActivity.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: UserBiliActivityMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, UserBiliActivity][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = UserBiliActivity.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliActivityMap>, I>>(base?: I): UserBiliActivityMap {
+    return UserBiliActivityMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliActivityMap>, I>>(object: I): UserBiliActivityMap {
+    const message = createBaseUserBiliActivityMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, UserBiliActivity][]).reduce(
+      (acc: { [key: number]: UserBiliActivity }, [key, value]: [string, UserBiliActivity]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = UserBiliActivity.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseUserBiliActivityMap_EntriesEntry(): UserBiliActivityMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const UserBiliActivityMap_EntriesEntry: MessageFns<UserBiliActivityMap_EntriesEntry> = {
+  encode(message: UserBiliActivityMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      UserBiliActivity.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliActivityMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliActivityMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = UserBiliActivity.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliActivityMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? UserBiliActivity.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliActivityMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = UserBiliActivity.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliActivityMap_EntriesEntry>, I>>(
+    base?: I,
+  ): UserBiliActivityMap_EntriesEntry {
+    return UserBiliActivityMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliActivityMap_EntriesEntry>, I>>(
+    object: I,
+  ): UserBiliActivityMap_EntriesEntry {
+    const message = createBaseUserBiliActivityMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? UserBiliActivity.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterBonus(): UserBiliCharacterBonus {
+  return {
+    characterId: 0,
+    characterBonusType: "",
+    updateResources: undefined,
+    before: undefined,
+    after: undefined,
+    updatedBandDeckRankList: undefined,
+  };
+}
+
+export const UserBiliCharacterBonus: MessageFns<UserBiliCharacterBonus> = {
+  encode(message: UserBiliCharacterBonus, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.characterId !== 0) {
+      writer.uint32(8).uint32(message.characterId);
+    }
+    if (message.characterBonusType !== "") {
+      writer.uint32(18).string(message.characterBonusType);
+    }
+    if (message.updateResources !== undefined) {
+      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(26).fork()).join();
+    }
+    if (message.before !== undefined) {
+      CharacterBonusSituationParameter.encode(message.before, writer.uint32(34).fork()).join();
+    }
+    if (message.after !== undefined) {
+      CharacterBonusSituationParameter.encode(message.after, writer.uint32(42).fork()).join();
+    }
+    if (message.updatedBandDeckRankList !== undefined) {
+      UpdatedBandDeckRankList.encode(message.updatedBandDeckRankList, writer.uint32(50).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterBonus {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterBonus();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.characterId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.characterBonusType = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.before = CharacterBonusSituationParameter.decode(reader, reader.uint32());
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.after = CharacterBonusSituationParameter.decode(reader, reader.uint32());
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.updatedBandDeckRankList = UpdatedBandDeckRankList.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterBonus {
+    return {
+      characterId: isSet(object.characterId) ? globalThis.Number(object.characterId) : 0,
+      characterBonusType: isSet(object.characterBonusType) ? globalThis.String(object.characterBonusType) : "",
+      updateResources: isSet(object.updateResources)
+        ? SuiteUserGetResponse.fromJSON(object.updateResources)
+        : undefined,
+      before: isSet(object.before) ? CharacterBonusSituationParameter.fromJSON(object.before) : undefined,
+      after: isSet(object.after) ? CharacterBonusSituationParameter.fromJSON(object.after) : undefined,
+      updatedBandDeckRankList: isSet(object.updatedBandDeckRankList)
+        ? UpdatedBandDeckRankList.fromJSON(object.updatedBandDeckRankList)
+        : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliCharacterBonus): unknown {
+    const obj: any = {};
+    if (message.characterId !== 0) {
+      obj.characterId = Math.round(message.characterId);
+    }
+    if (message.characterBonusType !== "") {
+      obj.characterBonusType = message.characterBonusType;
+    }
+    if (message.updateResources !== undefined) {
+      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
+    }
+    if (message.before !== undefined) {
+      obj.before = CharacterBonusSituationParameter.toJSON(message.before);
+    }
+    if (message.after !== undefined) {
+      obj.after = CharacterBonusSituationParameter.toJSON(message.after);
+    }
+    if (message.updatedBandDeckRankList !== undefined) {
+      obj.updatedBandDeckRankList = UpdatedBandDeckRankList.toJSON(message.updatedBandDeckRankList);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterBonus>, I>>(base?: I): UserBiliCharacterBonus {
+    return UserBiliCharacterBonus.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterBonus>, I>>(object: I): UserBiliCharacterBonus {
+    const message = createBaseUserBiliCharacterBonus();
+    message.characterId = object.characterId ?? 0;
+    message.characterBonusType = object.characterBonusType ?? "";
+    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
+      ? SuiteUserGetResponse.fromPartial(object.updateResources)
+      : undefined;
+    message.before = (object.before !== undefined && object.before !== null)
+      ? CharacterBonusSituationParameter.fromPartial(object.before)
+      : undefined;
+    message.after = (object.after !== undefined && object.after !== null)
+      ? CharacterBonusSituationParameter.fromPartial(object.after)
+      : undefined;
+    message.updatedBandDeckRankList =
+      (object.updatedBandDeckRankList !== undefined && object.updatedBandDeckRankList !== null)
+        ? UpdatedBandDeckRankList.fromPartial(object.updatedBandDeckRankList)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterBonusList(): UserBiliCharacterBonusList {
+  return { entries: [] };
+}
+
+export const UserBiliCharacterBonusList: MessageFns<UserBiliCharacterBonusList> = {
+  encode(message: UserBiliCharacterBonusList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliCharacterBonus.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterBonusList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterBonusList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliCharacterBonus.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterBonusList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliCharacterBonus.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliCharacterBonusList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliCharacterBonus.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterBonusList>, I>>(base?: I): UserBiliCharacterBonusList {
+    return UserBiliCharacterBonusList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterBonusList>, I>>(object: I): UserBiliCharacterBonusList {
+    const message = createBaseUserBiliCharacterBonusList();
+    message.entries = object.entries?.map((e) => UserBiliCharacterBonus.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterBonusMissionBulkRequest(): UserBiliCharacterBonusMissionBulkRequest {
+  return { bandId: 0, eventId: 0, homeEffectType: "" };
+}
+
+export const UserBiliCharacterBonusMissionBulkRequest: MessageFns<UserBiliCharacterBonusMissionBulkRequest> = {
+  encode(message: UserBiliCharacterBonusMissionBulkRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.bandId !== 0) {
+      writer.uint32(8).uint32(message.bandId);
+    }
+    if (message.eventId !== 0) {
+      writer.uint32(16).uint32(message.eventId);
+    }
+    if (message.homeEffectType !== "") {
+      writer.uint32(26).string(message.homeEffectType);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterBonusMissionBulkRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterBonusMissionBulkRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.bandId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.eventId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.homeEffectType = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterBonusMissionBulkRequest {
+    return {
+      bandId: isSet(object.bandId) ? globalThis.Number(object.bandId) : 0,
+      eventId: isSet(object.eventId) ? globalThis.Number(object.eventId) : 0,
+      homeEffectType: isSet(object.homeEffectType) ? globalThis.String(object.homeEffectType) : "",
+    };
+  },
+
+  toJSON(message: UserBiliCharacterBonusMissionBulkRequest): unknown {
+    const obj: any = {};
+    if (message.bandId !== 0) {
+      obj.bandId = Math.round(message.bandId);
+    }
+    if (message.eventId !== 0) {
+      obj.eventId = Math.round(message.eventId);
+    }
+    if (message.homeEffectType !== "") {
+      obj.homeEffectType = message.homeEffectType;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterBonusMissionBulkRequest>, I>>(
+    base?: I,
+  ): UserBiliCharacterBonusMissionBulkRequest {
+    return UserBiliCharacterBonusMissionBulkRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterBonusMissionBulkRequest>, I>>(
+    object: I,
+  ): UserBiliCharacterBonusMissionBulkRequest {
+    const message = createBaseUserBiliCharacterBonusMissionBulkRequest();
+    message.bandId = object.bandId ?? 0;
+    message.eventId = object.eventId ?? 0;
+    message.homeEffectType = object.homeEffectType ?? "";
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterBonusMissionResponse(): UserBiliCharacterBonusMissionResponse {
+  return {
+    userBiliCharacterBonusList: undefined,
+    userBiliCharacterMissionBonusList: undefined,
+    updateResources: undefined,
+  };
+}
+
+export const UserBiliCharacterBonusMissionResponse: MessageFns<UserBiliCharacterBonusMissionResponse> = {
+  encode(message: UserBiliCharacterBonusMissionResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userBiliCharacterBonusList !== undefined) {
+      UserBiliCharacterBonusList.encode(message.userBiliCharacterBonusList, writer.uint32(10).fork()).join();
+    }
+    if (message.userBiliCharacterMissionBonusList !== undefined) {
+      UserBiliCharacterMissionBonusList.encode(message.userBiliCharacterMissionBonusList, writer.uint32(18).fork())
+        .join();
+    }
+    if (message.updateResources !== undefined) {
+      SuiteUserGetResponse.encode(message.updateResources, writer.uint32(26).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterBonusMissionResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterBonusMissionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.userBiliCharacterBonusList = UserBiliCharacterBonusList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userBiliCharacterMissionBonusList = UserBiliCharacterMissionBonusList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.updateResources = SuiteUserGetResponse.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterBonusMissionResponse {
+    return {
+      userBiliCharacterBonusList: isSet(object.userBiliCharacterBonusList)
+        ? UserBiliCharacterBonusList.fromJSON(object.userBiliCharacterBonusList)
+        : undefined,
+      userBiliCharacterMissionBonusList: isSet(object.userBiliCharacterMissionBonusList)
+        ? UserBiliCharacterMissionBonusList.fromJSON(object.userBiliCharacterMissionBonusList)
+        : undefined,
+      updateResources: isSet(object.updateResources)
+        ? SuiteUserGetResponse.fromJSON(object.updateResources)
+        : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliCharacterBonusMissionResponse): unknown {
+    const obj: any = {};
+    if (message.userBiliCharacterBonusList !== undefined) {
+      obj.userBiliCharacterBonusList = UserBiliCharacterBonusList.toJSON(message.userBiliCharacterBonusList);
+    }
+    if (message.userBiliCharacterMissionBonusList !== undefined) {
+      obj.userBiliCharacterMissionBonusList = UserBiliCharacterMissionBonusList.toJSON(
+        message.userBiliCharacterMissionBonusList,
+      );
+    }
+    if (message.updateResources !== undefined) {
+      obj.updateResources = SuiteUserGetResponse.toJSON(message.updateResources);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterBonusMissionResponse>, I>>(
+    base?: I,
+  ): UserBiliCharacterBonusMissionResponse {
+    return UserBiliCharacterBonusMissionResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterBonusMissionResponse>, I>>(
+    object: I,
+  ): UserBiliCharacterBonusMissionResponse {
+    const message = createBaseUserBiliCharacterBonusMissionResponse();
+    message.userBiliCharacterBonusList =
+      (object.userBiliCharacterBonusList !== undefined && object.userBiliCharacterBonusList !== null)
+        ? UserBiliCharacterBonusList.fromPartial(object.userBiliCharacterBonusList)
+        : undefined;
+    message.userBiliCharacterMissionBonusList =
+      (object.userBiliCharacterMissionBonusList !== undefined && object.userBiliCharacterMissionBonusList !== null)
+        ? UserBiliCharacterMissionBonusList.fromPartial(object.userBiliCharacterMissionBonusList)
+        : undefined;
+    message.updateResources = (object.updateResources !== undefined && object.updateResources !== null)
+      ? SuiteUserGetResponse.fromPartial(object.updateResources)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterMissionBonus(): UserBiliCharacterMissionBonus {
+  return { missionRewardList: undefined, characterId: 0 };
+}
+
+export const UserBiliCharacterMissionBonus: MessageFns<UserBiliCharacterMissionBonus> = {
+  encode(message: UserBiliCharacterMissionBonus, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.missionRewardList !== undefined) {
+      PlayerResourceList.encode(message.missionRewardList, writer.uint32(10).fork()).join();
+    }
+    if (message.characterId !== 0) {
+      writer.uint32(16).uint32(message.characterId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterMissionBonus {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterMissionBonus();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.missionRewardList = PlayerResourceList.decode(reader, reader.uint32());
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.characterId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterMissionBonus {
+    return {
+      missionRewardList: isSet(object.missionRewardList)
+        ? PlayerResourceList.fromJSON(object.missionRewardList)
+        : undefined,
+      characterId: isSet(object.characterId) ? globalThis.Number(object.characterId) : 0,
+    };
+  },
+
+  toJSON(message: UserBiliCharacterMissionBonus): unknown {
+    const obj: any = {};
+    if (message.missionRewardList !== undefined) {
+      obj.missionRewardList = PlayerResourceList.toJSON(message.missionRewardList);
+    }
+    if (message.characterId !== 0) {
+      obj.characterId = Math.round(message.characterId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterMissionBonus>, I>>(base?: I): UserBiliCharacterMissionBonus {
+    return UserBiliCharacterMissionBonus.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterMissionBonus>, I>>(
+    object: I,
+  ): UserBiliCharacterMissionBonus {
+    const message = createBaseUserBiliCharacterMissionBonus();
+    message.missionRewardList = (object.missionRewardList !== undefined && object.missionRewardList !== null)
+      ? PlayerResourceList.fromPartial(object.missionRewardList)
+      : undefined;
+    message.characterId = object.characterId ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserBiliCharacterMissionBonusList(): UserBiliCharacterMissionBonusList {
+  return { missionEntries: [] };
+}
+
+export const UserBiliCharacterMissionBonusList: MessageFns<UserBiliCharacterMissionBonusList> = {
+  encode(message: UserBiliCharacterMissionBonusList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.missionEntries) {
+      UserBiliCharacterMissionBonus.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliCharacterMissionBonusList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliCharacterMissionBonusList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.missionEntries.push(UserBiliCharacterMissionBonus.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliCharacterMissionBonusList {
+    return {
+      missionEntries: globalThis.Array.isArray(object?.missionEntries)
+        ? object.missionEntries.map((e: any) => UserBiliCharacterMissionBonus.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliCharacterMissionBonusList): unknown {
+    const obj: any = {};
+    if (message.missionEntries?.length) {
+      obj.missionEntries = message.missionEntries.map((e) => UserBiliCharacterMissionBonus.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliCharacterMissionBonusList>, I>>(
+    base?: I,
+  ): UserBiliCharacterMissionBonusList {
+    return UserBiliCharacterMissionBonusList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliCharacterMissionBonusList>, I>>(
+    object: I,
+  ): UserBiliCharacterMissionBonusList {
+    const message = createBaseUserBiliCharacterMissionBonusList();
+    message.missionEntries = object.missionEntries?.map((e) => UserBiliCharacterMissionBonus.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliDegreeEffect(): UserBiliDegreeEffect {
+  return { userId: "0", biliDegreeEffectId: 0, decoUse: "", profileUse: "", degreeId: 0 };
+}
+
+export const UserBiliDegreeEffect: MessageFns<UserBiliDegreeEffect> = {
+  encode(message: UserBiliDegreeEffect, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.biliDegreeEffectId !== 0) {
+      writer.uint32(16).uint32(message.biliDegreeEffectId);
+    }
+    if (message.decoUse !== "") {
+      writer.uint32(26).string(message.decoUse);
+    }
+    if (message.profileUse !== "") {
+      writer.uint32(34).string(message.profileUse);
+    }
+    if (message.degreeId !== 0) {
+      writer.uint32(40).uint32(message.degreeId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliDegreeEffect {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliDegreeEffect();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.biliDegreeEffectId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.decoUse = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.profileUse = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.degreeId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliDegreeEffect {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      biliDegreeEffectId: isSet(object.biliDegreeEffectId) ? globalThis.Number(object.biliDegreeEffectId) : 0,
+      decoUse: isSet(object.decoUse) ? globalThis.String(object.decoUse) : "",
+      profileUse: isSet(object.profileUse) ? globalThis.String(object.profileUse) : "",
+      degreeId: isSet(object.degreeId) ? globalThis.Number(object.degreeId) : 0,
+    };
+  },
+
+  toJSON(message: UserBiliDegreeEffect): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.biliDegreeEffectId !== 0) {
+      obj.biliDegreeEffectId = Math.round(message.biliDegreeEffectId);
+    }
+    if (message.decoUse !== "") {
+      obj.decoUse = message.decoUse;
+    }
+    if (message.profileUse !== "") {
+      obj.profileUse = message.profileUse;
+    }
+    if (message.degreeId !== 0) {
+      obj.degreeId = Math.round(message.degreeId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliDegreeEffect>, I>>(base?: I): UserBiliDegreeEffect {
+    return UserBiliDegreeEffect.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliDegreeEffect>, I>>(object: I): UserBiliDegreeEffect {
+    const message = createBaseUserBiliDegreeEffect();
+    message.userId = object.userId ?? "0";
+    message.biliDegreeEffectId = object.biliDegreeEffectId ?? 0;
+    message.decoUse = object.decoUse ?? "";
+    message.profileUse = object.profileUse ?? "";
+    message.degreeId = object.degreeId ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserBiliDegreeEffectList(): UserBiliDegreeEffectList {
+  return { entries: [] };
+}
+
+export const UserBiliDegreeEffectList: MessageFns<UserBiliDegreeEffectList> = {
+  encode(message: UserBiliDegreeEffectList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliDegreeEffect.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliDegreeEffectList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliDegreeEffectList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliDegreeEffect.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliDegreeEffectList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliDegreeEffect.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliDegreeEffectList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliDegreeEffect.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliDegreeEffectList>, I>>(base?: I): UserBiliDegreeEffectList {
+    return UserBiliDegreeEffectList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliDegreeEffectList>, I>>(object: I): UserBiliDegreeEffectList {
+    const message = createBaseUserBiliDegreeEffectList();
+    message.entries = object.entries?.map((e) => UserBiliDegreeEffect.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliDegreeEffectMap(): UserBiliDegreeEffectMap {
+  return { entries: {} };
+}
+
+export const UserBiliDegreeEffectMap: MessageFns<UserBiliDegreeEffectMap> = {
+  encode(message: UserBiliDegreeEffectMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserBiliDegreeEffect]) => {
+      UserBiliDegreeEffectMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliDegreeEffectMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliDegreeEffectMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = UserBiliDegreeEffectMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliDegreeEffectMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: UserBiliDegreeEffect }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = UserBiliDegreeEffect.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: UserBiliDegreeEffectMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, UserBiliDegreeEffect][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = UserBiliDegreeEffect.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliDegreeEffectMap>, I>>(base?: I): UserBiliDegreeEffectMap {
+    return UserBiliDegreeEffectMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliDegreeEffectMap>, I>>(object: I): UserBiliDegreeEffectMap {
+    const message = createBaseUserBiliDegreeEffectMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, UserBiliDegreeEffect][]).reduce(
+      (acc: { [key: number]: UserBiliDegreeEffect }, [key, value]: [string, UserBiliDegreeEffect]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = UserBiliDegreeEffect.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseUserBiliDegreeEffectMap_EntriesEntry(): UserBiliDegreeEffectMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const UserBiliDegreeEffectMap_EntriesEntry: MessageFns<UserBiliDegreeEffectMap_EntriesEntry> = {
+  encode(message: UserBiliDegreeEffectMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      UserBiliDegreeEffect.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliDegreeEffectMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliDegreeEffectMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = UserBiliDegreeEffect.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliDegreeEffectMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? UserBiliDegreeEffect.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliDegreeEffectMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = UserBiliDegreeEffect.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliDegreeEffectMap_EntriesEntry>, I>>(
+    base?: I,
+  ): UserBiliDegreeEffectMap_EntriesEntry {
+    return UserBiliDegreeEffectMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliDegreeEffectMap_EntriesEntry>, I>>(
+    object: I,
+  ): UserBiliDegreeEffectMap_EntriesEntry {
+    const message = createBaseUserBiliDegreeEffectMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? UserBiliDegreeEffect.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
 function createBaseUserBiliNfoMission(): UserBiliNfoMission {
   return { userId: "0", missionId: 0, missionProgressType: "" };
 }
@@ -185247,9 +194016,1048 @@ export const UserBiliNfoMissionList: MessageFns<UserBiliNfoMissionList> = {
   },
 };
 
+function createBaseUserBiliShippingActivity(): UserBiliShippingActivity {
+  return {
+    userId: "0",
+    shippingActivityId: 0,
+    shippingActivityType: "",
+    recipientName: "",
+    phone: "",
+    address: "",
+    trackingNumber: "",
+    status: "",
+    readStatus: "",
+    grantedAt: "0",
+    createdAt: "0",
+    updatedAt: "0",
+  };
+}
+
+export const UserBiliShippingActivity: MessageFns<UserBiliShippingActivity> = {
+  encode(message: UserBiliShippingActivity, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.shippingActivityId !== 0) {
+      writer.uint32(16).uint32(message.shippingActivityId);
+    }
+    if (message.shippingActivityType !== "") {
+      writer.uint32(26).string(message.shippingActivityType);
+    }
+    if (message.recipientName !== "") {
+      writer.uint32(34).string(message.recipientName);
+    }
+    if (message.phone !== "") {
+      writer.uint32(42).string(message.phone);
+    }
+    if (message.address !== "") {
+      writer.uint32(50).string(message.address);
+    }
+    if (message.trackingNumber !== "") {
+      writer.uint32(58).string(message.trackingNumber);
+    }
+    if (message.status !== "") {
+      writer.uint32(66).string(message.status);
+    }
+    if (message.readStatus !== "") {
+      writer.uint32(74).string(message.readStatus);
+    }
+    if (message.grantedAt !== "0") {
+      writer.uint32(80).uint64(message.grantedAt);
+    }
+    if (message.createdAt !== "0") {
+      writer.uint32(88).uint64(message.createdAt);
+    }
+    if (message.updatedAt !== "0") {
+      writer.uint32(96).uint64(message.updatedAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliShippingActivity {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliShippingActivity();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.shippingActivityId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.shippingActivityType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.recipientName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.phone = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.trackingNumber = reader.string();
+          continue;
+        }
+        case 8: {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.status = reader.string();
+          continue;
+        }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.readStatus = reader.string();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.grantedAt = reader.uint64().toString();
+          continue;
+        }
+        case 11: {
+          if (tag !== 88) {
+            break;
+          }
+
+          message.createdAt = reader.uint64().toString();
+          continue;
+        }
+        case 12: {
+          if (tag !== 96) {
+            break;
+          }
+
+          message.updatedAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliShippingActivity {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      shippingActivityId: isSet(object.shippingActivityId) ? globalThis.Number(object.shippingActivityId) : 0,
+      shippingActivityType: isSet(object.shippingActivityType) ? globalThis.String(object.shippingActivityType) : "",
+      recipientName: isSet(object.recipientName) ? globalThis.String(object.recipientName) : "",
+      phone: isSet(object.phone) ? globalThis.String(object.phone) : "",
+      address: isSet(object.address) ? globalThis.String(object.address) : "",
+      trackingNumber: isSet(object.trackingNumber) ? globalThis.String(object.trackingNumber) : "",
+      status: isSet(object.status) ? globalThis.String(object.status) : "",
+      readStatus: isSet(object.readStatus) ? globalThis.String(object.readStatus) : "",
+      grantedAt: isSet(object.grantedAt) ? globalThis.String(object.grantedAt) : "0",
+      createdAt: isSet(object.createdAt) ? globalThis.String(object.createdAt) : "0",
+      updatedAt: isSet(object.updatedAt) ? globalThis.String(object.updatedAt) : "0",
+    };
+  },
+
+  toJSON(message: UserBiliShippingActivity): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.shippingActivityId !== 0) {
+      obj.shippingActivityId = Math.round(message.shippingActivityId);
+    }
+    if (message.shippingActivityType !== "") {
+      obj.shippingActivityType = message.shippingActivityType;
+    }
+    if (message.recipientName !== "") {
+      obj.recipientName = message.recipientName;
+    }
+    if (message.phone !== "") {
+      obj.phone = message.phone;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.trackingNumber !== "") {
+      obj.trackingNumber = message.trackingNumber;
+    }
+    if (message.status !== "") {
+      obj.status = message.status;
+    }
+    if (message.readStatus !== "") {
+      obj.readStatus = message.readStatus;
+    }
+    if (message.grantedAt !== "0") {
+      obj.grantedAt = message.grantedAt;
+    }
+    if (message.createdAt !== "0") {
+      obj.createdAt = message.createdAt;
+    }
+    if (message.updatedAt !== "0") {
+      obj.updatedAt = message.updatedAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliShippingActivity>, I>>(base?: I): UserBiliShippingActivity {
+    return UserBiliShippingActivity.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliShippingActivity>, I>>(object: I): UserBiliShippingActivity {
+    const message = createBaseUserBiliShippingActivity();
+    message.userId = object.userId ?? "0";
+    message.shippingActivityId = object.shippingActivityId ?? 0;
+    message.shippingActivityType = object.shippingActivityType ?? "";
+    message.recipientName = object.recipientName ?? "";
+    message.phone = object.phone ?? "";
+    message.address = object.address ?? "";
+    message.trackingNumber = object.trackingNumber ?? "";
+    message.status = object.status ?? "";
+    message.readStatus = object.readStatus ?? "";
+    message.grantedAt = object.grantedAt ?? "0";
+    message.createdAt = object.createdAt ?? "0";
+    message.updatedAt = object.updatedAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseUserBiliShippingActivityList(): UserBiliShippingActivityList {
+  return { entries: [] };
+}
+
+export const UserBiliShippingActivityList: MessageFns<UserBiliShippingActivityList> = {
+  encode(message: UserBiliShippingActivityList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliShippingActivity.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliShippingActivityList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliShippingActivityList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliShippingActivity.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliShippingActivityList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliShippingActivity.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliShippingActivityList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliShippingActivity.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliShippingActivityList>, I>>(base?: I): UserBiliShippingActivityList {
+    return UserBiliShippingActivityList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliShippingActivityList>, I>>(object: I): UserBiliShippingActivityList {
+    const message = createBaseUserBiliShippingActivityList();
+    message.entries = object.entries?.map((e) => UserBiliShippingActivity.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliShippingActivityMap(): UserBiliShippingActivityMap {
+  return { entries: {} };
+}
+
+export const UserBiliShippingActivityMap: MessageFns<UserBiliShippingActivityMap> = {
+  encode(message: UserBiliShippingActivityMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserBiliShippingActivity]) => {
+      UserBiliShippingActivityMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliShippingActivityMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliShippingActivityMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = UserBiliShippingActivityMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliShippingActivityMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: number]: UserBiliShippingActivity }, [key, value]: [string, any]) => {
+            acc[globalThis.Number(key)] = UserBiliShippingActivity.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: UserBiliShippingActivityMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, UserBiliShippingActivity][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = UserBiliShippingActivity.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliShippingActivityMap>, I>>(base?: I): UserBiliShippingActivityMap {
+    return UserBiliShippingActivityMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliShippingActivityMap>, I>>(object: I): UserBiliShippingActivityMap {
+    const message = createBaseUserBiliShippingActivityMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, UserBiliShippingActivity][]).reduce(
+      (acc: { [key: number]: UserBiliShippingActivity }, [key, value]: [string, UserBiliShippingActivity]) => {
+        if (value !== undefined) {
+          acc[globalThis.Number(key)] = UserBiliShippingActivity.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseUserBiliShippingActivityMap_EntriesEntry(): UserBiliShippingActivityMap_EntriesEntry {
+  return { key: 0, value: undefined };
+}
+
+export const UserBiliShippingActivityMap_EntriesEntry: MessageFns<UserBiliShippingActivityMap_EntriesEntry> = {
+  encode(message: UserBiliShippingActivityMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== 0) {
+      writer.uint32(8).uint32(message.key);
+    }
+    if (message.value !== undefined) {
+      UserBiliShippingActivity.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliShippingActivityMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliShippingActivityMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.key = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = UserBiliShippingActivity.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliShippingActivityMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.Number(object.key) : 0,
+      value: isSet(object.value) ? UserBiliShippingActivity.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: UserBiliShippingActivityMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== 0) {
+      obj.key = Math.round(message.key);
+    }
+    if (message.value !== undefined) {
+      obj.value = UserBiliShippingActivity.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliShippingActivityMap_EntriesEntry>, I>>(
+    base?: I,
+  ): UserBiliShippingActivityMap_EntriesEntry {
+    return UserBiliShippingActivityMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliShippingActivityMap_EntriesEntry>, I>>(
+    object: I,
+  ): UserBiliShippingActivityMap_EntriesEntry {
+    const message = createBaseUserBiliShippingActivityMap_EntriesEntry();
+    message.key = object.key ?? 0;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? UserBiliShippingActivity.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserBiliShippingActivityRequest(): UserBiliShippingActivityRequest {
+  return {
+    userId: "0",
+    shippingActivityId: 0,
+    shippingActivityType: "",
+    recipientName: "",
+    phone: "",
+    address: "",
+    trackingNumber: "",
+    status: "",
+    readStatus: "",
+    grantedAt: "0",
+    createdAt: "0",
+    updatedAt: "0",
+  };
+}
+
+export const UserBiliShippingActivityRequest: MessageFns<UserBiliShippingActivityRequest> = {
+  encode(message: UserBiliShippingActivityRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.shippingActivityId !== 0) {
+      writer.uint32(16).uint32(message.shippingActivityId);
+    }
+    if (message.shippingActivityType !== "") {
+      writer.uint32(26).string(message.shippingActivityType);
+    }
+    if (message.recipientName !== "") {
+      writer.uint32(34).string(message.recipientName);
+    }
+    if (message.phone !== "") {
+      writer.uint32(42).string(message.phone);
+    }
+    if (message.address !== "") {
+      writer.uint32(50).string(message.address);
+    }
+    if (message.trackingNumber !== "") {
+      writer.uint32(58).string(message.trackingNumber);
+    }
+    if (message.status !== "") {
+      writer.uint32(66).string(message.status);
+    }
+    if (message.readStatus !== "") {
+      writer.uint32(74).string(message.readStatus);
+    }
+    if (message.grantedAt !== "0") {
+      writer.uint32(80).uint64(message.grantedAt);
+    }
+    if (message.createdAt !== "0") {
+      writer.uint32(88).uint64(message.createdAt);
+    }
+    if (message.updatedAt !== "0") {
+      writer.uint32(96).uint64(message.updatedAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliShippingActivityRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliShippingActivityRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.shippingActivityId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.shippingActivityType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.recipientName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.phone = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.trackingNumber = reader.string();
+          continue;
+        }
+        case 8: {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.status = reader.string();
+          continue;
+        }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.readStatus = reader.string();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.grantedAt = reader.uint64().toString();
+          continue;
+        }
+        case 11: {
+          if (tag !== 88) {
+            break;
+          }
+
+          message.createdAt = reader.uint64().toString();
+          continue;
+        }
+        case 12: {
+          if (tag !== 96) {
+            break;
+          }
+
+          message.updatedAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliShippingActivityRequest {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      shippingActivityId: isSet(object.shippingActivityId) ? globalThis.Number(object.shippingActivityId) : 0,
+      shippingActivityType: isSet(object.shippingActivityType) ? globalThis.String(object.shippingActivityType) : "",
+      recipientName: isSet(object.recipientName) ? globalThis.String(object.recipientName) : "",
+      phone: isSet(object.phone) ? globalThis.String(object.phone) : "",
+      address: isSet(object.address) ? globalThis.String(object.address) : "",
+      trackingNumber: isSet(object.trackingNumber) ? globalThis.String(object.trackingNumber) : "",
+      status: isSet(object.status) ? globalThis.String(object.status) : "",
+      readStatus: isSet(object.readStatus) ? globalThis.String(object.readStatus) : "",
+      grantedAt: isSet(object.grantedAt) ? globalThis.String(object.grantedAt) : "0",
+      createdAt: isSet(object.createdAt) ? globalThis.String(object.createdAt) : "0",
+      updatedAt: isSet(object.updatedAt) ? globalThis.String(object.updatedAt) : "0",
+    };
+  },
+
+  toJSON(message: UserBiliShippingActivityRequest): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.shippingActivityId !== 0) {
+      obj.shippingActivityId = Math.round(message.shippingActivityId);
+    }
+    if (message.shippingActivityType !== "") {
+      obj.shippingActivityType = message.shippingActivityType;
+    }
+    if (message.recipientName !== "") {
+      obj.recipientName = message.recipientName;
+    }
+    if (message.phone !== "") {
+      obj.phone = message.phone;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.trackingNumber !== "") {
+      obj.trackingNumber = message.trackingNumber;
+    }
+    if (message.status !== "") {
+      obj.status = message.status;
+    }
+    if (message.readStatus !== "") {
+      obj.readStatus = message.readStatus;
+    }
+    if (message.grantedAt !== "0") {
+      obj.grantedAt = message.grantedAt;
+    }
+    if (message.createdAt !== "0") {
+      obj.createdAt = message.createdAt;
+    }
+    if (message.updatedAt !== "0") {
+      obj.updatedAt = message.updatedAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliShippingActivityRequest>, I>>(base?: I): UserBiliShippingActivityRequest {
+    return UserBiliShippingActivityRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliShippingActivityRequest>, I>>(
+    object: I,
+  ): UserBiliShippingActivityRequest {
+    const message = createBaseUserBiliShippingActivityRequest();
+    message.userId = object.userId ?? "0";
+    message.shippingActivityId = object.shippingActivityId ?? 0;
+    message.shippingActivityType = object.shippingActivityType ?? "";
+    message.recipientName = object.recipientName ?? "";
+    message.phone = object.phone ?? "";
+    message.address = object.address ?? "";
+    message.trackingNumber = object.trackingNumber ?? "";
+    message.status = object.status ?? "";
+    message.readStatus = object.readStatus ?? "";
+    message.grantedAt = object.grantedAt ?? "0";
+    message.createdAt = object.createdAt ?? "0";
+    message.updatedAt = object.updatedAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseUserBiliSpecialScreen(): UserBiliSpecialScreen {
+  return { userId: "0", specialScreenId: 0, createAt: "0", updateAt: "0" };
+}
+
+export const UserBiliSpecialScreen: MessageFns<UserBiliSpecialScreen> = {
+  encode(message: UserBiliSpecialScreen, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.specialScreenId !== 0) {
+      writer.uint32(16).uint32(message.specialScreenId);
+    }
+    if (message.createAt !== "0") {
+      writer.uint32(24).uint64(message.createAt);
+    }
+    if (message.updateAt !== "0") {
+      writer.uint32(32).uint64(message.updateAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliSpecialScreen {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliSpecialScreen();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.specialScreenId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.createAt = reader.uint64().toString();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.updateAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliSpecialScreen {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      specialScreenId: isSet(object.specialScreenId) ? globalThis.Number(object.specialScreenId) : 0,
+      createAt: isSet(object.createAt) ? globalThis.String(object.createAt) : "0",
+      updateAt: isSet(object.updateAt) ? globalThis.String(object.updateAt) : "0",
+    };
+  },
+
+  toJSON(message: UserBiliSpecialScreen): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.specialScreenId !== 0) {
+      obj.specialScreenId = Math.round(message.specialScreenId);
+    }
+    if (message.createAt !== "0") {
+      obj.createAt = message.createAt;
+    }
+    if (message.updateAt !== "0") {
+      obj.updateAt = message.updateAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliSpecialScreen>, I>>(base?: I): UserBiliSpecialScreen {
+    return UserBiliSpecialScreen.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliSpecialScreen>, I>>(object: I): UserBiliSpecialScreen {
+    const message = createBaseUserBiliSpecialScreen();
+    message.userId = object.userId ?? "0";
+    message.specialScreenId = object.specialScreenId ?? 0;
+    message.createAt = object.createAt ?? "0";
+    message.updateAt = object.updateAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseUserBiliSpecialScreenList(): UserBiliSpecialScreenList {
+  return { entries: [] };
+}
+
+export const UserBiliSpecialScreenList: MessageFns<UserBiliSpecialScreenList> = {
+  encode(message: UserBiliSpecialScreenList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserBiliSpecialScreen.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliSpecialScreenList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliSpecialScreenList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserBiliSpecialScreen.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliSpecialScreenList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserBiliSpecialScreen.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserBiliSpecialScreenList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserBiliSpecialScreen.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliSpecialScreenList>, I>>(base?: I): UserBiliSpecialScreenList {
+    return UserBiliSpecialScreenList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliSpecialScreenList>, I>>(object: I): UserBiliSpecialScreenList {
+    const message = createBaseUserBiliSpecialScreenList();
+    message.entries = object.entries?.map((e) => UserBiliSpecialScreen.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserBiliStampInfo(): UserBiliStampInfo {
+  return { userId: "0", stampId: 0, useCount: 0, musicId: 0, liveType: "", musicDifficulty: "" };
+}
+
+export const UserBiliStampInfo: MessageFns<UserBiliStampInfo> = {
+  encode(message: UserBiliStampInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).int64(message.userId);
+    }
+    if (message.stampId !== 0) {
+      writer.uint32(16).int32(message.stampId);
+    }
+    if (message.useCount !== 0) {
+      writer.uint32(24).int32(message.useCount);
+    }
+    if (message.musicId !== 0) {
+      writer.uint32(32).int32(message.musicId);
+    }
+    if (message.liveType !== "") {
+      writer.uint32(42).string(message.liveType);
+    }
+    if (message.musicDifficulty !== "") {
+      writer.uint32(50).string(message.musicDifficulty);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserBiliStampInfo {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserBiliStampInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.int64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.stampId = reader.int32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.useCount = reader.int32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.musicId = reader.int32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.liveType = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.musicDifficulty = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserBiliStampInfo {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      stampId: isSet(object.stampId) ? globalThis.Number(object.stampId) : 0,
+      useCount: isSet(object.useCount) ? globalThis.Number(object.useCount) : 0,
+      musicId: isSet(object.musicId) ? globalThis.Number(object.musicId) : 0,
+      liveType: isSet(object.liveType) ? globalThis.String(object.liveType) : "",
+      musicDifficulty: isSet(object.musicDifficulty) ? globalThis.String(object.musicDifficulty) : "",
+    };
+  },
+
+  toJSON(message: UserBiliStampInfo): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.stampId !== 0) {
+      obj.stampId = Math.round(message.stampId);
+    }
+    if (message.useCount !== 0) {
+      obj.useCount = Math.round(message.useCount);
+    }
+    if (message.musicId !== 0) {
+      obj.musicId = Math.round(message.musicId);
+    }
+    if (message.liveType !== "") {
+      obj.liveType = message.liveType;
+    }
+    if (message.musicDifficulty !== "") {
+      obj.musicDifficulty = message.musicDifficulty;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserBiliStampInfo>, I>>(base?: I): UserBiliStampInfo {
+    return UserBiliStampInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserBiliStampInfo>, I>>(object: I): UserBiliStampInfo {
+    const message = createBaseUserBiliStampInfo();
+    message.userId = object.userId ?? "0";
+    message.stampId = object.stampId ?? 0;
+    message.useCount = object.useCount ?? 0;
+    message.musicId = object.musicId ?? 0;
+    message.liveType = object.liveType ?? "";
+    message.musicDifficulty = object.musicDifficulty ?? "";
+    return message;
+  },
+};
+
 function createBaseUserBilling(): UserBilling {
   return {
-    billingId: "0",
+    billingId: "",
     userId: "0",
     purchaseId: 0,
     provider: "",
@@ -185258,13 +195066,17 @@ function createBaseUserBilling(): UserBilling {
     receipt: "",
     signature: "",
     cumulativeAmount: 0,
+    gameMoney: 0,
+    money: 0,
+    notifyUrl: "",
+    secretKey: "",
   };
 }
 
 export const UserBilling: MessageFns<UserBilling> = {
   encode(message: UserBilling, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.billingId !== "0") {
-      writer.uint32(8).uint64(message.billingId);
+    if (message.billingId !== "") {
+      writer.uint32(10).string(message.billingId);
     }
     if (message.userId !== "0") {
       writer.uint32(16).uint64(message.userId);
@@ -185290,6 +195102,18 @@ export const UserBilling: MessageFns<UserBilling> = {
     if (message.cumulativeAmount !== 0) {
       writer.uint32(72).uint32(message.cumulativeAmount);
     }
+    if (message.gameMoney !== 0) {
+      writer.uint32(80).uint32(message.gameMoney);
+    }
+    if (message.money !== 0) {
+      writer.uint32(88).uint32(message.money);
+    }
+    if (message.notifyUrl !== "") {
+      writer.uint32(98).string(message.notifyUrl);
+    }
+    if (message.secretKey !== "") {
+      writer.uint32(106).string(message.secretKey);
+    }
     return writer;
   },
 
@@ -185301,11 +195125,11 @@ export const UserBilling: MessageFns<UserBilling> = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.billingId = reader.uint64().toString();
+          message.billingId = reader.string();
           continue;
         }
         case 2: {
@@ -185372,6 +195196,38 @@ export const UserBilling: MessageFns<UserBilling> = {
           message.cumulativeAmount = reader.uint32();
           continue;
         }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.gameMoney = reader.uint32();
+          continue;
+        }
+        case 11: {
+          if (tag !== 88) {
+            break;
+          }
+
+          message.money = reader.uint32();
+          continue;
+        }
+        case 12: {
+          if (tag !== 98) {
+            break;
+          }
+
+          message.notifyUrl = reader.string();
+          continue;
+        }
+        case 13: {
+          if (tag !== 106) {
+            break;
+          }
+
+          message.secretKey = reader.string();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -185383,7 +195239,7 @@ export const UserBilling: MessageFns<UserBilling> = {
 
   fromJSON(object: any): UserBilling {
     return {
-      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "0",
+      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "",
       userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
       purchaseId: isSet(object.purchaseId) ? globalThis.Number(object.purchaseId) : 0,
       provider: isSet(object.provider) ? globalThis.String(object.provider) : "",
@@ -185392,12 +195248,16 @@ export const UserBilling: MessageFns<UserBilling> = {
       receipt: isSet(object.receipt) ? globalThis.String(object.receipt) : "",
       signature: isSet(object.signature) ? globalThis.String(object.signature) : "",
       cumulativeAmount: isSet(object.cumulativeAmount) ? globalThis.Number(object.cumulativeAmount) : 0,
+      gameMoney: isSet(object.gameMoney) ? globalThis.Number(object.gameMoney) : 0,
+      money: isSet(object.money) ? globalThis.Number(object.money) : 0,
+      notifyUrl: isSet(object.notifyUrl) ? globalThis.String(object.notifyUrl) : "",
+      secretKey: isSet(object.secretKey) ? globalThis.String(object.secretKey) : "",
     };
   },
 
   toJSON(message: UserBilling): unknown {
     const obj: any = {};
-    if (message.billingId !== "0") {
+    if (message.billingId !== "") {
       obj.billingId = message.billingId;
     }
     if (message.userId !== "0") {
@@ -185424,6 +195284,18 @@ export const UserBilling: MessageFns<UserBilling> = {
     if (message.cumulativeAmount !== 0) {
       obj.cumulativeAmount = Math.round(message.cumulativeAmount);
     }
+    if (message.gameMoney !== 0) {
+      obj.gameMoney = Math.round(message.gameMoney);
+    }
+    if (message.money !== 0) {
+      obj.money = Math.round(message.money);
+    }
+    if (message.notifyUrl !== "") {
+      obj.notifyUrl = message.notifyUrl;
+    }
+    if (message.secretKey !== "") {
+      obj.secretKey = message.secretKey;
+    }
     return obj;
   },
 
@@ -185432,7 +195304,7 @@ export const UserBilling: MessageFns<UserBilling> = {
   },
   fromPartial<I extends Exact<DeepPartial<UserBilling>, I>>(object: I): UserBilling {
     const message = createBaseUserBilling();
-    message.billingId = object.billingId ?? "0";
+    message.billingId = object.billingId ?? "";
     message.userId = object.userId ?? "0";
     message.purchaseId = object.purchaseId ?? 0;
     message.provider = object.provider ?? "";
@@ -185441,18 +195313,22 @@ export const UserBilling: MessageFns<UserBilling> = {
     message.receipt = object.receipt ?? "";
     message.signature = object.signature ?? "";
     message.cumulativeAmount = object.cumulativeAmount ?? 0;
+    message.gameMoney = object.gameMoney ?? 0;
+    message.money = object.money ?? 0;
+    message.notifyUrl = object.notifyUrl ?? "";
+    message.secretKey = object.secretKey ?? "";
     return message;
   },
 };
 
 function createBaseUserBillingHistory(): UserBillingHistory {
-  return { billingId: "0", userId: "0", purchaseId: 0, provider: "", transactionId: "", status: "" };
+  return { billingId: "", userId: "0", purchaseId: 0, provider: "", transactionId: "", status: "" };
 }
 
 export const UserBillingHistory: MessageFns<UserBillingHistory> = {
   encode(message: UserBillingHistory, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.billingId !== "0") {
-      writer.uint32(8).uint64(message.billingId);
+    if (message.billingId !== "") {
+      writer.uint32(10).string(message.billingId);
     }
     if (message.userId !== "0") {
       writer.uint32(16).uint64(message.userId);
@@ -185480,11 +195356,11 @@ export const UserBillingHistory: MessageFns<UserBillingHistory> = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.billingId = reader.uint64().toString();
+          message.billingId = reader.string();
           continue;
         }
         case 2: {
@@ -185538,7 +195414,7 @@ export const UserBillingHistory: MessageFns<UserBillingHistory> = {
 
   fromJSON(object: any): UserBillingHistory {
     return {
-      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "0",
+      billingId: isSet(object.billingId) ? globalThis.String(object.billingId) : "",
       userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
       purchaseId: isSet(object.purchaseId) ? globalThis.Number(object.purchaseId) : 0,
       provider: isSet(object.provider) ? globalThis.String(object.provider) : "",
@@ -185549,7 +195425,7 @@ export const UserBillingHistory: MessageFns<UserBillingHistory> = {
 
   toJSON(message: UserBillingHistory): unknown {
     const obj: any = {};
-    if (message.billingId !== "0") {
+    if (message.billingId !== "") {
       obj.billingId = message.billingId;
     }
     if (message.userId !== "0") {
@@ -185575,7 +195451,7 @@ export const UserBillingHistory: MessageFns<UserBillingHistory> = {
   },
   fromPartial<I extends Exact<DeepPartial<UserBillingHistory>, I>>(object: I): UserBillingHistory {
     const message = createBaseUserBillingHistory();
-    message.billingId = object.billingId ?? "0";
+    message.billingId = object.billingId ?? "";
     message.userId = object.userId ?? "0";
     message.purchaseId = object.purchaseId ?? 0;
     message.provider = object.provider ?? "";
@@ -186554,6 +196430,421 @@ export const UserBondsMap_EntriesEntry: MessageFns<UserBondsMap_EntriesEntry> = 
     message.value = (object.value !== undefined && object.value !== null)
       ? UserBonds.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseUserCarouselDecoDegree(): UserCarouselDecoDegree {
+  return { decoFrameId: 0, profileDegreeType: "", degreeId: 0 };
+}
+
+export const UserCarouselDecoDegree: MessageFns<UserCarouselDecoDegree> = {
+  encode(message: UserCarouselDecoDegree, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.decoFrameId !== 0) {
+      writer.uint32(8).uint32(message.decoFrameId);
+    }
+    if (message.profileDegreeType !== "") {
+      writer.uint32(18).string(message.profileDegreeType);
+    }
+    if (message.degreeId !== 0) {
+      writer.uint32(24).uint32(message.degreeId);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserCarouselDecoDegree {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserCarouselDecoDegree();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.decoFrameId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.profileDegreeType = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.degreeId = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserCarouselDecoDegree {
+    return {
+      decoFrameId: isSet(object.decoFrameId) ? globalThis.Number(object.decoFrameId) : 0,
+      profileDegreeType: isSet(object.profileDegreeType) ? globalThis.String(object.profileDegreeType) : "",
+      degreeId: isSet(object.degreeId) ? globalThis.Number(object.degreeId) : 0,
+    };
+  },
+
+  toJSON(message: UserCarouselDecoDegree): unknown {
+    const obj: any = {};
+    if (message.decoFrameId !== 0) {
+      obj.decoFrameId = Math.round(message.decoFrameId);
+    }
+    if (message.profileDegreeType !== "") {
+      obj.profileDegreeType = message.profileDegreeType;
+    }
+    if (message.degreeId !== 0) {
+      obj.degreeId = Math.round(message.degreeId);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserCarouselDecoDegree>, I>>(base?: I): UserCarouselDecoDegree {
+    return UserCarouselDecoDegree.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserCarouselDecoDegree>, I>>(object: I): UserCarouselDecoDegree {
+    const message = createBaseUserCarouselDecoDegree();
+    message.decoFrameId = object.decoFrameId ?? 0;
+    message.profileDegreeType = object.profileDegreeType ?? "";
+    message.degreeId = object.degreeId ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserCarouselDecoDegreeMap(): UserCarouselDecoDegreeMap {
+  return { entries: {} };
+}
+
+export const UserCarouselDecoDegreeMap: MessageFns<UserCarouselDecoDegreeMap> = {
+  encode(message: UserCarouselDecoDegreeMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserCarouselDecoDegree]) => {
+      UserCarouselDecoDegreeMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
+    });
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserCarouselDecoDegreeMap {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserCarouselDecoDegreeMap();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          const entry1 = UserCarouselDecoDegreeMap_EntriesEntry.decode(reader, reader.uint32());
+          if (entry1.value !== undefined) {
+            message.entries[entry1.key] = entry1.value;
+          }
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserCarouselDecoDegreeMap {
+    return {
+      entries: isObject(object.entries)
+        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
+          (acc: { [key: string]: UserCarouselDecoDegree }, [key, value]: [string, any]) => {
+            acc[key] = UserCarouselDecoDegree.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: UserCarouselDecoDegreeMap): unknown {
+    const obj: any = {};
+    if (message.entries) {
+      const entries = globalThis.Object.entries(message.entries) as [string, UserCarouselDecoDegree][];
+      if (entries.length > 0) {
+        obj.entries = {};
+        entries.forEach(([k, v]) => {
+          obj.entries[k] = UserCarouselDecoDegree.toJSON(v);
+        });
+      }
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserCarouselDecoDegreeMap>, I>>(base?: I): UserCarouselDecoDegreeMap {
+    return UserCarouselDecoDegreeMap.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserCarouselDecoDegreeMap>, I>>(object: I): UserCarouselDecoDegreeMap {
+    const message = createBaseUserCarouselDecoDegreeMap();
+    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, UserCarouselDecoDegree][]).reduce(
+      (acc: { [key: string]: UserCarouselDecoDegree }, [key, value]: [string, UserCarouselDecoDegree]) => {
+        if (value !== undefined) {
+          acc[key] = UserCarouselDecoDegree.fromPartial(value);
+        }
+        return acc;
+      },
+      {},
+    );
+    return message;
+  },
+};
+
+function createBaseUserCarouselDecoDegreeMap_EntriesEntry(): UserCarouselDecoDegreeMap_EntriesEntry {
+  return { key: "", value: undefined };
+}
+
+export const UserCarouselDecoDegreeMap_EntriesEntry: MessageFns<UserCarouselDecoDegreeMap_EntriesEntry> = {
+  encode(message: UserCarouselDecoDegreeMap_EntriesEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      UserCarouselDecoDegree.encode(message.value, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserCarouselDecoDegreeMap_EntriesEntry {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserCarouselDecoDegreeMap_EntriesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.value = UserCarouselDecoDegree.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserCarouselDecoDegreeMap_EntriesEntry {
+    return {
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? UserCarouselDecoDegree.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: UserCarouselDecoDegreeMap_EntriesEntry): unknown {
+    const obj: any = {};
+    if (message.key !== "") {
+      obj.key = message.key;
+    }
+    if (message.value !== undefined) {
+      obj.value = UserCarouselDecoDegree.toJSON(message.value);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserCarouselDecoDegreeMap_EntriesEntry>, I>>(
+    base?: I,
+  ): UserCarouselDecoDegreeMap_EntriesEntry {
+    return UserCarouselDecoDegreeMap_EntriesEntry.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserCarouselDecoDegreeMap_EntriesEntry>, I>>(
+    object: I,
+  ): UserCarouselDecoDegreeMap_EntriesEntry {
+    const message = createBaseUserCarouselDecoDegreeMap_EntriesEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? UserCarouselDecoDegree.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseUserCarouselDecoDegreeRequest(): UserCarouselDecoDegreeRequest {
+  return { userDecoDegree: undefined, userCarouselDecoDegree: undefined };
+}
+
+export const UserCarouselDecoDegreeRequest: MessageFns<UserCarouselDecoDegreeRequest> = {
+  encode(message: UserCarouselDecoDegreeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userDecoDegree !== undefined) {
+      UserDecoDegreeRequest.encode(message.userDecoDegree, writer.uint32(10).fork()).join();
+    }
+    if (message.userCarouselDecoDegree !== undefined) {
+      UserDecoDegreeRequest.encode(message.userCarouselDecoDegree, writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserCarouselDecoDegreeRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserCarouselDecoDegreeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.userDecoDegree = UserDecoDegreeRequest.decode(reader, reader.uint32());
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.userCarouselDecoDegree = UserDecoDegreeRequest.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserCarouselDecoDegreeRequest {
+    return {
+      userDecoDegree: isSet(object.userDecoDegree) ? UserDecoDegreeRequest.fromJSON(object.userDecoDegree) : undefined,
+      userCarouselDecoDegree: isSet(object.userCarouselDecoDegree)
+        ? UserDecoDegreeRequest.fromJSON(object.userCarouselDecoDegree)
+        : undefined,
+    };
+  },
+
+  toJSON(message: UserCarouselDecoDegreeRequest): unknown {
+    const obj: any = {};
+    if (message.userDecoDegree !== undefined) {
+      obj.userDecoDegree = UserDecoDegreeRequest.toJSON(message.userDecoDegree);
+    }
+    if (message.userCarouselDecoDegree !== undefined) {
+      obj.userCarouselDecoDegree = UserDecoDegreeRequest.toJSON(message.userCarouselDecoDegree);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserCarouselDecoDegreeRequest>, I>>(base?: I): UserCarouselDecoDegreeRequest {
+    return UserCarouselDecoDegreeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserCarouselDecoDegreeRequest>, I>>(
+    object: I,
+  ): UserCarouselDecoDegreeRequest {
+    const message = createBaseUserCarouselDecoDegreeRequest();
+    message.userDecoDegree = (object.userDecoDegree !== undefined && object.userDecoDegree !== null)
+      ? UserDecoDegreeRequest.fromPartial(object.userDecoDegree)
+      : undefined;
+    message.userCarouselDecoDegree =
+      (object.userCarouselDecoDegree !== undefined && object.userCarouselDecoDegree !== null)
+        ? UserDecoDegreeRequest.fromPartial(object.userCarouselDecoDegree)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseUserCarouselDecoDegreeUseProfileSettingRequest(): UserCarouselDecoDegreeUseProfileSettingRequest {
+  return { useCarouselProfileSettingDegree: false };
+}
+
+export const UserCarouselDecoDegreeUseProfileSettingRequest: MessageFns<
+  UserCarouselDecoDegreeUseProfileSettingRequest
+> = {
+  encode(
+    message: UserCarouselDecoDegreeUseProfileSettingRequest,
+    writer: BinaryWriter = new BinaryWriter(),
+  ): BinaryWriter {
+    if (message.useCarouselProfileSettingDegree !== false) {
+      writer.uint32(8).bool(message.useCarouselProfileSettingDegree);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserCarouselDecoDegreeUseProfileSettingRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserCarouselDecoDegreeUseProfileSettingRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.useCarouselProfileSettingDegree = reader.bool();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserCarouselDecoDegreeUseProfileSettingRequest {
+    return {
+      useCarouselProfileSettingDegree: isSet(object.useCarouselProfileSettingDegree)
+        ? globalThis.Boolean(object.useCarouselProfileSettingDegree)
+        : false,
+    };
+  },
+
+  toJSON(message: UserCarouselDecoDegreeUseProfileSettingRequest): unknown {
+    const obj: any = {};
+    if (message.useCarouselProfileSettingDegree !== false) {
+      obj.useCarouselProfileSettingDegree = message.useCarouselProfileSettingDegree;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserCarouselDecoDegreeUseProfileSettingRequest>, I>>(
+    base?: I,
+  ): UserCarouselDecoDegreeUseProfileSettingRequest {
+    return UserCarouselDecoDegreeUseProfileSettingRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserCarouselDecoDegreeUseProfileSettingRequest>, I>>(
+    object: I,
+  ): UserCarouselDecoDegreeUseProfileSettingRequest {
+    const message = createBaseUserCarouselDecoDegreeUseProfileSettingRequest();
+    message.useCarouselProfileSettingDegree = object.useCarouselProfileSettingDegree ?? false;
     return message;
   },
 };
@@ -190686,1559 +200977,6 @@ export const UserCharacterUseStyleMap_EntriesEntry: MessageFns<UserCharacterUseS
   },
 };
 
-function createBaseUserComebackInviteInfo(): UserComebackInviteInfo {
-  return {
-    comebackInviteCode: "",
-    userId: "0",
-    userName: "",
-    continuousLoginCount: 0,
-    lastTimeComebackInviteCodeInputFlg: false,
-  };
-}
-
-export const UserComebackInviteInfo: MessageFns<UserComebackInviteInfo> = {
-  encode(message: UserComebackInviteInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.comebackInviteCode !== "") {
-      writer.uint32(10).string(message.comebackInviteCode);
-    }
-    if (message.userId !== "0") {
-      writer.uint32(16).uint64(message.userId);
-    }
-    if (message.userName !== "") {
-      writer.uint32(26).string(message.userName);
-    }
-    if (message.continuousLoginCount !== 0) {
-      writer.uint32(32).uint32(message.continuousLoginCount);
-    }
-    if (message.lastTimeComebackInviteCodeInputFlg !== false) {
-      writer.uint32(40).bool(message.lastTimeComebackInviteCodeInputFlg);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteInfo {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteInfo();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.comebackInviteCode = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.userId = reader.uint64().toString();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.userName = reader.string();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.continuousLoginCount = reader.uint32();
-          continue;
-        }
-        case 5: {
-          if (tag !== 40) {
-            break;
-          }
-
-          message.lastTimeComebackInviteCodeInputFlg = reader.bool();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteInfo {
-    return {
-      comebackInviteCode: isSet(object.comebackInviteCode) ? globalThis.String(object.comebackInviteCode) : "",
-      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
-      continuousLoginCount: isSet(object.continuousLoginCount) ? globalThis.Number(object.continuousLoginCount) : 0,
-      lastTimeComebackInviteCodeInputFlg: isSet(object.lastTimeComebackInviteCodeInputFlg)
-        ? globalThis.Boolean(object.lastTimeComebackInviteCodeInputFlg)
-        : false,
-    };
-  },
-
-  toJSON(message: UserComebackInviteInfo): unknown {
-    const obj: any = {};
-    if (message.comebackInviteCode !== "") {
-      obj.comebackInviteCode = message.comebackInviteCode;
-    }
-    if (message.userId !== "0") {
-      obj.userId = message.userId;
-    }
-    if (message.userName !== "") {
-      obj.userName = message.userName;
-    }
-    if (message.continuousLoginCount !== 0) {
-      obj.continuousLoginCount = Math.round(message.continuousLoginCount);
-    }
-    if (message.lastTimeComebackInviteCodeInputFlg !== false) {
-      obj.lastTimeComebackInviteCodeInputFlg = message.lastTimeComebackInviteCodeInputFlg;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteInfo>, I>>(base?: I): UserComebackInviteInfo {
-    return UserComebackInviteInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteInfo>, I>>(object: I): UserComebackInviteInfo {
-    const message = createBaseUserComebackInviteInfo();
-    message.comebackInviteCode = object.comebackInviteCode ?? "";
-    message.userId = object.userId ?? "0";
-    message.userName = object.userName ?? "";
-    message.continuousLoginCount = object.continuousLoginCount ?? 0;
-    message.lastTimeComebackInviteCodeInputFlg = object.lastTimeComebackInviteCodeInputFlg ?? false;
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMission(): UserComebackInviteMission {
-  return { userId: "0", missionId: 0, comebackInviteId: 0, comebackType: 0, seq: 0, status: "" };
-}
-
-export const UserComebackInviteMission: MessageFns<UserComebackInviteMission> = {
-  encode(message: UserComebackInviteMission, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.userId !== "0") {
-      writer.uint32(8).uint64(message.userId);
-    }
-    if (message.missionId !== 0) {
-      writer.uint32(16).uint32(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(24).uint32(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      writer.uint32(32).uint32(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      writer.uint32(40).uint32(message.seq);
-    }
-    if (message.status !== "") {
-      writer.uint32(50).string(message.status);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMission {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMission();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = reader.uint64().toString();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.missionId = reader.uint32();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.comebackType = reader.uint32();
-          continue;
-        }
-        case 5: {
-          if (tag !== 40) {
-            break;
-          }
-
-          message.seq = reader.uint32();
-          continue;
-        }
-        case 6: {
-          if (tag !== 50) {
-            break;
-          }
-
-          message.status = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMission {
-    return {
-      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      comebackType: isSet(object.comebackType) ? globalThis.Number(object.comebackType) : 0,
-      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
-      status: isSet(object.status) ? globalThis.String(object.status) : "",
-    };
-  },
-
-  toJSON(message: UserComebackInviteMission): unknown {
-    const obj: any = {};
-    if (message.userId !== "0") {
-      obj.userId = message.userId;
-    }
-    if (message.missionId !== 0) {
-      obj.missionId = Math.round(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      obj.comebackType = Math.round(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      obj.seq = Math.round(message.seq);
-    }
-    if (message.status !== "") {
-      obj.status = message.status;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMission>, I>>(base?: I): UserComebackInviteMission {
-    return UserComebackInviteMission.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMission>, I>>(object: I): UserComebackInviteMission {
-    const message = createBaseUserComebackInviteMission();
-    message.userId = object.userId ?? "0";
-    message.missionId = object.missionId ?? 0;
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.comebackType = object.comebackType ?? 0;
-    message.seq = object.seq ?? 0;
-    message.status = object.status ?? "";
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionClearInformation(): UserComebackInviteMissionClearInformation {
-  return {
-    userId: "0",
-    missionId: 0,
-    comebackInviteId: 0,
-    comebackType: 0,
-    seq: 0,
-    resourceType: "",
-    resourceId: 0,
-    quantity: 0,
-  };
-}
-
-export const UserComebackInviteMissionClearInformation: MessageFns<UserComebackInviteMissionClearInformation> = {
-  encode(message: UserComebackInviteMissionClearInformation, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.userId !== "0") {
-      writer.uint32(8).uint64(message.userId);
-    }
-    if (message.missionId !== 0) {
-      writer.uint32(16).uint32(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(24).uint32(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      writer.uint32(32).uint32(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      writer.uint32(40).uint32(message.seq);
-    }
-    if (message.resourceType !== "") {
-      writer.uint32(50).string(message.resourceType);
-    }
-    if (message.resourceId !== 0) {
-      writer.uint32(56).uint32(message.resourceId);
-    }
-    if (message.quantity !== 0) {
-      writer.uint32(64).uint32(message.quantity);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionClearInformation {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionClearInformation();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = reader.uint64().toString();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.missionId = reader.uint32();
-          continue;
-        }
-        case 3: {
-          if (tag !== 24) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.comebackType = reader.uint32();
-          continue;
-        }
-        case 5: {
-          if (tag !== 40) {
-            break;
-          }
-
-          message.seq = reader.uint32();
-          continue;
-        }
-        case 6: {
-          if (tag !== 50) {
-            break;
-          }
-
-          message.resourceType = reader.string();
-          continue;
-        }
-        case 7: {
-          if (tag !== 56) {
-            break;
-          }
-
-          message.resourceId = reader.uint32();
-          continue;
-        }
-        case 8: {
-          if (tag !== 64) {
-            break;
-          }
-
-          message.quantity = reader.uint32();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionClearInformation {
-    return {
-      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      missionId: isSet(object.missionId) ? globalThis.Number(object.missionId) : 0,
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      comebackType: isSet(object.comebackType) ? globalThis.Number(object.comebackType) : 0,
-      seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
-      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
-      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
-      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionClearInformation): unknown {
-    const obj: any = {};
-    if (message.userId !== "0") {
-      obj.userId = message.userId;
-    }
-    if (message.missionId !== 0) {
-      obj.missionId = Math.round(message.missionId);
-    }
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.comebackType !== 0) {
-      obj.comebackType = Math.round(message.comebackType);
-    }
-    if (message.seq !== 0) {
-      obj.seq = Math.round(message.seq);
-    }
-    if (message.resourceType !== "") {
-      obj.resourceType = message.resourceType;
-    }
-    if (message.resourceId !== 0) {
-      obj.resourceId = Math.round(message.resourceId);
-    }
-    if (message.quantity !== 0) {
-      obj.quantity = Math.round(message.quantity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionClearInformation>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionClearInformation {
-    return UserComebackInviteMissionClearInformation.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionClearInformation>, I>>(
-    object: I,
-  ): UserComebackInviteMissionClearInformation {
-    const message = createBaseUserComebackInviteMissionClearInformation();
-    message.userId = object.userId ?? "0";
-    message.missionId = object.missionId ?? 0;
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.comebackType = object.comebackType ?? 0;
-    message.seq = object.seq ?? 0;
-    message.resourceType = object.resourceType ?? "";
-    message.resourceId = object.resourceId ?? 0;
-    message.quantity = object.quantity ?? 0;
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionClearInformationList(): UserComebackInviteMissionClearInformationList {
-  return { entries: [] };
-}
-
-export const UserComebackInviteMissionClearInformationList: MessageFns<UserComebackInviteMissionClearInformationList> =
-  {
-    encode(
-      message: UserComebackInviteMissionClearInformationList,
-      writer: BinaryWriter = new BinaryWriter(),
-    ): BinaryWriter {
-      for (const v of message.entries) {
-        UserComebackInviteMissionClearInformation.encode(v!, writer.uint32(10).fork()).join();
-      }
-      return writer;
-    },
-
-    decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionClearInformationList {
-      const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseUserComebackInviteMissionClearInformationList();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.entries.push(UserComebackInviteMissionClearInformation.decode(reader, reader.uint32()));
-            continue;
-          }
-        }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
-        }
-        reader.skip(tag & 7);
-      }
-      return message;
-    },
-
-    fromJSON(object: any): UserComebackInviteMissionClearInformationList {
-      return {
-        entries: globalThis.Array.isArray(object?.entries)
-          ? object.entries.map((e: any) => UserComebackInviteMissionClearInformation.fromJSON(e))
-          : [],
-      };
-    },
-
-    toJSON(message: UserComebackInviteMissionClearInformationList): unknown {
-      const obj: any = {};
-      if (message.entries?.length) {
-        obj.entries = message.entries.map((e) => UserComebackInviteMissionClearInformation.toJSON(e));
-      }
-      return obj;
-    },
-
-    create<I extends Exact<DeepPartial<UserComebackInviteMissionClearInformationList>, I>>(
-      base?: I,
-    ): UserComebackInviteMissionClearInformationList {
-      return UserComebackInviteMissionClearInformationList.fromPartial(base ?? ({} as any));
-    },
-    fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionClearInformationList>, I>>(
-      object: I,
-    ): UserComebackInviteMissionClearInformationList {
-      const message = createBaseUserComebackInviteMissionClearInformationList();
-      message.entries = object.entries?.map((e) => UserComebackInviteMissionClearInformation.fromPartial(e)) || [];
-      return message;
-    },
-  };
-
-function createBaseUserComebackInviteMissionCount(): UserComebackInviteMissionCount {
-  return { userId: "0", comebackInviteId: 0, missionType: "", missionCount: 0 };
-}
-
-export const UserComebackInviteMissionCount: MessageFns<UserComebackInviteMissionCount> = {
-  encode(message: UserComebackInviteMissionCount, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.userId !== "0") {
-      writer.uint32(8).uint64(message.userId);
-    }
-    if (message.comebackInviteId !== 0) {
-      writer.uint32(16).uint32(message.comebackInviteId);
-    }
-    if (message.missionType !== "") {
-      writer.uint32(26).string(message.missionType);
-    }
-    if (message.missionCount !== 0) {
-      writer.uint32(32).uint32(message.missionCount);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionCount {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionCount();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = reader.uint64().toString();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.comebackInviteId = reader.uint32();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.missionType = reader.string();
-          continue;
-        }
-        case 4: {
-          if (tag !== 32) {
-            break;
-          }
-
-          message.missionCount = reader.uint32();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionCount {
-    return {
-      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      comebackInviteId: isSet(object.comebackInviteId) ? globalThis.Number(object.comebackInviteId) : 0,
-      missionType: isSet(object.missionType) ? globalThis.String(object.missionType) : "",
-      missionCount: isSet(object.missionCount) ? globalThis.Number(object.missionCount) : 0,
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionCount): unknown {
-    const obj: any = {};
-    if (message.userId !== "0") {
-      obj.userId = message.userId;
-    }
-    if (message.comebackInviteId !== 0) {
-      obj.comebackInviteId = Math.round(message.comebackInviteId);
-    }
-    if (message.missionType !== "") {
-      obj.missionType = message.missionType;
-    }
-    if (message.missionCount !== 0) {
-      obj.missionCount = Math.round(message.missionCount);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionCount>, I>>(base?: I): UserComebackInviteMissionCount {
-    return UserComebackInviteMissionCount.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionCount>, I>>(
-    object: I,
-  ): UserComebackInviteMissionCount {
-    const message = createBaseUserComebackInviteMissionCount();
-    message.userId = object.userId ?? "0";
-    message.comebackInviteId = object.comebackInviteId ?? 0;
-    message.missionType = object.missionType ?? "";
-    message.missionCount = object.missionCount ?? 0;
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionCountList(): UserComebackInviteMissionCountList {
-  return { entries: [] };
-}
-
-export const UserComebackInviteMissionCountList: MessageFns<UserComebackInviteMissionCountList> = {
-  encode(message: UserComebackInviteMissionCountList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.entries) {
-      UserComebackInviteMissionCount.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionCountList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionCountList();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.entries.push(UserComebackInviteMissionCount.decode(reader, reader.uint32()));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionCountList {
-    return {
-      entries: globalThis.Array.isArray(object?.entries)
-        ? object.entries.map((e: any) => UserComebackInviteMissionCount.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionCountList): unknown {
-    const obj: any = {};
-    if (message.entries?.length) {
-      obj.entries = message.entries.map((e) => UserComebackInviteMissionCount.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionCountList>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionCountList {
-    return UserComebackInviteMissionCountList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionCountList>, I>>(
-    object: I,
-  ): UserComebackInviteMissionCountList {
-    const message = createBaseUserComebackInviteMissionCountList();
-    message.entries = object.entries?.map((e) => UserComebackInviteMissionCount.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionCountMap(): UserComebackInviteMissionCountMap {
-  return { entries: {} };
-}
-
-export const UserComebackInviteMissionCountMap: MessageFns<UserComebackInviteMissionCountMap> = {
-  encode(message: UserComebackInviteMissionCountMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserComebackInviteMissionCountList]) => {
-      UserComebackInviteMissionCountMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork())
-        .join();
-    });
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionCountMap {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionCountMap();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = UserComebackInviteMissionCountMap_EntriesEntry.decode(reader, reader.uint32());
-          if (entry1.value !== undefined) {
-            message.entries[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionCountMap {
-    return {
-      entries: isObject(object.entries)
-        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
-          (acc: { [key: string]: UserComebackInviteMissionCountList }, [key, value]: [string, any]) => {
-            acc[key] = UserComebackInviteMissionCountList.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionCountMap): unknown {
-    const obj: any = {};
-    if (message.entries) {
-      const entries = globalThis.Object.entries(message.entries) as [string, UserComebackInviteMissionCountList][];
-      if (entries.length > 0) {
-        obj.entries = {};
-        entries.forEach(([k, v]) => {
-          obj.entries[k] = UserComebackInviteMissionCountList.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionCountMap>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionCountMap {
-    return UserComebackInviteMissionCountMap.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionCountMap>, I>>(
-    object: I,
-  ): UserComebackInviteMissionCountMap {
-    const message = createBaseUserComebackInviteMissionCountMap();
-    message.entries =
-      (globalThis.Object.entries(object.entries ?? {}) as [string, UserComebackInviteMissionCountList][]).reduce(
-        (
-          acc: { [key: string]: UserComebackInviteMissionCountList },
-          [key, value]: [string, UserComebackInviteMissionCountList],
-        ) => {
-          if (value !== undefined) {
-            acc[key] = UserComebackInviteMissionCountList.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionCountMap_EntriesEntry(): UserComebackInviteMissionCountMap_EntriesEntry {
-  return { key: "0", value: undefined };
-}
-
-export const UserComebackInviteMissionCountMap_EntriesEntry: MessageFns<
-  UserComebackInviteMissionCountMap_EntriesEntry
-> = {
-  encode(
-    message: UserComebackInviteMissionCountMap_EntriesEntry,
-    writer: BinaryWriter = new BinaryWriter(),
-  ): BinaryWriter {
-    if (message.key !== "0") {
-      writer.uint32(8).uint64(message.key);
-    }
-    if (message.value !== undefined) {
-      UserComebackInviteMissionCountList.encode(message.value, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionCountMap_EntriesEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionCountMap_EntriesEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.key = reader.uint64().toString();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = UserComebackInviteMissionCountList.decode(reader, reader.uint32());
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionCountMap_EntriesEntry {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "0",
-      value: isSet(object.value) ? UserComebackInviteMissionCountList.fromJSON(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionCountMap_EntriesEntry): unknown {
-    const obj: any = {};
-    if (message.key !== "0") {
-      obj.key = message.key;
-    }
-    if (message.value !== undefined) {
-      obj.value = UserComebackInviteMissionCountList.toJSON(message.value);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionCountMap_EntriesEntry>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionCountMap_EntriesEntry {
-    return UserComebackInviteMissionCountMap_EntriesEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionCountMap_EntriesEntry>, I>>(
-    object: I,
-  ): UserComebackInviteMissionCountMap_EntriesEntry {
-    const message = createBaseUserComebackInviteMissionCountMap_EntriesEntry();
-    message.key = object.key ?? "0";
-    message.value = (object.value !== undefined && object.value !== null)
-      ? UserComebackInviteMissionCountList.fromPartial(object.value)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionLatestInfo(): UserComebackInviteMissionLatestInfo {
-  return {
-    userComebackInviteInfo: undefined,
-    userComebackInviteMissionListMap: undefined,
-    userComebackInviteMissionCountMap: undefined,
-    userComebackInviteMissionClearInformationList: undefined,
-  };
-}
-
-export const UserComebackInviteMissionLatestInfo: MessageFns<UserComebackInviteMissionLatestInfo> = {
-  encode(message: UserComebackInviteMissionLatestInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.userComebackInviteInfo !== undefined) {
-      UserComebackInviteInfo.encode(message.userComebackInviteInfo, writer.uint32(10).fork()).join();
-    }
-    if (message.userComebackInviteMissionListMap !== undefined) {
-      UserComebackInviteMissionListMap.encode(message.userComebackInviteMissionListMap, writer.uint32(18).fork())
-        .join();
-    }
-    if (message.userComebackInviteMissionCountMap !== undefined) {
-      UserComebackInviteMissionCountMap.encode(message.userComebackInviteMissionCountMap, writer.uint32(26).fork())
-        .join();
-    }
-    if (message.userComebackInviteMissionClearInformationList !== undefined) {
-      UserComebackInviteMissionClearInformationList.encode(
-        message.userComebackInviteMissionClearInformationList,
-        writer.uint32(34).fork(),
-      ).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionLatestInfo {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionLatestInfo();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.userComebackInviteInfo = UserComebackInviteInfo.decode(reader, reader.uint32());
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.userComebackInviteMissionListMap = UserComebackInviteMissionListMap.decode(reader, reader.uint32());
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.userComebackInviteMissionCountMap = UserComebackInviteMissionCountMap.decode(reader, reader.uint32());
-          continue;
-        }
-        case 4: {
-          if (tag !== 34) {
-            break;
-          }
-
-          message.userComebackInviteMissionClearInformationList = UserComebackInviteMissionClearInformationList.decode(
-            reader,
-            reader.uint32(),
-          );
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionLatestInfo {
-    return {
-      userComebackInviteInfo: isSet(object.userComebackInviteInfo)
-        ? UserComebackInviteInfo.fromJSON(object.userComebackInviteInfo)
-        : undefined,
-      userComebackInviteMissionListMap: isSet(object.userComebackInviteMissionListMap)
-        ? UserComebackInviteMissionListMap.fromJSON(object.userComebackInviteMissionListMap)
-        : undefined,
-      userComebackInviteMissionCountMap: isSet(object.userComebackInviteMissionCountMap)
-        ? UserComebackInviteMissionCountMap.fromJSON(object.userComebackInviteMissionCountMap)
-        : undefined,
-      userComebackInviteMissionClearInformationList: isSet(object.userComebackInviteMissionClearInformationList)
-        ? UserComebackInviteMissionClearInformationList.fromJSON(object.userComebackInviteMissionClearInformationList)
-        : undefined,
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionLatestInfo): unknown {
-    const obj: any = {};
-    if (message.userComebackInviteInfo !== undefined) {
-      obj.userComebackInviteInfo = UserComebackInviteInfo.toJSON(message.userComebackInviteInfo);
-    }
-    if (message.userComebackInviteMissionListMap !== undefined) {
-      obj.userComebackInviteMissionListMap = UserComebackInviteMissionListMap.toJSON(
-        message.userComebackInviteMissionListMap,
-      );
-    }
-    if (message.userComebackInviteMissionCountMap !== undefined) {
-      obj.userComebackInviteMissionCountMap = UserComebackInviteMissionCountMap.toJSON(
-        message.userComebackInviteMissionCountMap,
-      );
-    }
-    if (message.userComebackInviteMissionClearInformationList !== undefined) {
-      obj.userComebackInviteMissionClearInformationList = UserComebackInviteMissionClearInformationList.toJSON(
-        message.userComebackInviteMissionClearInformationList,
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionLatestInfo>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionLatestInfo {
-    return UserComebackInviteMissionLatestInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionLatestInfo>, I>>(
-    object: I,
-  ): UserComebackInviteMissionLatestInfo {
-    const message = createBaseUserComebackInviteMissionLatestInfo();
-    message.userComebackInviteInfo =
-      (object.userComebackInviteInfo !== undefined && object.userComebackInviteInfo !== null)
-        ? UserComebackInviteInfo.fromPartial(object.userComebackInviteInfo)
-        : undefined;
-    message.userComebackInviteMissionListMap =
-      (object.userComebackInviteMissionListMap !== undefined && object.userComebackInviteMissionListMap !== null)
-        ? UserComebackInviteMissionListMap.fromPartial(object.userComebackInviteMissionListMap)
-        : undefined;
-    message.userComebackInviteMissionCountMap =
-      (object.userComebackInviteMissionCountMap !== undefined && object.userComebackInviteMissionCountMap !== null)
-        ? UserComebackInviteMissionCountMap.fromPartial(object.userComebackInviteMissionCountMap)
-        : undefined;
-    message.userComebackInviteMissionClearInformationList =
-      (object.userComebackInviteMissionClearInformationList !== undefined &&
-          object.userComebackInviteMissionClearInformationList !== null)
-        ? UserComebackInviteMissionClearInformationList.fromPartial(
-          object.userComebackInviteMissionClearInformationList,
-        )
-        : undefined;
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionList(): UserComebackInviteMissionList {
-  return { entries: [] };
-}
-
-export const UserComebackInviteMissionList: MessageFns<UserComebackInviteMissionList> = {
-  encode(message: UserComebackInviteMissionList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.entries) {
-      UserComebackInviteMission.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionList();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.entries.push(UserComebackInviteMission.decode(reader, reader.uint32()));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionList {
-    return {
-      entries: globalThis.Array.isArray(object?.entries)
-        ? object.entries.map((e: any) => UserComebackInviteMission.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionList): unknown {
-    const obj: any = {};
-    if (message.entries?.length) {
-      obj.entries = message.entries.map((e) => UserComebackInviteMission.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionList>, I>>(base?: I): UserComebackInviteMissionList {
-    return UserComebackInviteMissionList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionList>, I>>(
-    object: I,
-  ): UserComebackInviteMissionList {
-    const message = createBaseUserComebackInviteMissionList();
-    message.entries = object.entries?.map((e) => UserComebackInviteMission.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionListMap(): UserComebackInviteMissionListMap {
-  return { entries: {} };
-}
-
-export const UserComebackInviteMissionListMap: MessageFns<UserComebackInviteMissionListMap> = {
-  encode(message: UserComebackInviteMissionListMap, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.entries).forEach(([key, value]: [string, UserComebackInviteMissionList]) => {
-      UserComebackInviteMissionListMap_EntriesEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
-    });
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionListMap {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteMissionListMap();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          const entry1 = UserComebackInviteMissionListMap_EntriesEntry.decode(reader, reader.uint32());
-          if (entry1.value !== undefined) {
-            message.entries[entry1.key] = entry1.value;
-          }
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteMissionListMap {
-    return {
-      entries: isObject(object.entries)
-        ? (globalThis.Object.entries(object.entries) as [string, any][]).reduce(
-          (acc: { [key: number]: UserComebackInviteMissionList }, [key, value]: [string, any]) => {
-            acc[globalThis.Number(key)] = UserComebackInviteMissionList.fromJSON(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
-    };
-  },
-
-  toJSON(message: UserComebackInviteMissionListMap): unknown {
-    const obj: any = {};
-    if (message.entries) {
-      const entries = globalThis.Object.entries(message.entries) as [string, UserComebackInviteMissionList][];
-      if (entries.length > 0) {
-        obj.entries = {};
-        entries.forEach(([k, v]) => {
-          obj.entries[k] = UserComebackInviteMissionList.toJSON(v);
-        });
-      }
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteMissionListMap>, I>>(
-    base?: I,
-  ): UserComebackInviteMissionListMap {
-    return UserComebackInviteMissionListMap.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionListMap>, I>>(
-    object: I,
-  ): UserComebackInviteMissionListMap {
-    const message = createBaseUserComebackInviteMissionListMap();
-    message.entries = (globalThis.Object.entries(object.entries ?? {}) as [string, UserComebackInviteMissionList][])
-      .reduce(
-        (
-          acc: { [key: number]: UserComebackInviteMissionList },
-          [key, value]: [string, UserComebackInviteMissionList],
-        ) => {
-          if (value !== undefined) {
-            acc[globalThis.Number(key)] = UserComebackInviteMissionList.fromPartial(value);
-          }
-          return acc;
-        },
-        {},
-      );
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteMissionListMap_EntriesEntry(): UserComebackInviteMissionListMap_EntriesEntry {
-  return { key: 0, value: undefined };
-}
-
-export const UserComebackInviteMissionListMap_EntriesEntry: MessageFns<UserComebackInviteMissionListMap_EntriesEntry> =
-  {
-    encode(
-      message: UserComebackInviteMissionListMap_EntriesEntry,
-      writer: BinaryWriter = new BinaryWriter(),
-    ): BinaryWriter {
-      if (message.key !== 0) {
-        writer.uint32(8).uint32(message.key);
-      }
-      if (message.value !== undefined) {
-        UserComebackInviteMissionList.encode(message.value, writer.uint32(18).fork()).join();
-      }
-      return writer;
-    },
-
-    decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteMissionListMap_EntriesEntry {
-      const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseUserComebackInviteMissionListMap_EntriesEntry();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
-            }
-
-            message.key = reader.uint32();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.value = UserComebackInviteMissionList.decode(reader, reader.uint32());
-            continue;
-          }
-        }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
-        }
-        reader.skip(tag & 7);
-      }
-      return message;
-    },
-
-    fromJSON(object: any): UserComebackInviteMissionListMap_EntriesEntry {
-      return {
-        key: isSet(object.key) ? globalThis.Number(object.key) : 0,
-        value: isSet(object.value) ? UserComebackInviteMissionList.fromJSON(object.value) : undefined,
-      };
-    },
-
-    toJSON(message: UserComebackInviteMissionListMap_EntriesEntry): unknown {
-      const obj: any = {};
-      if (message.key !== 0) {
-        obj.key = Math.round(message.key);
-      }
-      if (message.value !== undefined) {
-        obj.value = UserComebackInviteMissionList.toJSON(message.value);
-      }
-      return obj;
-    },
-
-    create<I extends Exact<DeepPartial<UserComebackInviteMissionListMap_EntriesEntry>, I>>(
-      base?: I,
-    ): UserComebackInviteMissionListMap_EntriesEntry {
-      return UserComebackInviteMissionListMap_EntriesEntry.fromPartial(base ?? ({} as any));
-    },
-    fromPartial<I extends Exact<DeepPartial<UserComebackInviteMissionListMap_EntriesEntry>, I>>(
-      object: I,
-    ): UserComebackInviteMissionListMap_EntriesEntry {
-      const message = createBaseUserComebackInviteMissionListMap_EntriesEntry();
-      message.key = object.key ?? 0;
-      message.value = (object.value !== undefined && object.value !== null)
-        ? UserComebackInviteMissionList.fromPartial(object.value)
-        : undefined;
-      return message;
-    },
-  };
-
-function createBaseUserComebackInviteSearchRequest(): UserComebackInviteSearchRequest {
-  return { inviteCode: "" };
-}
-
-export const UserComebackInviteSearchRequest: MessageFns<UserComebackInviteSearchRequest> = {
-  encode(message: UserComebackInviteSearchRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.inviteCode !== "") {
-      writer.uint32(10).string(message.inviteCode);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteSearchRequest {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteSearchRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.inviteCode = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteSearchRequest {
-    return { inviteCode: isSet(object.inviteCode) ? globalThis.String(object.inviteCode) : "" };
-  },
-
-  toJSON(message: UserComebackInviteSearchRequest): unknown {
-    const obj: any = {};
-    if (message.inviteCode !== "") {
-      obj.inviteCode = message.inviteCode;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteSearchRequest>, I>>(base?: I): UserComebackInviteSearchRequest {
-    return UserComebackInviteSearchRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteSearchRequest>, I>>(
-    object: I,
-  ): UserComebackInviteSearchRequest {
-    const message = createBaseUserComebackInviteSearchRequest();
-    message.inviteCode = object.inviteCode ?? "";
-    return message;
-  },
-};
-
-function createBaseUserComebackInviteSearchResponse(): UserComebackInviteSearchResponse {
-  return {
-    userId: "0",
-    userName: "",
-    introduction: "",
-    userProfileSituation: undefined,
-    userProfileDegreeMap: undefined,
-    leaderSituation: undefined,
-    rank: 0,
-    lastLoginAt: "0",
-    publishUpdatedAtFlg: false,
-  };
-}
-
-export const UserComebackInviteSearchResponse: MessageFns<UserComebackInviteSearchResponse> = {
-  encode(message: UserComebackInviteSearchResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.userId !== "0") {
-      writer.uint32(8).uint64(message.userId);
-    }
-    if (message.userName !== "") {
-      writer.uint32(18).string(message.userName);
-    }
-    if (message.introduction !== "") {
-      writer.uint32(26).string(message.introduction);
-    }
-    if (message.userProfileSituation !== undefined) {
-      UserProfileSituation.encode(message.userProfileSituation, writer.uint32(34).fork()).join();
-    }
-    if (message.userProfileDegreeMap !== undefined) {
-      UserProfileDegreeMap.encode(message.userProfileDegreeMap, writer.uint32(42).fork()).join();
-    }
-    if (message.leaderSituation !== undefined) {
-      UserSituation.encode(message.leaderSituation, writer.uint32(50).fork()).join();
-    }
-    if (message.rank !== 0) {
-      writer.uint32(56).uint32(message.rank);
-    }
-    if (message.lastLoginAt !== "0") {
-      writer.uint32(64).uint64(message.lastLoginAt);
-    }
-    if (message.publishUpdatedAtFlg !== false) {
-      writer.uint32(72).bool(message.publishUpdatedAtFlg);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserComebackInviteSearchResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserComebackInviteSearchResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 8) {
-            break;
-          }
-
-          message.userId = reader.uint64().toString();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.userName = reader.string();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.introduction = reader.string();
-          continue;
-        }
-        case 4: {
-          if (tag !== 34) {
-            break;
-          }
-
-          message.userProfileSituation = UserProfileSituation.decode(reader, reader.uint32());
-          continue;
-        }
-        case 5: {
-          if (tag !== 42) {
-            break;
-          }
-
-          message.userProfileDegreeMap = UserProfileDegreeMap.decode(reader, reader.uint32());
-          continue;
-        }
-        case 6: {
-          if (tag !== 50) {
-            break;
-          }
-
-          message.leaderSituation = UserSituation.decode(reader, reader.uint32());
-          continue;
-        }
-        case 7: {
-          if (tag !== 56) {
-            break;
-          }
-
-          message.rank = reader.uint32();
-          continue;
-        }
-        case 8: {
-          if (tag !== 64) {
-            break;
-          }
-
-          message.lastLoginAt = reader.uint64().toString();
-          continue;
-        }
-        case 9: {
-          if (tag !== 72) {
-            break;
-          }
-
-          message.publishUpdatedAtFlg = reader.bool();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserComebackInviteSearchResponse {
-    return {
-      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
-      userName: isSet(object.userName) ? globalThis.String(object.userName) : "",
-      introduction: isSet(object.introduction) ? globalThis.String(object.introduction) : "",
-      userProfileSituation: isSet(object.userProfileSituation)
-        ? UserProfileSituation.fromJSON(object.userProfileSituation)
-        : undefined,
-      userProfileDegreeMap: isSet(object.userProfileDegreeMap)
-        ? UserProfileDegreeMap.fromJSON(object.userProfileDegreeMap)
-        : undefined,
-      leaderSituation: isSet(object.leaderSituation) ? UserSituation.fromJSON(object.leaderSituation) : undefined,
-      rank: isSet(object.rank) ? globalThis.Number(object.rank) : 0,
-      lastLoginAt: isSet(object.lastLoginAt) ? globalThis.String(object.lastLoginAt) : "0",
-      publishUpdatedAtFlg: isSet(object.publishUpdatedAtFlg) ? globalThis.Boolean(object.publishUpdatedAtFlg) : false,
-    };
-  },
-
-  toJSON(message: UserComebackInviteSearchResponse): unknown {
-    const obj: any = {};
-    if (message.userId !== "0") {
-      obj.userId = message.userId;
-    }
-    if (message.userName !== "") {
-      obj.userName = message.userName;
-    }
-    if (message.introduction !== "") {
-      obj.introduction = message.introduction;
-    }
-    if (message.userProfileSituation !== undefined) {
-      obj.userProfileSituation = UserProfileSituation.toJSON(message.userProfileSituation);
-    }
-    if (message.userProfileDegreeMap !== undefined) {
-      obj.userProfileDegreeMap = UserProfileDegreeMap.toJSON(message.userProfileDegreeMap);
-    }
-    if (message.leaderSituation !== undefined) {
-      obj.leaderSituation = UserSituation.toJSON(message.leaderSituation);
-    }
-    if (message.rank !== 0) {
-      obj.rank = Math.round(message.rank);
-    }
-    if (message.lastLoginAt !== "0") {
-      obj.lastLoginAt = message.lastLoginAt;
-    }
-    if (message.publishUpdatedAtFlg !== false) {
-      obj.publishUpdatedAtFlg = message.publishUpdatedAtFlg;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserComebackInviteSearchResponse>, I>>(
-    base?: I,
-  ): UserComebackInviteSearchResponse {
-    return UserComebackInviteSearchResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserComebackInviteSearchResponse>, I>>(
-    object: I,
-  ): UserComebackInviteSearchResponse {
-    const message = createBaseUserComebackInviteSearchResponse();
-    message.userId = object.userId ?? "0";
-    message.userName = object.userName ?? "";
-    message.introduction = object.introduction ?? "";
-    message.userProfileSituation = (object.userProfileSituation !== undefined && object.userProfileSituation !== null)
-      ? UserProfileSituation.fromPartial(object.userProfileSituation)
-      : undefined;
-    message.userProfileDegreeMap = (object.userProfileDegreeMap !== undefined && object.userProfileDegreeMap !== null)
-      ? UserProfileDegreeMap.fromPartial(object.userProfileDegreeMap)
-      : undefined;
-    message.leaderSituation = (object.leaderSituation !== undefined && object.leaderSituation !== null)
-      ? UserSituation.fromPartial(object.leaderSituation)
-      : undefined;
-    message.rank = object.rank ?? 0;
-    message.lastLoginAt = object.lastLoginAt ?? "0";
-    message.publishUpdatedAtFlg = object.publishUpdatedAtFlg ?? false;
-    return message;
-  },
-};
-
 function createBaseUserComebackStatus(): UserComebackStatus {
   return { userId: "0", startAt: "0", liveBoostBonusEndAt: "0", comebackGachaEndAt: "0", comebackGachaId: 0 };
 }
@@ -192992,6 +201730,144 @@ export const UserCommonsLive2dMap_EntriesEntry: MessageFns<UserCommonsLive2dMap_
     message.value = (object.value !== undefined && object.value !== null)
       ? UserCommonsLive2dList.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseUserConsumptionGift(): UserConsumptionGift {
+  return { id: 0, receiveAt: "0" };
+}
+
+export const UserConsumptionGift: MessageFns<UserConsumptionGift> = {
+  encode(message: UserConsumptionGift, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.id !== 0) {
+      writer.uint32(8).uint32(message.id);
+    }
+    if (message.receiveAt !== "0") {
+      writer.uint32(16).uint64(message.receiveAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserConsumptionGift {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserConsumptionGift();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.id = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.receiveAt = reader.uint64().toString();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserConsumptionGift {
+    return {
+      id: isSet(object.id) ? globalThis.Number(object.id) : 0,
+      receiveAt: isSet(object.receiveAt) ? globalThis.String(object.receiveAt) : "0",
+    };
+  },
+
+  toJSON(message: UserConsumptionGift): unknown {
+    const obj: any = {};
+    if (message.id !== 0) {
+      obj.id = Math.round(message.id);
+    }
+    if (message.receiveAt !== "0") {
+      obj.receiveAt = message.receiveAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserConsumptionGift>, I>>(base?: I): UserConsumptionGift {
+    return UserConsumptionGift.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserConsumptionGift>, I>>(object: I): UserConsumptionGift {
+    const message = createBaseUserConsumptionGift();
+    message.id = object.id ?? 0;
+    message.receiveAt = object.receiveAt ?? "0";
+    return message;
+  },
+};
+
+function createBaseUserConsumptionGiftList(): UserConsumptionGiftList {
+  return { entries: [] };
+}
+
+export const UserConsumptionGiftList: MessageFns<UserConsumptionGiftList> = {
+  encode(message: UserConsumptionGiftList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserConsumptionGift.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserConsumptionGiftList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserConsumptionGiftList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserConsumptionGift.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserConsumptionGiftList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserConsumptionGift.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserConsumptionGiftList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserConsumptionGift.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserConsumptionGiftList>, I>>(base?: I): UserConsumptionGiftList {
+    return UserConsumptionGiftList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserConsumptionGiftList>, I>>(object: I): UserConsumptionGiftList {
+    const message = createBaseUserConsumptionGiftList();
+    message.entries = object.entries?.map((e) => UserConsumptionGift.fromPartial(e)) || [];
     return message;
   },
 };
@@ -197631,7 +206507,7 @@ export const UserDecoDegreeMap_EntriesEntry: MessageFns<UserDecoDegreeMap_Entrie
 };
 
 function createBaseUserDecoDegreeRequest(): UserDecoDegreeRequest {
-  return { degreeIdFirst: 0, degreeIdSecond: 0 };
+  return { degreeIdFirst: 0, degreeIdSecond: 0, effectIdFirst: 0, effectIdSecond: 0 };
 }
 
 export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
@@ -197641,6 +206517,12 @@ export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
     }
     if (message.degreeIdSecond !== 0) {
       writer.uint32(16).uint32(message.degreeIdSecond);
+    }
+    if (message.effectIdFirst !== 0) {
+      writer.uint32(24).uint32(message.effectIdFirst);
+    }
+    if (message.effectIdSecond !== 0) {
+      writer.uint32(32).uint32(message.effectIdSecond);
     }
     return writer;
   },
@@ -197668,6 +206550,22 @@ export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
           message.degreeIdSecond = reader.uint32();
           continue;
         }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.effectIdFirst = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.effectIdSecond = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -197681,6 +206579,8 @@ export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
     return {
       degreeIdFirst: isSet(object.degreeIdFirst) ? globalThis.Number(object.degreeIdFirst) : 0,
       degreeIdSecond: isSet(object.degreeIdSecond) ? globalThis.Number(object.degreeIdSecond) : 0,
+      effectIdFirst: isSet(object.effectIdFirst) ? globalThis.Number(object.effectIdFirst) : 0,
+      effectIdSecond: isSet(object.effectIdSecond) ? globalThis.Number(object.effectIdSecond) : 0,
     };
   },
 
@@ -197692,6 +206592,12 @@ export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
     if (message.degreeIdSecond !== 0) {
       obj.degreeIdSecond = Math.round(message.degreeIdSecond);
     }
+    if (message.effectIdFirst !== 0) {
+      obj.effectIdFirst = Math.round(message.effectIdFirst);
+    }
+    if (message.effectIdSecond !== 0) {
+      obj.effectIdSecond = Math.round(message.effectIdSecond);
+    }
     return obj;
   },
 
@@ -197702,6 +206608,8 @@ export const UserDecoDegreeRequest: MessageFns<UserDecoDegreeRequest> = {
     const message = createBaseUserDecoDegreeRequest();
     message.degreeIdFirst = object.degreeIdFirst ?? 0;
     message.degreeIdSecond = object.degreeIdSecond ?? 0;
+    message.effectIdFirst = object.effectIdFirst ?? 0;
+    message.effectIdSecond = object.effectIdSecond ?? 0;
     return message;
   },
 };
@@ -198221,6 +207129,7 @@ function createBaseUserDecoEquipment(): UserDecoEquipment {
     userDecoAppealMap: undefined,
     userDecoSetting: undefined,
     userDecoEffect: undefined,
+    userCarouselDecoDegreeMap: undefined,
   };
 }
 
@@ -198249,6 +207158,9 @@ export const UserDecoEquipment: MessageFns<UserDecoEquipment> = {
     }
     if (message.userDecoEffect !== undefined) {
       UserDecoEffect.encode(message.userDecoEffect, writer.uint32(66).fork()).join();
+    }
+    if (message.userCarouselDecoDegreeMap !== undefined) {
+      UserCarouselDecoDegreeMap.encode(message.userCarouselDecoDegreeMap, writer.uint32(8010).fork()).join();
     }
     return writer;
   },
@@ -198324,6 +207236,14 @@ export const UserDecoEquipment: MessageFns<UserDecoEquipment> = {
           message.userDecoEffect = UserDecoEffect.decode(reader, reader.uint32());
           continue;
         }
+        case 1001: {
+          if (tag !== 8010) {
+            break;
+          }
+
+          message.userCarouselDecoDegreeMap = UserCarouselDecoDegreeMap.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -198355,6 +207275,9 @@ export const UserDecoEquipment: MessageFns<UserDecoEquipment> = {
         : undefined,
       userDecoSetting: isSet(object.userDecoSetting) ? UserDecoSetting.fromJSON(object.userDecoSetting) : undefined,
       userDecoEffect: isSet(object.userDecoEffect) ? UserDecoEffect.fromJSON(object.userDecoEffect) : undefined,
+      userCarouselDecoDegreeMap: isSet(object.userCarouselDecoDegreeMap)
+        ? UserCarouselDecoDegreeMap.fromJSON(object.userCarouselDecoDegreeMap)
+        : undefined,
     };
   },
 
@@ -198383,6 +207306,9 @@ export const UserDecoEquipment: MessageFns<UserDecoEquipment> = {
     }
     if (message.userDecoEffect !== undefined) {
       obj.userDecoEffect = UserDecoEffect.toJSON(message.userDecoEffect);
+    }
+    if (message.userCarouselDecoDegreeMap !== undefined) {
+      obj.userCarouselDecoDegreeMap = UserCarouselDecoDegreeMap.toJSON(message.userCarouselDecoDegreeMap);
     }
     return obj;
   },
@@ -198418,6 +207344,10 @@ export const UserDecoEquipment: MessageFns<UserDecoEquipment> = {
     message.userDecoEffect = (object.userDecoEffect !== undefined && object.userDecoEffect !== null)
       ? UserDecoEffect.fromPartial(object.userDecoEffect)
       : undefined;
+    message.userCarouselDecoDegreeMap =
+      (object.userCarouselDecoDegreeMap !== undefined && object.userCarouselDecoDegreeMap !== null)
+        ? UserCarouselDecoDegreeMap.fromPartial(object.userCarouselDecoDegreeMap)
+        : undefined;
     return message;
   },
 };
@@ -199433,7 +208363,12 @@ export const UserDecoPinsInventoryMap_EntriesEntry: MessageFns<UserDecoPinsInven
 };
 
 function createBaseUserDecoSetting(): UserDecoSetting {
-  return { useProfileSettingDegree: false, useProfileSettingSituation: false, selectedCharacterType: "" };
+  return {
+    useProfileSettingDegree: false,
+    useProfileSettingSituation: false,
+    selectedCharacterType: "",
+    useCarouselProfileSettingDegree: false,
+  };
 }
 
 export const UserDecoSetting: MessageFns<UserDecoSetting> = {
@@ -199446,6 +208381,9 @@ export const UserDecoSetting: MessageFns<UserDecoSetting> = {
     }
     if (message.selectedCharacterType !== "") {
       writer.uint32(26).string(message.selectedCharacterType);
+    }
+    if (message.useCarouselProfileSettingDegree !== false) {
+      writer.uint32(8008).bool(message.useCarouselProfileSettingDegree);
     }
     return writer;
   },
@@ -199481,6 +208419,14 @@ export const UserDecoSetting: MessageFns<UserDecoSetting> = {
           message.selectedCharacterType = reader.string();
           continue;
         }
+        case 1001: {
+          if (tag !== 8008) {
+            break;
+          }
+
+          message.useCarouselProfileSettingDegree = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -199499,6 +208445,9 @@ export const UserDecoSetting: MessageFns<UserDecoSetting> = {
         ? globalThis.Boolean(object.useProfileSettingSituation)
         : false,
       selectedCharacterType: isSet(object.selectedCharacterType) ? globalThis.String(object.selectedCharacterType) : "",
+      useCarouselProfileSettingDegree: isSet(object.useCarouselProfileSettingDegree)
+        ? globalThis.Boolean(object.useCarouselProfileSettingDegree)
+        : false,
     };
   },
 
@@ -199513,6 +208462,9 @@ export const UserDecoSetting: MessageFns<UserDecoSetting> = {
     if (message.selectedCharacterType !== "") {
       obj.selectedCharacterType = message.selectedCharacterType;
     }
+    if (message.useCarouselProfileSettingDegree !== false) {
+      obj.useCarouselProfileSettingDegree = message.useCarouselProfileSettingDegree;
+    }
     return obj;
   },
 
@@ -199524,6 +208476,7 @@ export const UserDecoSetting: MessageFns<UserDecoSetting> = {
     message.useProfileSettingDegree = object.useProfileSettingDegree ?? false;
     message.useProfileSettingSituation = object.useProfileSettingSituation ?? false;
     message.selectedCharacterType = object.selectedCharacterType ?? "";
+    message.useCarouselProfileSettingDegree = object.useCarouselProfileSettingDegree ?? false;
     return message;
   },
 };
@@ -205359,6 +214312,7 @@ function createBaseUserFestivalLiveResponse(): UserFestivalLiveResponse {
     livePoint: 0,
     userCharacterRankMap: undefined,
     grantCharacterRankRewardListMap: undefined,
+    liveFeverId: 0,
   };
 }
 
@@ -205462,6 +214416,9 @@ export const UserFestivalLiveResponse: MessageFns<UserFestivalLiveResponse> = {
     }
     if (message.grantCharacterRankRewardListMap !== undefined) {
       UserCharacterRankRewardListMap.encode(message.grantCharacterRankRewardListMap, writer.uint32(266).fork()).join();
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8184).uint32(message.liveFeverId);
     }
     return writer;
   },
@@ -205737,6 +214694,14 @@ export const UserFestivalLiveResponse: MessageFns<UserFestivalLiveResponse> = {
           message.grantCharacterRankRewardListMap = UserCharacterRankRewardListMap.decode(reader, reader.uint32());
           continue;
         }
+        case 1023: {
+          if (tag !== 8184) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -205807,6 +214772,7 @@ export const UserFestivalLiveResponse: MessageFns<UserFestivalLiveResponse> = {
       grantCharacterRankRewardListMap: isSet(object.grantCharacterRankRewardListMap)
         ? UserCharacterRankRewardListMap.fromJSON(object.grantCharacterRankRewardListMap)
         : undefined,
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
     };
   },
 
@@ -205913,6 +214879,9 @@ export const UserFestivalLiveResponse: MessageFns<UserFestivalLiveResponse> = {
         message.grantCharacterRankRewardListMap,
       );
     }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
     return obj;
   },
 
@@ -205990,6 +214959,7 @@ export const UserFestivalLiveResponse: MessageFns<UserFestivalLiveResponse> = {
       (object.grantCharacterRankRewardListMap !== undefined && object.grantCharacterRankRewardListMap !== null)
         ? UserCharacterRankRewardListMap.fromPartial(object.grantCharacterRankRewardListMap)
         : undefined;
+    message.liveFeverId = object.liveFeverId ?? 0;
     return message;
   },
 };
@@ -206371,6 +215341,297 @@ export const UserFestivalTeamMap_EntriesEntry: MessageFns<UserFestivalTeamMap_En
     message.value = (object.value !== undefined && object.value !== null)
       ? UserFestivalTeam.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseUserFeverStoreBuyResponse(): UserFeverStoreBuyResponse {
+  return { success: false, message: "" };
+}
+
+export const UserFeverStoreBuyResponse: MessageFns<UserFeverStoreBuyResponse> = {
+  encode(message: UserFeverStoreBuyResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserFeverStoreBuyResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserFeverStoreBuyResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserFeverStoreBuyResponse {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
+    };
+  },
+
+  toJSON(message: UserFeverStoreBuyResponse): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserFeverStoreBuyResponse>, I>>(base?: I): UserFeverStoreBuyResponse {
+    return UserFeverStoreBuyResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserFeverStoreBuyResponse>, I>>(object: I): UserFeverStoreBuyResponse {
+    const message = createBaseUserFeverStoreBuyResponse();
+    message.success = object.success ?? false;
+    message.message = object.message ?? "";
+    return message;
+  },
+};
+
+function createBaseUserFeverStoreProduct(): UserFeverStoreProduct {
+  return {
+    feverStoreId: "0",
+    type: 0,
+    status: 0,
+    productName: "",
+    description: "",
+    label: "",
+    purchaseLimit: 0,
+    amount: 0,
+    costPrice: 0,
+    remainPurchaseCount: 0,
+  };
+}
+
+export const UserFeverStoreProduct: MessageFns<UserFeverStoreProduct> = {
+  encode(message: UserFeverStoreProduct, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.feverStoreId !== "0") {
+      writer.uint32(8).uint64(message.feverStoreId);
+    }
+    if (message.type !== 0) {
+      writer.uint32(16).uint32(message.type);
+    }
+    if (message.status !== 0) {
+      writer.uint32(24).uint32(message.status);
+    }
+    if (message.productName !== "") {
+      writer.uint32(34).string(message.productName);
+    }
+    if (message.description !== "") {
+      writer.uint32(42).string(message.description);
+    }
+    if (message.label !== "") {
+      writer.uint32(50).string(message.label);
+    }
+    if (message.purchaseLimit !== 0) {
+      writer.uint32(56).uint32(message.purchaseLimit);
+    }
+    if (message.amount !== 0) {
+      writer.uint32(64).uint32(message.amount);
+    }
+    if (message.costPrice !== 0) {
+      writer.uint32(72).uint32(message.costPrice);
+    }
+    if (message.remainPurchaseCount !== 0) {
+      writer.uint32(80).uint32(message.remainPurchaseCount);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserFeverStoreProduct {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserFeverStoreProduct();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.feverStoreId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.type = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.status = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.productName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.label = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.purchaseLimit = reader.uint32();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.amount = reader.uint32();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.costPrice = reader.uint32();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.remainPurchaseCount = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserFeverStoreProduct {
+    return {
+      feverStoreId: isSet(object.feverStoreId) ? globalThis.String(object.feverStoreId) : "0",
+      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
+      status: isSet(object.status) ? globalThis.Number(object.status) : 0,
+      productName: isSet(object.productName) ? globalThis.String(object.productName) : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      label: isSet(object.label) ? globalThis.String(object.label) : "",
+      purchaseLimit: isSet(object.purchaseLimit) ? globalThis.Number(object.purchaseLimit) : 0,
+      amount: isSet(object.amount) ? globalThis.Number(object.amount) : 0,
+      costPrice: isSet(object.costPrice) ? globalThis.Number(object.costPrice) : 0,
+      remainPurchaseCount: isSet(object.remainPurchaseCount) ? globalThis.Number(object.remainPurchaseCount) : 0,
+    };
+  },
+
+  toJSON(message: UserFeverStoreProduct): unknown {
+    const obj: any = {};
+    if (message.feverStoreId !== "0") {
+      obj.feverStoreId = message.feverStoreId;
+    }
+    if (message.type !== 0) {
+      obj.type = Math.round(message.type);
+    }
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.productName !== "") {
+      obj.productName = message.productName;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    if (message.label !== "") {
+      obj.label = message.label;
+    }
+    if (message.purchaseLimit !== 0) {
+      obj.purchaseLimit = Math.round(message.purchaseLimit);
+    }
+    if (message.amount !== 0) {
+      obj.amount = Math.round(message.amount);
+    }
+    if (message.costPrice !== 0) {
+      obj.costPrice = Math.round(message.costPrice);
+    }
+    if (message.remainPurchaseCount !== 0) {
+      obj.remainPurchaseCount = Math.round(message.remainPurchaseCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserFeverStoreProduct>, I>>(base?: I): UserFeverStoreProduct {
+    return UserFeverStoreProduct.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserFeverStoreProduct>, I>>(object: I): UserFeverStoreProduct {
+    const message = createBaseUserFeverStoreProduct();
+    message.feverStoreId = object.feverStoreId ?? "0";
+    message.type = object.type ?? 0;
+    message.status = object.status ?? 0;
+    message.productName = object.productName ?? "";
+    message.description = object.description ?? "";
+    message.label = object.label ?? "";
+    message.purchaseLimit = object.purchaseLimit ?? 0;
+    message.amount = object.amount ?? 0;
+    message.costPrice = object.costPrice ?? 0;
+    message.remainPurchaseCount = object.remainPurchaseCount ?? 0;
     return message;
   },
 };
@@ -208298,6 +217559,7 @@ function createBaseUserGachaCountCeiling(): UserGachaCountCeiling {
     isInheritGachaSealDifferentGacha: false,
     isExpiredExchangeItem: false,
     exchangeStarSealCount: 0,
+    bandId: 0,
   };
 }
 
@@ -208323,6 +217585,9 @@ export const UserGachaCountCeiling: MessageFns<UserGachaCountCeiling> = {
     }
     if (message.exchangeStarSealCount !== 0) {
       writer.uint32(56).uint32(message.exchangeStarSealCount);
+    }
+    if (message.bandId !== 0) {
+      writer.uint32(8000).uint32(message.bandId);
     }
     return writer;
   },
@@ -208390,6 +217655,14 @@ export const UserGachaCountCeiling: MessageFns<UserGachaCountCeiling> = {
           message.exchangeStarSealCount = reader.uint32();
           continue;
         }
+        case 1000: {
+          if (tag !== 8000) {
+            break;
+          }
+
+          message.bandId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -208412,6 +217685,7 @@ export const UserGachaCountCeiling: MessageFns<UserGachaCountCeiling> = {
         ? globalThis.Boolean(object.isExpiredExchangeItem)
         : false,
       exchangeStarSealCount: isSet(object.exchangeStarSealCount) ? globalThis.Number(object.exchangeStarSealCount) : 0,
+      bandId: isSet(object.bandId) ? globalThis.Number(object.bandId) : 0,
     };
   },
 
@@ -208438,6 +217712,9 @@ export const UserGachaCountCeiling: MessageFns<UserGachaCountCeiling> = {
     if (message.exchangeStarSealCount !== 0) {
       obj.exchangeStarSealCount = Math.round(message.exchangeStarSealCount);
     }
+    if (message.bandId !== 0) {
+      obj.bandId = Math.round(message.bandId);
+    }
     return obj;
   },
 
@@ -208453,6 +217730,7 @@ export const UserGachaCountCeiling: MessageFns<UserGachaCountCeiling> = {
     message.isInheritGachaSealDifferentGacha = object.isInheritGachaSealDifferentGacha ?? false;
     message.isExpiredExchangeItem = object.isExpiredExchangeItem ?? false;
     message.exchangeStarSealCount = object.exchangeStarSealCount ?? 0;
+    message.bandId = object.bandId ?? 0;
     return message;
   },
 };
@@ -209972,7 +219250,7 @@ export const UserGachaTicketList: MessageFns<UserGachaTicketList> = {
 };
 
 function createBaseUserGallery(): UserGallery {
-  return { situationId: 0, illust: "", seq: 0, photoStudioSeq: 0 };
+  return { situationId: 0, illust: "", seq: 0, photoStudioSeq: 0, specialScreenId: 0, displayType: "" };
 }
 
 export const UserGallery: MessageFns<UserGallery> = {
@@ -209988,6 +219266,12 @@ export const UserGallery: MessageFns<UserGallery> = {
     }
     if (message.photoStudioSeq !== 0) {
       writer.uint32(32).uint32(message.photoStudioSeq);
+    }
+    if (message.specialScreenId !== 0) {
+      writer.uint32(792).uint32(message.specialScreenId);
+    }
+    if (message.displayType !== "") {
+      writer.uint32(802).string(message.displayType);
     }
     return writer;
   },
@@ -210031,6 +219315,22 @@ export const UserGallery: MessageFns<UserGallery> = {
           message.photoStudioSeq = reader.uint32();
           continue;
         }
+        case 99: {
+          if (tag !== 792) {
+            break;
+          }
+
+          message.specialScreenId = reader.uint32();
+          continue;
+        }
+        case 100: {
+          if (tag !== 802) {
+            break;
+          }
+
+          message.displayType = reader.string();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -210046,6 +219346,8 @@ export const UserGallery: MessageFns<UserGallery> = {
       illust: isSet(object.illust) ? globalThis.String(object.illust) : "",
       seq: isSet(object.seq) ? globalThis.Number(object.seq) : 0,
       photoStudioSeq: isSet(object.photoStudioSeq) ? globalThis.Number(object.photoStudioSeq) : 0,
+      specialScreenId: isSet(object.specialScreenId) ? globalThis.Number(object.specialScreenId) : 0,
+      displayType: isSet(object.displayType) ? globalThis.String(object.displayType) : "",
     };
   },
 
@@ -210063,6 +219365,12 @@ export const UserGallery: MessageFns<UserGallery> = {
     if (message.photoStudioSeq !== 0) {
       obj.photoStudioSeq = Math.round(message.photoStudioSeq);
     }
+    if (message.specialScreenId !== 0) {
+      obj.specialScreenId = Math.round(message.specialScreenId);
+    }
+    if (message.displayType !== "") {
+      obj.displayType = message.displayType;
+    }
     return obj;
   },
 
@@ -210075,6 +219383,8 @@ export const UserGallery: MessageFns<UserGallery> = {
     message.illust = object.illust ?? "";
     message.seq = object.seq ?? 0;
     message.photoStudioSeq = object.photoStudioSeq ?? 0;
+    message.specialScreenId = object.specialScreenId ?? 0;
+    message.displayType = object.displayType ?? "";
     return message;
   },
 };
@@ -210645,6 +219955,162 @@ export const UserGamedata: MessageFns<UserGamedata> = {
     message.publishStageFriendRankingFlg = object.publishStageFriendRankingFlg ?? false;
     message.publishCharacterRankFlg = object.publishCharacterRankFlg ?? false;
     message.loginDays = object.loginDays ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserGarupaPass(): UserGarupaPass {
+  return { userId: "0", createAt: "0", expiredAt: "0", paymentCount: 0, reward8: 0, reward18: 0, reward28: 0 };
+}
+
+export const UserGarupaPass: MessageFns<UserGarupaPass> = {
+  encode(message: UserGarupaPass, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.createAt !== "0") {
+      writer.uint32(16).uint64(message.createAt);
+    }
+    if (message.expiredAt !== "0") {
+      writer.uint32(24).uint64(message.expiredAt);
+    }
+    if (message.paymentCount !== 0) {
+      writer.uint32(32).uint32(message.paymentCount);
+    }
+    if (message.reward8 !== 0) {
+      writer.uint32(40).uint32(message.reward8);
+    }
+    if (message.reward18 !== 0) {
+      writer.uint32(48).uint32(message.reward18);
+    }
+    if (message.reward28 !== 0) {
+      writer.uint32(56).uint32(message.reward28);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserGarupaPass {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserGarupaPass();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.createAt = reader.uint64().toString();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.expiredAt = reader.uint64().toString();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.paymentCount = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.reward8 = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.reward18 = reader.uint32();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.reward28 = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserGarupaPass {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      createAt: isSet(object.createAt) ? globalThis.String(object.createAt) : "0",
+      expiredAt: isSet(object.expiredAt) ? globalThis.String(object.expiredAt) : "0",
+      paymentCount: isSet(object.paymentCount) ? globalThis.Number(object.paymentCount) : 0,
+      reward8: isSet(object.reward8) ? globalThis.Number(object.reward8) : 0,
+      reward18: isSet(object.reward18) ? globalThis.Number(object.reward18) : 0,
+      reward28: isSet(object.reward28) ? globalThis.Number(object.reward28) : 0,
+    };
+  },
+
+  toJSON(message: UserGarupaPass): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.createAt !== "0") {
+      obj.createAt = message.createAt;
+    }
+    if (message.expiredAt !== "0") {
+      obj.expiredAt = message.expiredAt;
+    }
+    if (message.paymentCount !== 0) {
+      obj.paymentCount = Math.round(message.paymentCount);
+    }
+    if (message.reward8 !== 0) {
+      obj.reward8 = Math.round(message.reward8);
+    }
+    if (message.reward18 !== 0) {
+      obj.reward18 = Math.round(message.reward18);
+    }
+    if (message.reward28 !== 0) {
+      obj.reward28 = Math.round(message.reward28);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserGarupaPass>, I>>(base?: I): UserGarupaPass {
+    return UserGarupaPass.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserGarupaPass>, I>>(object: I): UserGarupaPass {
+    const message = createBaseUserGarupaPass();
+    message.userId = object.userId ?? "0";
+    message.createAt = object.createAt ?? "0";
+    message.expiredAt = object.expiredAt ?? "0";
+    message.paymentCount = object.paymentCount ?? 0;
+    message.reward8 = object.reward8 ?? 0;
+    message.reward18 = object.reward18 ?? 0;
+    message.reward28 = object.reward28 ?? 0;
     return message;
   },
 };
@@ -212173,64 +221639,6 @@ export const UserHighScoreRating: MessageFns<UserHighScoreRating> = {
       (object.userMyGOScoreMusicList !== undefined && object.userMyGOScoreMusicList !== null)
         ? UserHighScoreMusicRatingList.fromPartial(object.userMyGOScoreMusicList)
         : undefined;
-    return message;
-  },
-};
-
-function createBaseUserHistoryPageResponse(): UserHistoryPageResponse {
-  return { requestParam: "" };
-}
-
-export const UserHistoryPageResponse: MessageFns<UserHistoryPageResponse> = {
-  encode(message: UserHistoryPageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.requestParam !== "") {
-      writer.uint32(10).string(message.requestParam);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UserHistoryPageResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUserHistoryPageResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.requestParam = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): UserHistoryPageResponse {
-    return { requestParam: isSet(object.requestParam) ? globalThis.String(object.requestParam) : "" };
-  },
-
-  toJSON(message: UserHistoryPageResponse): unknown {
-    const obj: any = {};
-    if (message.requestParam !== "") {
-      obj.requestParam = message.requestParam;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserHistoryPageResponse>, I>>(base?: I): UserHistoryPageResponse {
-    return UserHistoryPageResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserHistoryPageResponse>, I>>(object: I): UserHistoryPageResponse {
-    const message = createBaseUserHistoryPageResponse();
-    message.requestParam = object.requestParam ?? "";
     return message;
   },
 };
@@ -216035,6 +225443,691 @@ export const UserLiveBoostUseFull: MessageFns<UserLiveBoostUseFull> = {
   },
 };
 
+function createBaseUserLiveExchanges(): UserLiveExchanges {
+  return {
+    feverStoreId: "0",
+    type: 0,
+    status: 0,
+    productName: "",
+    description: "",
+    label: "",
+    purchaseLimit: 0,
+    amount: 0,
+    costPrice: 0,
+  };
+}
+
+export const UserLiveExchanges: MessageFns<UserLiveExchanges> = {
+  encode(message: UserLiveExchanges, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.feverStoreId !== "0") {
+      writer.uint32(8).uint64(message.feverStoreId);
+    }
+    if (message.type !== 0) {
+      writer.uint32(16).uint32(message.type);
+    }
+    if (message.status !== 0) {
+      writer.uint32(24).uint32(message.status);
+    }
+    if (message.productName !== "") {
+      writer.uint32(34).string(message.productName);
+    }
+    if (message.description !== "") {
+      writer.uint32(42).string(message.description);
+    }
+    if (message.label !== "") {
+      writer.uint32(50).string(message.label);
+    }
+    if (message.purchaseLimit !== 0) {
+      writer.uint32(56).uint32(message.purchaseLimit);
+    }
+    if (message.amount !== 0) {
+      writer.uint32(64).uint32(message.amount);
+    }
+    if (message.costPrice !== 0) {
+      writer.uint32(72).uint32(message.costPrice);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveExchanges {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveExchanges();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.feverStoreId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.type = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.status = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.productName = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.label = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.purchaseLimit = reader.uint32();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.amount = reader.uint32();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.costPrice = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveExchanges {
+    return {
+      feverStoreId: isSet(object.feverStoreId) ? globalThis.String(object.feverStoreId) : "0",
+      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
+      status: isSet(object.status) ? globalThis.Number(object.status) : 0,
+      productName: isSet(object.productName)
+        ? globalThis.String(object.productName)
+        : isSet(object.product_name)
+        ? globalThis.String(object.product_name)
+        : "",
+      description: isSet(object.description) ? globalThis.String(object.description) : "",
+      label: isSet(object.label) ? globalThis.String(object.label) : "",
+      purchaseLimit: isSet(object.purchaseLimit)
+        ? globalThis.Number(object.purchaseLimit)
+        : isSet(object.purchase_limit)
+        ? globalThis.Number(object.purchase_limit)
+        : 0,
+      amount: isSet(object.amount) ? globalThis.Number(object.amount) : 0,
+      costPrice: isSet(object.costPrice)
+        ? globalThis.Number(object.costPrice)
+        : isSet(object.cost_price)
+        ? globalThis.Number(object.cost_price)
+        : 0,
+    };
+  },
+
+  toJSON(message: UserLiveExchanges): unknown {
+    const obj: any = {};
+    if (message.feverStoreId !== "0") {
+      obj.feverStoreId = message.feverStoreId;
+    }
+    if (message.type !== 0) {
+      obj.type = Math.round(message.type);
+    }
+    if (message.status !== 0) {
+      obj.status = Math.round(message.status);
+    }
+    if (message.productName !== "") {
+      obj.productName = message.productName;
+    }
+    if (message.description !== "") {
+      obj.description = message.description;
+    }
+    if (message.label !== "") {
+      obj.label = message.label;
+    }
+    if (message.purchaseLimit !== 0) {
+      obj.purchaseLimit = Math.round(message.purchaseLimit);
+    }
+    if (message.amount !== 0) {
+      obj.amount = Math.round(message.amount);
+    }
+    if (message.costPrice !== 0) {
+      obj.costPrice = Math.round(message.costPrice);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveExchanges>, I>>(base?: I): UserLiveExchanges {
+    return UserLiveExchanges.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveExchanges>, I>>(object: I): UserLiveExchanges {
+    const message = createBaseUserLiveExchanges();
+    message.feverStoreId = object.feverStoreId ?? "0";
+    message.type = object.type ?? 0;
+    message.status = object.status ?? 0;
+    message.productName = object.productName ?? "";
+    message.description = object.description ?? "";
+    message.label = object.label ?? "";
+    message.purchaseLimit = object.purchaseLimit ?? 0;
+    message.amount = object.amount ?? 0;
+    message.costPrice = object.costPrice ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserLiveFeverCount(): UserLiveFeverCount {
+  return {
+    userId: "0",
+    count: 0,
+    inActivity: false,
+    useCount: 0,
+    limitCount: 0,
+    reachLimit: false,
+    eventPoint: "0",
+    lastUse: false,
+  };
+}
+
+export const UserLiveFeverCount: MessageFns<UserLiveFeverCount> = {
+  encode(message: UserLiveFeverCount, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.count !== 0) {
+      writer.uint32(16).uint32(message.count);
+    }
+    if (message.inActivity !== false) {
+      writer.uint32(24).bool(message.inActivity);
+    }
+    if (message.useCount !== 0) {
+      writer.uint32(32).uint32(message.useCount);
+    }
+    if (message.limitCount !== 0) {
+      writer.uint32(40).uint32(message.limitCount);
+    }
+    if (message.reachLimit !== false) {
+      writer.uint32(48).bool(message.reachLimit);
+    }
+    if (message.eventPoint !== "0") {
+      writer.uint32(56).uint64(message.eventPoint);
+    }
+    if (message.lastUse !== false) {
+      writer.uint32(64).bool(message.lastUse);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveFeverCount {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveFeverCount();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.count = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.inActivity = reader.bool();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.useCount = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.limitCount = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.reachLimit = reader.bool();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.eventPoint = reader.uint64().toString();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.lastUse = reader.bool();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveFeverCount {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      count: isSet(object.count) ? globalThis.Number(object.count) : 0,
+      inActivity: isSet(object.inActivity) ? globalThis.Boolean(object.inActivity) : false,
+      useCount: isSet(object.useCount) ? globalThis.Number(object.useCount) : 0,
+      limitCount: isSet(object.limitCount) ? globalThis.Number(object.limitCount) : 0,
+      reachLimit: isSet(object.reachLimit) ? globalThis.Boolean(object.reachLimit) : false,
+      eventPoint: isSet(object.eventPoint) ? globalThis.String(object.eventPoint) : "0",
+      lastUse: isSet(object.lastUse) ? globalThis.Boolean(object.lastUse) : false,
+    };
+  },
+
+  toJSON(message: UserLiveFeverCount): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.count !== 0) {
+      obj.count = Math.round(message.count);
+    }
+    if (message.inActivity !== false) {
+      obj.inActivity = message.inActivity;
+    }
+    if (message.useCount !== 0) {
+      obj.useCount = Math.round(message.useCount);
+    }
+    if (message.limitCount !== 0) {
+      obj.limitCount = Math.round(message.limitCount);
+    }
+    if (message.reachLimit !== false) {
+      obj.reachLimit = message.reachLimit;
+    }
+    if (message.eventPoint !== "0") {
+      obj.eventPoint = message.eventPoint;
+    }
+    if (message.lastUse !== false) {
+      obj.lastUse = message.lastUse;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveFeverCount>, I>>(base?: I): UserLiveFeverCount {
+    return UserLiveFeverCount.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveFeverCount>, I>>(object: I): UserLiveFeverCount {
+    const message = createBaseUserLiveFeverCount();
+    message.userId = object.userId ?? "0";
+    message.count = object.count ?? 0;
+    message.inActivity = object.inActivity ?? false;
+    message.useCount = object.useCount ?? 0;
+    message.limitCount = object.limitCount ?? 0;
+    message.reachLimit = object.reachLimit ?? false;
+    message.eventPoint = object.eventPoint ?? "0";
+    message.lastUse = object.lastUse ?? false;
+    return message;
+  },
+};
+
+function createBaseUserLiveFeverData(): UserLiveFeverData {
+  return { userId: "0", liveFeverId: 0, rewardCount: 0 };
+}
+
+export const UserLiveFeverData: MessageFns<UserLiveFeverData> = {
+  encode(message: UserLiveFeverData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(16).uint32(message.liveFeverId);
+    }
+    if (message.rewardCount !== 0) {
+      writer.uint32(24).uint32(message.rewardCount);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveFeverData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveFeverData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.rewardCount = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveFeverData {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
+      rewardCount: isSet(object.rewardCount) ? globalThis.Number(object.rewardCount) : 0,
+    };
+  },
+
+  toJSON(message: UserLiveFeverData): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
+    if (message.rewardCount !== 0) {
+      obj.rewardCount = Math.round(message.rewardCount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveFeverData>, I>>(base?: I): UserLiveFeverData {
+    return UserLiveFeverData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveFeverData>, I>>(object: I): UserLiveFeverData {
+    const message = createBaseUserLiveFeverData();
+    message.userId = object.userId ?? "0";
+    message.liveFeverId = object.liveFeverId ?? 0;
+    message.rewardCount = object.rewardCount ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserLiveFeverExchangesList(): UserLiveFeverExchangesList {
+  return { entries: [] };
+}
+
+export const UserLiveFeverExchangesList: MessageFns<UserLiveFeverExchangesList> = {
+  encode(message: UserLiveFeverExchangesList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserFeverStoreProduct.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveFeverExchangesList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveFeverExchangesList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserFeverStoreProduct.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveFeverExchangesList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserFeverStoreProduct.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserLiveFeverExchangesList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserFeverStoreProduct.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveFeverExchangesList>, I>>(base?: I): UserLiveFeverExchangesList {
+    return UserLiveFeverExchangesList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveFeverExchangesList>, I>>(object: I): UserLiveFeverExchangesList {
+    const message = createBaseUserLiveFeverExchangesList();
+    message.entries = object.entries?.map((e) => UserFeverStoreProduct.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUserLiveFeverExchangesResponse(): UserLiveFeverExchangesResponse {
+  return { success: false, message: "" };
+}
+
+export const UserLiveFeverExchangesResponse: MessageFns<UserLiveFeverExchangesResponse> = {
+  encode(message: UserLiveFeverExchangesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.success !== false) {
+      writer.uint32(8).bool(message.success);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveFeverExchangesResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveFeverExchangesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.success = reader.bool();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveFeverExchangesResponse {
+    return {
+      success: isSet(object.success) ? globalThis.Boolean(object.success) : false,
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
+    };
+  },
+
+  toJSON(message: UserLiveFeverExchangesResponse): unknown {
+    const obj: any = {};
+    if (message.success !== false) {
+      obj.success = message.success;
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveFeverExchangesResponse>, I>>(base?: I): UserLiveFeverExchangesResponse {
+    return UserLiveFeverExchangesResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveFeverExchangesResponse>, I>>(
+    object: I,
+  ): UserLiveFeverExchangesResponse {
+    const message = createBaseUserLiveFeverExchangesResponse();
+    message.success = object.success ?? false;
+    message.message = object.message ?? "";
+    return message;
+  },
+};
+
+function createBaseUserLiveFeverStore(): UserLiveFeverStore {
+  return { entries: [] };
+}
+
+export const UserLiveFeverStore: MessageFns<UserLiveFeverStore> = {
+  encode(message: UserLiveFeverStore, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserFeverStoreProduct.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLiveFeverStore {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLiveFeverStore();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserFeverStoreProduct.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLiveFeverStore {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserFeverStoreProduct.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserLiveFeverStore): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserFeverStoreProduct.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLiveFeverStore>, I>>(base?: I): UserLiveFeverStore {
+    return UserLiveFeverStore.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLiveFeverStore>, I>>(object: I): UserLiveFeverStore {
+    const message = createBaseUserLiveFeverStore();
+    message.entries = object.entries?.map((e) => UserFeverStoreProduct.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 function createBaseUserLiveTryEventLiveClearResponse(): UserLiveTryEventLiveClearResponse {
   return {
     basePoint: 0,
@@ -217160,6 +227253,187 @@ export const UserLiveTryEventTopResponse: MessageFns<UserLiveTryEventTopResponse
         ? UserLiveTryEventMissionProgress.fromPartial(object.userLiveTryEventMissionProgress)
         : undefined;
     message.isFirstTransition = object.isFirstTransition ?? false;
+    return message;
+  },
+};
+
+function createBaseUserLogin(): UserLogin {
+  return {
+    bid: "",
+    accessKey: "",
+    platform: "",
+    deviceModel: "",
+    operatingSystem: "",
+    clientVersion: "",
+    udid: undefined,
+    clientPackage: "",
+  };
+}
+
+export const UserLogin: MessageFns<UserLogin> = {
+  encode(message: UserLogin, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.bid !== "") {
+      writer.uint32(10).string(message.bid);
+    }
+    if (message.accessKey !== "") {
+      writer.uint32(18).string(message.accessKey);
+    }
+    if (message.platform !== "") {
+      writer.uint32(26).string(message.platform);
+    }
+    if (message.deviceModel !== "") {
+      writer.uint32(34).string(message.deviceModel);
+    }
+    if (message.operatingSystem !== "") {
+      writer.uint32(42).string(message.operatingSystem);
+    }
+    if (message.clientVersion !== "") {
+      writer.uint32(50).string(message.clientVersion);
+    }
+    if (message.udid !== undefined) {
+      UserUdid.encode(message.udid, writer.uint32(58).fork()).join();
+    }
+    if (message.clientPackage !== "") {
+      writer.uint32(66).string(message.clientPackage);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserLogin {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserLogin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.bid = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.accessKey = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.platform = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.deviceModel = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.operatingSystem = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.clientVersion = reader.string();
+          continue;
+        }
+        case 7: {
+          if (tag !== 58) {
+            break;
+          }
+
+          message.udid = UserUdid.decode(reader, reader.uint32());
+          continue;
+        }
+        case 8: {
+          if (tag !== 66) {
+            break;
+          }
+
+          message.clientPackage = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserLogin {
+    return {
+      bid: isSet(object.bid) ? globalThis.String(object.bid) : "",
+      accessKey: isSet(object.accessKey) ? globalThis.String(object.accessKey) : "",
+      platform: isSet(object.platform) ? globalThis.String(object.platform) : "",
+      deviceModel: isSet(object.deviceModel) ? globalThis.String(object.deviceModel) : "",
+      operatingSystem: isSet(object.operatingSystem) ? globalThis.String(object.operatingSystem) : "",
+      clientVersion: isSet(object.clientVersion) ? globalThis.String(object.clientVersion) : "",
+      udid: isSet(object.udid) ? UserUdid.fromJSON(object.udid) : undefined,
+      clientPackage: isSet(object.clientPackage) ? globalThis.String(object.clientPackage) : "",
+    };
+  },
+
+  toJSON(message: UserLogin): unknown {
+    const obj: any = {};
+    if (message.bid !== "") {
+      obj.bid = message.bid;
+    }
+    if (message.accessKey !== "") {
+      obj.accessKey = message.accessKey;
+    }
+    if (message.platform !== "") {
+      obj.platform = message.platform;
+    }
+    if (message.deviceModel !== "") {
+      obj.deviceModel = message.deviceModel;
+    }
+    if (message.operatingSystem !== "") {
+      obj.operatingSystem = message.operatingSystem;
+    }
+    if (message.clientVersion !== "") {
+      obj.clientVersion = message.clientVersion;
+    }
+    if (message.udid !== undefined) {
+      obj.udid = UserUdid.toJSON(message.udid);
+    }
+    if (message.clientPackage !== "") {
+      obj.clientPackage = message.clientPackage;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserLogin>, I>>(base?: I): UserLogin {
+    return UserLogin.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserLogin>, I>>(object: I): UserLogin {
+    const message = createBaseUserLogin();
+    message.bid = object.bid ?? "";
+    message.accessKey = object.accessKey ?? "";
+    message.platform = object.platform ?? "";
+    message.deviceModel = object.deviceModel ?? "";
+    message.operatingSystem = object.operatingSystem ?? "";
+    message.clientVersion = object.clientVersion ?? "";
+    message.udid = (object.udid !== undefined && object.udid !== null) ? UserUdid.fromPartial(object.udid) : undefined;
+    message.clientPackage = object.clientPackage ?? "";
     return message;
   },
 };
@@ -220977,6 +231251,7 @@ function createBaseUserMedleyPreProcessRequest(): UserMedleyPreProcessRequest {
     livePlayMode: "",
     cutInType: "",
     isAutoLive: false,
+    liveFeverUseCount: 0,
   };
 }
 
@@ -221023,6 +231298,9 @@ export const UserMedleyPreProcessRequest: MessageFns<UserMedleyPreProcessRequest
     }
     if (message.isAutoLive !== false) {
       writer.uint32(96).bool(message.isAutoLive);
+    }
+    if (message.liveFeverUseCount !== 0) {
+      writer.uint32(8000).uint32(message.liveFeverUseCount);
     }
     return writer;
   },
@@ -221131,6 +231409,14 @@ export const UserMedleyPreProcessRequest: MessageFns<UserMedleyPreProcessRequest
           message.isAutoLive = reader.bool();
           continue;
         }
+        case 1000: {
+          if (tag !== 8000) {
+            break;
+          }
+
+          message.liveFeverUseCount = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -221177,6 +231463,7 @@ export const UserMedleyPreProcessRequest: MessageFns<UserMedleyPreProcessRequest
       livePlayMode: isSet(object.livePlayMode) ? globalThis.String(object.livePlayMode) : "",
       cutInType: isSet(object.cutInType) ? globalThis.String(object.cutInType) : "",
       isAutoLive: isSet(object.isAutoLive) ? globalThis.Boolean(object.isAutoLive) : false,
+      liveFeverUseCount: isSet(object.liveFeverUseCount) ? globalThis.Number(object.liveFeverUseCount) : 0,
     };
   },
 
@@ -221236,6 +231523,9 @@ export const UserMedleyPreProcessRequest: MessageFns<UserMedleyPreProcessRequest
     if (message.isAutoLive !== false) {
       obj.isAutoLive = message.isAutoLive;
     }
+    if (message.liveFeverUseCount !== 0) {
+      obj.liveFeverUseCount = Math.round(message.liveFeverUseCount);
+    }
     return obj;
   },
 
@@ -221282,6 +231572,7 @@ export const UserMedleyPreProcessRequest: MessageFns<UserMedleyPreProcessRequest
     message.livePlayMode = object.livePlayMode ?? "";
     message.cutInType = object.cutInType ?? "";
     message.isAutoLive = object.isAutoLive ?? false;
+    message.liveFeverUseCount = object.liveFeverUseCount ?? 0;
     return message;
   },
 };
@@ -224573,7 +234864,7 @@ export const UserMultiLiveCountRewardList: MessageFns<UserMultiLiveCountRewardLi
 };
 
 function createBaseUserMultiRoomFriendRecruitment(): UserMultiRoomFriendRecruitment {
-  return { userId: "0", roomId: "", liveType: "", userFriend: undefined };
+  return { userId: "0", roomId: "", liveType: "", userFriend: undefined, customProperties: [] };
 }
 
 export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecruitment> = {
@@ -224589,6 +234880,9 @@ export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecru
     }
     if (message.userFriend !== undefined) {
       UserFriend.encode(message.userFriend, writer.uint32(34).fork()).join();
+    }
+    for (const v of message.customProperties) {
+      RoomCustomProperty.encode(v!, writer.uint32(79994).fork()).join();
     }
     return writer;
   },
@@ -224632,6 +234926,14 @@ export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecru
           message.userFriend = UserFriend.decode(reader, reader.uint32());
           continue;
         }
+        case 9999: {
+          if (tag !== 79994) {
+            break;
+          }
+
+          message.customProperties.push(RoomCustomProperty.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -224647,6 +234949,9 @@ export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecru
       roomId: isSet(object.roomId) ? globalThis.String(object.roomId) : "",
       liveType: isSet(object.liveType) ? globalThis.String(object.liveType) : "",
       userFriend: isSet(object.userFriend) ? UserFriend.fromJSON(object.userFriend) : undefined,
+      customProperties: globalThis.Array.isArray(object?.customProperties)
+        ? object.customProperties.map((e: any) => RoomCustomProperty.fromJSON(e))
+        : [],
     };
   },
 
@@ -224664,6 +234969,9 @@ export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecru
     if (message.userFriend !== undefined) {
       obj.userFriend = UserFriend.toJSON(message.userFriend);
     }
+    if (message.customProperties?.length) {
+      obj.customProperties = message.customProperties.map((e) => RoomCustomProperty.toJSON(e));
+    }
     return obj;
   },
 
@@ -224680,12 +234988,13 @@ export const UserMultiRoomFriendRecruitment: MessageFns<UserMultiRoomFriendRecru
     message.userFriend = (object.userFriend !== undefined && object.userFriend !== null)
       ? UserFriend.fromPartial(object.userFriend)
       : undefined;
+    message.customProperties = object.customProperties?.map((e) => RoomCustomProperty.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseUserMultiRoomFriendRecruitmentCreateRequest(): UserMultiRoomFriendRecruitmentCreateRequest {
-  return { roomId: "", liveType: "" };
+  return { roomId: "", liveType: "", customProperties: [] };
 }
 
 export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRoomFriendRecruitmentCreateRequest> = {
@@ -224698,6 +235007,9 @@ export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRo
     }
     if (message.liveType !== "") {
       writer.uint32(18).string(message.liveType);
+    }
+    for (const v of message.customProperties) {
+      RoomCustomProperty.encode(v!, writer.uint32(79994).fork()).join();
     }
     return writer;
   },
@@ -224725,6 +235037,14 @@ export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRo
           message.liveType = reader.string();
           continue;
         }
+        case 9999: {
+          if (tag !== 79994) {
+            break;
+          }
+
+          message.customProperties.push(RoomCustomProperty.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -224738,6 +235058,9 @@ export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRo
     return {
       roomId: isSet(object.roomId) ? globalThis.String(object.roomId) : "",
       liveType: isSet(object.liveType) ? globalThis.String(object.liveType) : "",
+      customProperties: globalThis.Array.isArray(object?.customProperties)
+        ? object.customProperties.map((e: any) => RoomCustomProperty.fromJSON(e))
+        : [],
     };
   },
 
@@ -224748,6 +235071,9 @@ export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRo
     }
     if (message.liveType !== "") {
       obj.liveType = message.liveType;
+    }
+    if (message.customProperties?.length) {
+      obj.customProperties = message.customProperties.map((e) => RoomCustomProperty.toJSON(e));
     }
     return obj;
   },
@@ -224763,6 +235089,7 @@ export const UserMultiRoomFriendRecruitmentCreateRequest: MessageFns<UserMultiRo
     const message = createBaseUserMultiRoomFriendRecruitmentCreateRequest();
     message.roomId = object.roomId ?? "";
     message.liveType = object.liveType ?? "";
+    message.customProperties = object.customProperties?.map((e) => RoomCustomProperty.fromPartial(e)) || [];
     return message;
   },
 };
@@ -225146,6 +235473,7 @@ function createBaseUserMultiRoomRequest(): UserMultiRoomRequest {
     cutInType: "",
     removeCnt: 0,
     lostConnectionFlg: false,
+    roomMemberStatus: [],
   };
 }
 
@@ -225245,6 +235573,9 @@ export const UserMultiRoomRequest: MessageFns<UserMultiRoomRequest> = {
     }
     if (message.lostConnectionFlg !== false) {
       writer.uint32(272).bool(message.lostConnectionFlg);
+    }
+    for (const v of message.roomMemberStatus) {
+      RoomMemberStatus.encode(v!, writer.uint32(802).fork()).join();
     }
     return writer;
   },
@@ -225514,6 +235845,14 @@ export const UserMultiRoomRequest: MessageFns<UserMultiRoomRequest> = {
           message.lostConnectionFlg = reader.bool();
           continue;
         }
+        case 100: {
+          if (tag !== 802) {
+            break;
+          }
+
+          message.roomMemberStatus.push(RoomMemberStatus.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -225564,6 +235903,9 @@ export const UserMultiRoomRequest: MessageFns<UserMultiRoomRequest> = {
       cutInType: isSet(object.cutInType) ? globalThis.String(object.cutInType) : "",
       removeCnt: isSet(object.removeCnt) ? globalThis.Number(object.removeCnt) : 0,
       lostConnectionFlg: isSet(object.lostConnectionFlg) ? globalThis.Boolean(object.lostConnectionFlg) : false,
+      roomMemberStatus: globalThis.Array.isArray(object?.roomMemberStatus)
+        ? object.roomMemberStatus.map((e: any) => RoomMemberStatus.fromJSON(e))
+        : [],
     };
   },
 
@@ -225662,6 +236004,9 @@ export const UserMultiRoomRequest: MessageFns<UserMultiRoomRequest> = {
     if (message.lostConnectionFlg !== false) {
       obj.lostConnectionFlg = message.lostConnectionFlg;
     }
+    if (message.roomMemberStatus?.length) {
+      obj.roomMemberStatus = message.roomMemberStatus.map((e) => RoomMemberStatus.toJSON(e));
+    }
     return obj;
   },
 
@@ -225706,6 +236051,7 @@ export const UserMultiRoomRequest: MessageFns<UserMultiRoomRequest> = {
     message.cutInType = object.cutInType ?? "";
     message.removeCnt = object.removeCnt ?? 0;
     message.lostConnectionFlg = object.lostConnectionFlg ?? false;
+    message.roomMemberStatus = object.roomMemberStatus?.map((e) => RoomMemberStatus.fromPartial(e)) || [];
     return message;
   },
 };
@@ -226452,6 +236798,7 @@ function createBaseUserMultiVersusLiveMusicResponse(): UserMultiVersusLiveMusicR
     livePoint: 0,
     userCharacterRankMap: undefined,
     grantCharacterRankRewardListMap: undefined,
+    liveFeverId: 0,
   };
 }
 
@@ -226534,6 +236881,9 @@ export const UserMultiVersusLiveMusicResponse: MessageFns<UserMultiVersusLiveMus
     }
     if (message.grantCharacterRankRewardListMap !== undefined) {
       UserCharacterRankRewardListMap.encode(message.grantCharacterRankRewardListMap, writer.uint32(210).fork()).join();
+    }
+    if (message.liveFeverId !== 0) {
+      writer.uint32(8184).uint32(message.liveFeverId);
     }
     return writer;
   },
@@ -226753,6 +237103,14 @@ export const UserMultiVersusLiveMusicResponse: MessageFns<UserMultiVersusLiveMus
           message.grantCharacterRankRewardListMap = UserCharacterRankRewardListMap.decode(reader, reader.uint32());
           continue;
         }
+        case 1023: {
+          if (tag !== 8184) {
+            break;
+          }
+
+          message.liveFeverId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -226812,6 +237170,7 @@ export const UserMultiVersusLiveMusicResponse: MessageFns<UserMultiVersusLiveMus
       grantCharacterRankRewardListMap: isSet(object.grantCharacterRankRewardListMap)
         ? UserCharacterRankRewardListMap.fromJSON(object.grantCharacterRankRewardListMap)
         : undefined,
+      liveFeverId: isSet(object.liveFeverId) ? globalThis.Number(object.liveFeverId) : 0,
     };
   },
 
@@ -226897,6 +237256,9 @@ export const UserMultiVersusLiveMusicResponse: MessageFns<UserMultiVersusLiveMus
         message.grantCharacterRankRewardListMap,
       );
     }
+    if (message.liveFeverId !== 0) {
+      obj.liveFeverId = Math.round(message.liveFeverId);
+    }
     return obj;
   },
 
@@ -226968,6 +237330,7 @@ export const UserMultiVersusLiveMusicResponse: MessageFns<UserMultiVersusLiveMus
       (object.grantCharacterRankRewardListMap !== undefined && object.grantCharacterRankRewardListMap !== null)
         ? UserCharacterRankRewardListMap.fromPartial(object.grantCharacterRankRewardListMap)
         : undefined;
+    message.liveFeverId = object.liveFeverId ?? 0;
     return message;
   },
 };
@@ -228913,6 +239276,7 @@ function createBaseUserMusicPreProcessRequest(): UserMusicPreProcessRequest {
     musicIdFavoriteListStateMap: {},
     livePlayMode: "",
     cutInType: "",
+    liveFeverUseCount: 0,
   };
 }
 
@@ -228952,6 +239316,9 @@ export const UserMusicPreProcessRequest: MessageFns<UserMusicPreProcessRequest> 
     }
     if (message.cutInType !== "") {
       writer.uint32(90).string(message.cutInType);
+    }
+    if (message.liveFeverUseCount !== 0) {
+      writer.uint32(8000).uint32(message.liveFeverUseCount);
     }
     return writer;
   },
@@ -229041,6 +239408,14 @@ export const UserMusicPreProcessRequest: MessageFns<UserMusicPreProcessRequest> 
           message.cutInType = reader.string();
           continue;
         }
+        case 1000: {
+          if (tag !== 8000) {
+            break;
+          }
+
+          message.liveFeverUseCount = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -229077,6 +239452,7 @@ export const UserMusicPreProcessRequest: MessageFns<UserMusicPreProcessRequest> 
         : {},
       livePlayMode: isSet(object.livePlayMode) ? globalThis.String(object.livePlayMode) : "",
       cutInType: isSet(object.cutInType) ? globalThis.String(object.cutInType) : "",
+      liveFeverUseCount: isSet(object.liveFeverUseCount) ? globalThis.Number(object.liveFeverUseCount) : 0,
     };
   },
 
@@ -229124,6 +239500,9 @@ export const UserMusicPreProcessRequest: MessageFns<UserMusicPreProcessRequest> 
     if (message.cutInType !== "") {
       obj.cutInType = message.cutInType;
     }
+    if (message.liveFeverUseCount !== 0) {
+      obj.liveFeverUseCount = Math.round(message.liveFeverUseCount);
+    }
     return obj;
   },
 
@@ -229159,6 +239538,7 @@ export const UserMusicPreProcessRequest: MessageFns<UserMusicPreProcessRequest> 
       );
     message.livePlayMode = object.livePlayMode ?? "";
     message.cutInType = object.cutInType ?? "";
+    message.liveFeverUseCount = object.liveFeverUseCount ?? 0;
     return message;
   },
 };
@@ -234809,7 +245189,17 @@ export const UserPostRequest: MessageFns<UserPostRequest> = {
 };
 
 function createBaseUserPostResponse(): UserPostResponse {
-  return { userId: "0", hash: "", userName: "", clientVersion: "", platform: "", deviceModel: "", operatingSystem: "" };
+  return {
+    userId: "0",
+    hash: "",
+    userName: "",
+    clientVersion: "",
+    platform: "",
+    deviceModel: "",
+    operatingSystem: "",
+    loginStatus: "",
+    createAt: "",
+  };
 }
 
 export const UserPostResponse: MessageFns<UserPostResponse> = {
@@ -234834,6 +245224,12 @@ export const UserPostResponse: MessageFns<UserPostResponse> = {
     }
     if (message.operatingSystem !== "") {
       writer.uint32(58).string(message.operatingSystem);
+    }
+    if (message.loginStatus !== "") {
+      writer.uint32(122).string(message.loginStatus);
+    }
+    if (message.createAt !== "") {
+      writer.uint32(130).string(message.createAt);
     }
     return writer;
   },
@@ -234901,6 +245297,22 @@ export const UserPostResponse: MessageFns<UserPostResponse> = {
           message.operatingSystem = reader.string();
           continue;
         }
+        case 15: {
+          if (tag !== 122) {
+            break;
+          }
+
+          message.loginStatus = reader.string();
+          continue;
+        }
+        case 16: {
+          if (tag !== 130) {
+            break;
+          }
+
+          message.createAt = reader.string();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -234919,6 +245331,8 @@ export const UserPostResponse: MessageFns<UserPostResponse> = {
       platform: isSet(object.platform) ? globalThis.String(object.platform) : "",
       deviceModel: isSet(object.deviceModel) ? globalThis.String(object.deviceModel) : "",
       operatingSystem: isSet(object.operatingSystem) ? globalThis.String(object.operatingSystem) : "",
+      loginStatus: isSet(object.loginStatus) ? globalThis.String(object.loginStatus) : "",
+      createAt: isSet(object.createAt) ? globalThis.String(object.createAt) : "",
     };
   },
 
@@ -234945,6 +245359,12 @@ export const UserPostResponse: MessageFns<UserPostResponse> = {
     if (message.operatingSystem !== "") {
       obj.operatingSystem = message.operatingSystem;
     }
+    if (message.loginStatus !== "") {
+      obj.loginStatus = message.loginStatus;
+    }
+    if (message.createAt !== "") {
+      obj.createAt = message.createAt;
+    }
     return obj;
   },
 
@@ -234960,6 +245380,8 @@ export const UserPostResponse: MessageFns<UserPostResponse> = {
     message.platform = object.platform ?? "";
     message.deviceModel = object.deviceModel ?? "";
     message.operatingSystem = object.operatingSystem ?? "";
+    message.loginStatus = object.loginStatus ?? "";
+    message.createAt = object.createAt ?? "";
     return message;
   },
 };
@@ -235825,6 +246247,7 @@ function createBaseUserProfile(): UserProfile {
     userMusicClearInfoMap: undefined,
     userCharacterRankMap: undefined,
     searchSuccessFlg: false,
+    specialScreenSetting: undefined,
   };
 }
 
@@ -235925,6 +246348,9 @@ export const UserProfile: MessageFns<UserProfile> = {
     }
     if (message.searchSuccessFlg !== false) {
       writer.uint32(1600).bool(message.searchSuccessFlg);
+    }
+    if (message.specialScreenSetting !== undefined) {
+      UserSpecialScreenSetting.encode(message.specialScreenSetting, writer.uint32(7202).fork()).join();
     }
     return writer;
   },
@@ -236192,6 +246618,14 @@ export const UserProfile: MessageFns<UserProfile> = {
           message.searchSuccessFlg = reader.bool();
           continue;
         }
+        case 900: {
+          if (tag !== 7202) {
+            break;
+          }
+
+          message.specialScreenSetting = UserSpecialScreenSetting.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -236269,6 +246703,9 @@ export const UserProfile: MessageFns<UserProfile> = {
         ? UserCharacterRankMap.fromJSON(object.userCharacterRankMap)
         : undefined,
       searchSuccessFlg: isSet(object.searchSuccessFlg) ? globalThis.Boolean(object.searchSuccessFlg) : false,
+      specialScreenSetting: isSet(object.specialScreenSetting)
+        ? UserSpecialScreenSetting.fromJSON(object.specialScreenSetting)
+        : undefined,
     };
   },
 
@@ -236372,6 +246809,9 @@ export const UserProfile: MessageFns<UserProfile> = {
     if (message.searchSuccessFlg !== false) {
       obj.searchSuccessFlg = message.searchSuccessFlg;
     }
+    if (message.specialScreenSetting !== undefined) {
+      obj.specialScreenSetting = UserSpecialScreenSetting.toJSON(message.specialScreenSetting);
+    }
     return obj;
   },
 
@@ -236442,12 +246882,15 @@ export const UserProfile: MessageFns<UserProfile> = {
       ? UserCharacterRankMap.fromPartial(object.userCharacterRankMap)
       : undefined;
     message.searchSuccessFlg = object.searchSuccessFlg ?? false;
+    message.specialScreenSetting = (object.specialScreenSetting !== undefined && object.specialScreenSetting !== null)
+      ? UserSpecialScreenSetting.fromPartial(object.specialScreenSetting)
+      : undefined;
     return message;
   },
 };
 
 function createBaseUserProfileDegree(): UserProfileDegree {
-  return { userId: "0", profileDegreeType: "", degreeId: 0 };
+  return { userId: "0", profileDegreeType: "", degreeId: 0, effectDegreeId: 0 };
 }
 
 export const UserProfileDegree: MessageFns<UserProfileDegree> = {
@@ -236460,6 +246903,9 @@ export const UserProfileDegree: MessageFns<UserProfileDegree> = {
     }
     if (message.degreeId !== 0) {
       writer.uint32(24).uint32(message.degreeId);
+    }
+    if (message.effectDegreeId !== 0) {
+      writer.uint32(32).uint32(message.effectDegreeId);
     }
     return writer;
   },
@@ -236495,6 +246941,14 @@ export const UserProfileDegree: MessageFns<UserProfileDegree> = {
           message.degreeId = reader.uint32();
           continue;
         }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.effectDegreeId = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -236509,6 +246963,7 @@ export const UserProfileDegree: MessageFns<UserProfileDegree> = {
       userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
       profileDegreeType: isSet(object.profileDegreeType) ? globalThis.String(object.profileDegreeType) : "",
       degreeId: isSet(object.degreeId) ? globalThis.Number(object.degreeId) : 0,
+      effectDegreeId: isSet(object.effectDegreeId) ? globalThis.Number(object.effectDegreeId) : 0,
     };
   },
 
@@ -236523,6 +246978,9 @@ export const UserProfileDegree: MessageFns<UserProfileDegree> = {
     if (message.degreeId !== 0) {
       obj.degreeId = Math.round(message.degreeId);
     }
+    if (message.effectDegreeId !== 0) {
+      obj.effectDegreeId = Math.round(message.effectDegreeId);
+    }
     return obj;
   },
 
@@ -236534,6 +246992,7 @@ export const UserProfileDegree: MessageFns<UserProfileDegree> = {
     message.userId = object.userId ?? "0";
     message.profileDegreeType = object.profileDegreeType ?? "";
     message.degreeId = object.degreeId ?? 0;
+    message.effectDegreeId = object.effectDegreeId ?? 0;
     return message;
   },
 };
@@ -236706,7 +247165,7 @@ export const UserProfileDegreeMap_EntriesEntry: MessageFns<UserProfileDegreeMap_
 };
 
 function createBaseUserProfileDegreeRequest(): UserProfileDegreeRequest {
-  return { degreeIdFirst: 0, degreeIdSecond: 0 };
+  return { degreeIdFirst: 0, degreeIdSecond: 0, effectIdFirst: 0, effectIdSecond: 0 };
 }
 
 export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
@@ -236716,6 +247175,12 @@ export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
     }
     if (message.degreeIdSecond !== 0) {
       writer.uint32(16).uint32(message.degreeIdSecond);
+    }
+    if (message.effectIdFirst !== 0) {
+      writer.uint32(24).uint32(message.effectIdFirst);
+    }
+    if (message.effectIdSecond !== 0) {
+      writer.uint32(32).uint32(message.effectIdSecond);
     }
     return writer;
   },
@@ -236743,6 +247208,22 @@ export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
           message.degreeIdSecond = reader.uint32();
           continue;
         }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.effectIdFirst = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.effectIdSecond = reader.uint32();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -236756,6 +247237,8 @@ export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
     return {
       degreeIdFirst: isSet(object.degreeIdFirst) ? globalThis.Number(object.degreeIdFirst) : 0,
       degreeIdSecond: isSet(object.degreeIdSecond) ? globalThis.Number(object.degreeIdSecond) : 0,
+      effectIdFirst: isSet(object.effectIdFirst) ? globalThis.Number(object.effectIdFirst) : 0,
+      effectIdSecond: isSet(object.effectIdSecond) ? globalThis.Number(object.effectIdSecond) : 0,
     };
   },
 
@@ -236767,6 +247250,12 @@ export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
     if (message.degreeIdSecond !== 0) {
       obj.degreeIdSecond = Math.round(message.degreeIdSecond);
     }
+    if (message.effectIdFirst !== 0) {
+      obj.effectIdFirst = Math.round(message.effectIdFirst);
+    }
+    if (message.effectIdSecond !== 0) {
+      obj.effectIdSecond = Math.round(message.effectIdSecond);
+    }
     return obj;
   },
 
@@ -236777,6 +247266,8 @@ export const UserProfileDegreeRequest: MessageFns<UserProfileDegreeRequest> = {
     const message = createBaseUserProfileDegreeRequest();
     message.degreeIdFirst = object.degreeIdFirst ?? 0;
     message.degreeIdSecond = object.degreeIdSecond ?? 0;
+    message.effectIdFirst = object.effectIdFirst ?? 0;
+    message.effectIdSecond = object.effectIdSecond ?? 0;
     return message;
   },
 };
@@ -239910,6 +250401,98 @@ export const UserQualifyTournamentTopResponse: MessageFns<UserQualifyTournamentT
       : undefined;
     message.individualQualifier = object.individualQualifier ?? false;
     message.teamQualifier = object.teamQualifier ?? false;
+    return message;
+  },
+};
+
+function createBaseUserQuestionResponse(): UserQuestionResponse {
+  return { code: "", message: "", url: "" };
+}
+
+export const UserQuestionResponse: MessageFns<UserQuestionResponse> = {
+  encode(message: UserQuestionResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.code !== "") {
+      writer.uint32(10).string(message.code);
+    }
+    if (message.message !== "") {
+      writer.uint32(18).string(message.message);
+    }
+    if (message.url !== "") {
+      writer.uint32(26).string(message.url);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserQuestionResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserQuestionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.code = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.message = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.url = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserQuestionResponse {
+    return {
+      code: isSet(object.code) ? globalThis.String(object.code) : "",
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
+    };
+  },
+
+  toJSON(message: UserQuestionResponse): unknown {
+    const obj: any = {};
+    if (message.code !== "") {
+      obj.code = message.code;
+    }
+    if (message.message !== "") {
+      obj.message = message.message;
+    }
+    if (message.url !== "") {
+      obj.url = message.url;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserQuestionResponse>, I>>(base?: I): UserQuestionResponse {
+    return UserQuestionResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserQuestionResponse>, I>>(object: I): UserQuestionResponse {
+    const message = createBaseUserQuestionResponse();
+    message.code = object.code ?? "";
+    message.message = object.message ?? "";
+    message.url = object.url ?? "";
     return message;
   },
 };
@@ -243693,6 +254276,204 @@ export const UserSpecialLotteryDrawResultMap_EntriesEntry: MessageFns<UserSpecia
   },
 };
 
+function createBaseUserSpecialScreenSetting(): UserSpecialScreenSetting {
+  return {
+    userId: "0",
+    profileUsing: false,
+    profileSpScreenId: 0,
+    decoUsing: false,
+    decoSpScreenId: 0,
+    enableDecoOffset: false,
+    decoOffsetX: 0,
+    decoOffsetY: 0,
+    decoScale: 0,
+  };
+}
+
+export const UserSpecialScreenSetting: MessageFns<UserSpecialScreenSetting> = {
+  encode(message: UserSpecialScreenSetting, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.profileUsing !== false) {
+      writer.uint32(16).bool(message.profileUsing);
+    }
+    if (message.profileSpScreenId !== 0) {
+      writer.uint32(24).uint32(message.profileSpScreenId);
+    }
+    if (message.decoUsing !== false) {
+      writer.uint32(32).bool(message.decoUsing);
+    }
+    if (message.decoSpScreenId !== 0) {
+      writer.uint32(40).uint32(message.decoSpScreenId);
+    }
+    if (message.enableDecoOffset !== false) {
+      writer.uint32(48).bool(message.enableDecoOffset);
+    }
+    if (message.decoOffsetX !== 0) {
+      writer.uint32(56).int32(message.decoOffsetX);
+    }
+    if (message.decoOffsetY !== 0) {
+      writer.uint32(64).int32(message.decoOffsetY);
+    }
+    if (message.decoScale !== 0) {
+      writer.uint32(77).float(message.decoScale);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserSpecialScreenSetting {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserSpecialScreenSetting();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.profileUsing = reader.bool();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.profileSpScreenId = reader.uint32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.decoUsing = reader.bool();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.decoSpScreenId = reader.uint32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 48) {
+            break;
+          }
+
+          message.enableDecoOffset = reader.bool();
+          continue;
+        }
+        case 7: {
+          if (tag !== 56) {
+            break;
+          }
+
+          message.decoOffsetX = reader.int32();
+          continue;
+        }
+        case 8: {
+          if (tag !== 64) {
+            break;
+          }
+
+          message.decoOffsetY = reader.int32();
+          continue;
+        }
+        case 9: {
+          if (tag !== 77) {
+            break;
+          }
+
+          message.decoScale = reader.float();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserSpecialScreenSetting {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      profileUsing: isSet(object.profileUsing) ? globalThis.Boolean(object.profileUsing) : false,
+      profileSpScreenId: isSet(object.profileSpScreenId) ? globalThis.Number(object.profileSpScreenId) : 0,
+      decoUsing: isSet(object.decoUsing) ? globalThis.Boolean(object.decoUsing) : false,
+      decoSpScreenId: isSet(object.decoSpScreenId) ? globalThis.Number(object.decoSpScreenId) : 0,
+      enableDecoOffset: isSet(object.enableDecoOffset) ? globalThis.Boolean(object.enableDecoOffset) : false,
+      decoOffsetX: isSet(object.decoOffsetX) ? globalThis.Number(object.decoOffsetX) : 0,
+      decoOffsetY: isSet(object.decoOffsetY) ? globalThis.Number(object.decoOffsetY) : 0,
+      decoScale: isSet(object.decoScale) ? globalThis.Number(object.decoScale) : 0,
+    };
+  },
+
+  toJSON(message: UserSpecialScreenSetting): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.profileUsing !== false) {
+      obj.profileUsing = message.profileUsing;
+    }
+    if (message.profileSpScreenId !== 0) {
+      obj.profileSpScreenId = Math.round(message.profileSpScreenId);
+    }
+    if (message.decoUsing !== false) {
+      obj.decoUsing = message.decoUsing;
+    }
+    if (message.decoSpScreenId !== 0) {
+      obj.decoSpScreenId = Math.round(message.decoSpScreenId);
+    }
+    if (message.enableDecoOffset !== false) {
+      obj.enableDecoOffset = message.enableDecoOffset;
+    }
+    if (message.decoOffsetX !== 0) {
+      obj.decoOffsetX = Math.round(message.decoOffsetX);
+    }
+    if (message.decoOffsetY !== 0) {
+      obj.decoOffsetY = Math.round(message.decoOffsetY);
+    }
+    if (message.decoScale !== 0) {
+      obj.decoScale = message.decoScale;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserSpecialScreenSetting>, I>>(base?: I): UserSpecialScreenSetting {
+    return UserSpecialScreenSetting.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserSpecialScreenSetting>, I>>(object: I): UserSpecialScreenSetting {
+    const message = createBaseUserSpecialScreenSetting();
+    message.userId = object.userId ?? "0";
+    message.profileUsing = object.profileUsing ?? false;
+    message.profileSpScreenId = object.profileSpScreenId ?? 0;
+    message.decoUsing = object.decoUsing ?? false;
+    message.decoSpScreenId = object.decoSpScreenId ?? 0;
+    message.enableDecoOffset = object.enableDecoOffset ?? false;
+    message.decoOffsetX = object.decoOffsetX ?? 0;
+    message.decoOffsetY = object.decoOffsetY ?? 0;
+    message.decoScale = object.decoScale ?? 0;
+    return message;
+  },
+};
+
 function createBaseUserStageChallenge(): UserStageChallenge {
   return { userId: "0", stageChallengeId: 0, seq: 0, totalAchievementCount: 0 };
 }
@@ -244461,7 +255242,6 @@ function createBaseUserStageChallengeMusicRequest(): UserStageChallengeMusicRequ
     deckMembers: [],
     livePlayMode: "",
     cutInType: "",
-    isAutoLive: false,
   };
 }
 
@@ -244545,9 +255325,6 @@ export const UserStageChallengeMusicRequest: MessageFns<UserStageChallengeMusicR
     }
     if (message.cutInType !== "") {
       writer.uint32(226).string(message.cutInType);
-    }
-    if (message.isAutoLive !== false) {
-      writer.uint32(232).bool(message.isAutoLive);
     }
     return writer;
   },
@@ -244779,14 +255556,6 @@ export const UserStageChallengeMusicRequest: MessageFns<UserStageChallengeMusicR
           message.cutInType = reader.string();
           continue;
         }
-        case 29: {
-          if (tag !== 232) {
-            break;
-          }
-
-          message.isAutoLive = reader.bool();
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -244833,7 +255602,6 @@ export const UserStageChallengeMusicRequest: MessageFns<UserStageChallengeMusicR
         : [],
       livePlayMode: isSet(object.livePlayMode) ? globalThis.String(object.livePlayMode) : "",
       cutInType: isSet(object.cutInType) ? globalThis.String(object.cutInType) : "",
-      isAutoLive: isSet(object.isAutoLive) ? globalThis.Boolean(object.isAutoLive) : false,
     };
   },
 
@@ -244914,9 +255682,6 @@ export const UserStageChallengeMusicRequest: MessageFns<UserStageChallengeMusicR
     if (message.cutInType !== "") {
       obj.cutInType = message.cutInType;
     }
-    if (message.isAutoLive !== false) {
-      obj.isAutoLive = message.isAutoLive;
-    }
     return obj;
   },
 
@@ -244957,7 +255722,6 @@ export const UserStageChallengeMusicRequest: MessageFns<UserStageChallengeMusicR
     message.deckMembers = object.deckMembers?.map((e) => e) || [];
     message.livePlayMode = object.livePlayMode ?? "";
     message.cutInType = object.cutInType ?? "";
-    message.isAutoLive = object.isAutoLive ?? false;
     return message;
   },
 };
@@ -248893,6 +259657,192 @@ export const UserUpdateInfo: MessageFns<UserUpdateInfo> = {
   },
 };
 
+function createBaseUserUseActivityItem(): UserUseActivityItem {
+  return { userId: "0", activityId: 0, resourceType: "", resourceId: 0, quantity: 0 };
+}
+
+export const UserUseActivityItem: MessageFns<UserUseActivityItem> = {
+  encode(message: UserUseActivityItem, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "0") {
+      writer.uint32(8).uint64(message.userId);
+    }
+    if (message.activityId !== 0) {
+      writer.uint32(16).uint32(message.activityId);
+    }
+    if (message.resourceType !== "") {
+      writer.uint32(26).string(message.resourceType);
+    }
+    if (message.resourceId !== 0) {
+      writer.uint32(32).uint32(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(40).uint32(message.quantity);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserUseActivityItem {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserUseActivityItem();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.userId = reader.uint64().toString();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.activityId = reader.uint32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.resourceType = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 32) {
+            break;
+          }
+
+          message.resourceId = reader.uint32();
+          continue;
+        }
+        case 5: {
+          if (tag !== 40) {
+            break;
+          }
+
+          message.quantity = reader.uint32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserUseActivityItem {
+    return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "0",
+      activityId: isSet(object.activityId) ? globalThis.Number(object.activityId) : 0,
+      resourceType: isSet(object.resourceType) ? globalThis.String(object.resourceType) : "",
+      resourceId: isSet(object.resourceId) ? globalThis.Number(object.resourceId) : 0,
+      quantity: isSet(object.quantity) ? globalThis.Number(object.quantity) : 0,
+    };
+  },
+
+  toJSON(message: UserUseActivityItem): unknown {
+    const obj: any = {};
+    if (message.userId !== "0") {
+      obj.userId = message.userId;
+    }
+    if (message.activityId !== 0) {
+      obj.activityId = Math.round(message.activityId);
+    }
+    if (message.resourceType !== "") {
+      obj.resourceType = message.resourceType;
+    }
+    if (message.resourceId !== 0) {
+      obj.resourceId = Math.round(message.resourceId);
+    }
+    if (message.quantity !== 0) {
+      obj.quantity = Math.round(message.quantity);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserUseActivityItem>, I>>(base?: I): UserUseActivityItem {
+    return UserUseActivityItem.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserUseActivityItem>, I>>(object: I): UserUseActivityItem {
+    const message = createBaseUserUseActivityItem();
+    message.userId = object.userId ?? "0";
+    message.activityId = object.activityId ?? 0;
+    message.resourceType = object.resourceType ?? "";
+    message.resourceId = object.resourceId ?? 0;
+    message.quantity = object.quantity ?? 0;
+    return message;
+  },
+};
+
+function createBaseUserUseActivityItemList(): UserUseActivityItemList {
+  return { entries: [] };
+}
+
+export const UserUseActivityItemList: MessageFns<UserUseActivityItemList> = {
+  encode(message: UserUseActivityItemList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.entries) {
+      UserUseActivityItem.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserUseActivityItemList {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserUseActivityItemList();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.entries.push(UserUseActivityItem.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UserUseActivityItemList {
+    return {
+      entries: globalThis.Array.isArray(object?.entries)
+        ? object.entries.map((e: any) => UserUseActivityItem.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: UserUseActivityItemList): unknown {
+    const obj: any = {};
+    if (message.entries?.length) {
+      obj.entries = message.entries.map((e) => UserUseActivityItem.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UserUseActivityItemList>, I>>(base?: I): UserUseActivityItemList {
+    return UserUseActivityItemList.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UserUseActivityItemList>, I>>(object: I): UserUseActivityItemList {
+    const message = createBaseUserUseActivityItemList();
+    message.entries = object.entries?.map((e) => UserUseActivityItem.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 function createBaseUserVersusEventRankingResponse(): UserVersusEventRankingResponse {
   return {
     eventPointNearUsers: undefined,
@@ -249833,6 +260783,176 @@ export const UserWearingCostume3dMap_EntriesEntry: MessageFns<UserWearingCostume
     message.value = (object.value !== undefined && object.value !== null)
       ? UserWearingCostume3d.fromPartial(object.value)
       : undefined;
+    return message;
+  },
+};
+
+function createBaseViewFittingSetting(): ViewFittingSetting {
+  return { spScreenId: 0, scale: 0, offsetX: 0, offsetY: 0 };
+}
+
+export const ViewFittingSetting: MessageFns<ViewFittingSetting> = {
+  encode(message: ViewFittingSetting, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.spScreenId !== 0) {
+      writer.uint32(8).uint32(message.spScreenId);
+    }
+    if (message.scale !== 0) {
+      writer.uint32(21).float(message.scale);
+    }
+    if (message.offsetX !== 0) {
+      writer.uint32(29).float(message.offsetX);
+    }
+    if (message.offsetY !== 0) {
+      writer.uint32(37).float(message.offsetY);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ViewFittingSetting {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseViewFittingSetting();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.spScreenId = reader.uint32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 21) {
+            break;
+          }
+
+          message.scale = reader.float();
+          continue;
+        }
+        case 3: {
+          if (tag !== 29) {
+            break;
+          }
+
+          message.offsetX = reader.float();
+          continue;
+        }
+        case 4: {
+          if (tag !== 37) {
+            break;
+          }
+
+          message.offsetY = reader.float();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ViewFittingSetting {
+    return {
+      spScreenId: isSet(object.spScreenId) ? globalThis.Number(object.spScreenId) : 0,
+      scale: isSet(object.scale) ? globalThis.Number(object.scale) : 0,
+      offsetX: isSet(object.offsetX) ? globalThis.Number(object.offsetX) : 0,
+      offsetY: isSet(object.offsetY) ? globalThis.Number(object.offsetY) : 0,
+    };
+  },
+
+  toJSON(message: ViewFittingSetting): unknown {
+    const obj: any = {};
+    if (message.spScreenId !== 0) {
+      obj.spScreenId = Math.round(message.spScreenId);
+    }
+    if (message.scale !== 0) {
+      obj.scale = message.scale;
+    }
+    if (message.offsetX !== 0) {
+      obj.offsetX = message.offsetX;
+    }
+    if (message.offsetY !== 0) {
+      obj.offsetY = message.offsetY;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ViewFittingSetting>, I>>(base?: I): ViewFittingSetting {
+    return ViewFittingSetting.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ViewFittingSetting>, I>>(object: I): ViewFittingSetting {
+    const message = createBaseViewFittingSetting();
+    message.spScreenId = object.spScreenId ?? 0;
+    message.scale = object.scale ?? 0;
+    message.offsetX = object.offsetX ?? 0;
+    message.offsetY = object.offsetY ?? 0;
+    return message;
+  },
+};
+
+function createBaseViewFittingSettingData(): ViewFittingSettingData {
+  return { listSettings: [] };
+}
+
+export const ViewFittingSettingData: MessageFns<ViewFittingSettingData> = {
+  encode(message: ViewFittingSettingData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.listSettings) {
+      ViewFittingSetting.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ViewFittingSettingData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseViewFittingSettingData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.listSettings.push(ViewFittingSetting.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ViewFittingSettingData {
+    return {
+      listSettings: globalThis.Array.isArray(object?.listSettings)
+        ? object.listSettings.map((e: any) => ViewFittingSetting.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: ViewFittingSettingData): unknown {
+    const obj: any = {};
+    if (message.listSettings?.length) {
+      obj.listSettings = message.listSettings.map((e) => ViewFittingSetting.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ViewFittingSettingData>, I>>(base?: I): ViewFittingSettingData {
+    return ViewFittingSettingData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ViewFittingSettingData>, I>>(object: I): ViewFittingSettingData {
+    const message = createBaseViewFittingSettingData();
+    message.listSettings = object.listSettings?.map((e) => ViewFittingSetting.fromPartial(e)) || [];
     return message;
   },
 };

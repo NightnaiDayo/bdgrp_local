@@ -2,7 +2,6 @@ import { Router } from 'express';
 import axios from "axios";
 import fs from 'fs';
 import path from "path";
-import { getMaster, reloadMaster } from "@master";
 
 const router = Router()
 
@@ -39,33 +38,22 @@ router.get('/', async (req, res) => {
             'x-platformid': req.get("x-platformid") as string,
             'x-deviceid': req.get("x-deviceid") as string,
             'x-channelid': req.get("x-channelid") as string,
-            'x-clientplatform': req.get("x-clientplatform") as string,
         }
     }
 
     try {
-        const resp = await axios.get(`${baseUrl}/api/application`, {
+        const resp = await axios.get(`${baseUrl}/api/missionreward.map`, {
             responseType: 'arraybuffer',
             headers
         });
 
         buffer = resp.data;
-        fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "application.binpb")}`, Buffer.from(resp.data));
+        fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "missionreward.map")}`, Buffer.from(resp.data));
     } catch(e) {
-        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "application.binpb")}`);
+        buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "missionreward.map")}`);
     }
 
     res.send(buffer);
-
-    let master = getMaster();
-    if(!master) {
-        const d = await axios.get(`${baseUrl}/api/suite/master`, {
-            responseType: 'arraybuffer',
-            headers
-        });
-        fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`, Buffer.from(d.data));
-        reloadMaster()
-    }
 })
 
 export default router;

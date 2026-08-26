@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 
     switch(process.env.SERVER) {
         case 'TW':
+        case 'CN':
             offset = 28800000;
             break;
         case 'JP':

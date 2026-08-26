@@ -295,7 +295,7 @@ router.get('/', async (req, res) => {
             liveBoostBonusType: "default"
         },
         userExchangesList: {
-            entries: [{ userId: 8374399, exchangesId: 1563, resetAt: "1779155725000" }]
+            entries: [{ userId: userid, exchangesId: 1563, resetAt: "1779155725000" }]
         },
         userGachaTicketList: undefined,
         userGachaStatusMap: undefined,

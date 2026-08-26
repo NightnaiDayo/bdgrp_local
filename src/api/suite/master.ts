@@ -3,6 +3,8 @@ import axios from "axios";
 import fs from 'fs';
 import path from "path";
 import { reloadMaster } from "@master"
+import {ClientErrorResponse} from "@proto";
+import {decrypt} from "@util/decrypt";
 
 const router = Router()
 
@@ -20,23 +22,39 @@ router.get('/', async (req, res) => {
         case 'GL':
             baseUrl = 'https://api.app-bang-dream-gbp.com'
             break;
+        case 'CN':
+            baseUrl = 'https://l3-prod-all-bd.bilibiligame.net'
+            break;
+    }
+
+    let headers = {
+        'User-Agent': req.get("User-Agent") as string,
+        'Content-Type': req.get("Content-Type") as string,
+        'Accept': req.get("Accept") as string,
+        'Accept-Encoding': req.get("Accept-Encoding") as string,
+        'x-clientversion': req.get("x-clientversion") as string,
+    }
+
+    if(process.env.SERVER == "CN") {
+        headers = {
+            ...headers,
+            'x-platformid': req.get("x-platformid") as string,
+            'x-deviceid': req.get("x-deviceid") as string,
+            'x-channelid': req.get("x-channelid") as string,
+            'x-clientplatform': req.get("x-clientplatform") as string,
+        }
     }
 
     try {
         const resp = await axios.get(`${baseUrl}/api/suite/master`, {
             responseType: 'arraybuffer',
-            headers: {
-                'User-Agent': req.get("User-Agent") as string,
-                'Content-Type': req.get("Content-Type") as string,
-                'Accept': req.get("Accept") as string,
-                'Accept-Encoding': req.get("Accept-Encoding") as string,
-                'x-clientversion': req.get("x-clientversion") as string,
-            }
+            headers
         });
 
         buffer = resp.data;
         fs.writeFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`, Buffer.from(buffer));
     } catch(e) {
+        console.log(ClientErrorResponse.decode(decrypt(e.response.data)))
         buffer = fs.readFileSync(`${path.join(process.cwd(), "resp", process.env.SERVER, "suitemaster.bz2")}`)
     }
 

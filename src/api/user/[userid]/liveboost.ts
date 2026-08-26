@@ -10,7 +10,7 @@ router.get('/', async(req, res) => {
     
     const data = {
         userId: String(userid),
-        liveBoost: 99,
+        liveBoost: 67,
         serverDate: Date.now(),
         liveBoostBonusType: "default"
     }

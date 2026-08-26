@@ -7,7 +7,7 @@ A local server for a girl rhythm game.
 - [x] TW
 - [x] JP
 - [ ] KR
-- [ ] CN
+- [x] CN
 - [x] GL
 
 ## Requirements
@@ -26,6 +26,7 @@ Redirect the following URLs to `http://IP:8482`:
 - TW: `https://vXXX-bd.mobimon.com.tw` (replace `XXX` with the actual number)
 - JP: `https://api.garupa.jp`
 - GL: `https://api.app-bang-dream-gbp.com`
+- CN: `https://l3-prod-all-bd.bilibiligame.net`
 
 ## Run server
 

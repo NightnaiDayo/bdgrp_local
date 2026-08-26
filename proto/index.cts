@@ -11,4 +11,7 @@ switch (server) {
     case 'GL':
         module.exports = require('./generated/allmsgs_gl');
         break;
+    case 'CN':
+        module.exports = require('./generated/allmsgs_cn');
+        break;
 }
