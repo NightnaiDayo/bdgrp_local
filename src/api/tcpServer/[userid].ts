@@ -1,6 +1,7 @@
 import { Router } from "express";
 import axios from "axios";
 import { db } from "@db";
+import https from 'https';
 
 const router = Router({ mergeParams: true })
 
@@ -12,6 +13,7 @@ router.post('/', async (req, res) => {
             req.body,
             {
                 responseType: 'arraybuffer',
+                httpsAgent: new https.Agent({ rejectUnauthorized: false }),
                 headers: req.headers
             }
         )
