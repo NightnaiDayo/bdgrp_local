@@ -1,12 +1,29 @@
 import { Router } from "express";
 import axios from "axios";
-import { db } from "@db";
 import https from 'https';
 
 const router = Router({ mergeParams: true })
 
 router.post('/', async (req, res) => {
-    const user = db.Users[process.env.SERVER].find((u: any) => String(u.userId) == String(req.params.userid));
+    const skipReqHeaders = new Set([
+        'transfer-encoding',
+        'connection',
+        'keep-alive',
+        'content-encoding',
+        'content-length',
+        'cf-connecting-ip',
+        'cf-ray',
+        'cf-visitor',
+        'cf-ipcountry',
+        'cf-pseudo-ipv4',
+        'x-forwarded-for',
+        'x-forwarded-proto',
+        'x-real-ip',
+    ]);
+
+    const cleanHeaders = Object.fromEntries(
+        Object.entries(req.headers).filter(([k]) => !skipReqHeaders.has(k.toLowerCase()))
+    );
 
     try {
         const resp = await axios.post(`https://l3-prod-all-bd.bilibiligame.net/api/tcpServer/${req.params.userid}`,
@@ -14,7 +31,7 @@ router.post('/', async (req, res) => {
             {
                 responseType: 'arraybuffer',
                 httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-                headers: req.headers
+                headers: cleanHeaders
             }
         )
 
