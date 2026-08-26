@@ -52,6 +52,10 @@ router.get('/', async (req, res) => {
             break;
         case 'GL':
             deckName = "Band 1"
+            break;
+        case 'CN':
+            deckName = "乐队1"
+            break;
     }
 
     // DB defaults
@@ -164,6 +168,8 @@ router.get('/', async (req, res) => {
             };
         }
     }
+
+    const validSpawnPoints = new Set(Object.keys(master.masterAreaItemSpawnMap.entries));
 
     // @ts-ignore
     const data = {
@@ -280,10 +286,12 @@ router.get('/', async (req, res) => {
         userAfterLiveTalkListMap: undefined,
         userAreaItemMap: {
             entries: Object.fromEntries(
-                Object.entries(master.masterAreaItemMap.entries).map(([id, areaItem]) => [
-                    id,
-                    { userId: userid, areaItemId: areaItem.areaItemId, areaItemCategory: areaItem.categoryId, level: 8 }
-                ])
+                Object.entries(master.masterAreaItemMap.entries)
+                    .filter(([_, areaItem]: any) => validSpawnPoints.has(areaItem.spawnPoint))
+                    .map(([id, areaItem]: any) => [
+                        id,
+                        { userId: userid, areaItemId: areaItem.areaItemId, areaItemCategory: areaItem.categoryId, level: 8 }
+                    ])
             ),
             newlyOpenedContents: { entries: [] }
         },
