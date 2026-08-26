@@ -17,7 +17,7 @@ A local server for a girl rhythm game.
 
 ## Configuration
 
-Open `.env` and set `SERVER=` to your target server (`TW` / `JP` / `GL`). Default is `TW`.
+Open `.env` and set `SERVER=` to your target server (`TW` / `JP` / `GL` / `CN`). Default is `TW`.
 
 ## Proxy Setup
 
