@@ -19,11 +19,15 @@ router.post('/', async (req, res) => {
         'x-forwarded-for',
         'x-forwarded-proto',
         'x-real-ip',
+        'cdn-loop',
     ]);
 
-    const cleanHeaders = Object.fromEntries(
-        Object.entries(req.headers).filter(([k]) => !skipReqHeaders.has(k.toLowerCase()))
-    );
+    const cleanHeaders = {
+        ...Object.fromEntries(
+            Object.entries(req.headers).filter(([k]) => !skipReqHeaders.has(k.toLowerCase()))
+        ),
+        host: 'l3-prod-all-bd.bilibiligame.net',
+    };
 
     try {
         const resp = await axios.post(`https://l3-prod-all-bd.bilibiligame.net/api/tcpServer/${req.params.userid}`,
