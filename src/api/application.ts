@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
     switch(process.env.SERVER) {
         case 'TW':
-            baseUrl = 'https://v940-bd.mobimon.com.tw';
+            baseUrl = 'https://v1010-bd.mobimon.com.tw';
             break;
         case 'JP':
             baseUrl = 'https://api.garupa.jp'
