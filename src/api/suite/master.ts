@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
             await bzip2.init();
 
             const dec = decrypt(resp.data)
-            const decompressed = bzip2.decompress(dec, dec.length)
+            const decompressed = bzip2.decompress(dec, 1024 * 1024 * 400)
             const master = SuiteMasterGetResponse.toJSON(SuiteMasterGetResponse.decode(decompressed));
             master.masterMusicList.entries.push(
                 {
