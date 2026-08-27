@@ -41,6 +41,127 @@ router.get('/', async (req, res) => {
 
     if (!user) return res.status(404).send();
 
+    if(process.env.SERVER !== "JP") {
+        master.masterMusicList.entries.push(
+            {
+                "musicId": 84,
+                "musicTitle": "深愛",
+                "bgmId": "bgm084",
+                "bgmFile": "084_shin_ai",
+                "lyricist": "水樹奈々",
+                "composer": "上松範康（Elements Garden）",
+                "tag": "anime",
+                "arranger": "都丸椋太（Elements Garden）",
+                "ruby": "しんあい",
+                "bandId": 5,
+                "howToGet": "ＣｉＲＣＬＥの楽曲ショップで交換",
+                "achievements": [
+                    {
+                        "musicId": 84,
+                        "achievementType": "combo_easy",
+                        "rewardType": "coin",
+                        "quantity": 5000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "combo_expert",
+                        "rewardType": "coin",
+                        "quantity": 20000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "combo_hard",
+                        "rewardType": "coin",
+                        "quantity": 15000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "combo_normal",
+                        "rewardType": "coin",
+                        "quantity": 10000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "combo_special",
+                        "rewardType": "coin",
+                        "quantity": 20000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "full_combo_easy",
+                        "rewardType": "coin",
+                        "quantity": 10000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "full_combo_expert",
+                        "rewardType": "star",
+                        "quantity": 50
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "full_combo_hard",
+                        "rewardType": "star",
+                        "quantity": 50
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "full_combo_normal",
+                        "rewardType": "coin",
+                        "quantity": 20000
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "full_combo_special",
+                        "rewardType": "star",
+                        "quantity": 50
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "score_rank_a",
+                        "rewardType": "practice_ticket",
+                        "rewardId": 2,
+                        "quantity": 1
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "score_rank_b",
+                        "rewardType": "practice_ticket",
+                        "rewardId": 2,
+                        "quantity": 1
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "score_rank_c",
+                        "rewardType": "practice_ticket",
+                        "rewardId": 2,
+                        "quantity": 1
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "score_rank_s",
+                        "rewardType": "star",
+                        "quantity": 50
+                    },
+                    {
+                        "musicId": 84,
+                        "achievementType": "score_rank_ss",
+                        "rewardType": "star",
+                        "quantity": 50
+                    }
+                ],
+                "jacketImage": "084_shin_ai",
+                "seq": 1407,
+                "publishedAt": "1513576800000",
+                "closedAt": "4102714800000",
+                "transitionMethod": "music_shop",
+                "phonetic": "シンアイ",
+                "musicDataType": "normal",
+                "categorySetId": 32
+            },
+        )
+    }
+
     let deckName = "";
 
     switch(process.env.SERVER) {
@@ -473,7 +594,7 @@ router.get('/', async (req, res) => {
                 // @ts-ignore
                 master.masterNewSituationIntroductionList.entries.map((item: any) => [
                     String(item.newSituationIntroductionId),
-                    { userId: Number(userid), newSituationIntroductionId: Number(item.newSituationIntroductionId), status: "already_read" }
+                    { userId: userid, newSituationIntroductionId: item.newSituationIntroductionId, status: "already_read" }
                 ])
             )
         },
