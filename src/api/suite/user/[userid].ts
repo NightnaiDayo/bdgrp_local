@@ -160,6 +160,17 @@ router.get('/', async (req, res) => {
                 "categorySetId": 32
             },
         )
+        master.masterMusicJacketMap.entries["84"] = {
+            "entries": [
+                {
+                    "musicJacketId": 118,
+                    "musicId": 84,
+                    "seq": 5,
+                    "jacketImage": "084_shin_ai",
+                    "startAt": "1513576800000"
+                }
+            ]
+        }
     }
 
     let deckName = "";
@@ -820,6 +831,8 @@ router.get('/', async (req, res) => {
     const message = SuiteUserGetResponse.fromJSON(data);
     const buffer = Buffer.from(SuiteUserGetResponse.encode(message).finish());
     const encBuffer = encrypt(buffer);
+
+    console.log(data.userMusicInventoryList.entries.find((e: any) => e.musicId === 84));
 
     res.removeHeader('Content-Length');
     res.removeHeader('Transfer-Encoding');
