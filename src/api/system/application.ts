@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     }
 
     const data = {
-        serverDate: String(Date.now() + 86400000),
+        serverDate: String(Date.now() + 97200000),
         timeZoneRawOffset: offset as number
     }
 
